@@ -1,0 +1,16 @@
+
+universe              = vanilla
+getenv                = True
+executable            = condor_wrapper.sh
+arguments             = python run.py $(MACRO) $(VER) $(TAG) $(JobID) $(outputDir) $(doDimuon) $(DATASET)
+transfer_input_files  = $(MACRO).C,MuonHLTNtupleRun3.h,run.py
+JobBatchName          = Run3MuonHLT
+request_memory        = 500 MB
+
+# x509userproxy         = /tmp/x509up_u41056
+
+output                = condor/job.$(MACRO).$(VER).$(TAG).$(JobID).$(ClusterId).$(ProcId).out
+error                 = condor/job.$(MACRO).$(VER).$(TAG).$(JobID).$(ClusterId).$(ProcId).err
+log                   = condor/job.$(MACRO).$(VER).$(TAG).$(JobID).$(ClusterId).$(ProcId).log
+
+queue MACRO,VER,TAG,JobID,outputDir,doDimuon,DATASET from joblist.txt
