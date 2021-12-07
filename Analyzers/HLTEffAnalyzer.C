@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 #include <TH1.h>
 #include <TH2.h>
@@ -345,6 +346,18 @@ void HLTEffAnalyzer(
             "IsoMu24",
             "OldMu100",
             "TkMu100",
+            "Mu50OrOldMu100OrTkMu100",
+            "Mu17Mu8",
+            "Mu37TkMu27"
+        };
+
+        vector<TString> HLTpaths = {
+            "Mu50",
+            "Mu24",
+            "IsoMu24",
+            "OldMu100",
+            "TkMu100",
+            "Mu50OrOldMu100OrTkMu100",
             "Mu17Mu8",
             "Mu37TkMu27"
         };
@@ -613,7 +626,9 @@ void HLTEffAnalyzer(
                 &hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q,
                 &hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07,
                 &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q,
-                &hltL3fL1sMu25f0TkFiltered100Q
+                &hltL3fL1sMu25f0TkFiltered100Q,
+                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q  // Mu50OrOldMu100OrTkMu100
+
                 // &GenMuonsFromHardProcess,  // Mu17Mu8
                 // &GenMuonsFromHardProcess   // Mu37TkMu27
             };
@@ -631,13 +646,24 @@ void HLTEffAnalyzer(
                         continue;
                     if (GenMuonsFromHPInAcc.at(0).get("charge")*GenMuonsFromHPInAcc.at(1).get("charge") > 0)
                         continue;
+                    if (!acceptance(GenMuonsFromHPInAcc.at(0)))
+                        continue;
+                    if (!acceptance(GenMuonsFromHPInAcc.at(1)))
+                        continue;
+                    if (GenMuonsFromHPInAcc.at(0).pt < GenMuonsFromHPInAcc.at(1).pt) {
+                        cout << "GenMuonsFromHPInAcc.at(0).pt < GenMuonsFromHPInAcc.at(1).pt" << endl;
+                        return;
+                    }
 
                     bool passDoubleMu = false;
                     Object genMu0 = GenMuonsFromHPInAcc.at(0);  // leading muon
                     Object genMu1 = GenMuonsFromHPInAcc.at(1);  // sub-leading muon
+                    double pt_min_lead = 1.e9;
                     if (L3types.at(i).Contains("Mu17Mu8")) {
-                        passDoubleMu = ((genMu0.pt > 20.) && (
+                        pt_min_lead = 20.;
+                        passDoubleMu = (
                             (
+                                // genMu0.pt > 20. &&
                                 genMu0.matched(hltL3fL1DoubleMu155fPreFiltered8, 0.1) &&
                                 genMu0.matched(hltL3fL1DoubleMu155fFiltered17, 0.1) &&
                                 genMu0.matched(hltDiMuon178RelTrkIsoFiltered0p4, 0.1) &&
@@ -648,39 +674,53 @@ void HLTEffAnalyzer(
                                 genMu1.matched(hltDiMuon178RelTrkIsoFiltered0p4, 0.1) &&
                                 genMu1.matched(hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2, 0.1) &&
                                 genMu1.matched(hltDiMuon178Mass3p8Filtered, 0.1)
-                            ) || (
-                                genMu1.matched(hltL3fL1DoubleMu155fPreFiltered8, 0.1) &&
-                                genMu1.matched(hltL3fL1DoubleMu155fFiltered17, 0.1) &&
-                                genMu1.matched(hltDiMuon178RelTrkIsoFiltered0p4, 0.1) &&
-                                genMu1.matched(hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2, 0.1) &&
-                                genMu1.matched(hltDiMuon178Mass3p8Filtered, 0.1) &&
-
-                                genMu0.matched(hltL3fL1DoubleMu155fPreFiltered8, 0.1) &&
-                                genMu0.matched(hltDiMuon178RelTrkIsoFiltered0p4, 0.1) &&
-                                genMu0.matched(hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2, 0.1) &&
-                                genMu0.matched(hltDiMuon178Mass3p8Filtered, 0.1)
                             )
-                        ));
+                            //  || (
+                            //     genMu1.pt > 20. &&
+                            //     genMu1.matched(hltL3fL1DoubleMu155fPreFiltered8, 0.1) &&
+                            //     genMu1.matched(hltL3fL1DoubleMu155fFiltered17, 0.1) &&
+                            //     genMu1.matched(hltDiMuon178RelTrkIsoFiltered0p4, 0.1) &&
+                            //     genMu1.matched(hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2, 0.1) &&
+                            //     genMu1.matched(hltDiMuon178Mass3p8Filtered, 0.1) &&
+
+                            //     genMu0.matched(hltL3fL1DoubleMu155fPreFiltered8, 0.1) &&
+                            //     genMu0.matched(hltDiMuon178RelTrkIsoFiltered0p4, 0.1) &&
+                            //     genMu0.matched(hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2, 0.1) &&
+                            //     genMu0.matched(hltDiMuon178Mass3p8Filtered, 0.1)
+                            // )
+                        );
+                        // if (!genMu0.matched(hltL3fL1DoubleMu155fFiltered17, 0.1) &&
+                        //      genMu1.matched(hltL3fL1DoubleMu155fFiltered17, 0.1)) {
+                        //     genFill = genMu0;
+                        // }
                     } else if (L3types.at(i).Contains("Mu37TkMu27")) {
-                        passDoubleMu = ((genMu0.pt > 40.) && (
+                        pt_min_lead = 40.;
+                        passDoubleMu = (
                             (
+                                // genMu0.pt > 40. &&
                                 genMu0.matched(hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37, 0.1) &&
                                 genMu0.matched(hltDiMuonGlb37Trk27DzFiltered0p2, 0.1) &&
 
                                 genMu1.matched(hltDiMuonGlbFiltered37TrkFiltered27, 0.1) &&
                                 genMu1.matched(hltDiMuonGlb37Trk27DzFiltered0p2, 0.1)
-                            ) || (
-                                genMu1.matched(hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37, 0.1) &&
-                                genMu1.matched(hltDiMuonGlb37Trk27DzFiltered0p2, 0.1) &&
-
-                                genMu0.matched(hltDiMuonGlbFiltered37TrkFiltered27, 0.1) &&
-                                genMu0.matched(hltDiMuonGlb37Trk27DzFiltered0p2, 0.1)
                             )
-                        ));
+                            //  || (
+                            //     genMu1.pt > 40. &&
+                            //     genMu1.matched(hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37, 0.1) &&
+                            //     genMu1.matched(hltDiMuonGlb37Trk27DzFiltered0p2, 0.1) &&
+
+                            //     genMu0.matched(hltDiMuonGlbFiltered37TrkFiltered27, 0.1) &&
+                            //     genMu0.matched(hltDiMuonGlb37Trk27DzFiltered0p2, 0.1)
+                            // )
+                        );
+                        // if (!genMu0.matched(hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37, 0.1) &&
+                        //      genMu1.matched(hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37, 0.1)) {
+                        //     genFill = genMu0;
+                        // }
                     }
 
                     for(unsigned j=0; j<Eff_genpt_mins.size(); ++j) {
-                        if( genMu1.pt > Eff_genpt_mins.at(j) ) {
+                        if(genMu0.pt > pt_min_lead && genMu1.pt > Eff_genpt_mins.at(j)) {
                             hc_Eff.at(i).at(j)->fill_den( genMu1, nt->truePU, genWeight );
 
                             if (passDoubleMu) {
@@ -744,12 +784,27 @@ void HLTEffAnalyzer(
                         if (L3types.at(i).Contains("L1Muon")) {
                             matched_idx = -1e6;
                         }
-                        else if (L3types.at(i).Contains("OI") || L3types.at(i).Contains("L3Muon")) {
+                        else if (
+                            L3types.at(i).Contains("OI") ||
+                            L3types.at(i).Contains("L3Muon") ||
+                            (std::find(HLTpaths.begin(), HLTpaths.end(), L3types.at(i)) != HLTpaths.end())
+                        ) {
                             matched_idx = genmu.matched( *L3Coll, L3map, 0.1 );
                         }
                         else {
                             matched_idx = looseMatch ? genmu.matched( *L3Coll, L3map, 0.3 ) :  // L2 muon
                                                        genmu.matched( *L3Coll, L3map, 0.1, 0.5 );  // IO tracks
+                        }
+
+                        // Mu50OrOldMu100OrTkMu100
+                        if (L3types.at(i).Contains("Mu50OrOldMu100OrTkMu100") &&
+                            matched_idx < 0) {
+                            vector<int> TkMu100map(hltL3fL1sMu25f0TkFiltered100Q.size(), -1);
+                            matched_idx = genmu.matched(hltL3fL1sMu25f0TkFiltered100Q, TkMu100map, 0.1);
+                            if (matched_idx < 0) {
+                                vector<int> OldMu100map(hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q.size(), -1);
+                                matched_idx = genmu.matched(hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q, OldMu100map, 0.1);
+                            }
                         }
 
                         int matched_idx_res = -1e6;

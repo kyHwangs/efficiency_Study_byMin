@@ -55,12 +55,12 @@ samples = [
     # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/JPsiToMuMu_Pt-0To100-pythia8-gun/crab_Jpsi_121X_hlt_muon_mc_Run3_OI_wp01_20211130/211130_202057/0000/",
     # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/JPsiToMuMu_Pt-0To100-pythia8-gun/crab_Jpsi_121X_hlt_muon_mc_Run3_OI_wp01_Iso_20211130/211130_202516/0000/",
     # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/JPsiToMuMu_Pt-0To100-pythia8-gun/crab_Jpsi_121X_hlt_muon_mc_Run3_wp01_Iso_20211130/211130_202856/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_run2_20211130/211130_201010/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_20211130/211130_201408/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_OI_20211130/211130_201806/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_OI_wp01_20211130/211130_202215/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_OI_wp01_Iso_20211130/211130_202637/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_wp01_Iso_20211130/211130_202958/0000/",
+    # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_run2_20211130/211130_201010/0000/",
+    # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_20211130/211130_201408/0000/",
+    # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_OI_20211130/211130_201806/0000/",
+    # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_OI_wp01_20211130/211130_202215/0000/",
+    # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_OI_wp01_Iso_20211130/211130_202637/0000/",
+    # "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/WJetsToLNu_TuneCP5_14TeV-amcatnloFXFX-pythia8/crab_WJets_121X_hlt_muon_mc_Run3_wp01_Iso_20211130/211130_202958/0000/",
     "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/crab_Zprime_M6000_121X_hlt_muon_mc_run2_20211130/211130_200823/0000/",
     "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/crab_Zprime_M6000_121X_hlt_muon_mc_Run3_20211130/211130_201120/0000/",
     "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1210/20211130/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/crab_Zprime_M6000_121X_hlt_muon_mc_Run3_OI_20211130/211130_201525/0000/",
@@ -119,16 +119,16 @@ dates = [
 
 analyzers = {
     'DYToLL_M50': ('Eff'),
-    'WJets': ('Eff'),
     'Zprime_M6000': ('Eff'),
-    # 'MuGunPU': ('Eff'),
-    # 'Jpsi': ('Eff'),
+    'MuGunPU': ('Eff'),
+    'WJets': ('Eff'),
+    'Jpsi': ('Eff'),
 }
 
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3Review'
+    VER_base = 'v03_Run3Review_DM'  # 'v03_Run3Review'
     tag_prefix = 'crab_'
     tag_split = '_121X_hlt_muon_mc_'
 
@@ -193,7 +193,7 @@ if __name__ == '__main__':
             else:
                 nfiles = 10
                 if 'Zprime_M6000' in TAG:
-                    nfiles = 10
+                    nfiles = 5
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime_M6000" in TAG:
