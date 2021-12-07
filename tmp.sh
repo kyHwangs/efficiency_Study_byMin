@@ -10,18 +10,21 @@ condor_release msoh
 
 python submit_batch.py recover
 
-python submit_batch.py hadd >&hadd.log&
+python submit_batch.py hadd
+
+condor_submit condor_hadd.sub
+
 
 
 ll -Sr condor/job.*.err
 
-ll -S Outputs_v51*/*/*/*.root
+ll -S Outputs_v*/*/*/*.root
 
-find ./Outputs_v51*/* \
+find ./Outputs_v*/* \
 -type f -name '*--*.root' \
 -size -10k \
 -delete
 
+scp msoh@cms.knu.ac.kr:/u/user/msoh/MuonHLT/Run3/Local/test_20211201_Run3Review/Outputs_vRun3Review*/Eff/hist-*.root .
 
-
-
+cdq 397147 -long | grep -v Environment | grep CPU
