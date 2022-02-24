@@ -1,0 +1,5 @@
+*.root
+*.*~
+Draw/plots*/
+Analyzers/condor/
+Analyzers/*list.txt

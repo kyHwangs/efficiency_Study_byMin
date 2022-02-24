@@ -4,11 +4,11 @@ python submit_batch.py
 
 condor_submit condor_submit.sub
 
-condor_hold msoh
+#condor_hold msoh
 
-condor_release msoh
+#condor_release msoh
 
-python submit_batch.py recover
+#python submit_batch.py recover
 
 python submit_batch.py hadd
 

@@ -1,0 +1,16 @@
+
+universe              = vanilla
+getenv                = True
+executable            = condor_wrapper.sh
+arguments             = $(HADDCMD)
+# transfer_input_files  = 
+JobBatchName          = Run3MuonHLT-hadd
+request_memory        = 5000 MB
+
+# x509userproxy         = /tmp/x509up_u41056
+
+output                = condor/job.hadd.$(ClusterId).$(ProcId).out
+error                 = condor/job.hadd.$(ClusterId).$(ProcId).err
+log                   = condor/job.hadd.$(ClusterId).$(ProcId).log
+
+queue HADDCMD from haddlist.txt
