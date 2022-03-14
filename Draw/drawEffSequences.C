@@ -37,8 +37,8 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawEffIOFromL2wrtL1(
-  TString ver = "v1", TString SAMPLE = "JPsi", TString tag = "JPsi",
+void drawEffSequences(
+  TString ver = "v4", TString SAMPLE = "Bs", TString tag = "Bs",
   //TString L1tag = "L1SQ0", TString L1str = "L1 qual > 11, no p_{T} cut",
   TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T} cut",
   bool isLogy = false  // HERE
@@ -49,14 +49,12 @@ void drawEffIOFromL2wrtL1(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString efftag_str = "IO(L2)";
-  TString efftag = "IOFromL2_L1_comp";
+  TString efftag = "Sequences";
   TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  //vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "eta", "phi", "pu"};
-  vector<TString> v_var = {"pt_zoom", "pt", "l1pt", "l1pt_zoom", "eta", "phi", "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "eta", "phi", "pu"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
@@ -85,14 +83,17 @@ void drawEffIOFromL2wrtL1(
     range.at(3) = {1, 30, 3000};
   }
 
-  int n_pt_bins = 29-1;
-  double pt_bins[29] = {
-    0, 1, 2, 3, 4,
-    5, 6, 7, 8, 9,
-    10, 12, 15, 18, 20,
-    21, 22, 23, 26, 30,
-    40, 60, 90, 130, 200,
-    300, 450, 700, 1000
+  int n_pt_bins = 52-1;
+  double pt_bins[52] = {
+    0., 0.5, 1., 1.5, 2., 2.5, 3., 3.5, 4., 4.5,
+    5., 5.5, 6., 6.5, 7., 7.5, 8., 8.5, 9., 9.5,
+    10, 11, 12, 13, 14,
+    15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24,
+    26, 30, 35, 40, 50,
+    60, 80, 100, 120, 160,
+    200, 300, 450, 700, 1000,
+    2000, 3000
   };
 
   int n_eta_bins = 23-1;
@@ -101,8 +102,8 @@ void drawEffIOFromL2wrtL1(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{gen}| < 2.4"};//, "|#eta^{gen}| < 1.2", "1.2 < |#eta^{gen}| < 2.4"};
+  vector<TString> etas_str = {"I", "B", "E"};
+  vector<TString> etas_str_long = {"|#eta^{gen}| < 2.4", "|#eta^{gen}| < 1.2", "1.2 < |#eta^{gen}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
@@ -110,9 +111,9 @@ void drawEffIOFromL2wrtL1(
     kRed,
     kGreen+2,
     kMagenta,
-    kCyan+2,
-    kPink+4,
-    kGray+2,
+    //kCyan+2,
+    //kPink+4,
+    //kGray+2,
     //kOrange,
   };
   vector<int> v_marker = {
@@ -121,105 +122,56 @@ void drawEffIOFromL2wrtL1(
     26,
     23,
     32,
-    22,
-    26,
-    23,
+    //22,
+    //26,
+    //23,
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROIinf-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROIinf-"+tag+"-Eff.root",
-
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi1p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p5-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi2p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI3p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi3p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi3p5-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi4p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi5p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi6p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi8p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi10p0-"+tag+"-Eff.root",
-
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p40-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p45-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p50-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p55-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p60-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROIinf-"+tag+"-Eff.root",
-
-    //"./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
   };
   vector<TString> types = {
-    //"Eff/hltFromL1Merged/num_Eff_"+L1tag+"_hltFromL1Merged",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
+    //"Eff/hltPixelTracks/num_Eff_"+L1tag+"_hltPixelTracks",
+    //"Eff/hltPixelTracksInRegionL1/num_Eff_"+L1tag+"_hltPixelTracksInRegionL1",
+    //"Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1",
+    //"Eff/hltPixelTracksInRegionL2/num_Eff_"+L1tag+"_hltPixelTracksInRegionL2",
+    //"Eff/hltIter0/num_Eff_"+L1tag+"_hltIter0",
+
+    "Eff/hltOI/num_Eff_"+L1tag+"_hltOI",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3Merged/num_Eff_"+L1tag+"_hltL3Merged",
+    "Eff/hltIterL3MuonNoID/num_Eff_"+L1tag+"_hltIterL3MuonNoID",
+    "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
   };
   vector<TString> types_den = {
-    //"Eff/hltFromL1Merged/den_Eff_"+L1tag+"_hltFromL1Merged",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
+    //"Eff/hltPixelTracks/den_Eff_"+L1tag+"_hltPixelTracks",
+    //"Eff/hltPixelTracksInRegionL1/den_Eff_"+L1tag+"_hltPixelTracksInRegionL1",
+    //"Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1",
+    //"Eff/hltPixelTracksInRegionL2/den_Eff_"+L1tag+"_hltPixelTracksInRegionL2",
+    //"Eff/hltIter0/den_Eff_"+L1tag+"_hltIter0",
+
+    "Eff/hltOI/den_Eff_"+L1tag+"_hltOI",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3Merged/den_Eff_"+L1tag+"_hltL3Merged",
+    "Eff/hltIterL3MuonNoID/den_Eff_"+L1tag+"_hltIterL3MuonNoID",
+    "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
   };
   vector<TString> types_str = {
-    //efftag_str+" : Default Menu (GRun)",
-    //efftag_str+" : IO patatrack",
-    //efftag_str+" : IO patatrack + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 2^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 2^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 3^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 3^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 4^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 4^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI Open)",
-    //efftag_str+" : IO patatrack (ROI Open) + IO upg.",
+    //"IO upg. (ROI 1.0#times 5.0) : Full Pixel Tracks",
+    //"IO upg. (ROI 1.0#times 5.0) : Pixel Tracks after selection (L1)",
+    //"IO upg. (ROI 1.0#times 5.0) : IO from L1",
+    //"IO upg. (ROI 1.0#times 5.0) : Pixel Tracks after selection (L2)",
+    //"IO upg. (ROI 1.0#times 5.0) : IO from L2",
 
-    efftag_str+" : IO upg. (ROI default)",
-    //efftag_str+" : IO upg. (ROI 1.5^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 1.5)",
-    //efftag_str+" : IO upg. (ROI 2.0^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 2.0)",
-    //efftag_str+" : IO upg. (ROI 2.5^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 2.5)",
-    //efftag_str+" : IO upg. (ROI 3.0^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 3.0)",
-    efftag_str+" : IO upg. (ROI 1.0#times 3.5)",
-    efftag_str+" : IO upg. (ROI 1.0#times 4.0)",
-    efftag_str+" : IO upg. (ROI 1.0#times 5.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 6.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 8.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 10.0)",
-
-    //efftag_str+" : IO upg. (ROI 1.5#times 1.5)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 5.0)",
+    "IO upg. (ROI 1.0#times 5.0) : OI",
+    "IO upg. (ROI 1.0#times 5.0) : OI + IO from L2",
+    "IO upg. (ROI 1.0#times 5.0) : OI + IO from L2 + L1",
+    "IO upg. (ROI 1.0#times 5.0) : L3 muon before ID",
+    "IO upg. (ROI 1.0#times 5.0) : L3 muon after ID",
   };
 
   vector<TString> v_pts = {
@@ -244,11 +196,11 @@ void drawEffIOFromL2wrtL1(
         double ymax = 1.6;
 
         if(v_var[ivar].Contains("zoom")){
-          ymin = 0.85;
-          ymax = 1.03;
+          ymin = 0.90;
+          ymax = 1.04;
         }else if (!v_var[ivar].Contains("pt")){
-          ymin = 0.2;
-          ymax = 1.35;
+          ymin = 0.7;
+          ymax = 1.2;
         }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s_%s",
@@ -282,10 +234,8 @@ void drawEffIOFromL2wrtL1(
           TString titleX = GetTitleX(hist_var+"_"+(!hist_var.Contains("l1")?"gen":"l1"));
           TString titleY = "L3/L1 efficiency";
 
-          //TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
-          //TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
-          TString den_name = TString::Format("%s_%s_%s", the_type_den.Data(), v_pts[ipt].Data(), hist_var.Data());
-          TString num_name = TString::Format("%s_%s_%s", the_type_num.Data(), v_pts[ipt].Data(), hist_var.Data());
+          TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
+          TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
 
           TH1F* den = Get_Hist( fileName, den_name );
           TH1F* num = Get_Hist( fileName, num_name );

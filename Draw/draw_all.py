@@ -1,7 +1,7 @@
 import os, sys
 from time import sleep
 
-VER = 'v4'
+VER = 'v5'
 
 samples = [
     ('Jpsi gun', 'JPsi'),
@@ -13,29 +13,31 @@ samples = [
 ]
 
 l1types = [
-    #('L1SQ22', 'L1 qual > 11, p_{T}^{L1} > 22 GeV'),
-    #('L1DQ22', 'L1 qual > 7, p_{T}^{L1} > 22 GeV'),
-    #('L1SQ8', 'L1 qual > 11, p_{T}^{L1} > 8 GeV'),
-    #('L1DQ8', 'L1 qual > 7, p_{T}^{L1} > 8 GeV'),
-    #('L1SQ0', 'L1 qual > 11, no p_{T}^{L1} cut'),
+    ('L1SQ22', 'L1 qual > 11, p_{T}^{L1} > 22 GeV'),
+    ('L1DQ22', 'L1 qual > 7, p_{T}^{L1} > 22 GeV'),
+    ('L1SQ8', 'L1 qual > 11, p_{T}^{L1} > 8 GeV'),
+    ('L1DQ8', 'L1 qual > 7, p_{T}^{L1} > 8 GeV'),
+    ('L1SQ0', 'L1 qual > 11, no p_{T}^{L1} cut'),
     ('L1DQ0', 'L1 qual > 7, no p_{T}^{L1} cut'),
 ]
 
 macros = [
+    #'drawEffPixelTrackwrtL1.C',
     'drawEffCompIOFromL1wrtL1.C',
+    'drawEffOIIOFromL2wrtL1.C',
     'drawEffCompL3MuonIDwrtL1.C',
-    'drawEffCompL3MuonwrtL1.C',
+    #'drawEffCompL3MuonwrtL1.C',
     #'drawEffOIwrtL1.C',
     #'drawEffL2wrtL1.C',
-    'drawEffL3FromL2wrtL1.C',
+    #'drawEffL3FromL2wrtL1.C',
 ]
 
 l3types = [
     #("hltOI", "OI"),
-    ("hltL3FromL2Merged", "OI + IO(L2)"),
-    ("hltL3Merged", "OI + IO(L2) + IO(L1)"),
+    #("hltL3FromL2Merged", "OI + IO(L2)"),
+    #("hltL3Merged", "OI + IO(L2) + IO(L1)"),
     #("hltIterL3MuonNoID", "L3 muon before ID"),
-    ("hltIterL3Muon", "L3 muon after ID")
+    #("hltIterL3Muon", "L3 muon after ID")
 ]
 
 for SAMPLE, TAG in samples:

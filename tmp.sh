@@ -1,5 +1,3 @@
-
-
 python submit_batch.py
 
 condor_submit condor_submit.sub

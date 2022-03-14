@@ -37,8 +37,8 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawEffIOFromL2wrtL1(
-  TString ver = "v1", TString SAMPLE = "JPsi", TString tag = "JPsi",
+void drawEffOIIOFromL2wrtL1(
+  TString ver = "v5", TString SAMPLE = "Bs", TString tag = "Bs",
   //TString L1tag = "L1SQ0", TString L1str = "L1 qual > 11, no p_{T} cut",
   TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T} cut",
   bool isLogy = false  // HERE
@@ -49,14 +49,13 @@ void drawEffIOFromL2wrtL1(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString efftag_str = "IO(L2)";
-  TString efftag = "IOFromL2_L1_comp";
+  TString efftag_str = "OI + IO(L2)";
+  TString efftag = "OI_IOFromL2_L1_comp";
   TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  //vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "eta", "phi", "pu"};
-  vector<TString> v_var = {"pt_zoom", "pt", "l1pt", "l1pt_zoom", "eta", "phi", "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "eta", "phi", "pu"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
@@ -67,10 +66,10 @@ void drawEffIOFromL2wrtL1(
     {1, 30, 81}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
-    range.at(0) = {1, 0, 30};
-    range.at(1) = {1, 0, 30};
-    range.at(2) = {1, 0, 30};
-    range.at(3) = {1, 0, 30};
+    range.at(0) = {1, 0, 40};
+    range.at(1) = {1, 0, 40};
+    range.at(2) = {1, 0, 40};
+    range.at(3) = {1, 0, 40};
   }
   if (tag == "MuGunPU") {
     range.at(0) = {1, 1., 1000};
@@ -85,14 +84,17 @@ void drawEffIOFromL2wrtL1(
     range.at(3) = {1, 30, 3000};
   }
 
-  int n_pt_bins = 29-1;
-  double pt_bins[29] = {
-    0, 1, 2, 3, 4,
-    5, 6, 7, 8, 9,
-    10, 12, 15, 18, 20,
-    21, 22, 23, 26, 30,
-    40, 60, 90, 130, 200,
-    300, 450, 700, 1000
+  int n_pt_bins = 52-1;
+  double pt_bins[52] = {
+    0., 0.5, 1., 1.5, 2., 2.5, 3., 3.5, 4., 4.5,
+    5., 5.5, 6., 6.5, 7., 7.5, 8., 8.5, 9., 9.5,
+    10, 11, 12, 13, 14,
+    15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24,
+    26, 30, 35, 40, 50,
+    60, 80, 100, 120, 160,
+    200, 300, 450, 700, 1000,
+    2000, 3000
   };
 
   int n_eta_bins = 23-1;
@@ -101,18 +103,18 @@ void drawEffIOFromL2wrtL1(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{gen}| < 2.4"};//, "|#eta^{gen}| < 1.2", "1.2 < |#eta^{gen}| < 2.4"};
+  vector<TString> etas_str = {"I", "B", "E"};
+  vector<TString> etas_str_long = {"|#eta^{gen}| < 2.4", "|#eta^{gen}| < 1.2", "1.2 < |#eta^{gen}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
     kBlue,
     kRed,
     kGreen+2,
-    kMagenta,
-    kCyan+2,
-    kPink+4,
-    kGray+2,
+    //kMagenta,
+    //kCyan+2,
+    //kPink+4,
+    //kGray+2,
     //kOrange,
   };
   vector<int> v_marker = {
@@ -120,106 +122,37 @@ void drawEffIOFromL2wrtL1(
     22,
     26,
     23,
-    32,
-    22,
-    26,
-    23,
+    //32,
+    //22,
+    //26,
+    //23,
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROIinf-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROIinf-"+tag+"-Eff.root",
-
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi1p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p5-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi2p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI3p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi3p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi3p5-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi4p0-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi5p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi6p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi8p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi10p0-"+tag+"-Eff.root",
-
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p40-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p45-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p50-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p55-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p60-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROIinf-"+tag+"-Eff.root",
-
-    //"./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_2_1p5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_ROIL2_5-"+tag+"-Eff.root",
   };
   vector<TString> types = {
     //"Eff/hltFromL1Merged/num_Eff_"+L1tag+"_hltFromL1Merged",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
-    "Eff/num_Eff_"+L1tag+"_hltIter0",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
   };
   vector<TString> types_den = {
     //"Eff/hltFromL1Merged/den_Eff_"+L1tag+"_hltFromL1Merged",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
-    "Eff/den_Eff_"+L1tag+"_hltIter0",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
   };
   vector<TString> types_str = {
-    //efftag_str+" : Default Menu (GRun)",
-    //efftag_str+" : IO patatrack",
-    //efftag_str+" : IO patatrack + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 2^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 2^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 3^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 3^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 4^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 4^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI Open)",
-    //efftag_str+" : IO patatrack (ROI Open) + IO upg.",
-
-    efftag_str+" : IO upg. (ROI default)",
-    //efftag_str+" : IO upg. (ROI 1.5^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 1.5)",
-    //efftag_str+" : IO upg. (ROI 2.0^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 2.0)",
-    //efftag_str+" : IO upg. (ROI 2.5^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 2.5)",
-    //efftag_str+" : IO upg. (ROI 3.0^{2})",
-    efftag_str+" : IO upg. (ROI 1.0#times 3.0)",
-    efftag_str+" : IO upg. (ROI 1.0#times 3.5)",
-    efftag_str+" : IO upg. (ROI 1.0#times 4.0)",
-    efftag_str+" : IO upg. (ROI 1.0#times 5.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 6.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 8.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 10.0)",
-
-    //efftag_str+" : IO upg. (ROI 1.5#times 1.5)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 5.0)",
+    efftag_str+" : GRun V51 - ROI 1.5 #times 1.5",
+    efftag_str+" : L1 pT dep. ROI 5.0 - 2.0 - 1.5",
+    efftag_str+" : L1 pT indep. ROI 5.0",
+    efftag_str+" : L1 pT indep. ROI 5.0 & L2 ROI 5.0",
   };
 
   vector<TString> v_pts = {
@@ -282,10 +215,8 @@ void drawEffIOFromL2wrtL1(
           TString titleX = GetTitleX(hist_var+"_"+(!hist_var.Contains("l1")?"gen":"l1"));
           TString titleY = "L3/L1 efficiency";
 
-          //TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
-          //TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
-          TString den_name = TString::Format("%s_%s_%s", the_type_den.Data(), v_pts[ipt].Data(), hist_var.Data());
-          TString num_name = TString::Format("%s_%s_%s", the_type_num.Data(), v_pts[ipt].Data(), hist_var.Data());
+          TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
+          TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
 
           TH1F* den = Get_Hist( fileName, den_name );
           TH1F* num = Get_Hist( fileName, num_name );

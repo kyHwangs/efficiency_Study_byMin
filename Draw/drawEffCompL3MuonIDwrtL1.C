@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawEffCompL3MuonIDwrtL1(
-  TString ver = "v4", TString SAMPLE = "Bs", TString tag = "Bs",
+  TString ver = "v5", TString SAMPLE = "Bs", TString tag = "Bs",
   //TString L1tag = "L1SQ0", TString L1str = "L1 qual > 11, no p_{T} cut",
   TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T} cut",
   bool isLogy = false  // HERE
@@ -66,10 +66,10 @@ void drawEffCompL3MuonIDwrtL1(
     {1, 30, 81}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
-    range.at(0) = {1, 0, 30};
-    range.at(1) = {1, 0, 30};
-    range.at(2) = {1, 0, 30};
-    range.at(3) = {1, 0, 30};
+    range.at(0) = {1, 0, 40};
+    range.at(1) = {1, 0, 40};
+    range.at(2) = {1, 0, 40};
+    range.at(3) = {1, 0, 40};
   }
   if (tag == "MuGunPU") {
     range.at(0) = {1, 1., 1000};
@@ -110,7 +110,7 @@ void drawEffCompL3MuonIDwrtL1(
     kBlack,
     kBlue,
     kRed,
-    //kGreen+2,
+    kGreen+2,
     //kMagenta,
     //kCyan+2,
     //kPink+4,
@@ -121,7 +121,7 @@ void drawEffCompL3MuonIDwrtL1(
     20,
     22,
     26,
-    //23,
+    23,
     //32,
     //22,
     //26,
@@ -129,47 +129,13 @@ void drawEffCompL3MuonIDwrtL1(
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROI4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-pata_ROIinf-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROIinf-"+tag+"-Eff.root",
-
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi1p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi2p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI2p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi2p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi3p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi3p5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi4p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi5p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi6p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi8p0-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_dPhi10p0-"+tag+"-Eff.root",
-
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p40-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p45-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p50-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p55-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-gridIO_e10_p60-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROIinf-"+tag+"-Eff.root",
-
     "./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-upgradeIO_ROI1n5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_2_1p5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_ROIL2_5-"+tag+"-Eff.root",
   };
   vector<TString> types = {
+    "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
@@ -178,38 +144,13 @@ void drawEffCompL3MuonIDwrtL1(
     "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
+    "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
   };
   vector<TString> types_str = {
-    efftag_str+" : Default Menu (GRun)",
-    //efftag_str+" : IO patatrack",
-    //efftag_str+" : IO patatrack + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 2^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 2^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 3^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 3^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI#times 4^{2})",
-    //efftag_str+" : IO patatrack (ROI#times 4^{2}) + IO upg.",
-    //efftag_str+" : IO patatrack (ROI Open)",
-    //efftag_str+" : IO patatrack (ROI Open) + IO upg.",
-
-    //efftag_str+" : IO upg. (ROI default)",
-    //efftag_str+" : IO upg. (ROI 1.5^{2})",
-    //efftag_str+" : IO upg. (ROI 1.0#times 1.5)",
-    //efftag_str+" : IO upg. (ROI 2.0^{2})",
-    //efftag_str+" : IO upg. (ROI 1.0#times 2.0)",
-    //efftag_str+" : IO upg. (ROI 2.5^{2})",
-    //efftag_str+" : IO upg. (ROI 1.0#times 2.5)",
-    //efftag_str+" : IO upg. (ROI 3.0^{2})",
-    //efftag_str+" : IO upg. (ROI 1.0#times 3.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 3.5)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 4.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 5.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 6.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 8.0)",
-    //efftag_str+" : IO upg. (ROI 1.0#times 10.0)",
-
-    efftag_str+" : IO upg. (ROI 1.5#times 1.5)",
-    efftag_str+" : IO upg. (ROI 1.0#times 5.0)",
+    efftag_str+" : GRun V51 - ROI 1.5 #times 1.5",
+    efftag_str+" : L1 pT dep. ROI 5.0 - 2.0 - 1.5",
+    efftag_str+" : L1 pT indep. ROI 5.0",
+    efftag_str+" : L1 pT indep. ROI 5.0 & L2 ROI 5.0",
   };
 
   vector<TString> v_pts = {
