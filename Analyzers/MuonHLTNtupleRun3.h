@@ -77,8 +77,8 @@ public:
     double get( TString key )
     {
         if( vars.find(key) == vars.end() ) {
-            cout << key << " does not exist -> return -99999" << endl;
-            this->print();
+            //cout << key << " does not exist -> return -99999" << endl;
+            //this->print();
             return -99999.0;
         }
         else {
@@ -89,7 +89,7 @@ public:
     TString getstr( TString key )
     {
         if( strvars.find(key) == strvars.end() ) {
-            cout << key << " does not exist -> return XXXXX" << endl;
+            //cout << key << " does not exist -> return XXXXX" << endl;
             return "XXXXX";
         }
         else {

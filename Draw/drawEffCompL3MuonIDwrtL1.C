@@ -39,8 +39,7 @@ void printRunTime(TStopwatch timer_)
 
 void drawEffCompL3MuonIDwrtL1(
   TString ver = "v5", TString SAMPLE = "Bs", TString tag = "Bs",
-  //TString L1tag = "L1SQ0", TString L1str = "L1 qual > 11, no p_{T} cut",
-  TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T} cut",
+  TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T}^{L1} cut",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -55,12 +54,14 @@ void drawEffCompL3MuonIDwrtL1(
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "eta", "phi", "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "l2pt", "l2pt_zoom", "eta", "phi", "pu"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
     {1, 0, 200},  // L1 pt
     {1, 0, 200},  // L1 pt
+    {1, 0, 200},  // L2 pt
+    {1, 0, 200},  // L2 pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
     {1, 30, 81}  // PU
@@ -70,18 +71,24 @@ void drawEffCompL3MuonIDwrtL1(
     range.at(1) = {1, 0, 40};
     range.at(2) = {1, 0, 40};
     range.at(3) = {1, 0, 40};
+    range.at(4) = {1, 0, 40};
+    range.at(5) = {1, 0, 40};
   }
   if (tag == "MuGunPU") {
     range.at(0) = {1, 1., 1000};
     range.at(1) = {1, 1., 1000};
     range.at(2) = {1, 1., 1000};
     range.at(3) = {1, 1., 1000};
+    range.at(4) = {1, 1., 1000};
+    range.at(5) = {1, 1., 1000};
   }
   if (tag == "Zprime") {
     range.at(0) = {1, 30, 3000};
     range.at(1) = {1, 30, 3000};
     range.at(2) = {1, 30, 3000};
     range.at(3) = {1, 30, 3000};
+    range.at(4) = {1, 30, 3000};
+    range.at(5) = {1, 30, 3000};
   }
 
   int n_pt_bins = 52-1;
@@ -219,7 +226,7 @@ void drawEffCompL3MuonIDwrtL1(
           TH1F* den = Get_Hist( fileName, den_name );
           TH1F* num = Get_Hist( fileName, num_name );
 
-          if(v_var[ivar] == "pt" || v_var[ivar] == "pt_zoom") {
+          if(v_var[ivar].Contains("pt")) {
             den = (TH1F*)den->Rebin(n_pt_bins, den_name+"_rb", pt_bins);
             num = (TH1F*)num->Rebin(n_pt_bins, num_name+"_rb", pt_bins);
           }

@@ -114,13 +114,14 @@ class HistContainer
 public:
     HistContainer(
       TString _Tag,
-      vector<TString> _variables = { "pt", "eta", "phi", "pu", "l1ptByQ" },
+      vector<TString> _variables = { "pt", "eta", "phi", "pu", "l1ptByQ", "l2pt" },
       vector<vector<double>> _ranges = {
         { 6000, 0, 3000 },
         { 48, -2.4, 2.4 },
         { 60, -TMath::Pi(), TMath::Pi() },
         { 250, 0, 250 },
-        { 2000, 0, 1000 },
+        { 6000, 0, 3000 },
+        { 6000, 0, 3000 },
       }
     ) {
 
@@ -355,13 +356,13 @@ void HLTEffAnalyzer(
             "hltIterL3MuonNoID",
             "hltIterL3Muon",
 
-            //"Mu50",
+            "Mu50",
             //"Mu24",
-            //"IsoMu24",
+            "IsoMu24",
 
-            // "OldMu100",
-            // "TkMu100",
-            // "Mu50OrOldMu100OrTkMu100",
+            "OldMu100",
+            "TkMu100",
+            "Mu50OrOldMu100OrTkMu100",
             // "Mu17Mu8",
             // "Mu37TkMu27"
         };
@@ -370,9 +371,9 @@ void HLTEffAnalyzer(
             "Mu50",
             //"Mu24",
             "IsoMu24",
-            //"OldMu100",
-            //"TkMu100",
-            //"Mu50OrOldMu100OrTkMu100",
+            "OldMu100",
+            "TkMu100",
+            "Mu50OrOldMu100OrTkMu100",
             //"Mu17Mu8",
             //"Mu37TkMu27"
         };
@@ -383,8 +384,8 @@ void HLTEffAnalyzer(
                 10,
                 26,
                 // 30,
-                // 53,
-                // 105,
+                53,
+                105,
             };
             vector<double> Eff_L3pt_mins = {
                 // 10,
@@ -685,13 +686,13 @@ void HLTEffAnalyzer(
                 &hltIterL3MuonNoID,
                 &hltIterL3Muon,
 
-                //&hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q,
+                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q,
                 //&hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q,
-                //&hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07
+                &hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07,
 
-                // &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q,
-                // &hltL3fL1sMu25f0TkFiltered100Q,
-                // &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q  // Mu50OrOldMu100OrTkMu100
+                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q,
+                &hltL3fL1sMu25f0TkFiltered100Q,
+                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q  // Mu50OrOldMu100OrTkMu100
 
                 // &GenMuonsFromHardProcess,  // Mu17Mu8
                 // &GenMuonsFromHardProcess   // Mu37TkMu27
@@ -885,6 +886,13 @@ void HLTEffAnalyzer(
                                                            genmu.matched( *L3Coll, L3map, 0.1, 0.5 );  // IO tracks
                             }
 
+                            // For L2 pT !!!
+                            int matched_L2idx = -1e6;
+                            vector<int> L2map(L2Muons.size(), -1);
+                            matched_L2idx = genmu.matched( L2Muons, L2map, 0.3 );
+                            double L2pT = matched_L2idx > -1 ? L2Muons.at(matched_L2idx).pt : -999.;
+                            genmu.addVar("l2pt", L2pT);
+
                             // Mu50OrOldMu100OrTkMu100
                             if (L3types.at(i).Contains("Mu50OrOldMu100OrTkMu100") &&
                                 matched_idx < 0) {
@@ -896,11 +904,11 @@ void HLTEffAnalyzer(
                                 }
                             }
 
-                            if (matched_idx < 0) {
-                                genmu.addVar("dR", -1.);
-                            } else {
-                                genmu.addVar("dR", genmu.deltaR(L3Coll->at(matched_idx)));
-                            }
+                            //if (matched_idx < 0) {
+                            //    genmu.addVar("dR", -1.);
+                            //} else {
+                            //    genmu.addVar("dR", genmu.deltaR(L3Coll->at(matched_idx)));
+                            //}
 
                             int matched_idx_res = -1e6;
                             vector<int> L3map2(L3Coll->size(), -1);
@@ -917,7 +925,6 @@ void HLTEffAnalyzer(
 
                                     if(matched_L1SQ0) {
                                         hc_Eff_L1SQ0.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                         if(L3types.at(i).Contains("L1Muon")) {
                                             hc_Eff_L1SQ0.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
                                         }
@@ -929,7 +936,6 @@ void HLTEffAnalyzer(
                                     }
                                     if(matched_L1DQ0) {
                                         hc_Eff_L1DQ0.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                         if(L3types.at(i).Contains("L1Muon")) {
                                             hc_Eff_L1DQ0.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
                                         }
@@ -942,7 +948,6 @@ void HLTEffAnalyzer(
 
                                     if(matched_L1SQ8) {
                                         hc_Eff_L1SQ8.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                         if(L3types.at(i).Contains("L1Muon")) {
                                             hc_Eff_L1SQ8.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
                                         }
@@ -954,7 +959,6 @@ void HLTEffAnalyzer(
                                     }
                                     if(matched_L1DQ8) {
                                         hc_Eff_L1DQ8.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                         if(L3types.at(i).Contains("L1Muon")) {
                                             hc_Eff_L1DQ8.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
                                         }
@@ -967,7 +971,6 @@ void HLTEffAnalyzer(
 
                                     if(matched_L1SQ22) {
                                         hc_Eff_L1SQ22.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                         if(L3types.at(i).Contains("L1Muon")) {
                                             hc_Eff_L1SQ22.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
                                         }
@@ -979,7 +982,6 @@ void HLTEffAnalyzer(
                                     }
                                     if(matched_L1DQ22) {
                                         hc_Eff_L1DQ22.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                         if(L3types.at(i).Contains("L1Muon")) {
                                             hc_Eff_L1DQ22.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
                                         }
@@ -1001,7 +1003,6 @@ void HLTEffAnalyzer(
 
                                 if( matched_L1SQ0 ) {
                                     hc_EffTO_L1SQ0.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                     if(L3types.at(i).Contains("L1Muon")) {
                                         if(genmu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                             hc_EffTO_L1SQ0.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
@@ -1015,7 +1016,6 @@ void HLTEffAnalyzer(
                                 }
                                 if( matched_L1DQ0 ) {
                                     hc_EffTO_L1DQ0.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                     if(L3types.at(i).Contains("L1Muon")) {
                                         if(genmu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                             hc_EffTO_L1DQ0.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
@@ -1030,7 +1030,6 @@ void HLTEffAnalyzer(
 
                                 if( matched_L1SQ8 ) {
                                     hc_EffTO_L1SQ8.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                     if(L3types.at(i).Contains("L1Muon")) {
                                         if(genmu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                             hc_EffTO_L1SQ8.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
@@ -1044,7 +1043,6 @@ void HLTEffAnalyzer(
                                 }
                                 if( matched_L1DQ8 ) {
                                     hc_EffTO_L1DQ8.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                     if(L3types.at(i).Contains("L1Muon")) {
                                         if(genmu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                             hc_EffTO_L1DQ8.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
@@ -1059,7 +1057,6 @@ void HLTEffAnalyzer(
 
                                 if( matched_L1SQ22 ) {
                                     hc_EffTO_L1SQ22.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                     if(L3types.at(i).Contains("L1Muon")) {
                                         if(genmu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                             hc_EffTO_L1SQ22.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
@@ -1073,7 +1070,6 @@ void HLTEffAnalyzer(
                                 }
                                 if( matched_L1DQ22 ) {
                                     hc_EffTO_L1DQ22.at(i).at(ieta).at(j)->fill_den( genmu, nt->truePU, genWeight );
-
                                     if(L3types.at(i).Contains("L1Muon")) {
                                         if(genmu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                             hc_EffTO_L1DQ22.at(i).at(ieta).at(j)->fill_num( genmu, nt->truePU, genWeight );
