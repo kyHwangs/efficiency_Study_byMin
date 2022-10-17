@@ -1,7 +1,7 @@
 import os, sys
 from time import sleep
 
-VER = 'v5'
+VER = 'v6'
 
 samples = [
     ('Jpsi gun', 'JPsi'),
@@ -13,23 +13,28 @@ samples = [
 ]
 
 l1types = [
-    ('L1SQ22', 'L1 qual > 11, p_{T}^{L1} > 22 GeV'),
-    ('L1DQ22', 'L1 qual > 7, p_{T}^{L1} > 22 GeV'),
-    ('L1SQ8', 'L1 qual > 11, p_{T}^{L1} > 8 GeV'),
-    ('L1DQ8', 'L1 qual > 7, p_{T}^{L1} > 8 GeV'),
+    #('L1SQ22', 'L1 qual > 11, p_{T}^{L1} > 22 GeV'),
+    #('L1DQ22', 'L1 qual > 7, p_{T}^{L1} > 22 GeV'),
+    #('L1SQ8', 'L1 qual > 11, p_{T}^{L1} > 8 GeV'),
+    #('L1DQ8', 'L1 qual > 7, p_{T}^{L1} > 8 GeV'),
     ('L1SQ0', 'L1 qual > 11, no p_{T}^{L1} cut'),
     ('L1DQ0', 'L1 qual > 7, no p_{T}^{L1} cut'),
 ]
 
 macros = [
     #'drawEffPixelTrackwrtL1.C',
-    'drawEffCompIOFromL1wrtL1.C',
-    'drawEffOIIOFromL2wrtL1.C',
-    'drawEffCompL3MuonIDwrtL1.C',
+    #'drawEffCompIOFromL1wrtL1.C',
+    #'drawEffOIIOFromL2wrtL1.C',
+    #'drawEffCompL3TrackwrtL1.C',
+    #'drawEffCompL3MuonIDwrtL1.C',
     #'drawEffCompL3MuonwrtL1.C',
     #'drawEffOIwrtL1.C',
     #'drawEffL2wrtL1.C',
     #'drawEffL3FromL2wrtL1.C',
+
+    #'drawPurCompIOFromL1wrtL1.C',
+    #'drawPurCompL3MuonwrtL1.C',
+    'drawPurCompL3MuonIDwrtL1.C',
 ]
 
 l3types = [
@@ -41,15 +46,13 @@ l3types = [
 ]
 
 for SAMPLE, TAG in samples:
-    for L1SQTAG, L1SQTAGSTR in l1types:
-        for MACRO in macros:
-            cmd = 'root -l -b -q \'{}("{}", "{}", "{}", "{}", "{}")\''.format(
+    for MACRO in macros:
+        if 'Pur' in MACRO:
+            cmd = 'root -l -b -q \'{}("{}", "{}", "{}")\''.format(
                 MACRO,
                 VER,
                 SAMPLE,
-                TAG,
-                L1SQTAG,
-                L1SQTAGSTR
+                TAG
             )
             print ''
             print cmd
@@ -57,6 +60,23 @@ for SAMPLE, TAG in samples:
             os.system(cmd)
             sys.stdout.flush()
             sleep(0.1)
+
+        else:
+            for L1SQTAG, L1SQTAGSTR in l1types:
+                cmd = 'root -l -b -q \'{}("{}", "{}", "{}", "{}", "{}")\''.format(
+                    MACRO,
+                    VER,
+                    SAMPLE,
+                    TAG,
+                    L1SQTAG,
+                    L1SQTAGSTR
+                )
+                print ''
+                print cmd
+                sys.stdout.flush()
+                os.system(cmd)
+                sys.stdout.flush()
+                sleep(0.1)
 
     if TAG in ["Jpsi", "WJets"]:
         continue

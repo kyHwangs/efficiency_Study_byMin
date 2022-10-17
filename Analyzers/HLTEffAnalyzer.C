@@ -500,7 +500,7 @@ void HLTEffAnalyzer(
                     }
 
                     // -- Purity
-                    HistContainer* hc_pur_tmp0   = new HistContainer( TString::Format("Purity_%s_%s",      L3type.Data(), Etas_str.at(ieta).Data()), { "pt", "eta", "phi", "pu", "mva" }, {{ 2000, 0, 1000 }, { 48, -2.4, 2.4 }, { 60, -TMath::Pi(), TMath::Pi() }, { 250, 0, 250 }, { 100, 0, 1 } });
+                    HistContainer* hc_pur_tmp0   = new HistContainer( TString::Format("Purity_%s_%s",      L3type.Data(), Etas_str.at(ieta).Data()), { "pt", "eta", "phi", "pu", "mva", "l1ptByQ", "l2pt" }, {{ 6000, 0, 3000 }, { 48, -2.4, 2.4 }, { 60, -TMath::Pi(), TMath::Pi() }, { 250, 0, 250 }, { 100, 0, 1 }, { 6000, 0, 3000 }, { 6000, 0, 3000 }});
                     hc_Pur.at(iL3type).push_back( hc_pur_tmp0 );
                 }
 

@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawEffOIIOFromL2wrtL1(
-  TString ver = "v5", TString SAMPLE = "Bs", TString tag = "Bs",
+  TString ver = "v6", TString SAMPLE = "Bs", TString tag = "Bs",
   TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T}^{L1} cut",
   bool isLogy = false  // HERE
 ) {
@@ -67,12 +67,12 @@ void drawEffOIIOFromL2wrtL1(
     {1, 30, 81}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
-    range.at(0) = {1, 0, 40};
-    range.at(1) = {1, 0, 40};
-    range.at(2) = {1, 0, 40};
-    range.at(3) = {1, 0, 40};
-    range.at(4) = {1, 0, 40};
-    range.at(5) = {1, 0, 40};
+    range.at(0) = {1, 0, 50};
+    range.at(1) = {1, 0, 50};
+    range.at(2) = {1, 0, 50};
+    range.at(3) = {1, 0, 50};
+    range.at(4) = {1, 0, 50};
+    range.at(5) = {1, 0, 50};
   }
   if (tag == "MuGunPU") {
     range.at(0) = {1, 1., 1000};
@@ -118,9 +118,9 @@ void drawEffOIIOFromL2wrtL1(
     kBlue,
     kRed,
     kGreen+2,
-    //kMagenta,
-    //kCyan+2,
-    //kPink+4,
+    kMagenta,
+    kCyan+2,
+    kPink+4,
     //kGray+2,
     //kOrange,
   };
@@ -129,37 +129,67 @@ void drawEffOIIOFromL2wrtL1(
     22,
     26,
     23,
-    //32,
-    //22,
-    //26,
+    32,
+    22,
+    26,
     //23,
     //32,
   };
   vector<TString> files = {
+    //"./Outputs_"+ver+"/hist-"+ver+"-default_V29-"+tag+"-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_2_1p5-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_2-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_2_ROIL2_3-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_2_ROIL2_5-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_3-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_4-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5-"+tag+"-Eff.root",
+
     "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_ROIL2_5-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_543_ROIL2_54-"+tag+"-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5GeV_eta_smooth-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5431p5_eta1-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5431p5_eta1_wp02-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5431p5_eta1_wp04-"+tag+"-Eff.root",
   };
   vector<TString> types = {
-    //"Eff/hltFromL1Merged/num_Eff_"+L1tag+"_hltFromL1Merged",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged",
   };
   vector<TString> types_den = {
-    //"Eff/hltFromL1Merged/den_Eff_"+L1tag+"_hltFromL1Merged",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
     "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged",
   };
   vector<TString> types_str = {
-    efftag_str+" : GRun V51 - ROI 1.5 #times 1.5",
-    efftag_str+" : L1 pT dep. ROI 5.0 - 2.0 - 1.5",
-    efftag_str+" : L1 pT indep. ROI 5.0",
-    efftag_str+" : L1 pT indep. ROI 5.0 & L2 ROI 5.0",
+    //efftag_str+" : Default GRun V29",
+    efftag_str+" : Default GRun V51 (1.5 #times 1.5)",
+    //efftag_str+" : ROI(L1) #phi 2.0",
+    //efftag_str+" : ROI(L1) #phi 2.0 & ROI(L2) #phi 3.0",
+    //efftag_str+" : ROI(L1) #phi 2.0 & ROI(L2) #phi 5.0",
+    //efftag_str+" : ROI(L1) #phi 3.0",
+    //efftag_str+" : ROI(L1) #phi 4.0",
+    //efftag_str+" : ROI(L1) #phi 5.0",
+
+    efftag_str+" : ROI(L1,L2) 1.5 #times 5.0",
+    //efftag_str+" : ROI(L1) #phi 5,4,3 ROI(L2) #phi 5,4",
+    //efftag_str+" : ROI(L1) #phi 5GeV bins #eta smooth",
+    efftag_str+" : ROI(L1,L2) fixed #eta, pT dep. #phi",
+    efftag_str+" : ROI(L1,L2) fixed #eta, pT dep. #phi [WP 0.02]",
+    efftag_str+" : ROI(L1,L2) fixed #eta, pT dep. #phi [WP 0.04]",
+
+    //efftag_str+" : ROI(L1) pT dep. ROI 5.0 - 2.0 - 1.5",
+    //efftag_str+" : ROI(L1) pT indep. ROI 5.0",
+    //efftag_str+" : ROI(L1) pT indep. ROI 5.0 & ROI(L2) 5.0",
   };
 
   vector<TString> v_pts = {
@@ -209,7 +239,7 @@ void drawEffOIIOFromL2wrtL1(
         SetLegend( legend, 0.14, 0.71, 0.94, 0.84, -1);
 
         bool isFirst = true;
-        for(int i = 0; i<(int)types.size(); ++i) {
+        for(int i = 0; i<(int)files.size(); ++i) {
           TString fileName = files.at(i);
 
           TString the_type_num = types[i];
@@ -221,6 +251,7 @@ void drawEffOIIOFromL2wrtL1(
 
           TString titleX = GetTitleX(hist_var+"_"+(!hist_var.Contains("l1")?"gen":"l1"));
           TString titleY = "L3/L1 efficiency";
+          if(hist_var.Contains("l2")) titleY = "L3/L2 efficiency";
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());

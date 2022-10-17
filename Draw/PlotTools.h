@@ -236,6 +236,8 @@ using namespace std;
     if( varName.Contains("l1pt") )             titleX = "p_{T}(L1 muon) [GeV]";
     if( varName.Contains("pt_l2") )            titleX = "p_{T}(L2 muon) [GeV]";
     if( varName.Contains("l2pt") )             titleX = "p_{T}(L2 muon) [GeV]";
+    if( varName.Contains("pt_l3") )            titleX = "p_{T}(L3 muon) [GeV]";
+    if( varName.Contains("l3pt") )             titleX = "p_{T}(L3 muon) [GeV]";
     if( varName.Contains("eta_cut_l1") )       titleX = "#eta(L1 muon)";
     if( varName.Contains("pt_l1tk") )          titleX = "p_{T}(L1 Tk muon) [GeV]";
     if( varName.Contains("eta_cut_l1tk") )     titleX = "#eta(L1 Tk muon)";
