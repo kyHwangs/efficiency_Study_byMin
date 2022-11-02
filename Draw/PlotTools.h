@@ -181,11 +181,16 @@ using namespace std;
     TString titleX = "";
     if( varName.Contains("IPSig") )            titleX = "dxy/#sigma(dxy)";
     if( varName.Contains("pu") )               titleX = "#scale[1.0]{True number of interactions}";  // tmp
+    if( varName.Contains("pu_reco") )          titleX = "#scale[0.7]{Number of reconstructed primary vertices}";  // tmp
     if( varName.Contains("vtx") )              titleX = "PU";  // tmp
     if( varName.Contains("pt_trk") )           titleX = "p_{T}(trk) [GeV]";
     if( varName.Contains("eta_trk") )          titleX = "#eta(trk)";
     if( varName.Contains("pt_sim") )           titleX = "p_{T}(sim) [GeV]";
     if( varName.Contains("eta_sim") )          titleX = "#eta(sim)";
+    if( varName.Contains("mass_reco") )         titleX = "m_{#mu^{+}#mu^{-}, reco} [GeV]";
+    if( varName.Contains("pt_reco") )           titleX = "p_{T}^{reco} [GeV]";
+    if( varName.Contains("eta_reco") )          titleX = "#eta^{reco}";
+    if( varName.Contains("phi_reco") )          titleX = "#phi^{reco}";
     if( varName.Contains("mass_gen") )         titleX = "m_{#mu^{+}#mu^{-}, GEN} [GeV]";
     if( varName.Contains("pt_gen") )           titleX = "p_{T}^{gen} [GeV]";
     if( varName.Contains("eta_gen") )          titleX = "#eta^{gen}";
@@ -1248,6 +1253,12 @@ using namespace std;
   {
     Latex_Preliminary_NoDataInfo( latex );
     latex.DrawLatexNDC(0.82, 0.96, "#font[42]{#scale[0.8]{13 TeV}}");
+  }
+
+  void Latex_Preliminary_13p6TeV( TLatex &latex )
+  {
+    Latex_Preliminary_NoDataInfo( latex );
+    latex.DrawLatexNDC(0.80, 0.96, "#font[42]{#scale[0.8]{13.6 TeV}}");
   }
 
   void Latex_Preliminary( TLatex &latex, Double_t lumi  )
