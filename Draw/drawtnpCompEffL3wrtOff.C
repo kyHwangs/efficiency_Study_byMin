@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtOff(
-  TString efftag = "IsoMu24", TString ver = "vRun3_02", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString efftag = "myIsoMu24", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
   TString L1tag = "", TString L1str = "",
   bool isLogy = false  // HERE
 ) {
@@ -72,7 +72,10 @@ void drawtnpCompEffL3wrtOff(
     10, 12, 15, 18, 20,
     21, 22, 23, 26, 30,
     40, 60, 90, 130, 200,
-    300, 450, 700, 1000
+    //30, 40, 45, 47, 49,
+    //50, 52, 53, 56, 60,
+    //70, 80, 90, 130, 200,
+    300, 500, 1000, 3000
   };
 
   int n_eta_bins = 23-1;
@@ -110,57 +113,49 @@ void drawtnpCompEffL3wrtOff(
     "./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022E-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022F-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022EF_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
   };
   vector<TString> types = {
-    //"Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
+    TString("Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
+    "Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff"+L1tag+"_"+efftag+"_RunAll",
 
     //"Eff/"+efftag+"/num_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
   };
   vector<TString> types_den = {
-    //"Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
+    TString("Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
+    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
 
     //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    efftag+" : Run2 UL2018 D",
+    efftag+" : Run2 UL2018 D 5fb^{-1}",
     efftag+" : Run3 DY M-50 Summer21",
     efftag+" : Run3 2022 BCD",
-    efftag+" : Run3 2022 E",
-    efftag+" : Run3 2022 F (DCS)",
+    efftag+" : Run3 2022 EF before v1.5",
+    efftag+" : Run3 2022 FG after v1.5",
   };
 
   vector<TString> v_pts = {
     "genpt0",
     //"genpt10",
-    "genpt26"
-    //"genpt53",
+    "genpt26",
+    "genpt53",
   };
 
   vector<TString> v_pts_str = {
     "",
     //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV"
-    //"p_{T}^{reco} > 53 GeV"
+    "p_{T}^{reco} > 26 GeV",
+    "p_{T}^{reco} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -177,13 +172,13 @@ void drawtnpCompEffL3wrtOff(
 	  ymax = 1.2;//1.2;//1.1;
 	}
 
-        TString canvasName = TString::Format("InvEff_%s_%s_%s_%s_%s",
+        TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s",
                                              efftag.Data(),
                                              L1tag.Data(),
                                              etas_str.at(i_eta).Data(),
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
-        canvasName.ReplaceAll(".","p").ReplaceAll("-","_");
+        canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "");
         TCanvas *c;
         SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
         c->cd();
@@ -199,14 +194,14 @@ void drawtnpCompEffL3wrtOff(
 
           TString the_type_num = types[i];
           TString the_type_den = types_den[i];
-          TString the_type_str = types_str[i];
+          TString the_type_str = types_str[i].ReplaceAll("my","");
 
           TString hist_var = v_var[ivar];
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
           TString titleY = "L1+L3/Offline efficiency";
-          if(efftag == "L1Muon") titleY = "L1/Offline efficiency";
+          if(efftag.Contains("L1sSingleMu22") || efftag == "L1Muon") titleY.ReplaceAll("+L3", "");
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());

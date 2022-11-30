@@ -37,41 +37,37 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/SingleMuon/crab_SingleMuon_Run2022B_hlt_muon_data_full_Run2022_20220927/220927_155858/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/SingleMuon/crab_SingleMuon_Run2022B_hlt_muon_data_full_Run2022_NoWP_20220927/220927_161133/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/SingleMuon/crab_SingleMuon_Run2022C_hlt_muon_data_full_Run2022_20220927/220927_160108/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/SingleMuon/crab_SingleMuon_Run2022C_hlt_muon_data_full_Run2022_NoWP_20220927/220927_161233/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_RunUL2018D_hlt_muon_data_Run2018_20221123/221123_172345/0000/",
 
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/Muon/crab_Muon_Run2022C_hlt_muon_data_full_Run2022_20220927/220927_160335/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/Muon/crab_Muon_Run2022C_hlt_muon_data_full_Run2022_NoWP_20220927/220927_161316/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/Muon/crab_Muon_Run2022Dv1_hlt_muon_data_full_Run2022_20220927/220927_160648/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/Muon/crab_Muon_Run2022Dv1_hlt_muon_data_full_Run2022_NoWP_20220927/220927_161425/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/Muon/crab_Muon_Run2022Dv2_hlt_muon_data_full_Run2022_20220927/220927_160845/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220927/Muon/crab_Muon_Run2022Dv2_hlt_muon_data_full_Run2022_NoWP_20220927/220927_161528/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20221017/Muon/crab_Muon_Run2022E_hlt_muon_data_full_Run2022_20221017/221017_144420/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20221017/Muon/crab_Muon_Run2022E_hlt_muon_data_full_Run2022_NoWP_20221017/221017_144544/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20221019/Muon/crab_Muon_Run2022F_hlt_muon_data_full_Run2022_20221019/221019_141625/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20221019/Muon/crab_Muon_Run2022F_hlt_muon_data_full_Run2022_NoWP_20221019/221019_141643/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_20221123/221123_172606/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_Run2022C_hlt_muon_data_Run2022_20221123/221123_172612/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022C_hlt_muon_data_Run2022_20221123/221123_172617/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_20221123/221123_172623/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_20221123/221123_172629/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022E_hlt_muon_data_Run2022_20221123/221123_172635/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022F_hlt_muon_data_Run2022_20221123/221123_172641/0000/",
 
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220930/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_full_Run3_20220930/220930_173539/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20220930/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_full_Run3_NoWP_20220930/220930_173555/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221125/Muon/crab_Muon_Run2022Fv2_hlt_muon_data_Run2022_20221125/221125_092452/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221125/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022_20221125/221125_092459/0000/",
 
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20221017/SingleMuon/crab_SingleMuon_Run2018D_hlt_muon_data_full_Run2018_20221017/221017_160415/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1248/20221017/SingleMuon/crab_SingleMuon_RunUL2018D_hlt_muon_data_full_Run2018_20221017/221017_160439/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_Run3_20221123/221123_170719/0000/",
 ]
 
 dates = [
-    '_20220927',
-    '20220927',
-    '_20220930',
-    '20220930',
-    '_20221017',
-    '20221017',
-    '_20221019',
-    '20221019',
+    '_20221123',
+    '20221123',
+    '_20221125',
+    '20221125',
+]
+
+menus = [
+    '_hlt_muon_data_Run2018_',
+    '_hlt_muon_data_Run2022_',
+    '_hlt_muon_mc_Run3_',
 ]
 
 analyzers = {
+    'SingleMuon_RunUL2018D': ('Eff'),
     'SingleMuon_Run2022B': ('Eff'),
     'SingleMuon_Run2022C': ('Eff'),
     'Muon_Run2022C': ('Eff'),
@@ -79,10 +75,10 @@ analyzers = {
     'Muon_Run2022Dv2': ('Eff'),
     'Muon_Run2022E': ('Eff'),
     'Muon_Run2022F': ('Eff'),
+    'Muon_Run2022Fv2': ('Eff'),
+    'Muon_Run2022G': ('Eff'),
     'DYToLL_M50_120X': ('Eff'),
 
-    'SingleMuon_Run2018D': ('Eff'),
-    'SingleMuon_RunUL2018D': ('Eff'),
     # 'JPsi': ('EffSim', 'Eff'),
     # 'Bs': ('EffSim', 'Eff'),
     # 'Zprime': ('EffSim', 'Eff'),
@@ -94,11 +90,8 @@ analyzers = {
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_02'
+    VER_base = 'vRun3_04'
     tag_prefix = 'crab_'
-    #tag_split = '_hlt_muon_data_full_Run2022_'
-    tag_split = '_hlt_muon_data_full_Run2018_'
-    #tag_split = '_hlt_muon_mc_full_Run3_'
 
     doHadd = False
     if len(sys.argv) > 1 and 'hadd' == sys.argv[1]:
@@ -131,6 +124,10 @@ if __name__ == '__main__':
         for x in info:
             if tag_prefix in x:
                 info = x.replace(tag_prefix, '')
+                tag_split = ''
+                for menu in menus:
+                    if menu in info:
+                        tag_split = menu
                 TAG = info.split(tag_split)[0]
                 extra = info.split(tag_split)[-1]
                 for da in dates:
@@ -157,11 +154,11 @@ if __name__ == '__main__':
                 if os.path.isfile(target_file):
                     continue
 
-                cmd = "\"hadd -j 6 %(target_file)s %(source_files)s\"\n" % locals()
+                cmd = "\"hadd -j 15 %(target_file)s %(source_files)s\"\n" % locals()
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 3
+                nfiles = 5
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:

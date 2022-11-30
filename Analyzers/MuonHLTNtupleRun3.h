@@ -28,6 +28,7 @@ class Object
 private:
     map<TString, double> vars;
     map<TString, TString> strvars;
+    map<TString, vector<double>> vecs;
 
 public:
     double pt;
@@ -64,6 +65,11 @@ public:
         strvars[name] = value;
     }
 
+    void addVec( TString name, vector<double> value )
+    {
+        vecs[name] = value;
+    }
+
     bool has( TString key )
     {
         return (vars.find(key) != vars.end());
@@ -72,6 +78,11 @@ public:
     bool hasstr( TString key )
     {
         return (strvars.find(key) != strvars.end());
+    }
+
+    bool hasvec( TString key )
+    {
+        return (vecs.find(key) != vecs.end());
     }
 
     double get( TString key )
@@ -94,6 +105,18 @@ public:
         }
         else {
             return strvars[key];
+        }
+    }
+
+    vector<double> getvec( TString key )
+    {
+        if( vecs.find(key) == vecs.end() ) {
+            cout << key << " does not exist -> return {}" << endl;
+            this->print();
+            return {};
+        }
+        else {
+            return vecs[key];
         }
     }
 
@@ -201,6 +224,29 @@ public:
       return found;
     }
 
+    bool l1matched( double ptcut = 22.0, double qualcut = 11 ) {
+      bool found     = false;
+
+      int nl1t = this->get("nl1t");
+      for(unsigned i=0; i<nl1t; ++i) {
+        double pt  = this->getvec("l1tpt").at(i);
+        double eta  = this->getvec("l1teta").at(i);
+        double phi  = this->getvec("l1tphi").at(i);
+        double charge = this->getvec("l1tcharge").at(i);
+        double qual  = this->getvec("l1tq").at(i);
+        double dR  = this->getvec("l1tdr").at(i);
+
+        if( pt > ptcut && qual > qualcut) {
+          if( dR < 0.3) {
+            found = true;
+            break;
+          }
+        }
+      }
+
+      return found;
+    }
+
     friend ostream& operator<<(ostream& os, const Object& obj) {
         os << "(" << obj.pt << ", " << obj.eta << ", " << obj.phi << ")";
         return os;
@@ -246,6 +292,7 @@ public :
     vector<Object> get_iterL3MuonNoID();
     vector<Object> get_iterL3Muon();
     vector<Object> get_HLTObjects( TString filter = "hltL3fL1TkSingleMu22L3Filtered24Q" );
+    vector<Object> get_myHLTObjects( TString filter = "hltL3fL1TkSingleMu22L3Filtered24Q" );
     vector<Object> get_hltIterL3OIMuonTrackAssociated();
     vector<Object> get_hltIter0IterL3MuonTrackAssociated();
     vector<Object> get_hltIter2IterL3MuonTrackAssociated();
@@ -398,23 +445,31 @@ public :
         Int_t           muon_nMatchedStation[ArrSize];   //[nMuon]
         Int_t           muon_nMatchedRPCLayer[ArrSize];   //[nMuon]
         Int_t           muon_stationMask[ArrSize];   //[nMuon]
-        double muon_dxy_bs[ArrSize];
-        double muon_dxyError_bs[ArrSize];
-        double muon_dz_bs[ArrSize];
-        double muon_dzError[ArrSize];
-        double muon_IPSig[ArrSize];
-        Double_t        muon_l1pt[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1eta[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1phi[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1charge[ArrSize];   //[nGenParticle]
-        Int_t           muon_l1q[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1dr[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1ptByQ[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1etaByQ[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1phiByQ[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1chargeByQ[ArrSize];   //[nGenParticle]
-        Int_t           muon_l1qByQ[ArrSize];   //[nGenParticle]
-        Double_t        muon_l1drByQ[ArrSize];   //[nGenParticle]
+        double          muon_dxy_bs[ArrSize];   //[nMuon]
+        double          muon_dxyError_bs[ArrSize];   //[nMuon]
+        double          muon_dz_bs[ArrSize];   //[nMuon]
+        double          muon_dzError[ArrSize];   //[nMuon]
+        double          muon_IPSig[ArrSize];   //[nMuon]
+        Double_t        muon_l1pt[ArrSize];   //[nMuon]
+        Double_t        muon_l1eta[ArrSize];   //[nMuon]
+        Double_t        muon_l1phi[ArrSize];   //[nMuon]
+        Double_t        muon_l1charge[ArrSize];   //[nMuon]
+        Int_t           muon_l1q[ArrSize];   //[nMuon]
+        Double_t        muon_l1dr[ArrSize];   //[nMuon]
+        Double_t        muon_l1ptByQ[ArrSize];   //[nMuon]
+        Double_t        muon_l1etaByQ[ArrSize];   //[nMuon]
+        Double_t        muon_l1phiByQ[ArrSize];   //[nMuon]
+        Double_t        muon_l1chargeByQ[ArrSize];   //[nMuon]
+        Int_t           muon_l1qByQ[ArrSize];   //[nMuon]
+        Double_t        muon_l1drByQ[ArrSize];   //[nMuon]
+
+        Int_t           muon_nl1t[ArrSize];   //[nMuon]
+        vector<vector<double>>  *muon_l1tpt;
+        vector<vector<double>>  *muon_l1teta;
+        vector<vector<double>>  *muon_l1tphi;
+        vector<vector<double>>  *muon_l1tcharge;
+        vector<vector<double>>  *muon_l1tq;
+        vector<vector<double>>  *muon_l1tdr;
 
         Int_t           nL3Muon;
         Double_t        L3Muon_pt[ArrSize];   //[nL3Muon]
@@ -1759,6 +1814,13 @@ public :
         TBranch        *b_muon_l1chargeByQ;   //!
         TBranch        *b_muon_l1qByQ;   //!
         TBranch        *b_muon_l1drByQ;   //!
+        TBranch        *b_muon_nl1t;   //!
+        TBranch        *b_muon_l1tpt;   //!
+        TBranch        *b_muon_l1teta;   //!
+        TBranch        *b_muon_l1tphi;   //!
+        TBranch        *b_muon_l1tcharge;   //!
+        TBranch        *b_muon_l1tq;   //!
+        TBranch        *b_muon_l1tdr;   //!
         TBranch        *b_nL3Muon;   //!
         TBranch        *b_L3Muon_pt;   //!
         TBranch        *b_L3Muon_eta;   //!
@@ -3078,6 +3140,14 @@ vector<Object> MuonHLTNtupleRun3::get_offlineMuons()
         obj.addVar( "l1qByQ", muon_l1qByQ[i] );
         obj.addVar( "l1drByQ", muon_l1drByQ[i] );
 
+        obj.addVar( "nl1t", muon_nl1t[i] );
+        obj.addVec( "l1tpt", muon_l1tpt->at(i) );
+        obj.addVec( "l1teta", muon_l1teta->at(i) );
+        obj.addVec( "l1tphi", muon_l1tphi->at(i) );
+        obj.addVec( "l1tcharge", muon_l1tcharge->at(i) );
+        obj.addVec( "l1tq", muon_l1tq->at(i) );
+        obj.addVec( "l1tdr", muon_l1tdr->at(i) );
+
         obj.addVar( "relPFIso", ((muon_PFIso04_charged[i] + max(0., muon_PFIso04_neutral[i] + muon_PFIso04_photon[i] - 0.5*muon_PFIso04_sumPU[i]))/muon_pt[i]) );
         obj.addVar( "relTrkIso", (muon_iso03_sumPt[i] / muon_pt[i]) );
 
@@ -3448,6 +3518,31 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3Muon()
 }
 
 vector<Object> MuonHLTNtupleRun3::get_HLTObjects( TString filter )
+{
+    vector<Object> out = {};
+    if(vec_filterName == 0 || vec_filterName == nullptr)
+        return out;
+
+    for(unsigned i=0; i<vec_filterName->size(); ++i) {
+
+        TString ifilter = TString(vec_filterName->at(i));
+        if( !ifilter.Contains(filter) )
+            continue;
+
+        Object obj = Object( vec_HLTObj_pt->at(i), vec_HLTObj_eta->at(i), vec_HLTObj_phi->at(i) );
+
+        obj.addStrVar( "filter", ifilter );
+        obj.addVar( "pt", vec_HLTObj_pt->at(i) );
+        obj.addVar( "eta", vec_HLTObj_eta->at(i) );
+        obj.addVar( "phi", vec_HLTObj_phi->at(i) );
+
+        out.push_back(obj);
+    }
+
+    return out;
+}
+
+vector<Object> MuonHLTNtupleRun3::get_myHLTObjects( TString filter )
 {
     vector<Object> out = {};
     if(vec_myFilterName == 0 || vec_myFilterName == nullptr)
@@ -5161,6 +5256,13 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     // (once per file to be processed).
 
     // Set object pointer
+    muon_l1tpt = 0;
+    muon_l1teta = 0;
+    muon_l1tphi = 0;
+    muon_l1tcharge = 0;
+    muon_l1tq = 0;
+    muon_l1tdr = 0;
+
     vec_firedTrigger = 0;
     vec_filterName = 0;
     vec_HLTObj_pt = 0;
@@ -6391,6 +6493,13 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("muon_l1chargeByQ", muon_l1chargeByQ, &b_muon_l1chargeByQ);
     fChain->SetBranchAddress("muon_l1qByQ", muon_l1qByQ, &b_muon_l1qByQ);
     fChain->SetBranchAddress("muon_l1drByQ", muon_l1drByQ, &b_muon_l1drByQ);
+    fChain->SetBranchAddress("muon_nl1t", muon_nl1t, &b_muon_nl1t);
+    fChain->SetBranchAddress("muon_l1tpt", &muon_l1tpt, &b_muon_l1tpt);
+    fChain->SetBranchAddress("muon_l1teta", &muon_l1teta, &b_muon_l1teta);
+    fChain->SetBranchAddress("muon_l1tphi", &muon_l1tphi, &b_muon_l1tphi);
+    fChain->SetBranchAddress("muon_l1tcharge", &muon_l1tcharge, &b_muon_l1tcharge);
+    fChain->SetBranchAddress("muon_l1tq", &muon_l1tq, &b_muon_l1tq);
+    fChain->SetBranchAddress("muon_l1tdr", &muon_l1tdr, &b_muon_l1tdr);
     fChain->SetBranchAddress("nL3Muon", &nL3Muon, &b_nL3Muon);
     fChain->SetBranchAddress("L3Muon_pt", L3Muon_pt, &b_L3Muon_pt);
     fChain->SetBranchAddress("L3Muon_eta", L3Muon_eta, &b_L3Muon_eta);

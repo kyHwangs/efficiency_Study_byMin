@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3filter(
-  TString efftag = "IsoMu24", TString ver = "vRun3_02", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString efftag = "myL1sSingleMu22", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
   TString L1tag = "", TString L1str = "",
   bool isLogy = false  // HERE
 ) {
@@ -110,29 +110,41 @@ void drawtnpCompEffL3filter(
     "./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022E-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022F-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022EF_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
   };
   vector<TString> types = {
-    "Eff/Mu24/num_Eff_Mu24_RunAll",
-    "Eff/Mu24/num_Eff_Mu24_RunAll",
-    "Eff/Mu24/num_Eff_Mu24_RunAll",
-    "Eff/Mu24/num_Eff_Mu24_RunAll",
-    "Eff/Mu24/num_Eff_Mu24_RunAll",
+    //"Eff/myMu24/num_Eff_L1SQ22_myMu24_RunAll",
+
+    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
   };
   vector<TString> types_den = {
-    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon_RunAll",
-    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon_RunAll",
-    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon_RunAll",
-    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon_RunAll",
-    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon_RunAll",
+    //"Eff/hltIterL3Muon/num_Eff_L1SQ22_hltIterL3Muon_RunAll",
+
+    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+
+    //"Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+
+    //"Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
   };
   vector<TString> types_str = {
-    efftag+" : Run2 UL2018 D",
+    efftag+" : Run2 UL2018 D 5fb^{-1}",
     efftag+" : Run3 DY M-50 Summer21",
     efftag+" : Run3 2022 BCD",
-    efftag+" : Run3 2022 E",
-    efftag+" : Run3 2022 F (DCS)",
+    efftag+" : Run3 2022 EF before v1.5",
+    efftag+" : Run3 2022 FG after v1.5",
   };
 
   vector<TString> v_pts = {
@@ -218,6 +230,7 @@ void drawtnpCompEffL3filter(
 
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
           g->Divide(num, den, "n e0");
+          //g->Divide(num, den, "pois");
 
           for(int ip=0; ip<nbins; ++ip) {
             if(g->GetPointY(ip) == 0.)  g->SetPointEYhigh(ip, 0.0);

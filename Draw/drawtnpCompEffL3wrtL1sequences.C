@@ -37,9 +37,9 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawtnpCompEffL1wrtOff(
-  TString efftag = "IsoMu24", TString ver = "vRun3_02", TString SAMPLE = "Run2022", TString tag = "Muon",
-  TString L1tag = "", TString L1str = "",
+void drawtnpCompEffL3wrtL1sequences(
+  TString efftag = "hltIter0FromL1", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -107,46 +107,63 @@ void drawtnpCompEffL1wrtOff(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022E-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022F-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022EF_hadd-Eff.root",
+
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
   };
   vector<TString> types = {
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
+    "Eff/hltPixelTracks/num_Eff_"+L1tag+"_hltPixelTracks_RunAll",
+    "Eff/hltPixelTracksInRegionL1/num_Eff_"+L1tag+"_hltPixelTracksInRegionL1_RunAll",
+    "Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1_RunAll",
+
+    //"Eff/hltOI/num_Eff_"+L1tag+"_hltOI_RunAll",
+    //"Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged_RunAll",
+    //"Eff/hltL3Merged/num_Eff_"+L1tag+"_hltL3Merged_RunAll",
+    //"Eff/hltIterL3MuonNoID/num_Eff_"+L1tag+"_hltIterL3MuonNoID_RunAll",
+    //"Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon_RunAll",
   };
   vector<TString> types_den = {
-    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/hltPixelTracks/den_Eff_"+L1tag+"_hltPixelTracks_RunAll",
+    "Eff/hltPixelTracksInRegionL1/den_Eff_"+L1tag+"_hltPixelTracksInRegionL1_RunAll",
+    "Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1_RunAll",
+
+    //"Eff/hltOI/den_Eff_"+L1tag+"_hltOI_RunAll",
+    //"Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged_RunAll",
+    //"Eff/hltL3Merged/den_Eff_"+L1tag+"_hltL3Merged_RunAll",
+    //"Eff/hltIterL3MuonNoID/den_Eff_"+L1tag+"_hltIterL3MuonNoID_RunAll",
+    //"Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon_RunAll",
   };
   vector<TString> types_str = {
-    efftag+" : Run2 UL2018 D",
-    efftag+" : Run3 DY M-50 Summer21",
-    efftag+" : Run3 2022 BCD",
-    efftag+" : Run3 2022 E",
-    efftag+" : Run3 2022 F (DCS)",
+    "Run3 2022 FG after v1.5 : Pixel Tracks",
+    "Run3 2022 FG after v1.5 : Pixel Tracks in ROI(L1)",
+    "Run3 2022 FG after v1.5 : IO from L1",
+
+    //"Run3 2022 FG after v1.5 : OI",
+    //"Run3 2022 FG after v1.5 : OI + IO from L2",
+    //"Run3 2022 FG after v1.5 : OI + IO from L2 + L1",
+    //"Run3 2022 FG after v1.5 : L3 muon before ID",
+    //"Run3 2022 FG after v1.5 : L3 muon after ID",
   };
 
   vector<TString> v_pts = {
     "genpt0",
     //"genpt10",
-    "genpt26"
-    //"genpt53",
+    "genpt26",
+    "genpt53",
   };
 
   vector<TString> v_pts_str = {
     "",
     //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV"
-    //"p_{T}^{reco} > 53 GeV"
+    "p_{T}^{reco} > 26 GeV",
+    "p_{T}^{reco} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -159,17 +176,17 @@ void drawtnpCompEffL1wrtOff(
         double ymax = 1.6;
 
 	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.6;//0.6;//0.85;
-	  ymax = 1.2;//1.2;//1.1;
+	  ymin = 0.85;//0.6;//0.85;
+	  ymax = 1.1;//1.2;//1.1;
 	}
 
-        TString canvasName = TString::Format("L1Eff_%s_%s_%s_%s_%s",
+        TString canvasName = TString::Format("SeqEff_%s_%s_%s_%s_%s",
                                              efftag.Data(),
                                              L1tag.Data(),
                                              etas_str.at(i_eta).Data(),
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
-        canvasName.ReplaceAll(".","p").ReplaceAll("-","_");
+        canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "");
         TCanvas *c;
         SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
         c->cd();
@@ -185,13 +202,13 @@ void drawtnpCompEffL1wrtOff(
 
           TString the_type_num = types[i];
           TString the_type_den = types_den[i];
-          TString the_type_str = types_str[i];
+          TString the_type_str = types_str[i].ReplaceAll("my","");
 
           TString hist_var = v_var[ivar];
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
-          TString titleY = "L1/Offline efficiency";
+          TString titleY = "L3/L1 efficiency";
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
@@ -218,6 +235,7 @@ void drawtnpCompEffL1wrtOff(
 
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
           g->Divide(num, den, "n e0");
+          //g->Divide(num, den, "pois");
 
           for(int ip=0; ip<nbins; ++ip) {
             if(g->GetPointY(ip) == 0.)  g->SetPointEYhigh(ip, 0.0);
