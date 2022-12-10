@@ -81,8 +81,8 @@ void drawtnpCompEffL3wrtL1(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4"};//, "|#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.4"};
+  vector<TString> etas_str = {"I", "BB", "BE", "EB", "EE"};
+  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4", "|#eta^{reco}| < 0.9", "0.9 < |#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.1", "2.1 < |#eta^{reco}| < 2.4"};
 
   vector<Color_t> v_color = {
     //kBlack,
@@ -192,6 +192,8 @@ void drawtnpCompEffL3wrtL1(
 
           TString titleX = GetTitleX(hist_var+"_reco");
           TString titleY = "L3/L1 efficiency";
+          if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
+          if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());

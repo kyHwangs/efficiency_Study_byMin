@@ -47,8 +47,8 @@ samples = [
     "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022E_hlt_muon_data_Run2022_20221123/221123_172635/0000/",
     "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022F_hlt_muon_data_Run2022_20221123/221123_172641/0000/",
 
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221125/Muon/crab_Muon_Run2022Fv2_hlt_muon_data_Run2022_20221125/221125_092452/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221125/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022_20221125/221125_092459/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221208/Muon/crab_Muon_Run2022Fv2_hlt_muon_data_Run2022_20221208/221208_084925/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221208/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022_20221208/221208_084929/0000/",
 
     "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_Run3_20221123/221123_170719/0000/",
 ]
@@ -58,6 +58,8 @@ dates = [
     '20221123',
     '_20221125',
     '20221125',
+    '_20221208',
+    '20221208',
 ]
 
 menus = [

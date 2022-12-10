@@ -388,7 +388,6 @@ void HLTEffAnalyzer(
         };
 
         vector<TString> HLTpaths = {
-            "L1sSingleMu22",
             "Mu50",
             "Mu24",
             "IsoMu24",
@@ -417,13 +416,17 @@ void HLTEffAnalyzer(
 
             vector<vector<double>> Etas_bin = {
                 {0., 2.4},
-                //{0., 1.2},
-                //{1.2, 2.4}
+                {0., 0.9},
+                {0.9, 1.2},
+                {1.2, 2.1},
+                {2.1, 2.4},
             };
             vector<TString> Etas_str = {
                 "I",
-                //"B",
-                //"E"
+                "BB",
+                "BE",
+                "EB",
+                "EE",
             };
 
             vector<vector<int>> Runs_bin = {
@@ -751,7 +754,9 @@ void HLTEffAnalyzer(
 
         //### L3types loop ###
         for(unsigned i=0; i<L3types.size(); ++i) {
-            bool looseMatch = L3types.at(i).Contains("L2Muon");
+            TString L3type = L3types.at(i);
+            L3type.ReplaceAll("my","");
+            bool looseMatch = L3type.Contains("L2Muon");
 
             // -- Efficiency
             for (unsigned irun = 0; irun < Runs_bin.size(); ++irun) {
@@ -835,22 +840,22 @@ void HLTEffAnalyzer(
 
                         // HERE !!!
                         vector<int> L3map(L3Coll->size(), -1);
-                        if (L3types.at(i).Contains("L1Muon")) {
+                        if (L3type.Contains("L1Muon")) {
                             matched_idx = -1e6;
                         }
                         else if (
-                            L3types.at(i).Contains("OI") ||
-                            L3types.at(i).Contains("L3Muon") ||
-                            L3types.at(i).Contains("GlbTrkMuon") ||
-                            (std::find(HLTpaths.begin(), HLTpaths.end(), L3types.at(i)) != HLTpaths.end())
+                            L3type.Contains("OI") ||
+                            L3type.Contains("L3Muon") ||
+                            L3type.Contains("GlbTrkMuon") ||
+                            (std::find(HLTpaths.begin(), HLTpaths.end(), L3type) != HLTpaths.end())
                         ) {
                             matched_idx = probemu.matched( *L3Coll, L3map, 0.1 );
                         }
-                        else if (L3types.at(i).Contains("hltPixelTracks")) {
+                        else if (
+                            L3type.Contains("hltPixelTracks") ||
+                            L3type.Contains("L1sSingleMu22")
+                        ) {
                             matched_idx = probemu.matched( *L3Coll, L3map, 0.3 );
-                        }
-                        else if (L3types.at(i).Contains("SingleMu22")) {
-                            matched_idx = probemu.matched( *L3Coll, L3map, 0.5 );
                         }
                         else {
                             matched_idx = looseMatch ? probemu.matched( *L3Coll, L3map, 0.3 ) :  // L2 muon
@@ -858,7 +863,7 @@ void HLTEffAnalyzer(
                         }
 
                         // Mu50OrOldMu100OrTkMu100
-                        // if (L3types.at(i).Contains("Mu50OrOldMu100OrTkMu100") &&
+                        // if (L3type.Contains("Mu50OrOldMu100OrTkMu100") &&
                         //     matched_idx < 0) {
                         //     vector<int> TkMu100map(hltL3fL1sMu25f0TkFiltered100Q.size(), -1);
                         //     matched_idx = probemu.matched(hltL3fL1sMu25f0TkFiltered100Q, TkMu100map, 0.1);
@@ -890,7 +895,7 @@ void HLTEffAnalyzer(
                                 if(l1matched_L1SQ0) {
                                     hc_Eff_L1SQ0.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                    if(L3types.at(i).Contains("L1Muon")) {
+                                    if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1SQ0.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
                                     else {
@@ -902,7 +907,7 @@ void HLTEffAnalyzer(
                                 if(l1matched_L1DQ0) {
                                     hc_Eff_L1DQ0.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                    if(L3types.at(i).Contains("L1Muon")) {
+                                    if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1DQ0.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
                                     else {
@@ -915,7 +920,7 @@ void HLTEffAnalyzer(
                                 if(l1matched_L1SQ8) {
                                     hc_Eff_L1SQ8.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                    if(L3types.at(i).Contains("L1Muon")) {
+                                    if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1SQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
                                     else {
@@ -927,7 +932,7 @@ void HLTEffAnalyzer(
                                 if(l1matched_L1DQ8) {
                                     hc_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                    if(L3types.at(i).Contains("L1Muon")) {
+                                    if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
                                     else {
@@ -940,7 +945,7 @@ void HLTEffAnalyzer(
                                 if(l1matched_L1SQ22) {
                                     hc_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                    if(L3types.at(i).Contains("L1Muon")) {
+                                    if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
                                     else {
@@ -952,7 +957,7 @@ void HLTEffAnalyzer(
                                 if(l1matched_L1DQ22) {
                                     hc_Eff_L1DQ22.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                    if(L3types.at(i).Contains("L1Muon")) {
+                                    if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1DQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
                                     else {
@@ -974,7 +979,7 @@ void HLTEffAnalyzer(
                             if( matched_L1SQ0 ) {
                                 hc_EffTO_L1SQ0.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                if(L3types.at(i).Contains("L1Muon")) {
+                                if(L3type.Contains("L1Muon")) {
                                     if(probemu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                         hc_EffTO_L1SQ0.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
@@ -988,7 +993,7 @@ void HLTEffAnalyzer(
                             if( matched_L1DQ0 ) {
                                 hc_EffTO_L1DQ0.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                if(L3types.at(i).Contains("L1Muon")) {
+                                if(L3type.Contains("L1Muon")) {
                                     if(probemu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                         hc_EffTO_L1DQ0.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
@@ -1003,7 +1008,7 @@ void HLTEffAnalyzer(
                             if( matched_L1SQ8 ) {
                                 hc_EffTO_L1SQ8.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                if(L3types.at(i).Contains("L1Muon")) {
+                                if(L3type.Contains("L1Muon")) {
                                     if(probemu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                         hc_EffTO_L1SQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
@@ -1017,7 +1022,7 @@ void HLTEffAnalyzer(
                             if( matched_L1DQ8 ) {
                                 hc_EffTO_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                if(L3types.at(i).Contains("L1Muon")) {
+                                if(L3type.Contains("L1Muon")) {
                                     if(probemu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                         hc_EffTO_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
@@ -1032,7 +1037,7 @@ void HLTEffAnalyzer(
                             if( matched_L1SQ22 ) {
                                 hc_EffTO_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                if(L3types.at(i).Contains("L1Muon")) {
+                                if(L3type.Contains("L1Muon")) {
                                     if(probemu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                         hc_EffTO_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
@@ -1046,7 +1051,7 @@ void HLTEffAnalyzer(
                             if( matched_L1DQ22 ) {
                                 hc_EffTO_L1DQ22.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
 
-                                if(L3types.at(i).Contains("L1Muon")) {
+                                if(L3type.Contains("L1Muon")) {
                                     if(probemu.get("l1ptByQ") > Eff_L3pt_mins.at(j)) {
                                         hc_EffTO_L1DQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
                                     }
@@ -1061,12 +1066,12 @@ void HLTEffAnalyzer(
 
                         // -- res
                         if (matched_idx_res > -1 &&
-                            (std::find(HLTpaths.begin(), HLTpaths.end(), L3types.at(i)) == HLTpaths.end()) &&
+                            (std::find(HLTpaths.begin(), HLTpaths.end(), L3type) == HLTpaths.end()) &&
                             Runs_bin.at(irun).at(0) < 0 &&
                             Etas_bin.at(ieta).at(0) == 0. &&
                             Etas_bin.at(ieta).at(1) == 2.4
                         ) {
-                            if (L3types.at(i).Contains("L1Muon"))
+                            if (L3type.Contains("L1Muon"))
                                 continue;
 
                             if (!L3Coll->at(matched_idx_res).has("charge")) {

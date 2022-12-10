@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1sequences(
-  TString efftag = "hltIter0FromL1", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString efftag = "hltIter0FromL2", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
   bool isLogy = false  // HERE
 ) {
@@ -81,8 +81,8 @@ void drawtnpCompEffL3wrtL1sequences(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4"};//, "|#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.4"};
+  vector<TString> etas_str = {"I", "BB", "BE", "EB", "EE"};
+  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4", "|#eta^{reco}| < 0.9", "0.9 < |#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.1", "2.1 < |#eta^{reco}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
@@ -119,37 +119,37 @@ void drawtnpCompEffL3wrtL1sequences(
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
   };
   vector<TString> types = {
-    "Eff/hltPixelTracks/num_Eff_"+L1tag+"_hltPixelTracks_RunAll",
-    "Eff/hltPixelTracksInRegionL1/num_Eff_"+L1tag+"_hltPixelTracksInRegionL1_RunAll",
-    "Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1_RunAll",
+    //"Eff/hltPixelTracks/num_Eff_"+L1tag+"_hltPixelTracks_RunAll",
+    //"Eff/hltPixelTracksInRegionL1/num_Eff_"+L1tag+"_hltPixelTracksInRegionL1_RunAll",
+    //"Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1_RunAll",
 
-    //"Eff/hltOI/num_Eff_"+L1tag+"_hltOI_RunAll",
-    //"Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged_RunAll",
-    //"Eff/hltL3Merged/num_Eff_"+L1tag+"_hltL3Merged_RunAll",
-    //"Eff/hltIterL3MuonNoID/num_Eff_"+L1tag+"_hltIterL3MuonNoID_RunAll",
-    //"Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon_RunAll",
+    "Eff/hltOI/num_Eff_"+L1tag+"_hltOI_RunAll",
+    "Eff/hltL3FromL2Merged/num_Eff_"+L1tag+"_hltL3FromL2Merged_RunAll",
+    "Eff/hltL3Merged/num_Eff_"+L1tag+"_hltL3Merged_RunAll",
+    "Eff/hltIterL3MuonNoIDTrack/num_Eff_"+L1tag+"_hltIterL3MuonNoIDTrack_RunAll",
+    "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon_RunAll",
   };
   vector<TString> types_den = {
-    "Eff/hltPixelTracks/den_Eff_"+L1tag+"_hltPixelTracks_RunAll",
-    "Eff/hltPixelTracksInRegionL1/den_Eff_"+L1tag+"_hltPixelTracksInRegionL1_RunAll",
-    "Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1_RunAll",
+    //"Eff/hltPixelTracks/den_Eff_"+L1tag+"_hltPixelTracks_RunAll",
+    //"Eff/hltPixelTracksInRegionL1/den_Eff_"+L1tag+"_hltPixelTracksInRegionL1_RunAll",
+    //"Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1_RunAll",
 
-    //"Eff/hltOI/den_Eff_"+L1tag+"_hltOI_RunAll",
-    //"Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged_RunAll",
-    //"Eff/hltL3Merged/den_Eff_"+L1tag+"_hltL3Merged_RunAll",
-    //"Eff/hltIterL3MuonNoID/den_Eff_"+L1tag+"_hltIterL3MuonNoID_RunAll",
-    //"Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon_RunAll",
+    "Eff/hltOI/den_Eff_"+L1tag+"_hltOI_RunAll",
+    "Eff/hltL3FromL2Merged/den_Eff_"+L1tag+"_hltL3FromL2Merged_RunAll",
+    "Eff/hltL3Merged/den_Eff_"+L1tag+"_hltL3Merged_RunAll",
+    "Eff/hltIterL3MuonNoIDTrack/den_Eff_"+L1tag+"_hltIterL3MuonNoIDTrack_RunAll",
+    "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon_RunAll",
   };
   vector<TString> types_str = {
-    "Run3 2022 FG after v1.5 : Pixel Tracks",
-    "Run3 2022 FG after v1.5 : Pixel Tracks in ROI(L1)",
-    "Run3 2022 FG after v1.5 : IO from L1",
+    //"Run3 2022 FG after v1.5 : Pixel Tracks",
+    //"Run3 2022 FG after v1.5 : Pixel Tracks in ROI(L1)",
+    //"Run3 2022 FG after v1.5 : IO from L1",
 
-    //"Run3 2022 FG after v1.5 : OI",
-    //"Run3 2022 FG after v1.5 : OI + IO from L2",
-    //"Run3 2022 FG after v1.5 : OI + IO from L2 + L1",
-    //"Run3 2022 FG after v1.5 : L3 muon before ID",
-    //"Run3 2022 FG after v1.5 : L3 muon after ID",
+    "Run3 2022 FG after v1.5 : OI",
+    "Run3 2022 FG after v1.5 : OI + IO from L2",
+    "Run3 2022 FG after v1.5 : OI + IO from L2 + L1",
+    "Run3 2022 FG after v1.5 : L3 muon before ID",
+    "Run3 2022 FG after v1.5 : L3 muon after ID",
   };
 
   vector<TString> v_pts = {

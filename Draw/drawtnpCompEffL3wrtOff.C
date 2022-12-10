@@ -84,8 +84,8 @@ void drawtnpCompEffL3wrtOff(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4"};//, "|#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.4"};
+  vector<TString> etas_str = {"I", "BB", "BE", "EB", "EE"};
+  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4", "|#eta^{reco}| < 0.9", "0.9 < |#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.1", "2.1 < |#eta^{reco}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,

@@ -116,28 +116,32 @@ void drawtnpCompEffL3filter(
   vector<TString> types = {
     //"Eff/myMu24/num_Eff_L1SQ22_myMu24_RunAll",
 
-    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
 
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
   };
   vector<TString> types_den = {
     //"Eff/hltIterL3Muon/num_Eff_L1SQ22_hltIterL3Muon_RunAll",
 
-    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1DQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
 
-    //"Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-
-    //"Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
   };
   vector<TString> types_str = {
     efftag+" : Run2 UL2018 D 5fb^{-1}",
@@ -229,8 +233,8 @@ void drawtnpCompEffL3filter(
           c->cd();
 
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
-          g->Divide(num, den, "n e0");
-          //g->Divide(num, den, "pois");
+          //g->Divide(num, den, "n e0");
+          g->Divide(num, den, "pois");
 
           for(int ip=0; ip<nbins; ++ip) {
             if(g->GetPointY(ip) == 0.)  g->SetPointEYhigh(ip, 0.0);
