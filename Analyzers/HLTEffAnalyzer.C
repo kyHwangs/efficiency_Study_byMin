@@ -377,23 +377,31 @@ void HLTEffAnalyzer(
             "hltIterL3MuonTrack",
 
             "L1sSingleMu22",
-            "Mu50",
             "Mu24",
+            "Mu50",
+            "Mu50OrOldMu100OrTkMu100",
+            "ECALIsoMu24",
+            "HCALIsoMu24",
             "IsoMu24",
 
             "myL1sSingleMu22",
-            "myMu50",
             "myMu24",
+            "myMu50",
+            "myMu50OrOldMu100OrTkMu100",
+            "myECALIsoMu24",
+            "myHCALIsoMu24",
             "myIsoMu24",
         };
 
         vector<TString> HLTpaths = {
-            "Mu50",
             "Mu24",
-            "IsoMu24",
+            "Mu50",
             "OldMu100",
             "TkMu100",
             "Mu50OrOldMu100OrTkMu100",
+            "ECALIsoMu24",
+            "HCALIsoMu24",
+            "IsoMu24",
             "Mu17Mu8",
             "Mu37TkMu27"
         };
@@ -416,17 +424,17 @@ void HLTEffAnalyzer(
 
             vector<vector<double>> Etas_bin = {
                 {0., 2.4},
-                {0., 0.9},
-                {0.9, 1.2},
-                {1.2, 2.1},
-                {2.1, 2.4},
+                //{0., 0.9},
+                //{0.9, 1.2},
+                //{1.2, 2.1},
+                //{2.1, 2.4},
             };
             vector<TString> Etas_str = {
                 "I",
-                "BB",
-                "BE",
-                "EB",
-                "EE",
+                //"BB",
+                //"BE",
+                //"EB",
+                //"EE",
             };
 
             vector<vector<int>> Runs_bin = {
@@ -578,6 +586,7 @@ void HLTEffAnalyzer(
 
     // -- Event loop
     for(unsigned i_ev=0; i_ev<nEvent; i_ev++) {
+        //cout<<i_ev<<endl;
         if(doBar)
             loadBar(i_ev+1, nEvent, 100, 100);
         else if( doMem && i_ev !=0 && i_ev % nMem == 0 )
@@ -680,13 +689,21 @@ void HLTEffAnalyzer(
             vector<Object> iterL3MuonTrackAssociated = nt->get_iterL3MuonTrackAssociated();
 
             vector<Object> L1sSingleMu22_HLT = nt->get_HLTObjects("hltL1fL1sMu22L1Filtered0");
-            vector<Object> Mu50_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
             vector<Object> Mu24_HLT = nt->get_HLTObjects("hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q");
+            vector<Object> Mu50_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
+            vector<Object> TkMu100_HLT = nt->get_HLTObjects("hltL3fL1sMu25f0TkFiltered100Q");
+            vector<Object> OldMu100_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q");
+            vector<Object> ECALIsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfecalIsoRhoFiltered");
+            vector<Object> HCALIsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfhcalIsoRhoFiltered");
             vector<Object> IsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered");
 
             vector<Object> L1sSingleMu22_MYHLT = nt->get_myHLTObjects("hltL1fL1sMu22L1Filtered0");
-            vector<Object> Mu50_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
             vector<Object> Mu24_MYHLT = nt->get_myHLTObjects("hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q");
+            vector<Object> Mu50_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
+            vector<Object> TkMu100_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu25f0TkFiltered100Q");
+            vector<Object> OldMu100_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q");
+            vector<Object> ECALIsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfecalIsoRhoFiltered");
+            vector<Object> HCALIsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfhcalIsoRhoFiltered");
             vector<Object> IsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered");
 
         // -- TnP selection
@@ -737,13 +754,19 @@ void HLTEffAnalyzer(
                 &iterL3MuonTrackAssociated,
 
                 &L1sSingleMu22_HLT,
-                &Mu50_HLT,
                 &Mu24_HLT,
+                &Mu50_HLT,
+                &Mu50_HLT,// Mu50OrOldMu100OrTkMu100
+                &ECALIsoMu24_HLT,
+                &HCALIsoMu24_HLT,
                 &IsoMu24_HLT,
 
                 &L1sSingleMu22_MYHLT,
-                &Mu50_MYHLT,
                 &Mu24_MYHLT,
+                &Mu50_MYHLT,
+                &Mu50_MYHLT, // Mu50OrOldMu100OrTkMu100
+                &ECALIsoMu24_MYHLT,
+                &HCALIsoMu24_MYHLT,
                 &IsoMu24_MYHLT
             };
 
@@ -754,6 +777,7 @@ void HLTEffAnalyzer(
 
         //### L3types loop ###
         for(unsigned i=0; i<L3types.size(); ++i) {
+            vector<Object>* L3Coll = L3MuonColls.at(i);
             TString L3type = L3types.at(i);
             L3type.ReplaceAll("my","");
             bool looseMatch = L3type.Contains("L2Muon");
@@ -765,11 +789,10 @@ void HLTEffAnalyzer(
                 if (nt->runNum > Runs_bin.at(irun).at(1))
                     continue;
                 for (unsigned ieta = 0; ieta < Etas_bin.size(); ++ieta) {
-                    vector<Object>* L3Coll = L3MuonColls.at(i);
-
                     //### offlineMuons loop ###
                     int iprobe = -1;
                     for(auto& probemu: probes) {
+                        L3Coll = L3MuonColls.at(i);
 
                         if( !acceptance( probemu ) )
                             continue;
@@ -863,15 +886,17 @@ void HLTEffAnalyzer(
                         }
 
                         // Mu50OrOldMu100OrTkMu100
-                        // if (L3type.Contains("Mu50OrOldMu100OrTkMu100") &&
-                        //     matched_idx < 0) {
-                        //     vector<int> TkMu100map(hltL3fL1sMu25f0TkFiltered100Q.size(), -1);
-                        //     matched_idx = probemu.matched(hltL3fL1sMu25f0TkFiltered100Q, TkMu100map, 0.1);
-                        //     if (matched_idx < 0) {
-                        //         vector<int> OldMu100map(hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q.size(), -1);
-                        //         matched_idx = probemu.matched(hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q, OldMu100map, 0.1);
-                        //     }
-                        // }
+                        if (L3type.Contains("Mu50OrOldMu100OrTkMu100") &&
+                            matched_idx < 0) {
+                            vector<int> TkMu100map(L3types.at(i).Contains("my")? TkMu100_MYHLT.size() : TkMu100_HLT.size(), -1);
+                            matched_idx = probemu.matched(L3types.at(i).Contains("my")? TkMu100_MYHLT : TkMu100_HLT, TkMu100map, 0.1);
+                            if (matched_idx >= 0) L3Coll = L3types.at(i).Contains("my")? &TkMu100_MYHLT : &TkMu100_HLT;
+                            if (matched_idx < 0) {
+                                vector<int> OldMu100map(L3types.at(i).Contains("my")? OldMu100_MYHLT.size() : OldMu100_HLT.size(), -1);
+                                matched_idx = probemu.matched(L3types.at(i).Contains("my")? OldMu100_MYHLT : OldMu100_HLT, OldMu100map, 0.1);
+                                if (matched_idx >= 0) L3Coll = L3types.at(i).Contains("my")? &OldMu100_MYHLT : &OldMu100_HLT;
+                            }
+                        }
 
                         if (matched_idx < 0) {
                             probemu.addVar("dR", -1.);
