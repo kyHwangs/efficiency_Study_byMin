@@ -237,6 +237,108 @@ private:
     }
 };
 
+class HistContainer2D
+{
+public:
+    HistContainer2D(
+      TString _Tag,
+      vector<vector<TString>> _variables = {
+        {"eta", "pt"},
+        {"eta", "phi"},
+      },
+      vector<vector<double>> _ranges = {
+        {24, -2.4, 2.4, 40, 0, 200},
+        {24, -2.4, 2.4, 30, -TMath::Pi(), TMath::Pi()},
+      }
+    ) {
+
+      if(_variables.size() != _ranges.size()) {
+        cout << "HistContainer2D: _variables.size() != _ranges.size()" << endl;
+        exit(1);
+      }
+
+      this->Tag = _Tag;
+      this->variables = _variables;
+      this->ranges = _ranges;
+      this->nVar = variables.size();
+
+      this->Init();
+    }
+
+  void fill_den( Object obj, double weight = 1.0 ) {
+    for(int k=0; k < nVar; ++k) {
+      if(obj.has(variables.at(k).at(0)) && obj.has(variables.at(k).at(1))) {
+	v_den.at(k)->Fill( obj.get(variables.at(k).at(0)), obj.get(variables.at(k).at(1)), weight );
+      }
+    }
+  }
+
+  void fill_num( Object obj, double weight = 1.0 ) {
+    for(int k=0; k < nVar; ++k) {
+      if(obj.has(variables.at(k).at(0)) && obj.has(variables.at(k).at(1))) {
+	v_num.at(k)->Fill( obj.get(variables.at(k).at(0)), obj.get(variables.at(k).at(1)), weight );
+      }
+    }
+  }
+
+  void Save( TFile *f_output )
+  {
+    f_output->cd();
+
+    for(int k=0; k < nVar; ++k) {
+      v_den.at(k)->Write();
+      v_num.at(k)->Write();
+      delete v_den.at(k);
+      delete v_num.at(k);
+    }
+  }
+
+  void Save( TDirectory *dir )
+  {
+    dir->cd();
+
+    for(int k=0; k < nVar; ++k) {
+      v_den.at(k)->SetDirectory(dir);
+      v_num.at(k)->SetDirectory(dir);
+      v_den.at(k)->Write();
+      v_num.at(k)->Write();
+      delete v_den.at(k);
+      delete v_num.at(k);
+    }
+  }
+
+  ~HistContainer2D() {}
+
+private:
+    TString Tag;
+    int nVar;
+    vector<vector<TString>> variables;
+    vector<vector<double>> ranges;
+
+    vector<TH2D*> v_den;
+    vector<TH2D*> v_num;
+
+    void Init()
+    {
+      TH1::SetDefaultSumw2(kTRUE);
+      TH2::SetDefaultSumw2(kTRUE);
+      TH1::AddDirectory(kFALSE);
+      TH2::AddDirectory(kFALSE);
+
+      TString Tag_tmp = this->Tag == "" ? "" : "_"+this->Tag;
+
+      for(int k=0; k < nVar; ++k) {
+        TString name = TString::Format("%s_%s_%s", Tag_tmp.Data(), variables.at(k).at(0).Data(), variables.at(k).at(1).Data());
+
+        TH2D *den = new TH2D("den"+name, "", ranges.at(k)[0], ranges.at(k)[1], ranges.at(k)[2], ranges.at(k)[3], ranges.at(k)[4], ranges.at(k)[5]);
+        TH2D *num = new TH2D("num"+name, "", ranges.at(k)[0], ranges.at(k)[1], ranges.at(k)[2], ranges.at(k)[3], ranges.at(k)[4], ranges.at(k)[5]);
+
+        v_den.push_back( den );
+        v_num.push_back( num );
+      }
+    }
+};
+
 struct sort_by_pt
 {
     inline bool operator() (const Object& a, const Object& b)
@@ -459,6 +561,10 @@ void HLTEffAnalyzer(
             vector<vector<vector<vector<HistContainer*>>>> hc_EffTO_L1DQ8 = {};  // Eff[L3 type][run bin][eta bin][L3 pt min]
             vector<vector<vector<vector<HistContainer*>>>> hc_EffTO_L1DQ22 = {};  // Eff[L3 type][run bin][eta bin][L3 pt min]
 
+            vector<vector<vector<vector<HistContainer2D*>>>> hc2D_Eff = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
+            vector<vector<vector<vector<HistContainer2D*>>>> hc2D_Eff_L1SQ22 = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
+            vector<vector<vector<vector<HistContainer2D*>>>> hc2D_Eff_L1DQ8 = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
+
             // -- res
             vector<vector<TH1D *>> vh_L3_qbpt_pt  = {};
             vector<vector<TH1D *>> vh_L3_qbpt_eta = {};
@@ -482,6 +588,9 @@ void HLTEffAnalyzer(
                 hc_EffTO_L1DQ0.push_back( {} );
                 hc_EffTO_L1DQ8.push_back( {} );
                 hc_EffTO_L1DQ22.push_back( {} );
+                hc2D_Eff.push_back( {} );
+                hc2D_Eff_L1SQ22.push_back( {} );
+                hc2D_Eff_L1DQ8.push_back( {} );
 
                 for (unsigned irun = 0; irun < Runs_bin.size(); ++irun) {
                     TString run_str = TString::Format("Run%d_%d", Runs_bin.at(irun).at(0), Runs_bin.at(irun).at(01));
@@ -502,6 +611,9 @@ void HLTEffAnalyzer(
                     hc_EffTO_L1DQ0.at(iL3type).push_back( {} );
                     hc_EffTO_L1DQ8.at(iL3type).push_back( {} );
                     hc_EffTO_L1DQ22.at(iL3type).push_back( {} );
+                    hc2D_Eff.at(iL3type).push_back( {} );
+                    hc2D_Eff_L1SQ22.at(iL3type).push_back( {} );
+                    hc2D_Eff_L1DQ8.at(iL3type).push_back( {} );
 
                     for (unsigned ieta = 0; ieta < Etas_bin.size(); ++ieta) {
                         hc_Eff.at(iL3type).at(irun).push_back( {} );
@@ -518,6 +630,9 @@ void HLTEffAnalyzer(
                         hc_EffTO_L1DQ0.at(iL3type).at(irun).push_back( {} );
                         hc_EffTO_L1DQ8.at(iL3type).at(irun).push_back( {} );
                         hc_EffTO_L1DQ22.at(iL3type).at(irun).push_back( {} );
+                        hc2D_Eff.at(iL3type).at(irun).push_back( {} );
+                        hc2D_Eff_L1SQ22.at(iL3type).at(irun).push_back( {} );
+                        hc2D_Eff_L1DQ8.at(iL3type).at(irun).push_back( {} );
 
                         for(auto& Eff_genpt_min: Eff_genpt_mins) {
                             HistContainer* hc_tmp0   = new HistContainer( TString::Format("Eff_%s_%s_%s_genpt%.0f",      L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
@@ -527,6 +642,9 @@ void HLTEffAnalyzer(
                             HistContainer* hc_tmp2_0 = new HistContainer( TString::Format("Eff_L1DQ0_%s_%s_%s_genpt%.0f", L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
                             HistContainer* hc_tmp2_1 = new HistContainer( TString::Format("Eff_L1DQ8_%s_%s_%s_genpt%.0f", L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
                             HistContainer* hc_tmp2_2 = new HistContainer( TString::Format("Eff_L1DQ22_%s_%s_%s_genpt%.0f", L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
+                            HistContainer2D* hc2D_tmp0 = new HistContainer2D( TString::Format("2DEff_%s_%s_%s_genpt%.0f", L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
+                            HistContainer2D* hc2D_tmp1 = new HistContainer2D( TString::Format("2DEff_L1SQ22_%s_%s_%s_genpt%.0f", L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
+                            HistContainer2D* hc2D_tmp2 = new HistContainer2D( TString::Format("2DEff_L1DQ8_%s_%s_%s_genpt%.0f", L3type.Data(), run_str.Data(), Etas_str.at(ieta).Data(), Eff_genpt_min) );
                             hc_Eff.at(iL3type).at(irun).at(ieta).push_back( hc_tmp0 );
                             hc_Eff_L1SQ0.at(iL3type).at(irun).at(ieta).push_back( hc_tmp1_0 );
                             hc_Eff_L1SQ8.at(iL3type).at(irun).at(ieta).push_back( hc_tmp1_1 );
@@ -534,6 +652,9 @@ void HLTEffAnalyzer(
                             hc_Eff_L1DQ0.at(iL3type).at(irun).at(ieta).push_back( hc_tmp2_0 );
                             hc_Eff_L1DQ8.at(iL3type).at(irun).at(ieta).push_back( hc_tmp2_1 );
                             hc_Eff_L1DQ22.at(iL3type).at(irun).at(ieta).push_back( hc_tmp2_2 );
+                            hc2D_Eff.at(iL3type).at(irun).at(ieta).push_back( hc2D_tmp0 );
+                            hc2D_Eff_L1SQ22.at(iL3type).at(irun).at(ieta).push_back( hc2D_tmp1 );
+                            hc2D_Eff_L1DQ8.at(iL3type).at(irun).at(ieta).push_back( hc2D_tmp2 );
                         }
 
                         for(auto& Eff_L3pt_min: Eff_L3pt_mins) {
@@ -913,8 +1034,10 @@ void HLTEffAnalyzer(
                         for(unsigned j=0; j<Eff_genpt_mins.size(); ++j) {
                             if( probemu.pt > Eff_genpt_mins.at(j) ) {
                                 hc_Eff.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
+                                hc2D_Eff.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, genWeight );
                                 if( matched_idx > -1 ) {
                                     hc_Eff.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
+                                    hc2D_Eff.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, genWeight );
                                 }
 
                                 if(l1matched_L1SQ0) {
@@ -956,26 +1079,32 @@ void HLTEffAnalyzer(
                                 }
                                 if(l1matched_L1DQ8) {
                                     hc_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
+                                    hc2D_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, genWeight );
 
                                     if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
+                                        hc2D_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, genWeight );
                                     }
                                     else {
                                         if( matched_idx > -1 ) {
                                             hc_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
+                                            hc2D_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, genWeight );
                                         }
                                     }
                                 }
 
                                 if(l1matched_L1SQ22) {
                                     hc_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, nt->nVertex, genWeight );
+                                    hc2D_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_den( probemu, genWeight );
 
                                     if(L3type.Contains("L1Muon")) {
                                         hc_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
+                                        hc2D_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, genWeight );
                                     }
                                     else {
                                         if( matched_idx > -1 ) {
                                             hc_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, nt->nVertex, genWeight );
+                                            hc2D_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->fill_num( probemu, genWeight );
                                         }
                                     }
                                 }
@@ -1186,6 +1315,9 @@ void HLTEffAnalyzer(
                         hc_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->Save(dir1);
                         hc_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->Save(dir1);
                         hc_Eff_L1DQ22.at(i).at(irun).at(ieta).at(j)->Save(dir1);
+                        hc2D_Eff.at(i).at(irun).at(ieta).at(j)->Save(dir1);
+                        hc2D_Eff_L1SQ22.at(i).at(irun).at(ieta).at(j)->Save(dir1);
+                        hc2D_Eff_L1DQ8.at(i).at(irun).at(ieta).at(j)->Save(dir1);
                     }
 
                     for(unsigned j=0; j<Eff_L3pt_mins.size(); ++j) {
