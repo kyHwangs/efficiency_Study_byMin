@@ -58,7 +58,7 @@ void drawtnpCompEffL3wrtL1sequences(
     {1, 0, 200},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
-    {1, 10, 60}  // PU
+    {1, 10, 75}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
     range.at(0) = {1, 0, 40};

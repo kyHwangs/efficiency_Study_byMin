@@ -37,9 +37,9 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawtnpCompEffL3filter(
-  TString efftag = "myL1sSingleMu22", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
-  TString L1tag = "", TString L1str = "",
+void drawtnpCompEffL3wrtL1_NoWP(
+  TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -48,7 +48,7 @@ void drawtnpCompEffL3filter(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
+  TString Dir = "./plots_"+ver+"_NoWP/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
@@ -81,88 +81,112 @@ void drawtnpCompEffL3filter(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4"};//, "|#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.4"};
+  vector<TString> etas_str = {"I"};//, "BB", "BE", "EB", "EE"};
+  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4"};//, "|#eta^{reco}| < 0.9", "0.9 < |#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.1", "2.1 < |#eta^{reco}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
+    kBlack,
+    kBlue,
     kBlue,
     kRed,
-    kOrange,
+    kRed,
+    //kOrange,
+    kGreen+2,
     kGreen+2,
     //kCyan+2,
     //kPink+4,
-    //kGray+2,
-    //kMagenta,
+    kGray+2,
+    kGray+2,
+    kMagenta,
+    kMagenta,
   };
   vector<int> v_marker = {
-    20,
+    //20,
     22,
     26,
-    32,
     23,
-    //22,
-    //26,
-    //23,
-    //32,
+    32,
+    22,
+    26,
+    23,
+    32,
+    22,
+    26,
+    23,
+    32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022EF_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-NoWP-Single"+tag+"_RunUL2018D-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-NoWP-DYToLL_M50_120X-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-"+tag+"_Run2022BCD-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-NoWP-"+tag+"_Run2022BCD-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-"+tag+"_Run2022E-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-NoWP-"+tag+"_Run2022E-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-"+tag+"_Run2022F-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-NoWP-"+tag+"_Run2022F-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"-temp2/hist-"+ver+"-NoWP-"+tag+"_Run2022G-Eff.root",
   };
   vector<TString> types = {
-    //"Eff/myMu24/num_Eff_L1SQ22_myMu24_RunAll",
-
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_den = {
-    //"Eff/hltIterL3Muon/num_Eff_L1SQ22_hltIterL3Muon_RunAll",
-
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    //TString("Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
     efftag+" : Run2 UL2018 D 5fb^{-1}",
+    " - W/O Seed Classifier",
     efftag+" : Run3 DY M-50 Summer21",
+    " - W/O Seed Classifier",
     efftag+" : Run3 2022 BCD",
-    efftag+" : Run3 2022 EF before v1.5",
-    efftag+" : Run3 2022 FG after v1.5",
+    " - W/O Seed Classifier",
+    efftag+" : Run3 2022 E",
+    " - W/O Seed Classifier",
+    efftag+" : Run3 2022 F",
+    " - W/O Seed Classifier",
+    efftag+" : Run3 2022 G",
+    " - W/O Seed Classifier",
   };
 
   vector<TString> v_pts = {
     "genpt0",
     //"genpt10",
-    "genpt26"
-    //"genpt53",
+    "genpt26",
+    "genpt53",
   };
 
   vector<TString> v_pts_str = {
     "",
     //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV"
-    //"p_{T}^{reco} > 53 GeV"
+    "p_{T}^{reco} > 26 GeV",
+    "p_{T}^{reco} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -175,17 +199,17 @@ void drawtnpCompEffL3filter(
         double ymax = 1.6;
 
 	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.6;//0.6;//0.85;
-	  ymax = 1.2;//1.2;//1.1;
+	  ymin = 0.85;//0.6;//0.85;
+	  ymax = 1.1;//1.2;//1.1;
 	}
 
-        TString canvasName = TString::Format("L3filterEff_%s_%s_%s_%s_%s",
+        TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s",
                                              efftag.Data(),
                                              L1tag.Data(),
                                              etas_str.at(i_eta).Data(),
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
-        canvasName.ReplaceAll(".","p").ReplaceAll("-","_");
+        canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "");
         TCanvas *c;
         SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
         c->cd();
@@ -201,13 +225,15 @@ void drawtnpCompEffL3filter(
 
           TString the_type_num = types[i];
           TString the_type_den = types_den[i];
-          TString the_type_str = types_str[i];
+          TString the_type_str = types_str[i].ReplaceAll("my","");
 
           TString hist_var = v_var[ivar];
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
-          TString titleY = "Mu24/L3+ID efficiency";
+          TString titleY = "L3/L1 efficiency";
+          if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
+          if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
@@ -233,8 +259,8 @@ void drawtnpCompEffL3filter(
           c->cd();
 
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
-          //g->Divide(num, den, "n e0");
-          g->Divide(num, den, "pois");
+          g->Divide(num, den, "n e0");
+          //g->Divide(num, den, "pois");
 
           for(int ip=0; ip<nbins; ++ip) {
             if(g->GetPointY(ip) == 0.)  g->SetPointEYhigh(ip, 0.0);
@@ -264,6 +290,7 @@ void drawtnpCompEffL3filter(
           legend->AddEntry( g, TString::Format("%s", the_type_str.Data()), "lep" );
         }
 
+        legend->SetNColumns(2);
         legend->Draw();
 
         TLatex latex;

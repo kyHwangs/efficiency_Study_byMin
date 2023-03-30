@@ -58,7 +58,7 @@ void drawtnpCompEffL3wrtL1(
     {1, 0, 200},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
-    {1, 10, 60}  // PU
+    {1, 10, 75}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
     range.at(0) = {1, 0, 40};
@@ -82,7 +82,7 @@ void drawtnpCompEffL3wrtL1(
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
   vector<TString> etas_str = {"I", "BB", "BE", "EB", "EE"};
-  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4", "|#eta^{reco}| < 0.9", "0.9 < |#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.1", "2.1 < |#eta^{reco}| < 2.4"};
+  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4", "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
     //kBlack,
@@ -144,9 +144,9 @@ void drawtnpCompEffL3wrtL1(
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV",
-    "p_{T}^{reco} > 53 GeV",
+    //"p_{T}^{offline} > 10 GeV",
+    "p_{T}^{offline} > 26 GeV",
+    "p_{T}^{offline} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -191,7 +191,7 @@ void drawtnpCompEffL3wrtL1(
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
-          TString titleY = "L3/L1 efficiency";
+          TString titleY = "HLT efficiency"; //"L3/L1 efficiency";
           if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
           if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
 

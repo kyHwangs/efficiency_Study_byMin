@@ -37,9 +37,9 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawtnpCompEffL3filter(
-  TString efftag = "myL1sSingleMu22", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
-  TString L1tag = "", TString L1str = "",
+void drawtnpCompEffL3wrtL1_Winter22(
+  TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -52,13 +52,15 @@ void drawtnpCompEffL3filter(
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi", "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi", "nvtx", "pu", "lumi"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
-    {1, 10, 75}  // PU
+    {1, 10, 75},  // nvtx
+    {1, 10, 75},  // PU
+    {1, 0, 2.5},  // Lumi
   };
   if (tag == "JPsi" || tag == "Bs") {
     range.at(0) = {1, 0, 40};
@@ -81,15 +83,15 @@ void drawtnpCompEffL3filter(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{reco}| < 2.4"};//, "|#eta^{reco}| < 1.2", "1.2 < |#eta^{reco}| < 2.4"};
+  vector<TString> etas_str = {"I"};//, "BB", "BE", "EB", "EE"};
+  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
-    kBlue,
-    kRed,
-    kOrange,
     kGreen+2,
+    kRed,
+    kBlue,
+    //kOrange,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
@@ -97,72 +99,60 @@ void drawtnpCompEffL3filter(
   };
   vector<int> v_marker = {
     20,
-    22,
-    26,
-    32,
-    23,
+    23,//32,
+    22,//26,
+    25,//22
+    //23,
     //22,
     //26,
     //23,
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022EF_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_NoIO.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_NoOI.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-Winter22-DYToLL_M50_122X-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
   };
   vector<TString> types = {
-    //"Eff/myMu24/num_Eff_L1SQ22_myMu24_RunAll",
-
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/num_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_den = {
-    //"Eff/hltIterL3Muon/num_Eff_L1SQ22_hltIterL3Muon_RunAll",
-
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-    //"Eff/myL1sSingleMu22/den_Eff_L1SQ22_myL1sSingleMu22_RunAll",
-
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
-    "Eff/myL1sSingleMu22/num_Eff_myL1sSingleMu22_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    efftag+" : Run2 UL2018 D 5fb^{-1}",
-    efftag+" : Run3 DY M-50 Summer21",
-    efftag+" : Run3 2022 BCD",
-    efftag+" : Run3 2022 EF before v1.5",
-    efftag+" : Run3 2022 FG after v1.5",
+    //efftag+" : Run2022 Data",
+    //efftag+" : Run2022 data without BDT IO",
+    //efftag+" : Run2022 data without DNN OI",
+    //efftag+" : Run3 DY M-50 Summer21",
+    //efftag+" : Run3 DY M-50 Winter22",
+    "Data",
+    "Data without BDT in Inside-out",
+    "Data without DNN in Outsise-in",
+    "Drell-Yan Simulation",
   };
 
   vector<TString> v_pts = {
     "genpt0",
     //"genpt10",
-    "genpt26"
+    "genpt26",
     //"genpt53",
   };
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV"
-    //"p_{T}^{reco} > 53 GeV"
+    //"p_{T}^{offline} > 10 GeV",
+    "p_{T}^{offline} > 26 GeV",
+    //"p_{T}^{offline} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -175,17 +165,17 @@ void drawtnpCompEffL3filter(
         double ymax = 1.6;
 
 	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.6;//0.6;//0.85;
-	  ymax = 1.2;//1.2;//1.1;
+	  ymin = 0.85;//0.6;//0.85;
+	  ymax = 1.1;//1.2;//1.1;
 	}
 
-        TString canvasName = TString::Format("L3filterEff_%s_%s_%s_%s_%s",
+        TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s",
                                              efftag.Data(),
                                              L1tag.Data(),
                                              etas_str.at(i_eta).Data(),
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
-        canvasName.ReplaceAll(".","p").ReplaceAll("-","_");
+        canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "");
         TCanvas *c;
         SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
         c->cd();
@@ -193,7 +183,8 @@ void drawtnpCompEffL3filter(
         if(tag == "Zprime" && v_var[ivar].Contains("pt")) c->SetLogx();
 
         TLegend *legend;
-        SetLegend( legend, 0.14, 0.71, 0.94, 0.84, -1);
+        //SetLegend( legend, 0.14, 0.71, 0.94, 0.84, -1);
+        SetLegend( legend, 0.14, 0.67, 0.94, 0.8, -1);
 
         bool isFirst = true;
         for(int i = 0; i<(int)types.size(); ++i) {
@@ -201,13 +192,15 @@ void drawtnpCompEffL3filter(
 
           TString the_type_num = types[i];
           TString the_type_den = types_den[i];
-          TString the_type_str = types_str[i];
+          TString the_type_str = types_str[i].ReplaceAll("my","");
 
           TString hist_var = v_var[ivar];
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
-          TString titleY = "Mu24/L3+ID efficiency";
+          TString titleY = "HLT Efficiency"; //"L3/L1 efficiency";
+          if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
+          if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
@@ -233,8 +226,8 @@ void drawtnpCompEffL3filter(
           c->cd();
 
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
-          //g->Divide(num, den, "n e0");
-          g->Divide(num, den, "pois");
+          g->Divide(num, den, "n e0");
+          //g->Divide(num, den, "pois");
 
           for(int ip=0; ip<nbins; ++ip) {
             if(g->GetPointY(ip) == 0.)  g->SetPointEYhigh(ip, 0.0);
@@ -267,11 +260,19 @@ void drawtnpCompEffL3filter(
         legend->Draw();
 
         TLatex latex;
-	Latex_Preliminary_13p6TeV( latex );
-        latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
-        latex.DrawLatexNDC(0.20, 0.87, "#font[42]{#scale[0.8]{"+L1str+"}}");
-        latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
-        if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.70, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
+        //Latex_Preliminary_13p6TeV( latex );
+        //latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
+        Latex_Preliminary( latex, 34.3, 13.6);
+        //latex.DrawLatexNDC(0.20, 0.87, "#font[42]{#scale[0.8]{"+L1str+"}}");
+        //latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
+        //if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.70, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
+        TString L3str = "L3 Muon after ID";
+	if(efftag == "hltOI") L3str = "Outside-in L3 MuonTrack";
+        if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
+        latex.DrawLatexNDC(0.16, 0.89, "#font[42]{#scale[0.8]{"+L3str+"}}");
+        latex.DrawLatexNDC(0.16, 0.84, "#font[42]{#scale[0.8]{"+L1str+"}}");
+        latex.DrawLatexNDC((i_eta==2?0.7:0.74), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
+        if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.7, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
 
         TString logy_tag = isLogy ? "_log" : "";
         // CMS_lumi(c, 98, 11);

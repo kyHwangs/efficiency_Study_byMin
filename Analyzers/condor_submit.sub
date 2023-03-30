@@ -4,7 +4,7 @@ getenv                = True
 executable            = condor_wrapper.sh
 arguments             = python run.py $(MACRO) $(VER) $(TAG) $(JobID) $(outputDir) $(doDimuon) $(DATASET)
 transfer_input_files  = $(MACRO).C,MuonHLTNtupleRun3.h,run.py
-JobBatchName          = Run3MuonHLT
+JobBatchName          = Run3MuonHLT_$(TAG)
 request_memory        = 3000 MB
 
 # x509userproxy         = /tmp/x509up_u41056

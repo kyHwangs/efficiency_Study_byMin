@@ -180,17 +180,19 @@ using namespace std;
   {
     TString titleX = "";
     if( varName.Contains("IPSig") )            titleX = "dxy/#sigma(dxy)";
-    if( varName.Contains("pu") )               titleX = "#scale[1.0]{True number of interactions}";  // tmp
-    if( varName.Contains("pu_reco") )          titleX = "#scale[0.7]{Number of reconstructed primary vertices}";  // tmp
-    if( varName.Contains("vtx") )              titleX = "PU";  // tmp
+    if( varName.Contains("lumi") )             titleX = "inst. lumi [1E34 Hz/cm^{2}]";
+    if( varName.Contains("pu") )               titleX = "Pileup";
+    if( varName.Contains("pu_reco") )          titleX = "Pileup";
+    if( varName.Contains("vtx") )              titleX = "#scale[0.7]{Number of reconstructed primary vertices}";  // tmp
+    //if( varName.Contains("vtx") )              titleX = "#scale[1.0]{True number of interactions}";  // tmp
     if( varName.Contains("pt_trk") )           titleX = "p_{T}(trk) [GeV]";
     if( varName.Contains("eta_trk") )          titleX = "#eta(trk)";
-    if( varName.Contains("pt_sim") )           titleX = "p_{T}(sim) [GeV]";
-    if( varName.Contains("eta_sim") )          titleX = "#eta(sim)";
-    if( varName.Contains("mass_reco") )         titleX = "m_{#mu^{+}#mu^{-}, reco} [GeV]";
-    if( varName.Contains("pt_reco") )           titleX = "p_{T}^{reco} [GeV]";
-    if( varName.Contains("eta_reco") )          titleX = "#eta^{reco}";
-    if( varName.Contains("phi_reco") )          titleX = "#phi^{reco}";
+    if( varName.Contains("pt_sim") )           titleX = "p_{T}^{sim} [GeV]";
+    if( varName.Contains("eta_sim") )          titleX = "#eta^{sim}";
+    if( varName.Contains("mass_reco") )         titleX = "Offline muon pair m_{#mu^{+}#mu^{-}} [GeV]";
+    if( varName.Contains("pt_reco") )           titleX = "Offline muon p_{T} [GeV]";
+    if( varName.Contains("eta_reco") )          titleX = "Offline muon #eta";
+    if( varName.Contains("phi_reco") )          titleX = "Offline muon #phi";
     if( varName.Contains("mass_gen") )         titleX = "m_{#mu^{+}#mu^{-}, GEN} [GeV]";
     if( varName.Contains("pt_gen") )           titleX = "p_{T}^{gen} [GeV]";
     if( varName.Contains("eta_gen") )          titleX = "#eta^{gen}";
@@ -1270,7 +1272,13 @@ using namespace std;
   void Latex_Preliminary( TLatex &latex, Double_t lumi, Int_t E_CM  )
   {
     Latex_Preliminary_NoDataInfo( latex );
-    latex.DrawLatexNDC(0.69, 0.96, "#font[42]{#scale[0.8]{"+TString::Format("%.1lf fb^{-1} (%d TeV)", lumi, E_CM)+"}}");
+    latex.DrawLatexNDC(0.69, 0.96, "#font[42]{#scale[0.8]{"+TString::Format("%.1lf fb^{-1} (%.d TeV)", lumi, E_CM)+"}}");
+  }
+
+  void Latex_Preliminary( TLatex &latex, Double_t lumi, Double_t E_CM  )
+  {
+    Latex_Preliminary_NoDataInfo( latex );
+    latex.DrawLatexNDC(0.67, 0.96, "#font[42]{#scale[0.8]{"+TString::Format("%.1lf fb^{-1} (%.1f TeV)", lumi, E_CM)+"}}");
   }
 
   void Latex_Simulation( TLatex &latex, TString offset = "" )

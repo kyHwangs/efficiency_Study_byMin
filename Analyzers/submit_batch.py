@@ -8,7 +8,8 @@ from shutil import copyfile
 import gc
 
 def jobSpritting( path, nfiles, prefix = "" ):
-    str_dcap  = "dcap://cluster142.knu.ac.kr/"
+    #str_dcap  = "dcap://cluster142.knu.ac.kr/"
+    str_dcap  = ""
     out = []
 
     lines = glob.glob(path+"/"+prefix+"*.root")
@@ -37,29 +38,41 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_RunUL2018D_hlt_muon_data_Run2018_20221123/221123_172345/0000/",
+    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_RunUL2018D_hlt_muon_data_Run2018_20221123/221123_172345/0000/",
+    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_Run3_20221123/221123_170719/0000/"
 
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_20221123/221123_172606/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_Run2022C_hlt_muon_data_Run2022_20221123/221123_172612/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022C_hlt_muon_data_Run2022_20221123/221123_172617/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_20221123/221123_172623/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_20221123/221123_172629/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022E_hlt_muon_data_Run2022_20221123/221123_172635/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/Muon/crab_Muon_Run2022F_hlt_muon_data_Run2022_20221123/221123_172641/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_20230213/230213_173311/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_NoIO_20230213/230213_173844/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_NoOI_20230213/230213_173746/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022C_hlt_muon_data_Run2022_20230213/230213_173452/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022C_hlt_muon_data_Run2022_NoIO_20230213/230213_173858/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022C_hlt_muon_data_Run2022_NoOI_20230213/230213_173801/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_20230213/230213_173550/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_NoIO_20230213/230213_173906/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_NoOI_20230213/230213_173808/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_20230213/230213_173657/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_NoIO_20230213/230213_173913/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_NoOI_20230213/230213_173815/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022E_hlt_muon_data_Run2022_20230213/230213_173724/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022E_hlt_muon_data_Run2022_NoIO_20230213/230213_173921/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022E_hlt_muon_data_Run2022_NoOI_20230213/230213_173822/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022F_hlt_muon_data_Run2022_20230213/230213_173731/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022F_hlt_muon_data_Run2022_NoIO_20230213/230213_173929/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022F_hlt_muon_data_Run2022_NoOI_20230213/230213_173830/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022G_hlt_muon_data_Run2022_20230213/230213_173738/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022G_hlt_muon_data_Run2022_NoIO_20230213/230213_173936/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022G_hlt_muon_data_Run2022_NoOI_20230213/230213_173837/0000/",
 
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221208/Muon/crab_Muon_Run2022Fv2_hlt_muon_data_Run2022_20221208/221208_084925/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221208/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022_20221208/221208_084929/0000/",
-
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_Run3_20221123/221123_170719/0000/",
+    "/u/user/wonjun/Run3_DIGI/crab_DYToLL_M50_122X_hlt_muon_mc_Run3_Winter22_20230213/230213_025519/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_DYToLL_M50_122X_hlt_muon_mc_Run3_Winter22_NoIO_20230213/230213_035510/0000/",
+    #"/u/user/wonjun/Run3_DIGI/crab_DYToLL_M50_122X_hlt_muon_mc_Run3_Winter22_NoOI_20230213/230213_035516/0000/",
 ]
 
 dates = [
     '_20221123',
     '20221123',
-    '_20221125',
-    '20221125',
-    '_20221208',
-    '20221208',
+    '_20230213',
+    '20230213',
 ]
 
 menus = [
@@ -77,9 +90,9 @@ analyzers = {
     'Muon_Run2022Dv2': ('Eff'),
     'Muon_Run2022E': ('Eff'),
     'Muon_Run2022F': ('Eff'),
-    'Muon_Run2022Fv2': ('Eff'),
     'Muon_Run2022G': ('Eff'),
     'DYToLL_M50_120X': ('Eff'),
+    'DYToLL_M50_122X': ('Eff'),
 
     # 'JPsi': ('EffSim', 'Eff'),
     # 'Bs': ('EffSim', 'Eff'),
@@ -92,7 +105,7 @@ analyzers = {
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_04'
+    VER_base = 'vRun3_05'
     tag_prefix = 'crab_'
 
     doHadd = False
@@ -160,7 +173,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 5
+                nfiles = 2
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:
