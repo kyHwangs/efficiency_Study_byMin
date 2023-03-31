@@ -114,14 +114,14 @@ class HistContainer
 public:
     HistContainer(
       TString _Tag,
-      vector<TString> _variables = { "pt", "eta", "phi", "nvtx", "pu", "lumi"},
+      vector<TString> _variables = { "pt", "eta", "phi", "nvtx"},//, "pu", "lumi"},
       vector<vector<double>> _ranges = {
         { 6000, 0, 3000 },
         { 48, -2.4, 2.4 },
         { 30, -TMath::Pi(), TMath::Pi() },
-        { 75, 0, 75 },
-        { 75, 0, 75 },
-        { 25, 0, 2.5 }
+        { 75, 0, 75 }//,
+        //{ 75, 0, 75 },
+        //{ 25, 0, 2.5 }
       }
     ) {
 
@@ -538,8 +538,8 @@ void HLTEffAnalyzer(
 
             vector<vector<int>> Runs_bin = {
                 {-1, 999999},
-                {-1, 359924},
-                {359924, 999999},
+                //{-1, 359924},
+                //{359924, 999999},
             };
 
             vector<vector<vector<vector<HistContainer*>>>> hc_Eff = {};  // Eff[L3 type][run bin][eta bin][gen pt min]

@@ -8,8 +8,8 @@ from shutil import copyfile
 import gc
 
 def jobSpritting( path, nfiles, prefix = "" ):
-    #str_dcap  = "dcap://cluster142.knu.ac.kr/"
-    str_dcap  = ""
+    str_dcap  = "dcap://cluster142.knu.ac.kr/"
+    #str_dcap  = ""
     out = []
 
     lines = glob.glob(path+"/"+prefix+"*.root")
@@ -41,44 +41,27 @@ samples = [
     #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_RunUL2018D_hlt_muon_data_Run2018_20221123/221123_172345/0000/",
     #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_Run3_20221123/221123_170719/0000/"
 
-    "/u/user/wonjun/Run3_DIGI/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_20230213/230213_173311/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_NoIO_20230213/230213_173844/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_SingleMuon_Run2022B_hlt_muon_data_Run2022_NoOI_20230213/230213_173746/0000/",
-    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022C_hlt_muon_data_Run2022_20230213/230213_173452/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022C_hlt_muon_data_Run2022_NoIO_20230213/230213_173858/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022C_hlt_muon_data_Run2022_NoOI_20230213/230213_173801/0000/",
-    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_20230213/230213_173550/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_NoIO_20230213/230213_173906/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv1_hlt_muon_data_Run2022_NoOI_20230213/230213_173808/0000/",
-    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_20230213/230213_173657/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_NoIO_20230213/230213_173913/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022Dv2_hlt_muon_data_Run2022_NoOI_20230213/230213_173815/0000/",
-    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022E_hlt_muon_data_Run2022_20230213/230213_173724/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022E_hlt_muon_data_Run2022_NoIO_20230213/230213_173921/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022E_hlt_muon_data_Run2022_NoOI_20230213/230213_173822/0000/",
-    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022F_hlt_muon_data_Run2022_20230213/230213_173731/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022F_hlt_muon_data_Run2022_NoIO_20230213/230213_173929/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022F_hlt_muon_data_Run2022_NoOI_20230213/230213_173830/0000/",
-    "/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022G_hlt_muon_data_Run2022_20230213/230213_173738/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022G_hlt_muon_data_Run2022_NoIO_20230213/230213_173936/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_Muon_Run2022G_hlt_muon_data_Run2022_NoOI_20230213/230213_173837/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230329/Muon/crab_Muon_Run2022G_hlt_muon_data_default_20230329/230329_031900/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230329/Muon/crab_Muon_Run2022G_hlt_muon_data_JEC_20230329/230329_162853/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230329/Muon/crab_Muon_Run2022G_hlt_muon_data_JECv2_20230329/230329_172442/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230330/Muon/crab_Muon_Run2022G_hlt_muon_data_JECv3_NoCalo_20230330/230330_030208/0000/",
 
-    "/u/user/wonjun/Run3_DIGI/crab_DYToLL_M50_122X_hlt_muon_mc_Run3_Winter22_20230213/230213_025519/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_DYToLL_M50_122X_hlt_muon_mc_Run3_Winter22_NoIO_20230213/230213_035510/0000/",
-    #"/u/user/wonjun/Run3_DIGI/crab_DYToLL_M50_122X_hlt_muon_mc_Run3_Winter22_NoOI_20230213/230213_035516/0000/",
 ]
 
 dates = [
     '_20221123',
     '20221123',
-    '_20230213',
-    '20230213',
+    '_20230329',
+    '20230329',
+    '_20230330',
+    '20230330',
 ]
 
 menus = [
     '_hlt_muon_data_Run2018_',
     '_hlt_muon_data_Run2022_',
     '_hlt_muon_mc_Run3_',
+    '_hlt_muon_data_',
 ]
 
 analyzers = {
@@ -105,7 +88,7 @@ analyzers = {
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_05'
+    VER_base = 'vRun3_06'
     tag_prefix = 'crab_'
 
     doHadd = False
