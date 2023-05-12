@@ -255,7 +255,7 @@ bool acceptance( Object obj )
 const double MU_MASS = 0.1056583745;
 
 void HLTEffAnalyzer(
-    TString ver = "v1", TString tag = "TEST",
+    TString ver = "v00", TString tag = "TEST",
     vector<TString> vec_Dataset = {}, TString JobId = "",
     TString outputDir = "./",
     const bool doDimuon = false, double ZmassWindow = -1,
@@ -273,7 +273,7 @@ void HLTEffAnalyzer(
     // -- Input
         vector<TString> paths = vec_Dataset;
         if(tag == "TEST") {
-            paths = { "./ntuple_108.root" };
+            paths = { "./ntuple_1.root" };
         }
 
     // -- Output
@@ -295,20 +295,19 @@ void HLTEffAnalyzer(
 
         vector<TString> branch_tags = {
             "genParticle",
-            "vec_my",
+            "muon",
+            "vec",
             "L1Muon",
             "L2Muon",
-            "iterL3OI",
-            "iterL3IOFromL2",
-            "iterL3FromL2",
-            "iterL3IOFromL1",
+
+            "hltPixelTracks",
+            "hltIterL3OIMuonTrackAssociated",
+            "hltIter0IterL3MuonTrackAssociated",
+            "hltIterL3MuonMergedAssociated",
+            "hltIter0IterL3FromL1MuonTrackAssociated",
+            "hltIterL3MuonAndMuonFromL1MergedAssociated",
             "iterL3MuonNoID",
             "iterL3Muon",
-            "hltIter",
-            "hltPixel",
-            "hltMuCtf",
-            "hltDiMuon",
-            "hltGlbTrk"
         };
 
         unique_ptr<MuonHLTNtupleRun3>  nt( new MuonHLTNtupleRun3( _chain_Ev, branch_tags ) );
@@ -336,56 +335,58 @@ void HLTEffAnalyzer(
             "L1Muon",
             //"L2Muon",
 
-            "hltPixelTracks",
+            //"hltPixelTracks",
             "hltPixelTracksInRegionL2",
             "hltPixelTracksInRegionL1",
-
-            //"hltMuCtfTracks",
-            //"hltDiMuonMerging",
-            //"hltGlbTrkMuon",
-
             "hltOI",
             "hltIter0",
-            "hltIter2",
-            "hltIOFromL2Merged",
             "hltL3FromL2Merged",
             "hltIter0FromL1",
-            "hltIter2FromL1",
-            "hltFromL1Merged",
             "hltL3Merged",
             "hltIterL3MuonNoID",
             "hltIterL3Muon",
+            "hltIterL3MuonNoIDTrack",
+            "hltIterL3MuonTrack",
 
+            "L1sSingleMu22",
+            "Mu24",
             "Mu50",
-            //"Mu24",
+            "Mu50OrOldMu100OrTkMu100",
+            "ECALIsoMu24",
+            "HCALIsoMu24",
             "IsoMu24",
 
-            "OldMu100",
-            "TkMu100",
-            "Mu50OrOldMu100OrTkMu100",
-            // "Mu17Mu8",
-            // "Mu37TkMu27"
+            "myL1sSingleMu22",
+            "myMu24",
+            "myMu50",
+            "myMu50OrOldMu100OrTkMu100",
+            "myECALIsoMu24",
+            "myHCALIsoMu24",
+            "myIsoMu24",
         };
 
         vector<TString> HLTpaths = {
+            "Mu24",
             "Mu50",
-            //"Mu24",
-            "IsoMu24",
             "OldMu100",
             "TkMu100",
             "Mu50OrOldMu100OrTkMu100",
-            //"Mu17Mu8",
-            //"Mu37TkMu27"
+            "ECALIsoMu24",
+            "HCALIsoMu24",
+            "IsoMu24",
+            "Mu17Mu8",
+            "Mu37TkMu27"
         };
 
         // -- Efficiency
             vector<double> Eff_genpt_mins = {
                 0,
+                5,
                 10,
                 26,
                 // 30,
                 53,
-                105,
+                // 105,
             };
             vector<double> Eff_L3pt_mins = {
                 // 10,
@@ -396,13 +397,13 @@ void HLTEffAnalyzer(
 
             vector<vector<double>> Etas_bin = {
                 {0., 2.4},
-                {0., 1.2},
-                {1.2, 2.4}
+                //{0., 1.2},
+                //{1.2, 2.4}
             };
             vector<TString> Etas_str = {
                 "I",
-                "B",
-                "E"
+                //"B",
+                //"E"
             };
 
             vector<vector<vector<HistContainer*>>> hc_Eff = {};  // Eff[L3 type][eta bin][gen pt min]
@@ -619,83 +620,69 @@ void HLTEffAnalyzer(
             //vector<Object> L1Muons = nt->get_L1Muons();
             vector<Object> L2Muons = nt->get_L2Muons();
 
-            //vector<Object> iterL3OI = nt->get_iterL3OI();
-            //vector<Object> iterL3IOFromL2 = nt->get_iterL3IOFromL2();
-            //vector<Object> iterL3IOFromL1 = nt->get_iterL3IOFromL1();
-            //vector<Object> iterL3MuonNoID = nt->get_iterL3MuonNoID();
-            //vector<Object> iterL3Muon = nt->get_iterL3Muon();
+            //vector<Object> hltPixelTracksAssociated = nt->get_hltPixelTracksAssociated();
+            vector<Object> hltPixelTracksInRegionL2Associated = nt->get_hltPixelTracksInRegionL2Associated();
+            vector<Object> hltPixelTracksInRegionL1Associated = nt->get_hltPixelTracksInRegionL1Associated();
+            vector<Object> hltIterL3OIMuonTrackAssociated = nt->get_hltIterL3OIMuonTrackAssociated();
+            vector<Object> hltIter0IterL3MuonTrackAssociated = nt->get_hltIter0IterL3MuonTrackAssociated();
+            vector<Object> hltIterL3MuonMergedAssociated = nt->get_hltIterL3MuonMergedAssociated();
+            vector<Object> hltIter0IterL3FromL1MuonTrackAssociated = nt->get_hltIter0IterL3FromL1MuonTrackAssociated();
+            vector<Object> hltIterL3MuonAndMuonFromL1MergedAssociated = nt->get_hltIterL3MuonAndMuonFromL1MergedAssociated();
+            vector<Object> iterL3MuonNoID = nt->get_iterL3MuonNoID();
+            vector<Object> iterL3Muon = nt->get_iterL3Muon();
+            vector<Object> iterL3MuonNoIDTrackAssociated = nt->get_iterL3MuonNoIDTrackAssociated();
+            vector<Object> iterL3MuonTrackAssociated = nt->get_iterL3MuonTrackAssociated();
 
-            vector<Object> hltPixelTracks = nt->get_hltPixelTracksAssociated();
-            vector<Object> hltPixelTracksInRegionL2 = nt->get_hltPixelTracksInRegionL2Associated();
-            vector<Object> hltPixelTracksInRegionL1 = nt->get_hltPixelTracksInRegionL1Associated();
+            vector<Object> L1sSingleMu22_HLT = nt->get_HLTObjects("hltL1fL1sMu22L1Filtered0");
+            vector<Object> Mu24_HLT = nt->get_HLTObjects("hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q");
+            vector<Object> Mu50_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
+            vector<Object> TkMu100_HLT = nt->get_HLTObjects("hltL3fL1sMu25f0TkFiltered100Q");
+            vector<Object> OldMu100_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q");
+            vector<Object> ECALIsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfecalIsoRhoFiltered");
+            vector<Object> HCALIsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfhcalIsoRhoFiltered");
+            vector<Object> IsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered");
 
-            //vector<Object> hltMuCtfTracks = nt->get_hltMuCtfTracksAssociated();
-            //vector<Object> hltDiMuonMerging = nt->get_hltDiMuonMergingAssociated();
-            //vector<Object> hltGlbTrkMuon = nt->get_hltGlbTrkMuonTracksAssociated();
-
-            vector<Object> hltOI = nt->get_hltIterL3OIMuonTrackAssociated();
-            vector<Object> hltIter0 = nt->get_hltIter0IterL3MuonTrackAssociated();
-            vector<Object> hltIter2 = nt->get_hltIter2IterL3MuonTrackAssociated();
-            vector<Object> hltIOFromL2Merged = nt->get_hltIter2IterL3MuonMergedAssociated();
-            vector<Object> hltL3FromL2Merged = nt->get_hltIterL3MuonMergedAssociated();
-            vector<Object> hltIter0FromL1 = nt->get_hltIter0IterL3FromL1MuonTrackAssociated();
-            vector<Object> hltIter2FromL1 = nt->get_hltIter2IterL3FromL1MuonTrackAssociated();
-            vector<Object> hltFromL1Merged = nt->get_hltIter2IterL3FromL1MuonMergedAssociated();
-            vector<Object> hltL3Merged = nt->get_hltIterL3MuonAndMuonFromL1MergedAssociated();
-            vector<Object> hltIterL3MuonNoID = nt->get_iterL3MuonNoIDTrackAssociated();
-            vector<Object> hltIterL3Muon = nt->get_iterL3MuonTrackAssociated();
-
-            vector<Object> hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q::MYHLT");
-            vector<Object> hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q = nt->get_HLTObjects("hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q::MYHLT");
-            vector<Object> hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07 = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07::MYHLT");
-
-            vector<Object> hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q::MYHLT");
-            vector<Object> hltL3fL1sMu25f0TkFiltered100Q = nt->get_HLTObjects("hltL3fL1sMu25f0TkFiltered100Q::MYHLT");
-
-            vector<Object> hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37 = nt->get_HLTObjects("hltL3fL1sMu16orMu25L1f0L2f25L3Filtered37::MYHLT");
-            vector<Object> hltDiMuonGlbFiltered37TrkFiltered27 = nt->get_HLTObjects("hltDiMuonGlbFiltered37TrkFiltered27::MYHLT");
-            vector<Object> hltDiMuonGlb37Trk27DzFiltered0p2 = nt->get_HLTObjects("hltDiMuonGlb37Trk27DzFiltered0p2::MYHLT");
-
-            vector<Object> hltL3fL1DoubleMu155fPreFiltered8 = nt->get_HLTObjects("hltL3fL1DoubleMu155fPreFiltered8::MYHLT");
-            vector<Object> hltL3fL1DoubleMu155fFiltered17 = nt->get_HLTObjects("hltL3fL1DoubleMu155fFiltered17::MYHLT");
-            vector<Object> hltDiMuon178RelTrkIsoFiltered0p4 = nt->get_HLTObjects("hltDiMuon178RelTrkIsoFiltered0p4::MYHLT");
-            vector<Object> hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2 = nt->get_HLTObjects("hltDiMuon178RelTrkIsoFiltered0p4DzFiltered0p2::MYHLT");
-            vector<Object> hltDiMuon178Mass3p8Filtered = nt->get_HLTObjects("hltDiMuon178Mass3p8Filtered::MYHLT");
+            vector<Object> L1sSingleMu22_MYHLT = nt->get_myHLTObjects("hltL1fL1sMu22L1Filtered0");
+            vector<Object> Mu24_MYHLT = nt->get_myHLTObjects("hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q");
+            vector<Object> Mu50_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
+            vector<Object> TkMu100_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu25f0TkFiltered100Q");
+            vector<Object> OldMu100_MYHLT = nt->get_myHLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q");
+            vector<Object> ECALIsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfecalIsoRhoFiltered");
+            vector<Object> HCALIsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfhcalIsoRhoFiltered");
+            vector<Object> IsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered");
 
             vector<vector<Object>*> L3MuonColls {
                 &GenMuonsFromHardProcess,  // for L1 muon eff
                 //&L2Muons,
 
-                &hltPixelTracks,
-                &hltPixelTracksInRegionL2,
-                &hltPixelTracksInRegionL1,
+                //&hltPixelTracksAssociated,
+                &hltPixelTracksInRegionL2Associated,
+                &hltPixelTracksInRegionL1Associated,
+                &hltIterL3OIMuonTrackAssociated,
+                &hltIter0IterL3MuonTrackAssociated,
+                &hltIterL3MuonMergedAssociated,
+                &hltIter0IterL3FromL1MuonTrackAssociated,
+                &hltIterL3MuonAndMuonFromL1MergedAssociated,
+                &iterL3MuonNoID,
+                &iterL3Muon,
+                &iterL3MuonNoIDTrackAssociated,
+                &iterL3MuonTrackAssociated,
 
-                //&hltMuCtfTracks,
-                //&hltDiMuonMerging,
-                //&hltGlbTrkMuon,
+                &L1sSingleMu22_HLT,
+                &Mu24_HLT,
+                &Mu50_HLT,
+                &Mu50_HLT,// Mu50OrOldMu100OrTkMu100
+                &ECALIsoMu24_HLT,
+                &HCALIsoMu24_HLT,
+                &IsoMu24_HLT,
 
-                &hltOI,
-                &hltIter0,
-                &hltIter2,
-                &hltIOFromL2Merged,
-                &hltL3FromL2Merged,
-                &hltIter0FromL1,
-                &hltIter2FromL1,
-                &hltFromL1Merged,
-                &hltL3Merged,
-                &hltIterL3MuonNoID,
-                &hltIterL3Muon,
-
-                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q,
-                //&hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q,
-                &hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p07,
-
-                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q,
-                &hltL3fL1sMu25f0TkFiltered100Q,
-                &hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q  // Mu50OrOldMu100OrTkMu100
-
-                // &GenMuonsFromHardProcess,  // Mu17Mu8
-                // &GenMuonsFromHardProcess   // Mu37TkMu27
+                &L1sSingleMu22_MYHLT,
+                &Mu24_MYHLT,
+                &Mu50_MYHLT,
+                &Mu50_MYHLT, // Mu50OrOldMu100OrTkMu100
+                &ECALIsoMu24_MYHLT,
+                &HCALIsoMu24_MYHLT,
+                &IsoMu24_MYHLT
             };
 
             if (L3types.size() != L3MuonColls.size()) {
@@ -705,8 +692,10 @@ void HLTEffAnalyzer(
 
         //### L3types loop ###
         for(unsigned i=0; i<L3types.size(); ++i) {
+            vector<Object>* L3Coll = L3MuonColls.at(i);
+            TString L3type = L3types.at(i);
+            L3type.ReplaceAll("my","");
             bool looseMatch = L3types.at(i).Contains("L2Muon");
-
             bool isDoubleMu = (L3types.at(i).Contains("Mu17Mu8") || L3types.at(i).Contains("Mu37TkMu27"));
 
             // -- Efficiency
@@ -716,6 +705,7 @@ void HLTEffAnalyzer(
                 for (unsigned ieta = 0; ieta < Etas_bin.size(); ++ieta) {
 
                     if (isDoubleMu) {
+                        /*
                         if (GenMuonsFromHPInAcc.size() != 2)
                             continue;
                         if (GenMuonsFromHPInAcc.at(0).get("charge")*GenMuonsFromHPInAcc.at(1).get("charge") > 0)
@@ -808,6 +798,7 @@ void HLTEffAnalyzer(
                                 }
                             }
                         }
+                        */
                     }
                     else {
                         vector<Object>* L3Coll = L3MuonColls.at(i);
@@ -878,7 +869,10 @@ void HLTEffAnalyzer(
                             ) {
                                 matched_idx = genmu.matched( *L3Coll, L3map, 0.1 );
                             }
-                            else if (L3types.at(i).Contains("hltPixelTracks")) {
+                            else if (
+                                L3type.Contains("hltPixelTracks") ||
+                                L3type.Contains("L1sSingleMu22")
+                            ) {
                                 matched_idx = genmu.matched( *L3Coll, L3map, 0.3 );
                             }
                             else {
@@ -896,19 +890,21 @@ void HLTEffAnalyzer(
                             // Mu50OrOldMu100OrTkMu100
                             if (L3types.at(i).Contains("Mu50OrOldMu100OrTkMu100") &&
                                 matched_idx < 0) {
-                                vector<int> TkMu100map(hltL3fL1sMu25f0TkFiltered100Q.size(), -1);
-                                matched_idx = genmu.matched(hltL3fL1sMu25f0TkFiltered100Q, TkMu100map, 0.1);
+                                vector<int> TkMu100map(L3types.at(i).Contains("my")? TkMu100_MYHLT.size() : TkMu100_HLT.size(), -1);
+                                matched_idx = genmu.matched(L3types.at(i).Contains("my")? TkMu100_MYHLT : TkMu100_HLT, TkMu100map, 0.1);
+                                if (matched_idx >= 0) L3Coll = L3types.at(i).Contains("my")? &TkMu100_MYHLT : &TkMu100_HLT;
                                 if (matched_idx < 0) {
-                                    vector<int> OldMu100map(hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q.size(), -1);
-                                    matched_idx = genmu.matched(hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q, OldMu100map, 0.1);
+                                    vector<int> OldMu100map(L3types.at(i).Contains("my")? OldMu100_MYHLT.size() : OldMu100_HLT.size(), -1);
+                                    matched_idx = genmu.matched(L3types.at(i).Contains("my")? OldMu100_MYHLT : OldMu100_HLT, OldMu100map, 0.1);
+                                    if (matched_idx >= 0) L3Coll = L3types.at(i).Contains("my")? &OldMu100_MYHLT : &OldMu100_HLT;
                                 }
                             }
 
-                            //if (matched_idx < 0) {
-                            //    genmu.addVar("dR", -1.);
-                            //} else {
-                            //    genmu.addVar("dR", genmu.deltaR(L3Coll->at(matched_idx)));
-                            //}
+                            if (matched_idx < 0) {
+                                genmu.addVar("dR", -1.);
+                            } else {
+                                genmu.addVar("dR", genmu.deltaR(L3Coll->at(matched_idx)));
+                            }
 
                             int matched_idx_res = -1e6;
                             vector<int> L3map2(L3Coll->size(), -1);

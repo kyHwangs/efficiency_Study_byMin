@@ -37,9 +37,8 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawEffCompIOFromL1wrtL1(
+void drawEffCompL3MuonIDwrtOff(
   TString tag = "DYToLL_M50", TString ver = "vRun3_07", //Bs, JPsi, DYToLL_M50, Zprime
-  TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T}^{L1} cut",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -48,9 +47,9 @@ void drawEffCompIOFromL1wrtL1(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString efftag_str = "IO(L1)";
-  TString efftag = "IOFromL1_L1_comp";
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
+  TString efftag_str = "L3 muons after ID";
+  TString efftag = "L3MuonID_L1_comp";
+  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
@@ -142,16 +141,16 @@ void drawEffCompIOFromL1wrtL1(
     "./Outputs_"+ver+"/hist-"+ver+"-wp10-"+tag+"_126X-Eff.root",
   };
   vector<TString> types = {
-    "Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1",
-    "Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1",
-    "Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1",
-    "Eff/hltIter0FromL1/num_Eff_"+L1tag+"_hltIter0FromL1",
+    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon",
+    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon",
+    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon",
+    "Eff/hltIterL3Muon/num_Eff_hltIterL3Muon",
   };
   vector<TString> types_den = {
-    "Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1",
-    "Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1",
-    "Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1",
-    "Eff/hltIter0FromL1/den_Eff_"+L1tag+"_hltIter0FromL1",
+    "Eff/hltIterL3Muon/den_Eff_hltIterL3Muon",
+    "Eff/hltIterL3Muon/den_Eff_hltIterL3Muon",
+    "Eff/hltIterL3Muon/den_Eff_hltIterL3Muon",
+    "Eff/hltIterL3Muon/den_Eff_hltIterL3Muon",
   };
   vector<TString> types_str = {
     efftag_str+" : Default GRun (BDTv2 WP 0.01)",
@@ -187,14 +186,13 @@ void drawEffCompIOFromL1wrtL1(
           ymin = 0.90;
           ymax = 1.04;
         }else if (!v_var[ivar].Contains("pt")){
-          ymin = 0.85;
-          ymax = 1.1;
+          ymin = 0.7;
+          ymax = 1.2;
         }
 
-        TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s_%s",
+        TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s",
                                              efftag.Data(),
                                              tag.Data(),
-                                             L1tag.Data(),
                                              etas_str.at(i_eta).Data(),
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
@@ -221,8 +219,7 @@ void drawEffCompIOFromL1wrtL1(
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_"+(!hist_var.Contains("l1")?"gen":"l1"));
-          TString titleY = "L3/L1 efficiency";
-          if(hist_var.Contains("l2")) titleY = "L3/L2 efficiency";
+          TString titleY = "L1+HLT efficiency";
 
           TString den_name = TString::Format("%s_%s_%s_%s", the_type_den.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
           TString num_name = TString::Format("%s_%s_%s_%s", the_type_num.Data(), etas_str.at(i_eta).Data(), v_pts[ipt].Data(), hist_var.Data());
@@ -284,7 +281,6 @@ void drawEffCompIOFromL1wrtL1(
         TLatex latex;
         Latex_Simulation_14TeV( latex );
         latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+tag+"}}");
-        latex.DrawLatexNDC(0.17, 0.88, "#font[42]{#scale[0.8]{"+L1str+"}}");
         latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
         if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.70, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
 

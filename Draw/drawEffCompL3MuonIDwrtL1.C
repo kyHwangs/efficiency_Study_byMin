@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawEffCompL3MuonIDwrtL1(
-  TString ver = "v6", TString SAMPLE = "Bs", TString tag = "Bs",
+  TString tag = "DYToLL_M50", TString ver = "vRun3_07", //Bs, JPsi, DYToLL_M50, Zprime
   TString L1tag = "L1DQ0", TString L1str = "L1 qual > 7, no p_{T}^{L1} cut",
   bool isLogy = false  // HERE
 ) {
@@ -54,41 +54,41 @@ void drawEffCompL3MuonIDwrtL1(
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  vector<TString> v_var = {"pt_zoom", "pt", "l1ptByQ", "l1ptByQ_zoom", "l2pt", "l2pt_zoom", "eta", "phi", "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi", "pu"};//"l1ptByQ", "l1ptByQ_zoom", "l2pt", "l2pt_zoom", "eta", "phi", "pu"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
-    {1, 0, 200},  // L1 pt
-    {1, 0, 200},  // L1 pt
-    {1, 0, 200},  // L2 pt
-    {1, 0, 200},  // L2 pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
     {1, 30, 81}  // PU
+    //{1, 0, 200},  // L1 pt
+    //{1, 0, 200},  // L1 pt
+    //{1, 0, 200},  // L2 pt
+    //{1, 0, 200},  // L2 pt
   };
   if (tag == "JPsi" || tag == "Bs") {
     range.at(0) = {1, 0, 50};
     range.at(1) = {1, 0, 50};
-    range.at(2) = {1, 0, 50};
-    range.at(3) = {1, 0, 50};
-    range.at(4) = {1, 0, 50};
-    range.at(5) = {1, 0, 50};
+    //range.at(2) = {1, 0, 50};
+    //range.at(3) = {1, 0, 50};
+    //range.at(4) = {1, 0, 50};
+    //range.at(5) = {1, 0, 50};
   }
   if (tag == "MuGunPU") {
     range.at(0) = {1, 1., 1000};
     range.at(1) = {1, 1., 1000};
-    range.at(2) = {1, 1., 1000};
-    range.at(3) = {1, 1., 1000};
-    range.at(4) = {1, 1., 1000};
-    range.at(5) = {1, 1., 1000};
+    //range.at(2) = {1, 1., 1000};
+    //range.at(3) = {1, 1., 1000};
+    //range.at(4) = {1, 1., 1000};
+    //range.at(5) = {1, 1., 1000};
   }
   if (tag == "Zprime") {
     range.at(0) = {1, 30, 3000};
     range.at(1) = {1, 30, 3000};
-    range.at(2) = {1, 30, 3000};
-    range.at(3) = {1, 30, 3000};
-    range.at(4) = {1, 30, 3000};
-    range.at(5) = {1, 30, 3000};
+    //range.at(2) = {1, 30, 3000};
+    //range.at(3) = {1, 30, 3000};
+    //range.at(4) = {1, 30, 3000};
+    //range.at(5) = {1, 30, 3000};
   }
 
   int n_pt_bins = 52-1;
@@ -110,8 +110,8 @@ void drawEffCompL3MuonIDwrtL1(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I", "B", "E"};
-  vector<TString> etas_str_long = {"|#eta^{gen}| < 2.4", "|#eta^{gen}| < 1.2", "1.2 < |#eta^{gen}| < 2.4"};
+  vector<TString> etas_str = {"I"};//, "B", "E"};
+  vector<TString> etas_str_long = {"|#eta^{gen}| < 2.4"};//, "|#eta^{gen}| < 1.2", "1.2 < |#eta^{gen}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
@@ -136,26 +136,12 @@ void drawEffCompL3MuonIDwrtL1(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-default_V29-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-default-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_2-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_2_ROIL2_3-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_2_ROIL2_5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_3-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_4-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5-"+tag+"-Eff.root",
-
-    "./Outputs_"+ver+"/hist-"+ver+"-ROIL1_5_ROIL2_5-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROIL1_543_ROIL2_54-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5GeV_eta_smooth-"+tag+"-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5431p5_eta1-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5431p5_eta1_wp02-"+tag+"-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-ROI_phi_5431p5_eta1_wp04-"+tag+"-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_126X-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-wp02-"+tag+"_126X-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-wp04-"+tag+"_126X-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-wp10-"+tag+"_126X-Eff.root",
   };
   vector<TString> types = {
-    "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
-    "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
-    "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/num_Eff_"+L1tag+"_hltIterL3Muon",
@@ -166,41 +152,25 @@ void drawEffCompL3MuonIDwrtL1(
     "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
     "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
-    "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
-    "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
-    "Eff/hltIterL3Muon/den_Eff_"+L1tag+"_hltIterL3Muon",
   };
   vector<TString> types_str = {
-    efftag_str+" : Run2 Legacy",//Default GRun V29",
-    //efftag_str+" : Default GRun V51 (1.5 #times 1.5)",
-    //efftag_str+" : ROI(L1) #phi 2.0",
-    //efftag_str+" : ROI(L1) #phi 2.0 & ROI(L2) #phi 3.0",
-    //efftag_str+" : ROI(L1) #phi 2.0 & ROI(L2) #phi 5.0",
-    //efftag_str+" : ROI(L1) #phi 3.0",
-    //efftag_str+" : ROI(L1) #phi 4.0",
-    //efftag_str+" : ROI(L1) #phi 5.0",
-
-    efftag_str+" : fixed ROI(L1,L2) : 1.5 #times  5.0",
-    //efftag_str+" : ROI(L1) #phi 5,4,3 ROI(L2) #phi 5,4",
-    //efftag_str+" : ROI(L1) #phi 5GeV bins #eta smooth",
-    efftag_str+" : variable ROI(L1,L2) : pT dep. #phi",
-    //efftag_str+" : ROI(L1,L2) fixed #eta, pT dep. #phi [WP 0.02]",
-    //efftag_str+" : ROI(L1,L2) fixed #eta, pT dep. #phi [WP 0.04]",
-
-    //efftag_str+" : ROI(L1) pT dep. ROI 5.0 - 2.0 - 1.5",
-    //efftag_str+" : ROI(L1) pT indep. ROI 5.0",
-    //efftag_str+" : ROI(L1) pT indep. ROI 5.0 & ROI(L2) 5.0",
+    efftag_str+" : Default GRun (BDTv2 WP 0.01)",
+    efftag_str+" : BDTv3 WP 0.02",
+    efftag_str+" : BDTv3 WP 0.04",
+    efftag_str+" : BDTv3 WP 0.10",
   };
 
   vector<TString> v_pts = {
     "genpt0",
-    //"genpt10",
+    "genpt5",
+    "genpt10",
     //"genpt26"
   };
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{gen} > 10 GeV",
+    "p_{T}^{gen} > 5 GeV",
+    "p_{T}^{gen} > 10 GeV",
     //"p_{T}^{gen} > 26 GeV"
   };
 
@@ -217,8 +187,8 @@ void drawEffCompL3MuonIDwrtL1(
           ymin = 0.90;
           ymax = 1.04;
         }else if (!v_var[ivar].Contains("pt")){
-          ymin = 0.7;
-          ymax = 1.2;
+          ymin = 0.85;
+          ymax = 1.1;
         }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s_%s",
@@ -228,7 +198,7 @@ void drawEffCompL3MuonIDwrtL1(
                                              etas_str.at(i_eta).Data(),
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
-        canvasName.ReplaceAll(".","p").ReplaceAll("-","_");
+        canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "");
         TCanvas *c;
         SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
         c->cd();
@@ -236,7 +206,8 @@ void drawEffCompL3MuonIDwrtL1(
         if(tag == "Zprime" && v_var[ivar].Contains("pt")) c->SetLogx();
 
         TLegend *legend;
-        SetLegend( legend, 0.14, 0.71, 0.94, 0.84, -1);
+        //SetLegend( legend, 0.14, 0.71, 0.94, 0.84, -1);
+        SetLegend( legend, 0.14, 0.67, 0.94, 0.8, -1);
 
         bool isFirst = true;
         for(int i = 0; i<(int)files.size(); ++i) {
@@ -244,7 +215,7 @@ void drawEffCompL3MuonIDwrtL1(
 
           TString the_type_num = types[i];
           TString the_type_den = types_den[i];
-          TString the_type_str = types_str[i];
+          TString the_type_str = types_str[i].ReplaceAll("my","");;
 
           TString hist_var = v_var[ivar];
           hist_var.ReplaceAll("_zoom", "");
@@ -278,6 +249,7 @@ void drawEffCompL3MuonIDwrtL1(
 
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
           g->Divide(num, den, "n e0");
+          //g->Divide(num, den, "pois");
 
           for(int ip=0; ip<nbins; ++ip) {
             if(g->GetPointY(ip) == 0.)  g->SetPointEYhigh(ip, 0.0);
@@ -311,7 +283,7 @@ void drawEffCompL3MuonIDwrtL1(
 
         TLatex latex;
         Latex_Simulation_14TeV( latex );
-        latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
+        latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+tag+"}}");
         latex.DrawLatexNDC(0.17, 0.88, "#font[42]{#scale[0.8]{"+L1str+"}}");
         latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
         if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.70, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
@@ -321,8 +293,6 @@ void drawEffCompL3MuonIDwrtL1(
         c->Modified();  c->Update();  c->RedrawAxis();
         gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
         c->SaveAs(Dir+canvasName+logy_tag+".pdf","pdf");
-        // c->SaveAs(Dir+canvasName+logy_tag+".C","C");
-        // c->SaveAs(Dir+canvasName+logy_tag+".root","root");
         gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
 
         c->Close();
