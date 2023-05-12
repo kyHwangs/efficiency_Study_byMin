@@ -522,7 +522,7 @@ void HLTEffAnalyzer(
         // -- Efficiency
             vector<double> Eff_genpt_mins = {
                 0,
-                // 10,
+                10,
                 26,
                 // 30,
                 53,

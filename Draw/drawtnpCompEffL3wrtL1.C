@@ -38,8 +38,9 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", TString ver = "vRun3_07", TString SAMPLE = "Run2022", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
+  //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -52,13 +53,13 @@ void drawtnpCompEffL3wrtL1(
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi", "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi"};//, "pu"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
-    {1, 10, 75}  // PU
+    //{1, 10, 75}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
     range.at(0) = {1, 0, 40};
@@ -81,37 +82,36 @@ void drawtnpCompEffL3wrtL1(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I", "BB", "BE", "EB", "EE"};
-  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4", "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
+  vector<TString> etas_str = {"I"};//, "BB", "BE", "EB", "EE"};
+  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
-    //kBlack,
+    kBlack,
     kBlue,
     kRed,
-    kOrange,
     kGreen+2,
+    kOrange,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
     //kMagenta,
   };
   vector<int> v_marker = {
-    //20,
+    20,
     22,
     26,
-    32,
     23,
-    //22,
-    //26,
+    32,
+    22,
+    26,
     //23,
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-Single"+tag+"_RunUL2018D-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_120X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022BCD_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022EF_hadd-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022FG_hadd-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-Full-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-Full_wp02-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-Full_wp04-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-Full_wp10-"+tag+"_Run2022G-Eff.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -128,23 +128,22 @@ void drawtnpCompEffL3wrtL1(
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    //efftag+" : Run2 UL2018 D 5fb^{-1}",
-    efftag+" : Run3 DY M-50 Summer21",
-    efftag+" : Run3 2022 BCD",
-    efftag+" : Run3 2022 EF before v1.5",
-    efftag+" : Run3 2022 FG after v1.5",
+    efftag+" : Run2022G Default GRun (BDTv2 WP 0.01)",
+    efftag+" : Run2022G New BDTv3 WP 0.02",
+    efftag+" : Run2022G New BDTv3 WP 0.04",
+    efftag+" : Run2022G New BDTv3 WP 0.10",
   };
 
   vector<TString> v_pts = {
     "genpt0",
-    //"genpt10",
+    "genpt10",
     "genpt26",
     "genpt53",
   };
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{offline} > 10 GeV",
+    "p_{T}^{offline} > 10 GeV",
     "p_{T}^{offline} > 26 GeV",
     "p_{T}^{offline} > 53 GeV",
   };

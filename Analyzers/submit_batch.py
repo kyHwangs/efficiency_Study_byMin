@@ -38,30 +38,51 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/SingleMuon/crab_SingleMuon_RunUL2018D_hlt_muon_data_Run2018_20221123/221123_172345/0000/",
-    #"/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw12411/20221123/DYToLL_M-50_TuneCP5_14TeV-pythia8/crab_DYToLL_M50_120X_hlt_muon_mc_Run3_20221123/221123_170719/0000/"
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230416/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_20230416/230416_202019/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230410/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_20230410/230410_213927/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230410/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230410/230410_213653/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230410/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_20230410/230410_213807/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230412/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022G_Full_20230412/230412_054909/0000/",
 
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230329/Muon/crab_Muon_Run2022G_hlt_muon_data_default_20230329/230329_031900/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230329/Muon/crab_Muon_Run2022G_hlt_muon_data_JEC_20230329/230329_162853/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230329/Muon/crab_Muon_Run2022G_hlt_muon_data_JECv2_20230329/230329_172442/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1264/20230330/Muon/crab_Muon_Run2022G_hlt_muon_data_JECv3_NoCalo_20230330/230330_030208/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_wp02_20230413/230413_163853/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230414/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_wp02_20230414/230414_091718/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_wp02_20230415/230415_125456/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_wp02_20230415/230415_130128/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022G_Full_wp02_20230413/230413_163307/0000/",
 
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_wp04_20230413/230413_164024/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230414/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_wp04_20230414/230414_174842/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_wp04_20230415/230415_125533/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_wp04_20230415/230415_141434/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022G_Full_wp04_20230413/230413_163534/0000/",
+
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230414/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_wp10_20230414/230414_083333/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_wp10_20230415/230415_124301/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_wp10_20230415/230415_125610/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_wp10_20230415/230415_141601/0000/",
+    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/Muon/crab_Muon_Run2022G_hlt_muon_data_Run2022G_Full_wp10_20230413/230413_163720/0000/",
 ]
 
 dates = [
-    '_20221123',
-    '20221123',
-    '_20230329',
-    '20230329',
-    '_20230330',
-    '20230330',
+    '_20230410',
+    '20230410',
+    '_20230412',
+    '20230412',
+    '_20230413',
+    '20230413',
+    '_20230414',
+    '20230414',
+    '_20230415',
+    '20230415',
+    '_20230416',
+    '20230416',
 ]
 
 menus = [
     '_hlt_muon_data_Run2018_',
     '_hlt_muon_data_Run2022_',
     '_hlt_muon_mc_Run3_',
-    '_hlt_muon_data_',
+    '_hlt_muon_data_Run2022G_',
 ]
 
 analyzers = {
@@ -74,12 +95,11 @@ analyzers = {
     'Muon_Run2022E': ('Eff'),
     'Muon_Run2022F': ('Eff'),
     'Muon_Run2022G': ('Eff'),
-    'DYToLL_M50_120X': ('Eff'),
-    'DYToLL_M50_122X': ('Eff'),
 
-    # 'JPsi': ('EffSim', 'Eff'),
-    # 'Bs': ('EffSim', 'Eff'),
-    # 'Zprime': ('EffSim', 'Eff'),
+    'Bs_126X': ('Eff'),
+    'JPsi_126X': ('Eff'),
+    'DYToLL_M50_126X': ('Eff'),
+    'Zprime_126X': ('Eff'),
 
     # 'Wprime': ('EffSim', 'Eff'),
     # 'MuGun': ('EffSim'),
@@ -88,7 +108,7 @@ analyzers = {
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_06'
+    VER_base = 'vRun3_07'
     tag_prefix = 'crab_'
 
     doHadd = False
@@ -156,7 +176,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 2
+                nfiles = 1
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:
