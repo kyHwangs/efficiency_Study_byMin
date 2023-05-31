@@ -1,4 +1,4 @@
-#include <iostream>
+B1;95;0c#include <iostream>
 #include <fstream>
 #include <vector>
 #include <map>
@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtOff(
-  TString efftag = "myIsoMu24", TString ver = "vRun3_07", TString SAMPLE = "Run2022", TString tag = "Muon",
+  TString efftag = "IsoMu24", TString ver = "vRun3_08", TString SAMPLE = "Run2022, 23", TString tag = "Muon",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -51,7 +51,7 @@ void drawtnpCompEffL3wrtOff(
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
-  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi"};//, "pu"};
+  vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi", "nvtx"};//, "pu"};
   vector< vector<double> > range = {
     {1, 0, 200},  // pt
     {1, 0, 200},  // pt
@@ -87,7 +87,7 @@ void drawtnpCompEffL3wrtOff(
     kBlack,
     kBlue,
     kRed,
-    kOrange,
+    //kOrange,
     kGreen+2,
     //kCyan+2,
     //kPink+4,
@@ -96,9 +96,8 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<int> v_marker = {
     20,
-    22,
+    25,
     26,
-    32,
     23,
     //22,
     //26,
@@ -106,12 +105,10 @@ void drawtnpCompEffL3wrtOff(
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-Full_L1scale-"+tag+"_Run2022G-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-Full-"+tag+"_Run2022G-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-Full_wp02-"+tag+"_Run2022G-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-Full_wp04-"+tag+"_Run2022G-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-Full_wp10-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -136,10 +133,10 @@ void drawtnpCompEffL3wrtOff(
   vector<TString> types_str = {
     //efftag+" : Run2022G Default GRun - uGT",
     //efftag+" : Run2022G L1 Scale Update - Full",
-    efftag+" : Run2022G Default GRun (BDTv2)",
-    efftag+" : Run2022G New BDTv3 with WP 0.02",
-    efftag+" : Run2022G New BDTv3 with WP 0.04",
-    efftag+" : Run2022G New BDTv3 with WP 0.10",
+    efftag+" : Run2022G Data",
+    efftag+" : Run3Winer23 DY",
+    efftag+" : Run2023B Data",
+    efftag+" : Run2023C Data (DCSOnly)",
   };
 
   vector<TString> v_pts = {
@@ -187,7 +184,7 @@ void drawtnpCompEffL3wrtOff(
         SetLegend( legend, 0.14, 0.67, 0.94, 0.8, -1);
 
         bool isFirst = true;
-        for(int i = 0; i<(int)types.size(); ++i) {
+        for(int i = 0; i<(int)files.size(); ++i) {
           TString fileName = files.at(i);
 
           TString the_type_num = types[i];

@@ -322,7 +322,7 @@ public :
     vector<Object> get_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated();
     vector<Object> get_tpTo_iterL3MuonNoIDTrackAssociated();
     vector<Object> get_tpTo_iterL3MuonTrackAssociated();
-    vector<Object> get_tpTo_hltPixelTracksAssociated();
+    //vector<Object> get_tpTo_hltPixelTracksAssociated();
     vector<Object> get_tpTo_hltPixelTracksInRegionL2Associated();
     vector<Object> get_tpTo_hltPixelTracksInRegionL1Associated();
     vector<Object> get_tpTo_hltPixelTracksForSeedsL3MuonAssociated();
@@ -1139,6 +1139,32 @@ public :
         vector<double>  *tpTo_iterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2;
         vector<double>  *tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality;
         vector<int>     *tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits;
+
+
+        Int_t           nhltPixelTracksAssociated;
+        vector<double>  *hltPixelTracksAssociated_pt;
+        vector<double>  *hltPixelTracksAssociated_eta;
+        vector<double>  *hltPixelTracksAssociated_phi;
+        vector<int>     *hltPixelTracksAssociated_charge;
+        vector<int>     *hltPixelTracksAssociated_matchedL3;
+        vector<int>     *hltPixelTracksAssociated_matchedL3NoId;
+        vector<float>   *hltPixelTracksAssociated_bestMatchTP_charge;
+        vector<int>     *hltPixelTracksAssociated_bestMatchTP_pdgId;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_energy;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_pt;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_eta;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_phi;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_parentVx;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_parentVy;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_parentVz;
+        vector<int>     *hltPixelTracksAssociated_bestMatchTP_status;
+        vector<int>     *hltPixelTracksAssociated_bestMatchTP_numberOfHits;
+        vector<int>     *hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits;
+        vector<int>     *hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers;
+        vector<double>  *hltPixelTracksAssociated_bestMatchTP_sharedFraction;
+        vector<int>     *hltPixelTracksAssociated_matchedTPsize;
+        vector<float>   *hltPixelTracksAssociated_mva;
+
 
         Int_t           nhltPixelTracksInRegionL2Associated;
         vector<double>  *hltPixelTracksInRegionL2Associated_pt;
@@ -2189,6 +2215,30 @@ public :
         TBranch        *b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2;   //!
         TBranch        *b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality;   //!
         TBranch        *b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits;   //!
+
+        TBranch        *b_nhltPixelTracksAssociated;   //!
+        TBranch        *b_hltPixelTracksAssociated_pt;   //!
+        TBranch        *b_hltPixelTracksAssociated_eta;   //!
+        TBranch        *b_hltPixelTracksAssociated_phi;   //!
+        TBranch        *b_hltPixelTracksAssociated_charge;   //!
+        TBranch        *b_hltPixelTracksAssociated_matchedL3;   //!
+        TBranch        *b_hltPixelTracksAssociated_matchedL3NoId;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_charge;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_pdgId;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_energy;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_pt;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_eta;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_phi;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_parentVx;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_parentVy;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_parentVz;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_status;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_numberOfHits;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers;   //!
+        TBranch        *b_hltPixelTracksAssociated_bestMatchTP_sharedFraction;   //!
+        TBranch        *b_hltPixelTracksAssociated_matchedTPsize;   //!
+        TBranch        *b_hltPixelTracksAssociated_mva;   //!
 
         TBranch        *b_nhltPixelTracksInRegionL2Associated;   //!
         TBranch        *b_hltPixelTracksInRegionL2Associated_pt;   //!
@@ -3308,6 +3358,44 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3MuonTrackAssociated()
     }
 
     return out;
+}
+
+vector<Object> MuonHLTNtupleRun3::get_hltPixelTracksAssociated()
+{
+  vector<Object> out = {};
+  if(hltPixelTracksAssociated_pt == 0 || hltPixelTracksAssociated_pt == nullptr)
+    return out;
+
+  for(unsigned i=0; i<hltPixelTracksAssociated_pt->size(); ++i) {
+    Object obj = Object( hltPixelTracksAssociated_pt->at(i), hltPixelTracksAssociated_eta->at(i), hltPixelTracksAssociated_phi->at(i) );
+
+    obj.addVar( "pt", hltPixelTracksAssociated_pt->at(i) );
+    obj.addVar( "eta", hltPixelTracksAssociated_eta->at(i) );
+    obj.addVar( "phi", hltPixelTracksAssociated_phi->at(i) );
+    obj.addVar( "charge", hltPixelTracksAssociated_charge->at(i) );
+    obj.addVar( "matchedL3", hltPixelTracksAssociated_matchedL3->at(i) );
+    obj.addVar( "matchedL3NoId", hltPixelTracksAssociated_matchedL3NoId->at(i) );
+    obj.addVar( "bestMatchTP_charge", hltPixelTracksAssociated_bestMatchTP_charge->at(i) );
+    obj.addVar( "bestMatchTP_pdgId", hltPixelTracksAssociated_bestMatchTP_pdgId->at(i) );
+    obj.addVar( "bestMatchTP_energy", hltPixelTracksAssociated_bestMatchTP_energy->at(i) );
+    obj.addVar( "bestMatchTP_pt", hltPixelTracksAssociated_bestMatchTP_pt->at(i) );
+    obj.addVar( "bestMatchTP_eta", hltPixelTracksAssociated_bestMatchTP_eta->at(i) );
+    obj.addVar( "bestMatchTP_phi", hltPixelTracksAssociated_bestMatchTP_phi->at(i) );
+    obj.addVar( "bestMatchTP_parentVx", hltPixelTracksAssociated_bestMatchTP_parentVx->at(i) );
+    obj.addVar( "bestMatchTP_parentVy", hltPixelTracksAssociated_bestMatchTP_parentVy->at(i) );
+    obj.addVar( "bestMatchTP_parentVz", hltPixelTracksAssociated_bestMatchTP_parentVz->at(i) );
+    obj.addVar( "bestMatchTP_status", hltPixelTracksAssociated_bestMatchTP_status->at(i) );
+    obj.addVar( "bestMatchTP_numberOfHits", hltPixelTracksAssociated_bestMatchTP_numberOfHits->at(i) );
+    obj.addVar( "bestMatchTP_numberOfTrackerHits", hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits->at(i) );
+    obj.addVar( "bestMatchTP_numberOfTrackerLayers", hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers->at(i) );
+    obj.addVar( "bestMatchTP_sharedFraction", hltPixelTracksAssociated_bestMatchTP_sharedFraction->at(i) );
+    obj.addVar( "matchedTPsize", hltPixelTracksAssociated_matchedTPsize->at(i) );
+    obj.addVar( "mva", hltPixelTracksAssociated_mva->at(i) );
+
+    out.push_back(obj);
+  }
+
+  return out;
 }
 
 vector<Object> MuonHLTNtupleRun3::get_hltPixelTracksInRegionL2Associated()
@@ -4784,6 +4872,29 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality = 0;
     tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits = 0;
 
+    hltPixelTracksAssociated_pt = 0;
+    hltPixelTracksAssociated_eta = 0;
+    hltPixelTracksAssociated_phi = 0;
+    hltPixelTracksAssociated_charge = 0;
+    hltPixelTracksAssociated_matchedL3 = 0;
+    hltPixelTracksAssociated_matchedL3NoId = 0;
+    hltPixelTracksAssociated_bestMatchTP_charge = 0;
+    hltPixelTracksAssociated_bestMatchTP_pdgId = 0;
+    hltPixelTracksAssociated_bestMatchTP_energy = 0;
+    hltPixelTracksAssociated_bestMatchTP_pt = 0;
+    hltPixelTracksAssociated_bestMatchTP_eta = 0;
+    hltPixelTracksAssociated_bestMatchTP_phi = 0;
+    hltPixelTracksAssociated_bestMatchTP_parentVx = 0;
+    hltPixelTracksAssociated_bestMatchTP_parentVy = 0;
+    hltPixelTracksAssociated_bestMatchTP_parentVz = 0;
+    hltPixelTracksAssociated_bestMatchTP_status = 0;
+    hltPixelTracksAssociated_bestMatchTP_numberOfHits = 0;
+    hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits = 0;
+    hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers = 0;
+    hltPixelTracksAssociated_bestMatchTP_sharedFraction = 0;
+    hltPixelTracksAssociated_matchedTPsize = 0;
+    hltPixelTracksAssociated_mva = 0;
+
     hltPixelTracksInRegionL2Associated_pt = 0;
     hltPixelTracksInRegionL2Associated_eta = 0;
     hltPixelTracksInRegionL2Associated_phi = 0;
@@ -5836,6 +5947,31 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_iterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2", &tpTo_iterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2);
     fChain->SetBranchAddress("tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality", &tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits);
+
+
+    fChain->SetBranchAddress("nhltPixelTracksAssociated", &nhltPixelTracksAssociated, &b_nhltPixelTracksAssociated);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_pt", &hltPixelTracksAssociated_pt, &b_hltPixelTracksAssociated_pt);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_eta", &hltPixelTracksAssociated_eta, &b_hltPixelTracksAssociated_eta);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_phi", &hltPixelTracksAssociated_phi, &b_hltPixelTracksAssociated_phi);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_charge", &hltPixelTracksAssociated_charge, &b_hltPixelTracksAssociated_charge);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_matchedL3", &hltPixelTracksAssociated_matchedL3, &b_hltPixelTracksAssociated_matchedL3);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_matchedL3NoId", &hltPixelTracksAssociated_matchedL3NoId, &b_hltPixelTracksAssociated_matchedL3NoId);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_charge", &hltPixelTracksAssociated_bestMatchTP_charge, &b_hltPixelTracksAssociated_bestMatchTP_charge);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_pdgId", &hltPixelTracksAssociated_bestMatchTP_pdgId, &b_hltPixelTracksAssociated_bestMatchTP_pdgId);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_energy", &hltPixelTracksAssociated_bestMatchTP_energy, &b_hltPixelTracksAssociated_bestMatchTP_energy);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_pt", &hltPixelTracksAssociated_bestMatchTP_pt, &b_hltPixelTracksAssociated_bestMatchTP_pt);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_eta", &hltPixelTracksAssociated_bestMatchTP_eta, &b_hltPixelTracksAssociated_bestMatchTP_eta);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_phi", &hltPixelTracksAssociated_bestMatchTP_phi, &b_hltPixelTracksAssociated_bestMatchTP_phi);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_parentVx", &hltPixelTracksAssociated_bestMatchTP_parentVx, &b_hltPixelTracksAssociated_bestMatchTP_parentVx);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_parentVy", &hltPixelTracksAssociated_bestMatchTP_parentVy, &b_hltPixelTracksAssociated_bestMatchTP_parentVy);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_parentVz", &hltPixelTracksAssociated_bestMatchTP_parentVz, &b_hltPixelTracksAssociated_bestMatchTP_parentVz);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_status", &hltPixelTracksAssociated_bestMatchTP_status, &b_hltPixelTracksAssociated_bestMatchTP_status);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_numberOfHits", &hltPixelTracksAssociated_bestMatchTP_numberOfHits, &b_hltPixelTracksAssociated_bestMatchTP_numberOfHits);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits", &hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits, &b_hltPixelTracksAssociated_bestMatchTP_numberOfTrackerHits);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers", &hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers, &b_hltPixelTracksAssociated_bestMatchTP_numberOfTrackerLayers);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_sharedFraction", &hltPixelTracksAssociated_bestMatchTP_sharedFraction, &b_hltPixelTracksAssociated_bestMatchTP_sharedFraction);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_matchedTPsize", &hltPixelTracksAssociated_matchedTPsize, &b_hltPixelTracksAssociated_matchedTPsize);
+    fChain->SetBranchAddress("hltPixelTracksAssociated_mva", &hltPixelTracksAssociated_mva, &b_hltPixelTracksAssociated_mva);
 
 
     fChain->SetBranchAddress("nhltPixelTracksInRegionL2Associated", &nhltPixelTracksInRegionL2Associated, &b_nhltPixelTracksInRegionL2Associated);

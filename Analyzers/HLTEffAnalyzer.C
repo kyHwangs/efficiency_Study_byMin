@@ -476,7 +476,7 @@ void HLTEffAnalyzer(
             "L1Muon",
             "L2Muon",
 
-            //"hltPixelTracks",
+            "hltPixelTracks",
             "hltPixelTracksInRegionL2",
             "hltPixelTracksInRegionL1",
             "hltOI",
@@ -723,7 +723,7 @@ void HLTEffAnalyzer(
             vector<Object> L1Muons = nt->get_L1Muons();
             vector<Object> L2Muons = nt->get_L2Muons();
 
-            //vector<Object> hltPixelTracksAssociated = nt->get_hltPixelTracksAssociated();
+            vector<Object> hltPixelTracksAssociated = nt->get_hltPixelTracksAssociated();
             vector<Object> hltPixelTracksInRegionL2Associated = nt->get_hltPixelTracksInRegionL2Associated();
             vector<Object> hltPixelTracksInRegionL1Associated = nt->get_hltPixelTracksInRegionL1Associated();
             vector<Object> hltIterL3OIMuonTrackAssociated = nt->get_hltIterL3OIMuonTrackAssociated();
@@ -788,7 +788,7 @@ void HLTEffAnalyzer(
                 &probes,  // for L1 muon eff
                 &L2Muons,
 
-                //&hltPixelTracksAssociated,
+                &hltPixelTracksAssociated,
                 &hltPixelTracksInRegionL2Associated,
                 &hltPixelTracksInRegionL1Associated,
                 &hltIterL3OIMuonTrackAssociated,

@@ -3,13 +3,20 @@
 ## Making Histograms from CRAB Outputs
 ```
 # Outputs from https://github.com/wonpoint4/MuonHLTTool
+# cp ntuple_1.root from one of these output directories
 
 cd Analyzers
+rootl -l -b -q HLTEffAnalyzer.C
+```
+
+## Submitting Condor Jobs
+```
+# Edit submit_batch.py (CRAB Outputs diretories, the name of used menu file, Eras, ...)
 python submit_batch.py
 condor_submit condor_submit.sub
 ```
 
-## Hadd Hisograms
+## Hadd Histograms via Condor
 ```
 python submit_batch.py hadd
 condor_submit condor_hadd.sub
@@ -18,7 +25,7 @@ condor_submit condor_hadd.sub
 ## Draw Plots
 ```
 # Need to set histograms's directory, names correctly
-
+cd ../Draw
 root -l -b -q drawtnpCompEffL3wrtL1.C
 root -l -b -q drawtnpCompEffL3wrtOff.C
 ```
