@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", TString ver = "vRun3_08", TString SAMPLE = "Run2022, 23", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", TString ver = "vRun3_01", TString SAMPLE = "Run2023", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -107,30 +107,35 @@ void drawtnpCompEffL3wrtL1(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_Run367661_367989",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_Run367990_999999",
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_Run367661_367989",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_Run367990_999999",
   };
   vector<TString> types_str = {
-    efftag+" : Run2022G Data",
-    efftag+" : Run3Winer23 DY",
-    efftag+" : Run2023B Data",
-    efftag+" : Run2023C Data (DCSOnly)",
+    //efftag+" : Run2022G Data",
+    //efftag+" : Run3Winer23 DY",
+    //efftag+" : Run2023B Data",
+    efftag+" : Run2023 Data, HLTv1.0",
+    efftag+" : Run2023 Data, HLTv1.1 & before new align",
+    efftag+" : Run2023 Data, HLTv1.1 & after new align",
   };
 
   vector<TString> v_pts = {
@@ -261,7 +266,8 @@ void drawtnpCompEffL3wrtL1(
         // CMS_lumi(c, 98, 11);
         c->Modified();  c->Update();  c->RedrawAxis();
         gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
-        c->SaveAs(Dir+canvasName+logy_tag+".pdf","pdf");
+        //c->SaveAs(Dir+canvasName+logy_tag+".pdf","pdf");
+        c->SaveAs(Dir+canvasName+logy_tag+".png","png");
         gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
 
         c->Close();

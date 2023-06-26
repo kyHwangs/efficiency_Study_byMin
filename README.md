@@ -28,6 +28,12 @@ condor_submit condor_hadd.sub
 cd ../Draw
 root -l -b -q drawtnpCompEffL3wrtL1.C
 root -l -b -q drawtnpCompEffL3wrtOff.C
+
+root -l -b -q 'drawtnpCompEffL3wrtL1.C("IsoMu24")'
+root -l -b -q 'drawtnpCompEffL3wrtOff.C("L1sSingleMu22")'
+
+# Or Edit draw_web.py (Web diretories, Version of Plots, ...)
+source draw_web.sh
 ```
 
 ## Old Commands (but could be useful)

@@ -8,8 +8,7 @@ from shutil import copyfile
 import gc
 
 def jobSpritting( path, nfiles, prefix = "" ):
-    str_dcap  = "dcap://cluster142.knu.ac.kr/"
-    #str_dcap  = ""
+    str_dcap  = ""
     out = []
 
     lines = glob.glob(path+"/"+prefix+"*.root")
@@ -38,18 +37,27 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1306/20230526/Muon/crab_Muon_Run2022G_hlt_muon_data_20230526/230526_181751/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1306/20230526/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230526/230526_183156/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/Muon/crab_Muon_Run2022G_hlt_muon_data_20230526/230526_181751/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230526/230526_183156/0000/",
 
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1306/20230526/Muon0/crab_Muon0_Run2023B_hlt_muon_data_20230526/230526_181630/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1306/20230526/Muon0/crab_Muon0_Run2023C_hlt_muon_data_20230526/230526_181514/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1306/20230526/Muon1/crab_Muon1_Run2023B_hlt_muon_data_20230526/230526_181643/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1306/20230526/Muon1/crab_Muon1_Run2023C_hlt_muon_data_20230526/230526_181530/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv1_hlt_muon_data_20230606/230606_094831/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv2_hlt_muon_data_20230606/230606_094630/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv3_hlt_muon_data_20230606/230606_094857/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv1_hlt_muon_data_20230606/230606_094844/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv2_hlt_muon_data_20230606/230606_094644/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv3_hlt_muon_data_20230606/230606_094911/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230623/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_20230623/230623_111025/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230623/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_20230623/230623_111040/0000/",
 ]
+
 
 dates = [
     '_20230526',
     '20230526',
+    '_20230606',
+    '20230606',
+    '_20230623',
+    '20230623',
 ]
 
 menus = [
@@ -61,10 +69,14 @@ menus = [
 analyzers = {
     'Muon0_Run2023B': ('Eff'),
     'Muon1_Run2023B': ('Eff'),
-    'Muon0_Run2023C': ('Eff'),
-    'Muon1_Run2023C': ('Eff'),
+    'Muon0_Run2023Cv1': ('Eff'),
+    'Muon1_Run2023Cv1': ('Eff'),
     'Muon0_Run2023Cv2': ('Eff'),
     'Muon1_Run2023Cv2': ('Eff'),
+    'Muon0_Run2023Cv3': ('Eff'),
+    'Muon1_Run2023Cv3': ('Eff'),
+    'Muon0_Run2023Cv4': ('Eff'),
+    'Muon1_Run2023Cv4': ('Eff'),
 
     'SingleMuon_RunUL2018D': ('Eff'),
     'SingleMuon_Run2022B': ('Eff'),
@@ -88,7 +100,7 @@ analyzers = {
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_08'
+    VER_base = 'vRun3_01'
     tag_prefix = 'crab_'
 
     doHadd = False

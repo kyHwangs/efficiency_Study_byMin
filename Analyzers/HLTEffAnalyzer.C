@@ -538,8 +538,9 @@ void HLTEffAnalyzer(
 
             vector<vector<int>> Runs_bin = {
                 {-1, 999999},
-                //{-1, 359924},
-                //{359924, 999999},
+                {-1, 367661-1},
+                {367661, 367990-1},
+                {367990, 999999},
             };
 
             vector<vector<vector<vector<HistContainer*>>>> hc_Eff = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
