@@ -1,4 +1,4 @@
-B1;95;0c#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <map>
@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtOff(
-  TString efftag = "IsoMu24", TString ver = "vRun3_08", TString SAMPLE = "Run2022, 23", TString tag = "Muon",
+  TString efftag = "IsoMu24", TString ver = "vRun3_00_charge", TString SAMPLE = "Run2022, 23", TString tag = "Muon",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -74,20 +74,28 @@ void drawtnpCompEffL3wrtOff(
     300, 450, 700, 1000
   };
 
-  int n_eta_bins = 23-1;
-  double eta_bins[23] = {
-    -2.4, -2.1, -1.9, -1.7, -1.6, -1.5, -1.3, -1.2, -0.9,
-    -0.3, -0.2,  0.0,  0.2,  0.3,
-     0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
+  //int n_eta_bins = 23-1;
+  //double eta_bins[23] = {
+  //  -2.4, -2.1, -1.9, -1.7, -1.6, -1.5, -1.3, -1.2, -0.9,
+  //  -0.3, -0.2,  0.0,  0.2,  0.3,
+  //  0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
+  //};
+  int n_eta_bins = 49-1;
+  double eta_bins[49] = {
+    -2.4, -2.3, -2.2, -2.1, -2.0, -1.9, -1.8, -1.7, -1.6, -1.5, -1.4, -1.3, -1.2, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0.0,
+     0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1.0,  1.1,  1.2,  1.3,  1.4,  1.5,  1.6,  1.7,  1.8,  1.9,  2.0,  2.1,  2.2,  2.3,  2.4
   };
   vector<TString> etas_str = {"I"};//, "BB", "BE", "EB", "EE"};
   vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
+    kBlack,
     kBlue,
-    kRed,
+    kBlue,
+    //kRed,
     //kOrange,
+    kGreen+2,
     kGreen+2,
     //kCyan+2,
     //kPink+4,
@@ -95,10 +103,16 @@ void drawtnpCompEffL3wrtOff(
     //kMagenta,
   };
   vector<int> v_marker = {
+    //20,
+    //25,
+    //26,
+    //23,
     20,
+    24,
+    21,
     25,
+    22,
     26,
-    23,
     //22,
     //26,
     //23,
@@ -106,26 +120,32 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<TString> files = {
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run367661_999999",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run367661_999999",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run367661_999999",
 
     //"Eff/"+efftag+"/num_Eff_L1SQ22_"+efftag+"_RunAll",
     //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run367661_999999",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run367661_999999",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run-1_367660",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run367661_999999",
 
     //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
@@ -133,10 +153,12 @@ void drawtnpCompEffL3wrtOff(
   vector<TString> types_str = {
     //efftag+" : Run2022G Default GRun - uGT",
     //efftag+" : Run2022G L1 Scale Update - Full",
-    efftag+" : Run2022G Data",
-    efftag+" : Run3Winer23 DY",
-    efftag+" : Run2023B Data",
-    efftag+" : Run2023C Data (DCSOnly)",
+    efftag+" : Run2022G Data   #mu^{+}",
+    efftag+" : Run2022G Data   #mu^{-}",
+    efftag+" : Run3Winer23 DY   #mu^{+}",
+    efftag+" : Run3Winer23 DY   #mu^{-}",
+    efftag+" : Run2023BC Data   #mu^{+}",
+    efftag+" : Run2023BC Data   #mu^{-}",
   };
 
   vector<TString> v_pts = {
@@ -163,9 +185,9 @@ void drawtnpCompEffL3wrtOff(
         double ymax = 1.6;
 
 	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.7;//0.6;//0.85;
-	  ymax = 1.15;//1.2;//1.1;
-	}
+          ymin = 0.6;//0.7;//0.6;//0.85;
+          ymax = 1.2;// 1.15;//1.2;//1.1;
+        }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s",
                                              efftag.Data(),
@@ -253,6 +275,7 @@ void drawtnpCompEffL3wrtOff(
           legend->AddEntry( g, TString::Format("%s", the_type_str.Data()), "lep" );
         }
 
+        legend->SetNColumns(2);
         legend->Draw();
 
         TLatex latex;

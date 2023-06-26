@@ -6,6 +6,8 @@ arguments             = python run.py $(MACRO) $(VER) $(TAG) $(JobID) $(outputDi
 transfer_input_files  = $(MACRO).C,MuonHLTNtupleRun3.h,run.py
 JobBatchName          = Run3MuonHLT_$(TAG)
 request_memory        = 3000 MB
++JobFlavour           = "workday"
+
 
 # x509userproxy         = /tmp/x509up_u41056
 

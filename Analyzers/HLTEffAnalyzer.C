@@ -538,8 +538,8 @@ void HLTEffAnalyzer(
 
             vector<vector<int>> Runs_bin = {
                 {-1, 999999},
-                //{-1, 359924},
-                //{359924, 999999},
+                {-1, 367661-1},
+                {367661, 999999},
             };
 
             vector<vector<vector<vector<HistContainer*>>>> hc_Eff = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
@@ -832,10 +832,10 @@ void HLTEffAnalyzer(
 
             // -- Efficiency
             for (unsigned irun = 0; irun < Runs_bin.size(); ++irun) {
-                if (nt->runNum < Runs_bin.at(irun).at(0))
-                    continue;
-                if (nt->runNum > Runs_bin.at(irun).at(1))
-                    continue;
+                //if (nt->runNum < Runs_bin.at(irun).at(0))
+                //    continue;
+                //if (nt->runNum > Runs_bin.at(irun).at(1))
+                //    continue;
                 for (unsigned ieta = 0; ieta < Etas_bin.size(); ++ieta) {
                     //### offlineMuons loop ###
                     int iprobe = -1;
@@ -847,6 +847,11 @@ void HLTEffAnalyzer(
                         if (Etas_bin.at(ieta).at(0) > abs(probemu.eta))
                             continue;
                         if (Etas_bin.at(ieta).at(1) < abs(probemu.eta))
+                            continue;
+
+                        if (irun == 1 && probemu.get("charge") < 0.)
+                            continue;
+                        if (irun == 2 && probemu.get("charge") > 0.)
                             continue;
 
                         // New L1s matching
