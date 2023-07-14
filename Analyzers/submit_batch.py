@@ -46,8 +46,11 @@ samples = [
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv1_hlt_muon_data_20230606/230606_094844/0000/",
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv2_hlt_muon_data_20230606/230606_094644/0000/",
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv3_hlt_muon_data_20230606/230606_094911/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230623/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_20230623/230623_111025/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230623/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_20230623/230623_111040/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_20230705/230705_091506/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_20230705/230705_091600/0000/",
+
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230711/Muon0/crab_Muon0_Run2023D_DCSjson_hlt_muon_data_20230711/230711_124223/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230711/Muon1/crab_Muon1_Run2023D_DCSjson_hlt_muon_data_20230711/230711_124314/0000/",
 ]
 
 
@@ -56,8 +59,10 @@ dates = [
     '20230526',
     '_20230606',
     '20230606',
-    '_20230623',
-    '20230623',
+    '_20230705',
+    '20230705',
+    '_20230711',
+    '20230711',
 ]
 
 menus = [
@@ -77,6 +82,9 @@ analyzers = {
     'Muon1_Run2023Cv3': ('Eff'),
     'Muon0_Run2023Cv4': ('Eff'),
     'Muon1_Run2023Cv4': ('Eff'),
+
+    'Muon0_Run2023D_DCSjson': ('Eff'),
+    'Muon1_Run2023D_DCSjson': ('Eff'),
 
     'SingleMuon_RunUL2018D': ('Eff'),
     'SingleMuon_Run2022B': ('Eff'),
@@ -168,7 +176,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 1
+                nfiles = 3
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:

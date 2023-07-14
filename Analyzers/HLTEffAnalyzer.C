@@ -540,7 +540,10 @@ void HLTEffAnalyzer(
                 {-1, 999999},
                 {-1, 367661-1},
                 {367661, 367990-1},
-                {367990, 999999},
+                {367990, 368765},
+                {368765+1, 999999},
+                {367905, 367990-1}, // 5 RUNs before new align - 367905, 367906, 367907, 367908, 367910
+                {368223, 368320},   // 5 RUNs after new align  - 368223, 368224, 368229, 368318, 368320
             };
 
             vector<vector<vector<vector<HistContainer*>>>> hc_Eff = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
@@ -917,14 +920,18 @@ void HLTEffAnalyzer(
                         }
                         else if (
                             L3type.Contains("OI") ||
-                            L3type.Contains("L3Muon") ||
+                            L3type.Contains("L3") ||
                             L3type.Contains("GlbTrkMuon") ||
                             (std::find(HLTpaths.begin(), HLTpaths.end(), L3type) != HLTpaths.end())
                         ) {
                             matched_idx = probemu.matched( *L3Coll, L3map, 0.1 );
                         }
                         else if (
-                            L3type.Contains("hltPixelTracks") ||
+                            L3type.Contains("hltPixelTracks")
+                        ) {
+                            matched_idx = probemu.matched( *L3Coll, L3map, 0.01 );  // Pixel tracks - TRK guys are using dR 0.01 btw Offline, HLT
+                        }
+                        else if (
                             L3type.Contains("L1sSingleMu22")
                         ) {
                             matched_idx = probemu.matched( *L3Coll, L3map, 0.3 );
