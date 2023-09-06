@@ -396,7 +396,7 @@ double invMass(Object obj1, Object obj2)
 
 
 void HLTEffAnalyzer(
-    TString ver = "v00", TString tag = "TEST",
+    TString ver = "v00_old_align_only_Dt", TString tag = "TEST",
     vector<TString> vec_Dataset = {}, TString JobId = "",
     TString outputDir = "./",
     const bool doDimuon = false, double ZmassWindow = -1,
@@ -414,7 +414,8 @@ void HLTEffAnalyzer(
     // -- Input
         vector<TString> paths = vec_Dataset;
         if(tag == "TEST") {
-            paths = { "./ntuple_1.root" };
+            paths = { "./ntuple_only_Dt.root" };
+            //paths = { "./ntuple_1.root" };
         }
 
     // -- Output

@@ -1,7 +1,8 @@
-plots_folder="plots_vRun3_01/Muon/"
-web_path="/eos/user/w/wjun/www/230626_HLT_Golden2023BCv4/"
+plots_folder="plots_vRun3_01_3aligns/Muon/"
+web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/230724_MuonHLT_forAlCa/"
 mkdir $web_path
 
+root -l -b -q 'drawtnpCompEffL3wrtOff.C("hltPixelTracks")'
 root -l -b -q 'drawtnpCompEffL3wrtOff.C("L1sSingleMu22")'
 root -l -b -q 'drawtnpCompEffL3wrtOff.C("IsoMu24")'
 root -l -b -q 'drawtnpCompEffL3wrtOff.C("Mu50")'

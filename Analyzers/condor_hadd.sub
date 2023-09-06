@@ -7,6 +7,7 @@ JobBatchName          = Run3MuonHLT-hadd
 request_memory        = 1.5 GB
 request_disk          = 1 GB
 request_cpus          = 15
++JobFlavour           = "espresso"
 
 # transfer_input_files  =
 # x509userproxy         = /tmp/x509up_u41056

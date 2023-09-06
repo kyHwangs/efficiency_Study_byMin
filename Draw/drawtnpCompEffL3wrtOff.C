@@ -47,7 +47,7 @@ void drawtnpCompEffL3wrtOff(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/";
+  TString Dir = "./plots_"+ver+"_PPD/"+tag+"/Eff_"+efftag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
@@ -85,8 +85,8 @@ void drawtnpCompEffL3wrtOff(
 
   vector<Color_t> v_color = {
     kBlack,
-    kBlue,
-    kRed,
+    //kBlue,
+    //kRed,
     //kOrange,
     kGreen+2,
     //kCyan+2,
@@ -96,8 +96,8 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<int> v_marker = {
     20,
-    25,
-    26,
+    //25,
+    //26,
     23,
     //22,
     //26,
@@ -109,36 +109,50 @@ void drawtnpCompEffL3wrtOff(
     //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
     //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
     //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
     //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D_DCS-Eff.root",
+
+    //"./Outputs_"+ver+"/hist-"+ver+"-new_align-"+tag+"_Run2023Cv4-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-new_align-"+tag+"_Run2023D-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-old_align-"+tag+"_Run2023Cv4-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-old_align-"+tag+"_Run2023D-Eff.root",
+
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run-1_367660",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run367661_367989",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_Run367990_368765",
+    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run-1_367660",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run367661_367989",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run367990_368765",
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run368766_999999",
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run367905_367989",
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run368223_368320",
     "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run367990_368765",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run367905_367989",
+    //"Eff/"+efftag+"/num_Eff_"+efftag+"_Run368223_368320",
 
     //"Eff/"+efftag+"/num_Eff_L1SQ22_"+efftag+"_RunAll",
     //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    //"Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run-1_367660",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run367661_367989",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_Run367990_368765",
+    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run-1_367660",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run367661_367989",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run367990_368765",
     //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run368766_999999",
     //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run367905_367989",
     //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run368223_368320",
     "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run367990_368765",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run367905_367989",
+    //"Eff/"+efftag+"/den_Eff_"+efftag+"_Run368223_368320",
 
     //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
@@ -146,14 +160,18 @@ void drawtnpCompEffL3wrtOff(
   vector<TString> types_str = {
     //efftag+" : Run2022G Data",
     //efftag+" : Run3Winer23 DY",
-    //efftag+" : Run2023B Data",
-    efftag+" : Run2023 Data, HLTv1.0",
-    efftag+" : Run2023 Data, HLTv1.1 & before new align",
-    efftag+" : Run2023 Data, HLTv1.1 & after new align",
+    efftag+" : Run2023BC Data",
+    //efftag+" : Run2023 Data, HLTv1.0",
+    //efftag+" : Run2023 Data, HLTv1.1 & before new align",
+    //efftag+" : Run2023 Data, HLTv1.1 & after new align",
     //efftag+" : Run2023 Data, and so on",
     //efftag+" : 5 RUNs before new align",
     //efftag+" : 5 RUNs after new align",
-    efftag+" : Run2023 Data, Post TS (DCS Only)",
+    efftag+" : Run2023D Data (DCSOnly json)",
+    //efftag+" : Run2023Cv4 Data, HLTv1.1 & after new align - OLD ALIGN",
+    //efftag+" : Run2023D Data - OLD ALIGN",
+    //efftag+" : 5 RUNs before new align - OLD ALIGN",
+    //efftag+" : 5 RUNs after new align - OLD ALIGN",
   };
 
   vector<TString> v_pts = {
@@ -180,8 +198,8 @@ void drawtnpCompEffL3wrtOff(
         double ymax = 1.6;
 
 	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.5;//0.7;//0.6;//0.85;
-	  ymax = 1.25;//1.15;//1.2;//1.1;
+	  ymin = 0.6;//0.5;//0.7;//0.6;//0.85;
+	  ymax = 1.2;//1.25;//1.15;//1.2;//1.1;
 	}
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s",

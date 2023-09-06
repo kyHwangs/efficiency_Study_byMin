@@ -40,17 +40,31 @@ samples = [
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/Muon/crab_Muon_Run2022G_hlt_muon_data_20230526/230526_181751/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230526/230526_183156/0000/",
 
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv1_hlt_muon_data_20230606/230606_094831/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv2_hlt_muon_data_20230606/230606_094630/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv3_hlt_muon_data_20230606/230606_094857/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv1_hlt_muon_data_20230606/230606_094844/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv2_hlt_muon_data_20230606/230606_094644/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv3_hlt_muon_data_20230606/230606_094911/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_20230705/230705_091506/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_20230705/230705_091600/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv1_hlt_muon_data_20230606/230606_094831/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv2_hlt_muon_data_20230606/230606_094630/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv3_hlt_muon_data_20230606/230606_094857/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv1_hlt_muon_data_20230606/230606_094844/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv2_hlt_muon_data_20230606/230606_094644/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv3_hlt_muon_data_20230606/230606_094911/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_20230705/230705_091506/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_20230705/230705_091600/0000/",
 
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230711/Muon0/crab_Muon0_Run2023D_DCSjson_hlt_muon_data_20230711/230711_124223/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230711/Muon1/crab_Muon1_Run2023D_DCSjson_hlt_muon_data_20230711/230711_124314/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230711/Muon0/crab_Muon0_Run2023D_DCSjson_hlt_muon_data_20230711/230711_124223/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230711/Muon1/crab_Muon1_Run2023D_DCSjson_hlt_muon_data_20230711/230711_124314/0000/",
+
+    # New alignment
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230716/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_old_align_20230716/230716_114418/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230716/Muon0/crab_Muon0_Run2023D_hlt_muon_data_old_align_20230716/230716_114437/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230716/Muon1/crab_Muon1_Run2023D_hlt_muon_data_old_align_20230716/230716_114447/0000/",
+
+    # OLD alignment (CSC Only)
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230717/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_old_align_20230717/230717_193708/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230717/Muon0/crab_Muon0_Run2023D_hlt_muon_data_old_align_20230717/230717_193722/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230717/Muon1/crab_Muon1_Run2023D_hlt_muon_data_old_align_20230717/230717_185229/0000/",
+
+    # OLD alignment (DT+CSC)
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230723/Muon0/crab_Muon0_Run2023D_hlt_muon_data_old_align_DT_20230723/230723_102151/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230723/Muon1/crab_Muon1_Run2023D_hlt_muon_data_old_align_DT_20230723/230723_102201/0000/",
 ]
 
 
@@ -63,6 +77,12 @@ dates = [
     '20230705',
     '_20230711',
     '20230711',
+    '_20230716',
+    '20230716',
+    '_20230717',
+    '20230717',
+    '_20230723',
+    '20230723',
 ]
 
 menus = [
@@ -82,6 +102,8 @@ analyzers = {
     'Muon1_Run2023Cv3': ('Eff'),
     'Muon0_Run2023Cv4': ('Eff'),
     'Muon1_Run2023Cv4': ('Eff'),
+    'Muon0_Run2023D': ('Eff'),
+    'Muon1_Run2023D': ('Eff'),
 
     'Muon0_Run2023D_DCSjson': ('Eff'),
     'Muon1_Run2023D_DCSjson': ('Eff'),

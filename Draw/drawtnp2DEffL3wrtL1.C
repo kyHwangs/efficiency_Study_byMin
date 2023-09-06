@@ -51,44 +51,51 @@ void drawtnp2DEffL3wrtL1(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
+  TString Dir = "./plots_"+ver+"_PPD/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
   vector<TString> files = {
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D_DCS-Eff.root",
   };
   vector<TString> types = {
     //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run-1_367660",
-    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367661_367989",
-    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367990_368765",
+    //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367661_367989",
+    //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367990_368765",
     //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run368766_999999",
-    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367905_367989",
-    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run368223_368320",
+    //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367905_367989",
+    //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run368223_368320",
+    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll",
+
     //"Eff/"+efftag+"den_2DEff_"+L1tag+"_"+efftag+"_Run-1_367660",
-    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367661_367989",
-    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367990_368765",
+    //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367661_367989",
+    //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367990_368765",
     //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run368766_999999",
-    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367905_367989",
-    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run368223_368320",
+    //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367905_367989",
+    //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run368223_368320",
+    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll",
+
   };
   vector<TString> types_str = {
     //efftag+" : Run2022G Data",
     //efftag+" : Run3Winer23 DY",
-    //efftag+" : Run2023B Data",
+    efftag+" : Run2023BC Data",
     //efftag+" : Run2023 Data, HLTv1.0",
-    efftag+" : Run2023 Data, HLTv1.1 & before new align",
-    efftag+" : Run2023 Data, HLTv1.1 & after new align",
+    //efftag+" : Run2023 Data, HLTv1.1 & before new align",
+    //efftag+" : Run2023 Data, HLTv1.1 & after new align",
     //efftag+" : Run2023 Data, and so on",
-    efftag+" : 5 RUNs before new align",
-    efftag+" : 5 RUNs after new align",
+    //efftag+" : 5 RUNs before new align",
+    //efftag+" : 5 RUNs after new align",
+    efftag+" : Run2023D Data (DCSOnly json)",
   };
 
   TH2F* prev_eff;
@@ -113,11 +120,12 @@ void drawtnp2DEffL3wrtL1(
 
     TH2F* eff = (TH2F*)num->Clone();
     eff->Divide(den);
-    eff->Draw("colz text");
+    //eff->Draw("colz text");
+    eff->Draw("colz");
     eff->SetTitle(types_str.at(i).Data());
     eff->GetXaxis()->SetTitle(GetTitleX("eta_reco"));
     eff->GetYaxis()->SetTitle(GetTitleX("phi_reco"));
-    eff->SetMaximum(1.0); eff->SetMinimum(0.85);
+    eff->SetMaximum(1.0); eff->SetMinimum(0.0);
 
     c->Modified();  c->Update();  c->RedrawAxis();
     gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
