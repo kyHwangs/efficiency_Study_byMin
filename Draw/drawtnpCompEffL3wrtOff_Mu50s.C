@@ -37,8 +37,8 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawtnpCompEffL3wrtOff(
-  TString efftag = "IsoMu24", TString ver = "vRun3_02", TString SAMPLE = "Run2023", TString tag = "Muon",
+void drawtnpCompEffL3wrtOff_Mu50s(
+  TString efftag = "Mu50", TString ver = "vRun3_02", TString SAMPLE = "Run2023", TString tag = "Muon",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -47,14 +47,14 @@ void drawtnpCompEffL3wrtOff(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/";
+  TString Dir = "./plots_"+ver+"_Mu50s_Highpt/"+tag+"/Eff_"+efftag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
   vector<TString> v_var = {"pt_zoom", "pt", "eta", "phi", "nvtx"};//, "pu"};
   vector< vector<double> > range = {
-    {1, 0, 200},  // pt
-    {1, 0, 200},  // pt
+    {1, 0, 1000},  // pt
+    {1, 0, 1000},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
     {1, 10, 75}  // PU
@@ -64,14 +64,13 @@ void drawtnpCompEffL3wrtOff(
     range.at(1) = {1, 0, 40};
   }
 
-  int n_pt_bins = 29-1;
-  double pt_bins[29] = {
-    0, 1, 2, 3, 4,
-    5, 6, 7, 8, 9,
-    10, 12, 15, 18, 20,
-    21, 22, 23, 26, 30,
-    40, 60, 90, 130, 200,
-    300, 450, 700, 1000
+  int n_pt_bins = 21-1;
+  double pt_bins[21] = {
+    0, 10, 20, 30, 40,
+    45, 46, 47, 48, 49,
+    50, 53, 55, 60, 75,
+    100, 200, 300, 500, 1000,
+    3000
   };
 
   int n_eta_bins = 23-1;
@@ -80,14 +79,14 @@ void drawtnpCompEffL3wrtOff(
     -0.3, -0.2,  0.0,  0.2,  0.3,
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
-  vector<TString> etas_str = {"I"};//, "BB", "BE", "EB", "EE"};
-  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
+  vector<TString> etas_str = {"I", "BE", "O", "E"};
+  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4", "|#eta^{offline}| > 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.4"};//, "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
     kBlue,
     kRed,
-    //kOrange,
+    kOrange,
     kGreen+2,
     //kCyan+2,
     //kPink+4,
@@ -99,57 +98,57 @@ void drawtnpCompEffL3wrtOff(
     25,
     26,
     23,
-    //22,
+    22,
     //26,
     //23,
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
     //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BCD-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BCD-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BCD-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BCD-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BCD-Eff.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
     "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
-
-    //"Eff/"+efftag+"/num_Eff_L1SQ22_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
+    "Eff/"+efftag+"L1Shower/num_Eff_"+efftag+"L1Shower_RunAll",
+    "Eff/"+efftag+"OrL1Shower/num_Eff_"+efftag+"OrL1Shower_RunAll",
+    "Eff/"+efftag+"OrOldMu100OrTkMu100/num_Eff_"+efftag+"OrOldMu100OrTkMu100_RunAll",
+    "Eff/"+efftag+"OrL1ShowerOrOldMu100OrTkMu100/num_Eff_"+efftag+"OrL1ShowerOrOldMu100OrTkMu100_RunAll",
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
     "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+efftag+"_RunAll",
-
-    //"Eff/"+efftag+"/den_Eff_L1SQ22_"+efftag+"_RunAll",
-    //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
+    "Eff/"+efftag+"L1Shower/den_Eff_"+efftag+"L1Shower_RunAll",
+    "Eff/"+efftag+"OrL1Shower/den_Eff_"+efftag+"OrL1Shower_RunAll",
+    "Eff/"+efftag+"OrOldMu100OrTkMu100/den_Eff_"+efftag+"OrOldMu100OrTkMu100_RunAll",
+    "Eff/"+efftag+"OrL1ShowerOrOldMu100OrTkMu100/den_Eff_"+efftag+"OrL1ShowerOrOldMu100OrTkMu100_RunAll",
   };
   vector<TString> types_str = {
-    efftag+" : Run2022G Data",
+    //efftag+" : Run2022G Data",
     //efftag+" : Run3Winer23 DY",
-    efftag+" : Run2023B Data",
-    efftag+" : Run2023C Data",
-    efftag+" : Run2023D Data",
+    efftag+" : Mu50",
+    efftag+" : Mu50_L1SingleMuShower",
+    efftag+" : Mu50 || Mu50_L1SingleMuShower",
+    efftag+" : Mu50 || CascadeMu100 || HighPtTkMu100",
+    efftag+" : Mu50 || CascadeMu100 || HighPtTkMu100 || Mu50_L1SingleMuShower",
   };
 
   vector<TString> v_pts = {
-    "genpt0",
+    //"genpt0",
     //"genpt10",
-    "genpt26",
+    //"genpt26",
     "genpt53",
   };
 
   vector<TString> v_pts_str = {
-    "",
+    //"",
     //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV",
+    //"p_{T}^{reco} > 26 GeV",
     "p_{T}^{reco} > 53 GeV",
   };
 
@@ -162,10 +161,10 @@ void drawtnpCompEffL3wrtOff(
         double ymin = 0.0;
         double ymax = 1.6;
 
-	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.7;//0.5;//0.6;//0.85;
-	  ymax = 1.15;//1.25;//1.2;//1.1;
-	}
+        if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
+          ymin = 0.7;//0.5;//0.6;//0.85;
+          ymax = 1.15;//1.25;//1.2;//1.1;
+        }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s",
                                              efftag.Data(),

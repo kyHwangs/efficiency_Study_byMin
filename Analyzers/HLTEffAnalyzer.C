@@ -371,6 +371,8 @@ bool offlineSel(Object obj)
         acceptance(obj) &&
         obj.get("isTight") &&
         obj.get("relPFIso") < 0.15
+        //obj.get("isHighPtNew") &&
+        //obj.get("relTrkIso") < 0.10
     );
 
     return out;
@@ -396,7 +398,7 @@ double invMass(Object obj1, Object obj2)
 
 
 void HLTEffAnalyzer(
-    TString ver = "v00_old_align_only_Dt", TString tag = "TEST",
+    TString ver = "v00", TString tag = "TEST",
     vector<TString> vec_Dataset = {}, TString JobId = "",
     TString outputDir = "./",
     const bool doDimuon = false, double ZmassWindow = -1,
@@ -414,8 +416,7 @@ void HLTEffAnalyzer(
     // -- Input
         vector<TString> paths = vec_Dataset;
         if(tag == "TEST") {
-            paths = { "./ntuple_only_Dt.root" };
-            //paths = { "./ntuple_1.root" };
+            paths = { "./ntuple_1.root" };
         }
 
     // -- Output
@@ -494,6 +495,9 @@ void HLTEffAnalyzer(
             "Mu24",
             "Mu50",
             "Mu50OrOldMu100OrTkMu100",
+            "Mu50L1Shower",
+            "Mu50OrL1Shower",
+            "Mu50OrL1ShowerOrOldMu100OrTkMu100",
             "ECALIsoMu24",
             "HCALIsoMu24",
             "IsoMu24",
@@ -513,6 +517,8 @@ void HLTEffAnalyzer(
             "OldMu100",
             "TkMu100",
             "Mu50OrOldMu100OrTkMu100",
+            "Mu50OrL1Shower",
+            "Mu50OrL1ShowerOrOldMu100OrTkMu100",
             "ECALIsoMu24",
             "HCALIsoMu24",
             "IsoMu24",
@@ -532,19 +538,19 @@ void HLTEffAnalyzer(
 
             vector<vector<double>> Etas_bin = {
                 {0., 2.4},
+                //{0.9, 2.4},
+                //{0.9, 1.2},
+                //{1.2, 2.4},
             };
             vector<TString> Etas_str = {
                 "I",
+                //"BE",
+                //"O",
+                //"E",
             };
 
             vector<vector<int>> Runs_bin = {
                 {-1, 999999},
-                {-1, 367661-1},
-                {367661, 367990-1},
-                {367990, 368765},
-                {368765+1, 999999},
-                {367905, 367990-1}, // 5 RUNs before new align - 367905, 367906, 367907, 367908, 367910
-                {368223, 368320},   // 5 RUNs after new align  - 368223, 368224, 368229, 368318, 368320
             };
 
             vector<vector<vector<vector<HistContainer*>>>> hc_Eff = {};  // Eff[L3 type][run bin][eta bin][gen pt min]
@@ -744,6 +750,7 @@ void HLTEffAnalyzer(
             vector<Object> L1sSingleMu22_HLT = nt->get_HLTObjects("hltL1fL1sMu22L1Filtered0");
             vector<Object> Mu24_HLT = nt->get_HLTObjects("hltL3fL1sSingleMu22L1f0L2f10QL3Filtered24Q");
             vector<Object> Mu50_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered50Q");
+            vector<Object> Mu50L1Shower_HLT = nt->get_HLTObjects("hltL3fL1sSingleMuOpenCandidateL1f0L2f3QL3Filtered50Q");
             vector<Object> TkMu100_HLT = nt->get_HLTObjects("hltL3fL1sMu25f0TkFiltered100Q");
             vector<Object> OldMu100_HLT = nt->get_HLTObjects("hltL3fL1sMu22Or25L1f0L2f10QL3Filtered100Q");
             vector<Object> ECALIsoMu24_HLT = nt->get_HLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfecalIsoRhoFiltered");
@@ -809,7 +816,10 @@ void HLTEffAnalyzer(
                 &L1sSingleMu22_HLT,
                 &Mu24_HLT,
                 &Mu50_HLT,
-                &Mu50_HLT,// Mu50OrOldMu100OrTkMu100
+                &Mu50_HLT, // Mu50OrOldMu100OrTkMu100
+                &Mu50L1Shower_HLT,
+                &Mu50_HLT, // Mu50OrL1Shower
+                &Mu50_HLT, // Mu50OrL1ShowerOrOldMu100OrTkMu100
                 &ECALIsoMu24_HLT,
                 &HCALIsoMu24_HLT,
                 &IsoMu24_HLT,
@@ -820,7 +830,7 @@ void HLTEffAnalyzer(
                 &Mu50_MYHLT, // Mu50OrOldMu100OrTkMu100
                 &ECALIsoMu24_MYHLT,
                 &HCALIsoMu24_MYHLT,
-                &IsoMu24_MYHLT
+                &IsoMu24_MYHLT,
             };
 
             if (L3types.size() != L3MuonColls.size()) {
@@ -937,6 +947,11 @@ void HLTEffAnalyzer(
                         ) {
                             matched_idx = probemu.matched( *L3Coll, L3map, 0.3 );
                         }
+                        else if (
+                             L3type.Contains("Mu50L1Shower") // HLT_Mu50_L1SingleMuShower_v shares the final filter with HLT_Mu50_IsoVVVL_PFHT450_v. So, events should explicitly pass this path
+                        ) {
+                             if (nt->path_fired("HLT_Mu50_L1SingleMuShower_v")) matched_idx = probemu.matched( *L3Coll, L3map, 0.1 );
+                        }
                         else {
                             matched_idx = looseMatch ? probemu.matched( *L3Coll, L3map, 0.3 ) :  // L2 muon
                                                        probemu.matched( *L3Coll, L3map, 0.1, 0.5 );  // IO tracks
@@ -953,6 +968,30 @@ void HLTEffAnalyzer(
                                 matched_idx = probemu.matched(L3types.at(i).Contains("my")? OldMu100_MYHLT : OldMu100_HLT, OldMu100map, 0.1);
                                 if (matched_idx >= 0) L3Coll = L3types.at(i).Contains("my")? &OldMu100_MYHLT : &OldMu100_HLT;
                             }
+                        }
+                        else if ( // Mu50OrL1ShowerOrOldMu100OrTkMu100 = Mu50 || Mu50_L1SingleMuShower || OldMu100 || TkMu100
+                            L3type.Contains("Mu50OrL1ShowerOrOldMu100OrTkMu100") &&
+                            matched_idx < 0) {
+                            vector<int> Mu50L1Showermap(Mu50L1Shower_HLT.size(), -1);
+                            if (nt->path_fired("HLT_Mu50_L1SingleMuShower_v")) matched_idx = probemu.matched(Mu50L1Shower_HLT, Mu50L1Showermap, 0.1); // Mu50_L1SingleMuShower
+                            if (matched_idx >= 0) L3Coll = &Mu50L1Shower_HLT;
+                            if (matched_idx < 0) {
+                                vector<int> TkMu100map(TkMu100_HLT.size(), -1);
+                                matched_idx = probemu.matched(TkMu100_HLT, TkMu100map, 0.1);
+                                if (matched_idx >= 0) L3Coll = &TkMu100_HLT;
+                                if (matched_idx < 0) {
+                                    vector<int> OldMu100map(OldMu100_HLT.size(), -1);
+                                    matched_idx = probemu.matched(OldMu100_HLT, OldMu100map, 0.1);
+                                    if (matched_idx >= 0) L3Coll = &OldMu100_HLT;
+                                }
+                            }
+                        }
+                        else if ( // Mu50OrL1Shower = Mu50 || Mu50_L1SingleMuShower
+                            L3type.Contains("Mu50OrL1Shower") &&
+                            matched_idx < 0) {
+                            vector<int> Mu50L1Showermap(Mu50L1Shower_HLT.size(), -1);
+                            if (nt->path_fired("HLT_Mu50_L1SingleMuShower_v")) matched_idx = probemu.matched(Mu50L1Shower_HLT, Mu50L1Showermap, 0.1); // Mu50_L1SingleMuShower
+                            if (matched_idx >= 0) L3Coll = &Mu50L1Shower_HLT;
                         }
 
                         if (matched_idx < 0) {

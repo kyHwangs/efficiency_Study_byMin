@@ -1,5 +1,5 @@
-plots_folder="plots_vRun3_01_3aligns/Muon/"
-web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/230724_MuonHLT_forAlCa/"
+plots_folder="plots_vRun3_02_Mu50s/Muon/"
+web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/230911_MuonHLT_Mu50s/"
 mkdir $web_path
 
 root -l -b -q 'drawtnpCompEffL3wrtOff.C("hltPixelTracks")'

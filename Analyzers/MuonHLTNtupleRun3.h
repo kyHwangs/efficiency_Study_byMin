@@ -291,6 +291,7 @@ public :
     vector<Object> get_iterL3IOFromL1();
     vector<Object> get_iterL3MuonNoID();
     vector<Object> get_iterL3Muon();
+    bool path_fired( TString path = "HLT_Mu50_L1SingleMuShower_v" );
     vector<Object> get_HLTObjects( TString filter = "hltL3fL1TkSingleMu22L3Filtered24Q" );
     vector<Object> get_myHLTObjects( TString filter = "hltL3fL1TkSingleMu22L3Filtered24Q" );
     vector<Object> get_hltIterL3OIMuonTrackAssociated();
@@ -2966,6 +2967,20 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3Muon()
     }
 
     return out;
+}
+
+bool MuonHLTNtupleRun3::path_fired( TString path )
+{
+  bool fired = false;
+
+  for(unsigned i=0; i<vec_firedTrigger->size(); i++) {
+    if(vec_firedTrigger->at(i).find(path) != std::string::npos) {
+      fired = true;
+      break;
+    }
+  }
+
+  return fired;
 }
 
 vector<Object> MuonHLTNtupleRun3::get_HLTObjects( TString filter )
