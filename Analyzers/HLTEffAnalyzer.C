@@ -457,6 +457,7 @@ void HLTEffAnalyzer(
 
     // -- Histograms
     TH1D *h_nEvents = new TH1D("h_nEvents",  "", 3, -1, 2);
+    TH1D *h_nRuns = new TH1D("h_nRuns",  "", 100, 350000, 400000);
 
     TH1D *h_gen_pt  = new TH1D("h_gen_pt",  "", 1000, 0, 1000);
     TH1D *h_gen_eta = new TH1D("h_gen_eta", "", 60, -3, 3);
@@ -658,6 +659,7 @@ void HLTEffAnalyzer(
         if (nt->isRealData)
             genWeight = 1.;
         h_nEvents->Fill( genWeight );
+        h_nRuns->Fill( nt->runNum, genWeight );
 
         /*
         vector<Object> GenParticles = nt->get_GenParticles();
@@ -1110,6 +1112,7 @@ void HLTEffAnalyzer(
     f_output->cd();
 
     h_nEvents->Write();
+    h_nRuns->Write();
 
     h_gen_pt->Write();
     h_gen_eta->Write();

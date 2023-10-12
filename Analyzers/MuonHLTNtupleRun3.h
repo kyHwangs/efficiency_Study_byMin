@@ -432,15 +432,30 @@ public :
         Double_t        muon_PFCluster03_HCAL[ArrSize];   //[nMuon]
         Double_t        muon_PFCluster04_ECAL[ArrSize];   //[nMuon]
         Double_t        muon_PFCluster04_HCAL[ArrSize];   //[nMuon]
-        Double_t        muon_normChi2_global[ArrSize];   //[nMuon]
-        Int_t           muon_nTrackerHit_global[ArrSize];   //[nMuon]
-        Int_t           muon_nTrackerLayer_global[ArrSize];   //[nMuon]
-        Int_t           muon_nPixelHit_global[ArrSize];   //[nMuon]
-        Int_t           muon_nMuonHit_global[ArrSize];   //[nMuon]
-        Double_t        muon_normChi2_inner[ArrSize];   //[nMuon]
-        Int_t           muon_nTrackerHit_inner[ArrSize];   //[nMuon]
-        Int_t           muon_nTrackerLayer_inner[ArrSize];   //[nMuon]
-        Int_t           muon_nPixelHit_inner[ArrSize];   //[nMuon]
+        Double_t        muon_inner_trkChi2[ArrSize];
+        Double_t        muon_inner_validFraction[ArrSize];
+        Int_t           muon_inner_trackerLayers[ArrSize];
+        Int_t           muon_inner_trackerHits[ArrSize];
+        Int_t           muon_inner_lostTrackerHits[ArrSize];
+        Int_t           muon_inner_lostTrackerHitsIn[ArrSize];
+        Int_t           muon_inner_lostTrackerHitsOut[ArrSize];
+        Int_t           muon_inner_pixelLayers[ArrSize];
+        Int_t           muon_inner_pixelHits[ArrSize];
+        Int_t           muon_global_muonHits[ArrSize];
+        Double_t        muon_global_trkChi2[ArrSize];
+        Int_t           muon_global_trackerLayers[ArrSize];
+        Int_t           muon_global_trackerHits[ArrSize];
+        Double_t        muon_momentumChi2[ArrSize];
+        Double_t        muon_positionChi2[ArrSize];
+        Double_t        muon_glbKink[ArrSize];
+        Double_t        muon_glbTrackProbability[ArrSize];
+        Double_t        muon_globalDeltaEtaPhi[ArrSize];
+        Double_t        muon_localDistance[ArrSize];
+        Double_t        muon_staRelChi2[ArrSize];
+        Int_t           muon_tightMatch[ArrSize];
+        Double_t        muon_trkKink[ArrSize];
+        Double_t        muon_trkRelChi2[ArrSize];
+        Double_t        muon_segmentCompatibility[ArrSize];
         Double_t        muon_pt_tuneP[ArrSize];   //[nMuon]
         Double_t        muon_ptError_tuneP[ArrSize];   //[nMuon]
         Double_t        muon_dxyVTX_best[ArrSize];   //[nMuon]
@@ -505,6 +520,15 @@ public :
         Double_t        iterL3OI_inner_eta[ArrSize];   //[nIterL3OI]
         Double_t        iterL3OI_inner_phi[ArrSize];   //[nIterL3OI]
         Double_t        iterL3OI_inner_charge[ArrSize];   //[nIterL3OI]
+        Double_t        iterL3OI_inner_trkChi2[ArrSize];
+        Double_t        iterL3OI_inner_validFraction[ArrSize];
+        Int_t           iterL3OI_inner_trackerLayers[ArrSize];
+        Int_t           iterL3OI_inner_trackerHits[ArrSize];
+        Int_t           iterL3OI_inner_lostTrackerHits[ArrSize];
+        Int_t           iterL3OI_inner_lostTrackerHitsIn[ArrSize];
+        Int_t           iterL3OI_inner_lostTrackerHitsOut[ArrSize];
+        Int_t           iterL3OI_inner_pixelLayers[ArrSize];
+        Int_t           iterL3OI_inner_pixelHits[ArrSize];
         Double_t        iterL3OI_outer_pt[ArrSize];   //[nIterL3OI]
         Double_t        iterL3OI_outer_eta[ArrSize];   //[nIterL3OI]
         Double_t        iterL3OI_outer_phi[ArrSize];   //[nIterL3OI]
@@ -513,11 +537,24 @@ public :
         Double_t        iterL3OI_global_eta[ArrSize];   //[nIterL3OI]
         Double_t        iterL3OI_global_phi[ArrSize];   //[nIterL3OI]
         Double_t        iterL3OI_global_charge[ArrSize];   //[nIterL3OI]
+        Int_t           iterL3OI_global_muonHits[ArrSize];
+        Double_t        iterL3OI_global_trkChi2[ArrSize];
+        Int_t           iterL3OI_global_trackerLayers[ArrSize];
+        Int_t           iterL3OI_global_trackerHits[ArrSize];
         Int_t           nIterL3IOFromL2;
         Double_t        iterL3IOFromL2_inner_pt[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_inner_eta[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_inner_phi[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_inner_charge[ArrSize];   //[nIterL3IOFromL2]
+        Double_t        iterL3IOFromL2_inner_trkChi2[ArrSize];
+        Double_t        iterL3IOFromL2_inner_validFraction[ArrSize];
+        Int_t           iterL3IOFromL2_inner_trackerLayers[ArrSize];
+        Int_t           iterL3IOFromL2_inner_trackerHits[ArrSize];
+        Int_t           iterL3IOFromL2_inner_lostTrackerHits[ArrSize];
+        Int_t           iterL3IOFromL2_inner_lostTrackerHitsIn[ArrSize];
+        Int_t           iterL3IOFromL2_inner_lostTrackerHitsOut[ArrSize];
+        Int_t           iterL3IOFromL2_inner_pixelLayers[ArrSize];
+        Int_t           iterL3IOFromL2_inner_pixelHits[ArrSize];
         Double_t        iterL3IOFromL2_outer_pt[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_outer_eta[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_outer_phi[ArrSize];   //[nIterL3IOFromL2]
@@ -526,16 +563,24 @@ public :
         Double_t        iterL3IOFromL2_global_eta[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_global_phi[ArrSize];   //[nIterL3IOFromL2]
         Double_t        iterL3IOFromL2_global_charge[ArrSize];   //[nIterL3IOFromL2]
-        Int_t           nIterL3IOFromL1;
-        Double_t        iterL3IOFromL1_pt[ArrSize];   //[nIterL3IOFromL1]
-        Double_t        iterL3IOFromL1_eta[ArrSize];   //[nIterL3IOFromL1]
-        Double_t        iterL3IOFromL1_phi[ArrSize];   //[nIterL3IOFromL1]
-        Double_t        iterL3IOFromL1_charge[ArrSize];   //[nIterL3IOFromL1]
+        Int_t           iterL3IOFromL2_global_muonHits[ArrSize];
+        Double_t        iterL3IOFromL2_global_trkChi2[ArrSize];
+        Int_t           iterL3IOFromL2_global_trackerLayers[ArrSize];
+        Int_t           iterL3IOFromL2_global_trackerHits[ArrSize];
         Int_t           nIterL3FromL2;
         Double_t        iterL3FromL2_inner_pt[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_inner_eta[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_inner_phi[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_inner_charge[ArrSize];   //[nIterL3FromL2]
+        Double_t        iterL3FromL2_inner_trkChi2[ArrSize];
+        Double_t        iterL3FromL2_inner_validFraction[ArrSize];
+        Int_t           iterL3FromL2_inner_trackerLayers[ArrSize];
+        Int_t           iterL3FromL2_inner_trackerHits[ArrSize];
+        Int_t           iterL3FromL2_inner_lostTrackerHits[ArrSize];
+        Int_t           iterL3FromL2_inner_lostTrackerHitsIn[ArrSize];
+        Int_t           iterL3FromL2_inner_lostTrackerHitsOut[ArrSize];
+        Int_t           iterL3FromL2_inner_pixelLayers[ArrSize];
+        Int_t           iterL3FromL2_inner_pixelHits[ArrSize];
         Double_t        iterL3FromL2_outer_pt[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_outer_eta[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_outer_phi[ArrSize];   //[nIterL3FromL2]
@@ -544,6 +589,25 @@ public :
         Double_t        iterL3FromL2_global_eta[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_global_phi[ArrSize];   //[nIterL3FromL2]
         Double_t        iterL3FromL2_global_charge[ArrSize];   //[nIterL3FromL2]
+        Int_t           iterL3FromL2_global_muonHits[ArrSize];
+        Double_t        iterL3FromL2_global_trkChi2[ArrSize];
+        Int_t           iterL3FromL2_global_trackerLayers[ArrSize];
+        Int_t           iterL3FromL2_global_trackerHits[ArrSize];
+        Int_t           nIterL3IOFromL1;
+        Double_t        iterL3IOFromL1_pt[ArrSize];   //[nIterL3IOFromL1]
+        Double_t        iterL3IOFromL1_eta[ArrSize];   //[nIterL3IOFromL1]
+        Double_t        iterL3IOFromL1_phi[ArrSize];   //[nIterL3IOFromL1]
+        Double_t        iterL3IOFromL1_charge[ArrSize];   //[nIterL3IOFromL1]
+        Int_t           iterL3IOFromL1_muonHits[ArrSize];
+        Double_t        iterL3IOFromL1_trkChi2[ArrSize];
+        Double_t        iterL3IOFromL1_validFraction[ArrSize];
+        Int_t           iterL3IOFromL1_trackerLayers[ArrSize];
+        Int_t           iterL3IOFromL1_trackerHits[ArrSize];
+        Int_t           iterL3IOFromL1_lostTrackerHits[ArrSize];
+        Int_t           iterL3IOFromL1_lostTrackerHitsIn[ArrSize];
+        Int_t           iterL3IOFromL1_lostTrackerHitsOut[ArrSize];
+        Int_t           iterL3IOFromL1_pixelLayers[ArrSize];
+        Int_t           iterL3IOFromL1_pixelHits[ArrSize];
         Int_t           nIterL3MuonNoID;
         Double_t        iterL3MuonNoID_pt[ArrSize];   //[nIterL3MuonNoID]
         Double_t        iterL3MuonNoID_innerPt[ArrSize];   //[nIterL3MuonNoID]
@@ -553,6 +617,30 @@ public :
         Int_t           iterL3MuonNoID_isGLB[ArrSize];   //[nIterL3MuonNoID]
         Int_t           iterL3MuonNoID_isSTA[ArrSize];   //[nIterL3MuonNoID]
         Int_t           iterL3MuonNoID_isTRK[ArrSize];   //[nIterL3MuonNoID]
+        Double_t        iterL3MuonNoID_inner_trkChi2[ArrSize];
+        Double_t        iterL3MuonNoID_inner_validFraction[ArrSize];
+        Int_t           iterL3MuonNoID_inner_trackerLayers[ArrSize];
+        Int_t           iterL3MuonNoID_inner_trackerHits[ArrSize];
+        Int_t           iterL3MuonNoID_inner_lostTrackerHits[ArrSize];
+        Int_t           iterL3MuonNoID_inner_lostTrackerHitsIn[ArrSize];
+        Int_t           iterL3MuonNoID_inner_lostTrackerHitsOut[ArrSize];
+        Int_t           iterL3MuonNoID_inner_pixelLayers[ArrSize];
+        Int_t           iterL3MuonNoID_inner_pixelHits[ArrSize];
+        Int_t           iterL3MuonNoID_global_muonHits[ArrSize];
+        Double_t        iterL3MuonNoID_global_trkChi2[ArrSize];
+        Int_t           iterL3MuonNoID_global_trackerLayers[ArrSize];
+        Int_t           iterL3MuonNoID_global_trackerHits[ArrSize];
+        Double_t        iterL3MuonNoID_momentumChi2[ArrSize];
+        Double_t        iterL3MuonNoID_positionChi2[ArrSize];
+        Double_t        iterL3MuonNoID_glbKink[ArrSize];
+        Double_t        iterL3MuonNoID_glbTrackProbability[ArrSize];
+        Double_t        iterL3MuonNoID_globalDeltaEtaPhi[ArrSize];
+        Double_t        iterL3MuonNoID_localDistance[ArrSize];
+        Double_t        iterL3MuonNoID_staRelChi2[ArrSize];
+        Int_t           iterL3MuonNoID_tightMatch[ArrSize];
+        Double_t        iterL3MuonNoID_trkKink[ArrSize];
+        Double_t        iterL3MuonNoID_trkRelChi2[ArrSize];
+        Double_t        iterL3MuonNoID_segmentCompatibility[ArrSize];
         Int_t           nIterL3Muon;
         Double_t        iterL3Muon_pt[ArrSize];   //[nIterL3Muon]
         Double_t        iterL3Muon_innerPt[ArrSize];   //[nIterL3Muon]
@@ -562,6 +650,30 @@ public :
         Int_t           iterL3Muon_isGLB[ArrSize];   //[nIterL3Muon]
         Int_t           iterL3Muon_isSTA[ArrSize];   //[nIterL3Muon]
         Int_t           iterL3Muon_isTRK[ArrSize];   //[nIterL3Muon]
+        Double_t        iterL3Muon_inner_trkChi2[ArrSize];
+        Double_t        iterL3Muon_inner_validFraction[ArrSize];
+        Int_t           iterL3Muon_inner_trackerLayers[ArrSize];
+        Int_t           iterL3Muon_inner_trackerHits[ArrSize];
+        Int_t           iterL3Muon_inner_lostTrackerHits[ArrSize];
+        Int_t           iterL3Muon_inner_lostTrackerHitsIn[ArrSize];
+        Int_t           iterL3Muon_inner_lostTrackerHitsOut[ArrSize];
+        Int_t           iterL3Muon_inner_pixelLayers[ArrSize];
+        Int_t           iterL3Muon_inner_pixelHits[ArrSize];
+        Int_t           iterL3Muon_global_muonHits[ArrSize];
+        Double_t        iterL3Muon_global_trkChi2[ArrSize];
+        Int_t           iterL3Muon_global_trackerLayers[ArrSize];
+        Int_t           iterL3Muon_global_trackerHits[ArrSize];
+        Double_t        iterL3Muon_momentumChi2[ArrSize];
+        Double_t        iterL3Muon_positionChi2[ArrSize];
+        Double_t        iterL3Muon_glbKink[ArrSize];
+        Double_t        iterL3Muon_glbTrackProbability[ArrSize];
+        Double_t        iterL3Muon_globalDeltaEtaPhi[ArrSize];
+        Double_t        iterL3Muon_localDistance[ArrSize];
+        Double_t        iterL3Muon_staRelChi2[ArrSize];
+        Int_t           iterL3Muon_tightMatch[ArrSize];
+        Double_t        iterL3Muon_trkKink[ArrSize];
+        Double_t        iterL3Muon_trkRelChi2[ArrSize];
+        Double_t        iterL3Muon_segmentCompatibility[ArrSize];
         Int_t           nTP;
         vector<float>   *TP_charge;
         vector<int>     *TP_pdgId;
@@ -1510,15 +1622,30 @@ public :
         TBranch        *b_muon_PFCluster03_HCAL;   //!
         TBranch        *b_muon_PFCluster04_ECAL;   //!
         TBranch        *b_muon_PFCluster04_HCAL;   //!
-        TBranch        *b_muon_normChi2_global;   //!
-        TBranch        *b_muon_nTrackerHit_global;   //!
-        TBranch        *b_muon_nTrackerLayer_global;   //!
-        TBranch        *b_muon_nPixelHit_global;   //!
-        TBranch        *b_muon_nMuonHit_global;   //!
-        TBranch        *b_muon_normChi2_inner;   //!
-        TBranch        *b_muon_nTrackerHit_inner;   //!
-        TBranch        *b_muon_nTrackerLayer_inner;   //!
-        TBranch        *b_muon_nPixelHit_inner;   //!
+        TBranch        *b_muon_inner_trkChi2;
+        TBranch        *b_muon_inner_validFraction;
+        TBranch        *b_muon_inner_trackerLayers;
+        TBranch        *b_muon_inner_trackerHits;
+        TBranch        *b_muon_inner_lostTrackerHits;
+        TBranch        *b_muon_inner_lostTrackerHitsIn;
+        TBranch        *b_muon_inner_lostTrackerHitsOut;
+        TBranch        *b_muon_inner_pixelLayers;
+        TBranch        *b_muon_inner_pixelHits;
+        TBranch        *b_muon_global_muonHits;
+        TBranch        *b_muon_global_trkChi2;
+        TBranch        *b_muon_global_trackerLayers;
+        TBranch        *b_muon_global_trackerHits;
+        TBranch        *b_muon_momentumChi2;
+        TBranch        *b_muon_positionChi2;
+        TBranch        *b_muon_glbKink;
+        TBranch        *b_muon_glbTrackProbability;
+        TBranch        *b_muon_globalDeltaEtaPhi;
+        TBranch        *b_muon_localDistance;
+        TBranch        *b_muon_staRelChi2;
+        TBranch        *b_muon_tightMatch;
+        TBranch        *b_muon_trkKink;
+        TBranch        *b_muon_trkRelChi2;
+        TBranch        *b_muon_segmentCompatibility;
         TBranch        *b_muon_pt_tuneP;   //!
         TBranch        *b_muon_ptError_tuneP;   //!
         TBranch        *b_muon_dxyVTX_best;   //!
@@ -1581,6 +1708,15 @@ public :
         TBranch        *b_iterL3OI_inner_eta;   //!
         TBranch        *b_iterL3OI_inner_phi;   //!
         TBranch        *b_iterL3OI_inner_charge;   //!
+        TBranch        *b_iterL3OI_inner_trkChi2;
+        TBranch        *b_iterL3OI_inner_validFraction;
+        TBranch        *b_iterL3OI_inner_trackerLayers;
+        TBranch        *b_iterL3OI_inner_trackerHits;
+        TBranch        *b_iterL3OI_inner_lostTrackerHits;
+        TBranch        *b_iterL3OI_inner_lostTrackerHitsIn;
+        TBranch        *b_iterL3OI_inner_lostTrackerHitsOut;
+        TBranch        *b_iterL3OI_inner_pixelLayers;
+        TBranch        *b_iterL3OI_inner_pixelHits;
         TBranch        *b_iterL3OI_outer_pt;   //!
         TBranch        *b_iterL3OI_outer_eta;   //!
         TBranch        *b_iterL3OI_outer_phi;   //!
@@ -1589,11 +1725,24 @@ public :
         TBranch        *b_iterL3OI_global_eta;   //!
         TBranch        *b_iterL3OI_global_phi;   //!
         TBranch        *b_iterL3OI_global_charge;   //!
+        TBranch        *b_iterL3OI_global_muonHits;
+        TBranch        *b_iterL3OI_global_trkChi2;
+        TBranch        *b_iterL3OI_global_trackerLayers;
+        TBranch        *b_iterL3OI_global_trackerHits;
         TBranch        *b_nIterL3IOFromL2;   //!
         TBranch        *b_iterL3IOFromL2_inner_pt;   //!
         TBranch        *b_iterL3IOFromL2_inner_eta;   //!
         TBranch        *b_iterL3IOFromL2_inner_phi;   //!
         TBranch        *b_iterL3IOFromL2_inner_charge;   //!
+        TBranch        *b_iterL3IOFromL2_inner_trkChi2;
+        TBranch        *b_iterL3IOFromL2_inner_validFraction;
+        TBranch        *b_iterL3IOFromL2_inner_trackerLayers;
+        TBranch        *b_iterL3IOFromL2_inner_trackerHits;
+        TBranch        *b_iterL3IOFromL2_inner_lostTrackerHits;
+        TBranch        *b_iterL3IOFromL2_inner_lostTrackerHitsIn;
+        TBranch        *b_iterL3IOFromL2_inner_lostTrackerHitsOut;
+        TBranch        *b_iterL3IOFromL2_inner_pixelLayers;
+        TBranch        *b_iterL3IOFromL2_inner_pixelHits;
         TBranch        *b_iterL3IOFromL2_outer_pt;   //!
         TBranch        *b_iterL3IOFromL2_outer_eta;   //!
         TBranch        *b_iterL3IOFromL2_outer_phi;   //!
@@ -1602,16 +1751,24 @@ public :
         TBranch        *b_iterL3IOFromL2_global_eta;   //!
         TBranch        *b_iterL3IOFromL2_global_phi;   //!
         TBranch        *b_iterL3IOFromL2_global_charge;   //!
-        TBranch        *b_nIterL3IOFromL1;   //!
-        TBranch        *b_iterL3IOFromL1_pt;   //!
-        TBranch        *b_iterL3IOFromL1_eta;   //!
-        TBranch        *b_iterL3IOFromL1_phi;   //!
-        TBranch        *b_iterL3IOFromL1_charge;   //!
+        TBranch        *b_iterL3IOFromL2_global_muonHits;
+        TBranch        *b_iterL3IOFromL2_global_trkChi2;
+        TBranch        *b_iterL3IOFromL2_global_trackerLayers;
+        TBranch        *b_iterL3IOFromL2_global_trackerHits;
         TBranch        *b_nIterL3FromL2;   //!
         TBranch        *b_iterL3FromL2_inner_pt;   //!
         TBranch        *b_iterL3FromL2_inner_eta;   //!
         TBranch        *b_iterL3FromL2_inner_phi;   //!
         TBranch        *b_iterL3FromL2_inner_charge;   //!
+        TBranch        *b_iterL3FromL2_inner_trkChi2;
+        TBranch        *b_iterL3FromL2_inner_validFraction;
+        TBranch        *b_iterL3FromL2_inner_trackerLayers;
+        TBranch        *b_iterL3FromL2_inner_trackerHits;
+        TBranch        *b_iterL3FromL2_inner_lostTrackerHits;
+        TBranch        *b_iterL3FromL2_inner_lostTrackerHitsIn;
+        TBranch        *b_iterL3FromL2_inner_lostTrackerHitsOut;
+        TBranch        *b_iterL3FromL2_inner_pixelLayers;
+        TBranch        *b_iterL3FromL2_inner_pixelHits;
         TBranch        *b_iterL3FromL2_outer_pt;   //!
         TBranch        *b_iterL3FromL2_outer_eta;   //!
         TBranch        *b_iterL3FromL2_outer_phi;   //!
@@ -1620,6 +1777,25 @@ public :
         TBranch        *b_iterL3FromL2_global_eta;   //!
         TBranch        *b_iterL3FromL2_global_phi;   //!
         TBranch        *b_iterL3FromL2_global_charge;   //!
+        TBranch        *b_iterL3FromL2_global_muonHits;
+        TBranch        *b_iterL3FromL2_global_trkChi2;
+        TBranch        *b_iterL3FromL2_global_trackerLayers;
+        TBranch        *b_iterL3FromL2_global_trackerHits;
+        TBranch        *b_nIterL3IOFromL1;   //!
+        TBranch        *b_iterL3IOFromL1_pt;   //!
+        TBranch        *b_iterL3IOFromL1_eta;   //!
+        TBranch        *b_iterL3IOFromL1_phi;   //!
+        TBranch        *b_iterL3IOFromL1_charge;   //!
+        TBranch        *b_iterL3IOFromL1_muonHits;
+        TBranch        *b_iterL3IOFromL1_trkChi2;
+        TBranch        *b_iterL3IOFromL1_validFraction;
+        TBranch        *b_iterL3IOFromL1_trackerLayers;
+        TBranch        *b_iterL3IOFromL1_trackerHits;
+        TBranch        *b_iterL3IOFromL1_lostTrackerHits;
+        TBranch        *b_iterL3IOFromL1_lostTrackerHitsIn;
+        TBranch        *b_iterL3IOFromL1_lostTrackerHitsOut;
+        TBranch        *b_iterL3IOFromL1_pixelLayers;
+        TBranch        *b_iterL3IOFromL1_pixelHits;
         TBranch        *b_nIterL3MuonNoID;   //!
         TBranch        *b_iterL3MuonNoID_pt;   //!
         TBranch        *b_iterL3MuonNoID_innerPt;   //!
@@ -1629,6 +1805,30 @@ public :
         TBranch        *b_iterL3MuonNoID_isGLB;   //!
         TBranch        *b_iterL3MuonNoID_isSTA;   //!
         TBranch        *b_iterL3MuonNoID_isTRK;   //!
+        TBranch        *b_iterL3MuonNoID_inner_trkChi2;
+        TBranch        *b_iterL3MuonNoID_inner_validFraction;
+        TBranch        *b_iterL3MuonNoID_inner_trackerLayers;
+        TBranch        *b_iterL3MuonNoID_inner_trackerHits;
+        TBranch        *b_iterL3MuonNoID_inner_lostTrackerHits;
+        TBranch        *b_iterL3MuonNoID_inner_lostTrackerHitsIn;
+        TBranch        *b_iterL3MuonNoID_inner_lostTrackerHitsOut;
+        TBranch        *b_iterL3MuonNoID_inner_pixelLayers;
+        TBranch        *b_iterL3MuonNoID_inner_pixelHits;
+        TBranch        *b_iterL3MuonNoID_global_muonHits;
+        TBranch        *b_iterL3MuonNoID_global_trkChi2;
+        TBranch        *b_iterL3MuonNoID_global_trackerLayers;
+        TBranch        *b_iterL3MuonNoID_global_trackerHits;
+        TBranch        *b_iterL3MuonNoID_momentumChi2;
+        TBranch        *b_iterL3MuonNoID_positionChi2;
+        TBranch        *b_iterL3MuonNoID_glbKink;
+        TBranch        *b_iterL3MuonNoID_glbTrackProbability;
+        TBranch        *b_iterL3MuonNoID_globalDeltaEtaPhi;
+        TBranch        *b_iterL3MuonNoID_localDistance;
+        TBranch        *b_iterL3MuonNoID_staRelChi2;
+        TBranch        *b_iterL3MuonNoID_tightMatch;
+        TBranch        *b_iterL3MuonNoID_trkKink;
+        TBranch        *b_iterL3MuonNoID_trkRelChi2;
+        TBranch        *b_iterL3MuonNoID_segmentCompatibility;
         TBranch        *b_nIterL3Muon;   //!
         TBranch        *b_iterL3Muon_pt;   //!
         TBranch        *b_iterL3Muon_innerPt;   //!
@@ -1638,6 +1838,30 @@ public :
         TBranch        *b_iterL3Muon_isGLB;   //!
         TBranch        *b_iterL3Muon_isSTA;   //!
         TBranch        *b_iterL3Muon_isTRK;   //!
+        TBranch        *b_iterL3Muon_inner_trkChi2;
+        TBranch        *b_iterL3Muon_inner_validFraction;
+        TBranch        *b_iterL3Muon_inner_trackerLayers;
+        TBranch        *b_iterL3Muon_inner_trackerHits;
+        TBranch        *b_iterL3Muon_inner_lostTrackerHits;
+        TBranch        *b_iterL3Muon_inner_lostTrackerHitsIn;
+        TBranch        *b_iterL3Muon_inner_lostTrackerHitsOut;
+        TBranch        *b_iterL3Muon_inner_pixelLayers;
+        TBranch        *b_iterL3Muon_inner_pixelHits;
+        TBranch        *b_iterL3Muon_global_muonHits;
+        TBranch        *b_iterL3Muon_global_trkChi2;
+        TBranch        *b_iterL3Muon_global_trackerLayers;
+        TBranch        *b_iterL3Muon_global_trackerHits;
+        TBranch        *b_iterL3Muon_momentumChi2;
+        TBranch        *b_iterL3Muon_positionChi2;
+        TBranch        *b_iterL3Muon_glbKink;
+        TBranch        *b_iterL3Muon_glbTrackProbability;
+        TBranch        *b_iterL3Muon_globalDeltaEtaPhi;
+        TBranch        *b_iterL3Muon_localDistance;
+        TBranch        *b_iterL3Muon_staRelChi2;
+        TBranch        *b_iterL3Muon_tightMatch;
+        TBranch        *b_iterL3Muon_trkKink;
+        TBranch        *b_iterL3Muon_trkRelChi2;
+        TBranch        *b_iterL3Muon_segmentCompatibility;
         TBranch        *b_nTP;   //!
         TBranch        *b_TP_charge;   //!
         TBranch        *b_TP_pdgId;   //!
@@ -2558,15 +2782,30 @@ vector<Object> MuonHLTNtupleRun3::get_offlineMuons()
         obj.addVar( "PFCluster03_HCAL", muon_PFCluster03_HCAL[i] );
         obj.addVar( "PFCluster04_ECAL", muon_PFCluster04_ECAL[i] );
         obj.addVar( "PFCluster04_HCAL", muon_PFCluster04_HCAL[i] );
-        obj.addVar( "normChi2_global", muon_normChi2_global[i] );
-        obj.addVar( "nTrackerHit_global", muon_nTrackerHit_global[i] );
-        obj.addVar( "nTrackerLayer_global", muon_nTrackerLayer_global[i] );
-        obj.addVar( "nPixelHit_global", muon_nPixelHit_global[i] );
-        obj.addVar( "nMuonHit_global", muon_nMuonHit_global[i] );
-        obj.addVar( "normChi2_inner", muon_normChi2_inner[i] );
-        obj.addVar( "nTrackerHit_inner", muon_nTrackerHit_inner[i] );
-        obj.addVar( "nTrackerLayer_inner", muon_nTrackerLayer_inner[i] );
-        obj.addVar( "nPixelHit_inner", muon_nPixelHit_inner[i] );
+        obj.addVar( "inner_trkChi2",  muon_inner_trkChi2[i] );
+        obj.addVar( "inner_validFraction", muon_inner_validFraction[i] );
+        obj.addVar( "inner_trackerLayers", muon_inner_trackerLayers[i] );
+        obj.addVar( "inner_trackerHits", muon_inner_trackerHits[i] );
+        obj.addVar( "inner_lostTrackerHits", muon_inner_lostTrackerHits[i] );
+        obj.addVar( "inner_lostTrackerHitsIn", muon_inner_lostTrackerHitsIn[i] );
+        obj.addVar( "inner_lostTrackerHitsOut", muon_inner_lostTrackerHitsOut[i] );
+        obj.addVar( "inner_pixelLayers", muon_inner_pixelLayers[i] );
+        obj.addVar( "inner_pixelHits", muon_inner_pixelHits[i] );
+        obj.addVar( "global_muonHits", muon_global_muonHits[i] );
+        obj.addVar( "global_trkChi2", muon_global_trkChi2[i] );
+        obj.addVar( "global_trackerLayers", muon_global_trackerLayers[i] );
+        obj.addVar( "global_trackerHits", muon_global_trackerHits[i] );
+        obj.addVar( "momentumChi2", muon_momentumChi2[i] );
+        obj.addVar( "positionChi2", muon_positionChi2[i] );
+        obj.addVar( "glbKink", muon_glbKink[i] );
+        obj.addVar( "glbTrackProbability", muon_glbTrackProbability[i] );
+        obj.addVar( "globalDeltaEtaPhi", muon_globalDeltaEtaPhi[i] );
+        obj.addVar( "localDistance", muon_localDistance[i] );
+        obj.addVar( "staRelChi2", muon_staRelChi2[i] );
+        obj.addVar( "tightMatch", muon_tightMatch[i] );
+        obj.addVar( "trkKink", muon_trkKink[i] );
+        obj.addVar( "trkRelChi2", muon_trkRelChi2[i] );
+        obj.addVar( "segmentCompatibility", muon_segmentCompatibility[i] );
         obj.addVar( "pt_tuneP", muon_pt_tuneP[i] );
         obj.addVar( "ptError_tuneP", muon_ptError_tuneP[i] );
         obj.addVar( "dxyVTX_best", muon_dxyVTX_best[i] );
@@ -2845,6 +3084,15 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3OI()
         obj.addVar( "inner_eta", iterL3OI_inner_eta[i] );
         obj.addVar( "inner_phi", iterL3OI_inner_phi[i] );
         obj.addVar( "inner_charge", iterL3OI_inner_charge[i] );
+        obj.addVar( "inner_trkChi2", iterL3OI_inner_trkChi2[i] );
+        obj.addVar( "inner_validFraction", iterL3OI_inner_validFraction[i] );
+        obj.addVar( "inner_trackerLayers", iterL3OI_inner_trackerLayers[i] );
+        obj.addVar( "inner_trackerHits", iterL3OI_inner_trackerHits[i] );
+        obj.addVar( "inner_lostTrackerHits", iterL3OI_inner_lostTrackerHits[i] );
+        obj.addVar( "inner_lostTrackerHitsIn", iterL3OI_inner_lostTrackerHitsIn[i] );
+        obj.addVar( "inner_lostTrackerHitsOut", iterL3OI_inner_lostTrackerHitsOut[i] );
+        obj.addVar( "inner_pixelLayers", iterL3OI_inner_pixelLayers[i] );
+        obj.addVar( "inner_pixelHits", iterL3OI_inner_pixelHits[i] );
         obj.addVar( "outer_pt", iterL3OI_outer_pt[i] );
         obj.addVar( "outer_eta", iterL3OI_outer_eta[i] );
         obj.addVar( "outer_phi", iterL3OI_outer_phi[i] );
@@ -2853,6 +3101,10 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3OI()
         obj.addVar( "global_eta", iterL3OI_global_eta[i] );
         obj.addVar( "global_phi", iterL3OI_global_phi[i] );
         obj.addVar( "global_charge", iterL3OI_global_charge[i] );
+        obj.addVar( "global_muonHits", iterL3OI_global_muonHits[i] );
+        obj.addVar( "global_trkChi2", iterL3OI_global_trkChi2[i] );
+        obj.addVar( "global_trackerLayers", iterL3OI_global_trackerLayers[i] );
+        obj.addVar( "global_trackerHits", iterL3OI_global_trackerHits[i] );
 
         out.push_back(obj);
     }
@@ -2870,6 +3122,15 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3IOFromL2()
         obj.addVar( "inner_eta", iterL3IOFromL2_inner_eta[i] );
         obj.addVar( "inner_phi", iterL3IOFromL2_inner_phi[i] );
         obj.addVar( "inner_charge", iterL3IOFromL2_inner_charge[i] );
+        obj.addVar( "inner_trkChi2", iterL3IOFromL2_inner_trkChi2[i] );
+        obj.addVar( "inner_validFraction", iterL3IOFromL2_inner_validFraction[i] );
+        obj.addVar( "inner_trackerLayers", iterL3IOFromL2_inner_trackerLayers[i] );
+        obj.addVar( "inner_trackerHits", iterL3IOFromL2_inner_trackerHits[i] );
+        obj.addVar( "inner_lostTrackerHits", iterL3IOFromL2_inner_lostTrackerHits[i] );
+        obj.addVar( "inner_lostTrackerHitsIn", iterL3IOFromL2_inner_lostTrackerHitsIn[i] );
+        obj.addVar( "inner_lostTrackerHitsOut", iterL3IOFromL2_inner_lostTrackerHitsOut[i] );
+        obj.addVar( "inner_pixelLayers", iterL3IOFromL2_inner_pixelLayers[i] );
+        obj.addVar( "inner_pixelHits", iterL3IOFromL2_inner_pixelHits[i] );
         obj.addVar( "outer_pt", iterL3IOFromL2_outer_pt[i] );
         obj.addVar( "outer_eta", iterL3IOFromL2_outer_eta[i] );
         obj.addVar( "outer_phi", iterL3IOFromL2_outer_phi[i] );
@@ -2878,6 +3139,10 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3IOFromL2()
         obj.addVar( "global_eta", iterL3IOFromL2_global_eta[i] );
         obj.addVar( "global_phi", iterL3IOFromL2_global_phi[i] );
         obj.addVar( "global_charge", iterL3IOFromL2_global_charge[i] );
+        obj.addVar( "global_muonHits", iterL3IOFromL2_global_muonHits[i] );
+        obj.addVar( "global_trkChi2", iterL3IOFromL2_global_trkChi2[i] );
+        obj.addVar( "global_trackerLayers", iterL3IOFromL2_global_trackerLayers[i] );
+        obj.addVar( "global_trackerHits", iterL3IOFromL2_global_trackerHits[i] );
 
         out.push_back(obj);
     }
@@ -2895,6 +3160,15 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3FromL2()
         obj.addVar( "inner_eta", iterL3FromL2_inner_eta[i] );
         obj.addVar( "inner_phi", iterL3FromL2_inner_phi[i] );
         obj.addVar( "inner_charge", iterL3FromL2_inner_charge[i] );
+        obj.addVar( "inner_trkChi2", iterL3FromL2_inner_trkChi2[i] );
+        obj.addVar( "inner_validFraction", iterL3FromL2_inner_validFraction[i] );
+        obj.addVar( "inner_trackerLayers", iterL3FromL2_inner_trackerLayers[i] );
+        obj.addVar( "inner_trackerHits", iterL3FromL2_inner_trackerHits[i] );
+        obj.addVar( "inner_lostTrackerHits", iterL3FromL2_inner_lostTrackerHits[i] );
+        obj.addVar( "inner_lostTrackerHitsIn", iterL3FromL2_inner_lostTrackerHitsIn[i] );
+        obj.addVar( "inner_lostTrackerHitsOut", iterL3FromL2_inner_lostTrackerHitsOut[i] );
+        obj.addVar( "inner_pixelLayers", iterL3FromL2_inner_pixelLayers[i] );
+        obj.addVar( "inner_pixelHits", iterL3FromL2_inner_pixelHits[i] );
         obj.addVar( "outer_pt", iterL3FromL2_outer_pt[i] );
         obj.addVar( "outer_eta", iterL3FromL2_outer_eta[i] );
         obj.addVar( "outer_phi", iterL3FromL2_outer_phi[i] );
@@ -2903,6 +3177,10 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3FromL2()
         obj.addVar( "global_eta", iterL3FromL2_global_eta[i] );
         obj.addVar( "global_phi", iterL3FromL2_global_phi[i] );
         obj.addVar( "global_charge", iterL3FromL2_global_charge[i] );
+        obj.addVar( "global_muonHits", iterL3FromL2_global_muonHits[i] );
+        obj.addVar( "global_trkChi2", iterL3FromL2_global_trkChi2[i] );
+        obj.addVar( "global_trackerLayers", iterL3FromL2_global_trackerLayers[i] );
+        obj.addVar( "global_trackerHits", iterL3FromL2_global_trackerHits[i] );
 
         out.push_back(obj);
     }
@@ -2920,6 +3198,16 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3IOFromL1()
         obj.addVar( "eta", iterL3IOFromL1_eta[i] );
         obj.addVar( "phi", iterL3IOFromL1_phi[i] );
         obj.addVar( "charge", iterL3IOFromL1_charge[i] );
+        obj.addVar( "muonHits", iterL3IOFromL1_muonHits[i] );
+        obj.addVar( "trkChi2", iterL3IOFromL1_trkChi2[i] );
+        obj.addVar( "validFraction", iterL3IOFromL1_validFraction[i] );
+        obj.addVar( "trackerLayers", iterL3IOFromL1_trackerLayers[i] );
+        obj.addVar( "trackerHits", iterL3IOFromL1_trackerHits[i] );
+        obj.addVar( "lostTrackerHits", iterL3IOFromL1_lostTrackerHits[i] );
+        obj.addVar( "lostTrackerHitsIn", iterL3IOFromL1_lostTrackerHitsIn[i] );
+        obj.addVar( "lostTrackerHitsOut", iterL3IOFromL1_lostTrackerHitsOut[i] );
+        obj.addVar( "pixelLayers", iterL3IOFromL1_pixelLayers[i] );
+        obj.addVar( "pixelHits", iterL3IOFromL1_pixelHits[i] );
 
         out.push_back(obj);
     }
@@ -2941,6 +3229,30 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3MuonNoID()
         obj.addVar( "isGLB", iterL3MuonNoID_isGLB[i] );
         obj.addVar( "isSTA", iterL3MuonNoID_isSTA[i] );
         obj.addVar( "isTRK", iterL3MuonNoID_isTRK[i] );
+        obj.addVar( "inner_trkChi2", iterL3MuonNoID_inner_trkChi2[i] );
+        obj.addVar( "inner_validFraction", iterL3MuonNoID_inner_validFraction[i] );
+        obj.addVar( "inner_trackerLayers", iterL3MuonNoID_inner_trackerLayers[i] );
+        obj.addVar( "inner_trackerHits", iterL3MuonNoID_inner_trackerHits[i] );
+        obj.addVar( "inner_lostTrackerHits", iterL3MuonNoID_inner_lostTrackerHits[i] );
+        obj.addVar( "inner_lostTrackerHitsIn", iterL3MuonNoID_inner_lostTrackerHitsIn[i] );
+        obj.addVar( "inner_lostTrackerHitsOut", iterL3MuonNoID_inner_lostTrackerHitsOut[i] );
+        obj.addVar( "inner_pixelLayers", iterL3MuonNoID_inner_pixelLayers[i] );
+        obj.addVar( "inner_pixelHits", iterL3MuonNoID_inner_pixelHits[i] );
+        obj.addVar( "global_muonHits", iterL3MuonNoID_global_muonHits[i] );
+        obj.addVar( "global_trkChi2", iterL3MuonNoID_global_trkChi2[i] );
+        obj.addVar( "global_trackerLayers", iterL3MuonNoID_global_trackerLayers[i] );
+        obj.addVar( "global_trackerHits", iterL3MuonNoID_global_trackerHits[i] );
+        obj.addVar( "momentumChi2", iterL3MuonNoID_momentumChi2[i] );
+        obj.addVar( "positionChi2", iterL3MuonNoID_positionChi2[i] );
+        obj.addVar( "glbKink", iterL3MuonNoID_glbKink[i] );
+        obj.addVar( "glbTrackProbability", iterL3MuonNoID_glbTrackProbability[i] );
+        obj.addVar( "globalDeltaEtaPhi", iterL3MuonNoID_globalDeltaEtaPhi[i] );
+        obj.addVar( "localDistance", iterL3MuonNoID_localDistance[i] );
+        obj.addVar( "staRelChi2", iterL3MuonNoID_staRelChi2[i] );
+        obj.addVar( "tightMatch", iterL3MuonNoID_tightMatch[i] );
+        obj.addVar( "trkKink", iterL3MuonNoID_trkKink[i] );
+        obj.addVar( "trkRelChi2", iterL3MuonNoID_trkRelChi2[i] );
+        obj.addVar( "segmentCompatibility", iterL3MuonNoID_segmentCompatibility[i] );
 
         out.push_back(obj);
     }
@@ -2962,6 +3274,30 @@ vector<Object> MuonHLTNtupleRun3::get_iterL3Muon()
         obj.addVar( "isGLB", iterL3Muon_isGLB[i] );
         obj.addVar( "isSTA", iterL3Muon_isSTA[i] );
         obj.addVar( "isTRK", iterL3Muon_isTRK[i] );
+        obj.addVar( "inner_trkChi2", iterL3Muon_inner_trkChi2[i] );
+        obj.addVar( "inner_validFraction", iterL3Muon_inner_validFraction[i] );
+        obj.addVar( "inner_trackerLayers", iterL3Muon_inner_trackerLayers[i] );
+        obj.addVar( "inner_trackerHits", iterL3Muon_inner_trackerHits[i] );
+        obj.addVar( "inner_lostTrackerHits", iterL3Muon_inner_lostTrackerHits[i] );
+        obj.addVar( "inner_lostTrackerHitsIn", iterL3Muon_inner_lostTrackerHitsIn[i] );
+        obj.addVar( "inner_lostTrackerHitsOut", iterL3Muon_inner_lostTrackerHitsOut[i] );
+        obj.addVar( "inner_pixelLayers", iterL3Muon_inner_pixelLayers[i] );
+        obj.addVar( "inner_pixelHits", iterL3Muon_inner_pixelHits[i] );
+        obj.addVar( "global_muonHits", iterL3Muon_global_muonHits[i] );
+        obj.addVar( "global_trkChi2", iterL3Muon_global_trkChi2[i] );
+        obj.addVar( "global_trackerLayers", iterL3Muon_global_trackerLayers[i] );
+        obj.addVar( "global_trackerHits", iterL3Muon_global_trackerHits[i] );
+        obj.addVar( "momentumChi2", iterL3Muon_momentumChi2[i] );
+        obj.addVar( "positionChi2", iterL3Muon_positionChi2[i] );
+        obj.addVar( "glbKink", iterL3Muon_glbKink[i] );
+        obj.addVar( "glbTrackProbability", iterL3Muon_glbTrackProbability[i] );
+        obj.addVar( "globalDeltaEtaPhi", iterL3Muon_globalDeltaEtaPhi[i] );
+        obj.addVar( "localDistance", iterL3Muon_localDistance[i] );
+        obj.addVar( "staRelChi2", iterL3Muon_staRelChi2[i] );
+        obj.addVar( "tightMatch", iterL3Muon_tightMatch[i] );
+        obj.addVar( "trkKink", iterL3Muon_trkKink[i] );
+        obj.addVar( "trkRelChi2", iterL3Muon_trkRelChi2[i] );
+        obj.addVar( "segmentCompatibility", iterL3Muon_segmentCompatibility[i] );
 
         out.push_back(obj);
     }
@@ -5250,15 +5586,30 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("muon_PFCluster03_HCAL", &muon_PFCluster03_HCAL, &b_muon_PFCluster03_HCAL);
     fChain->SetBranchAddress("muon_PFCluster04_ECAL", &muon_PFCluster04_ECAL, &b_muon_PFCluster04_ECAL);
     fChain->SetBranchAddress("muon_PFCluster04_HCAL", &muon_PFCluster04_HCAL, &b_muon_PFCluster04_HCAL);
-    fChain->SetBranchAddress("muon_normChi2_global", &muon_normChi2_global, &b_muon_normChi2_global);
-    fChain->SetBranchAddress("muon_nTrackerHit_global", &muon_nTrackerHit_global, &b_muon_nTrackerHit_global);
-    fChain->SetBranchAddress("muon_nTrackerLayer_global", &muon_nTrackerLayer_global, &b_muon_nTrackerLayer_global);
-    fChain->SetBranchAddress("muon_nPixelHit_global", &muon_nPixelHit_global, &b_muon_nPixelHit_global);
-    fChain->SetBranchAddress("muon_nMuonHit_global", &muon_nMuonHit_global, &b_muon_nMuonHit_global);
-    fChain->SetBranchAddress("muon_normChi2_inner", &muon_normChi2_inner, &b_muon_normChi2_inner);
-    fChain->SetBranchAddress("muon_nTrackerHit_inner", &muon_nTrackerHit_inner, &b_muon_nTrackerHit_inner);
-    fChain->SetBranchAddress("muon_nTrackerLayer_inner", &muon_nTrackerLayer_inner, &b_muon_nTrackerLayer_inner);
-    fChain->SetBranchAddress("muon_nPixelHit_inner", &muon_nPixelHit_inner, &b_muon_nPixelHit_inner);
+    fChain->SetBranchAddress("muon_inner_trkChi2", &muon_inner_trkChi2, &b_muon_inner_trkChi2);
+    fChain->SetBranchAddress("muon_inner_validFraction", &muon_inner_validFraction, &b_muon_inner_validFraction);
+    fChain->SetBranchAddress("muon_inner_trackerLayers", &muon_inner_trackerLayers, &b_muon_inner_trackerLayers);
+    fChain->SetBranchAddress("muon_inner_trackerHits", &muon_inner_trackerHits, &b_muon_inner_trackerHits);
+    fChain->SetBranchAddress("muon_inner_lostTrackerHits", &muon_inner_lostTrackerHits, &b_muon_inner_lostTrackerHits);
+    fChain->SetBranchAddress("muon_inner_lostTrackerHitsIn", &muon_inner_lostTrackerHitsIn, &b_muon_inner_lostTrackerHitsIn);
+    fChain->SetBranchAddress("muon_inner_lostTrackerHitsOut", &muon_inner_lostTrackerHitsOut, &b_muon_inner_lostTrackerHitsOut);
+    fChain->SetBranchAddress("muon_inner_pixelLayers", &muon_inner_pixelLayers, &b_muon_inner_pixelLayers);
+    fChain->SetBranchAddress("muon_inner_pixelHits", &muon_inner_pixelHits, &b_muon_inner_pixelHits);
+    fChain->SetBranchAddress("muon_global_muonHits", &muon_global_muonHits, &b_muon_global_muonHits);
+    fChain->SetBranchAddress("muon_global_trkChi2", &muon_global_trkChi2, &b_muon_global_trkChi2);
+    fChain->SetBranchAddress("muon_global_trackerLayers", &muon_global_trackerLayers, &b_muon_global_trackerLayers);
+    fChain->SetBranchAddress("muon_global_trackerHits", &muon_global_trackerHits, &b_muon_global_trackerHits);
+    fChain->SetBranchAddress("muon_momentumChi2", &muon_momentumChi2, &b_muon_momentumChi2);
+    fChain->SetBranchAddress("muon_positionChi2", &muon_positionChi2, &b_muon_positionChi2);
+    fChain->SetBranchAddress("muon_glbKink", &muon_glbKink, &b_muon_glbKink);
+    fChain->SetBranchAddress("muon_glbTrackProbability", &muon_glbTrackProbability, &b_muon_glbTrackProbability);
+    fChain->SetBranchAddress("muon_globalDeltaEtaPhi", &muon_globalDeltaEtaPhi, &b_muon_globalDeltaEtaPhi);
+    fChain->SetBranchAddress("muon_localDistance", &muon_localDistance, &b_muon_localDistance);
+    fChain->SetBranchAddress("muon_staRelChi2", &muon_staRelChi2, &b_muon_staRelChi2);
+    fChain->SetBranchAddress("muon_tightMatch", &muon_tightMatch, &b_muon_tightMatch);
+    fChain->SetBranchAddress("muon_trkKink", &muon_trkKink, &b_muon_trkKink);
+    fChain->SetBranchAddress("muon_trkRelChi2", &muon_trkRelChi2, &b_muon_trkRelChi2);
+    fChain->SetBranchAddress("muon_segmentCompatibility", &muon_segmentCompatibility, &b_muon_segmentCompatibility);
     fChain->SetBranchAddress("muon_pt_tuneP", &muon_pt_tuneP, &b_muon_pt_tuneP);
     fChain->SetBranchAddress("muon_ptError_tuneP", &muon_ptError_tuneP, &b_muon_ptError_tuneP);
     fChain->SetBranchAddress("muon_dxyVTX_best", &muon_dxyVTX_best, &b_muon_dxyVTX_best);
@@ -5321,6 +5672,15 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("iterL3OI_inner_eta", iterL3OI_inner_eta, &b_iterL3OI_inner_eta);
     fChain->SetBranchAddress("iterL3OI_inner_phi", iterL3OI_inner_phi, &b_iterL3OI_inner_phi);
     fChain->SetBranchAddress("iterL3OI_inner_charge", iterL3OI_inner_charge, &b_iterL3OI_inner_charge);
+    fChain->SetBranchAddress("iterL3OI_inner_trkChi2", iterL3OI_inner_trkChi2, &b_iterL3OI_inner_trkChi2);
+    fChain->SetBranchAddress("iterL3OI_inner_validFraction", iterL3OI_inner_validFraction, &b_iterL3OI_inner_validFraction);
+    fChain->SetBranchAddress("iterL3OI_inner_trackerLayers", iterL3OI_inner_trackerLayers, &b_iterL3OI_inner_trackerLayers);
+    fChain->SetBranchAddress("iterL3OI_inner_trackerHits", iterL3OI_inner_trackerHits, &b_iterL3OI_inner_trackerHits);
+    fChain->SetBranchAddress("iterL3OI_inner_lostTrackerHits", &iterL3OI_inner_lostTrackerHits, &b_iterL3OI_inner_lostTrackerHits);
+    fChain->SetBranchAddress("iterL3OI_inner_lostTrackerHitsIn", &iterL3OI_inner_lostTrackerHitsIn, &b_iterL3OI_inner_lostTrackerHitsIn);
+    fChain->SetBranchAddress("iterL3OI_inner_lostTrackerHitsOut", &iterL3OI_inner_lostTrackerHitsOut, &b_iterL3OI_inner_lostTrackerHitsOut);
+    fChain->SetBranchAddress("iterL3OI_inner_pixelLayers", iterL3OI_inner_pixelLayers, &b_iterL3OI_inner_pixelLayers);
+    fChain->SetBranchAddress("iterL3OI_inner_pixelHits", iterL3OI_inner_pixelHits, &b_iterL3OI_inner_pixelHits);
     fChain->SetBranchAddress("iterL3OI_outer_pt", iterL3OI_outer_pt, &b_iterL3OI_outer_pt);
     fChain->SetBranchAddress("iterL3OI_outer_eta", iterL3OI_outer_eta, &b_iterL3OI_outer_eta);
     fChain->SetBranchAddress("iterL3OI_outer_phi", iterL3OI_outer_phi, &b_iterL3OI_outer_phi);
@@ -5329,11 +5689,24 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("iterL3OI_global_eta", iterL3OI_global_eta, &b_iterL3OI_global_eta);
     fChain->SetBranchAddress("iterL3OI_global_phi", iterL3OI_global_phi, &b_iterL3OI_global_phi);
     fChain->SetBranchAddress("iterL3OI_global_charge", iterL3OI_global_charge, &b_iterL3OI_global_charge);
+    fChain->SetBranchAddress("iterL3OI_global_muonHits", iterL3OI_global_muonHits, &b_iterL3OI_global_muonHits);
+    fChain->SetBranchAddress("iterL3OI_global_trkChi2", iterL3OI_global_trkChi2, &b_iterL3OI_global_trkChi2);
+    fChain->SetBranchAddress("iterL3OI_global_trackerLayers", iterL3OI_global_trackerLayers, &b_iterL3OI_global_trackerLayers);
+    fChain->SetBranchAddress("iterL3OI_global_trackerHits", iterL3OI_global_trackerHits, &b_iterL3OI_global_trackerHits);
     fChain->SetBranchAddress("nIterL3IOFromL2", &nIterL3IOFromL2, &b_nIterL3IOFromL2);
     fChain->SetBranchAddress("iterL3IOFromL2_inner_pt", iterL3IOFromL2_inner_pt, &b_iterL3IOFromL2_inner_pt);
     fChain->SetBranchAddress("iterL3IOFromL2_inner_eta", iterL3IOFromL2_inner_eta, &b_iterL3IOFromL2_inner_eta);
     fChain->SetBranchAddress("iterL3IOFromL2_inner_phi", iterL3IOFromL2_inner_phi, &b_iterL3IOFromL2_inner_phi);
     fChain->SetBranchAddress("iterL3IOFromL2_inner_charge", iterL3IOFromL2_inner_charge, &b_iterL3IOFromL2_inner_charge);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_trkChi2", iterL3IOFromL2_inner_trkChi2, &b_iterL3IOFromL2_inner_trkChi2);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_validFraction", iterL3IOFromL2_inner_validFraction, &b_iterL3IOFromL2_inner_validFraction);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_trackerLayers", iterL3IOFromL2_inner_trackerLayers, &b_iterL3IOFromL2_inner_trackerLayers);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_trackerHits", iterL3IOFromL2_inner_trackerHits, &b_iterL3IOFromL2_inner_trackerHits);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_lostTrackerHits", &iterL3IOFromL2_inner_lostTrackerHits, &b_iterL3IOFromL2_inner_lostTrackerHits);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_lostTrackerHitsIn", &iterL3IOFromL2_inner_lostTrackerHitsIn, &b_iterL3IOFromL2_inner_lostTrackerHitsIn);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_lostTrackerHitsOut", &iterL3IOFromL2_inner_lostTrackerHitsOut, &b_iterL3IOFromL2_inner_lostTrackerHitsOut);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_pixelLayers", iterL3IOFromL2_inner_pixelLayers, &b_iterL3IOFromL2_inner_pixelLayers);
+    fChain->SetBranchAddress("iterL3IOFromL2_inner_pixelHits", iterL3IOFromL2_inner_pixelHits, &b_iterL3IOFromL2_inner_pixelHits);
     fChain->SetBranchAddress("iterL3IOFromL2_outer_pt", iterL3IOFromL2_outer_pt, &b_iterL3IOFromL2_outer_pt);
     fChain->SetBranchAddress("iterL3IOFromL2_outer_eta", iterL3IOFromL2_outer_eta, &b_iterL3IOFromL2_outer_eta);
     fChain->SetBranchAddress("iterL3IOFromL2_outer_phi", iterL3IOFromL2_outer_phi, &b_iterL3IOFromL2_outer_phi);
@@ -5342,16 +5715,24 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("iterL3IOFromL2_global_eta", iterL3IOFromL2_global_eta, &b_iterL3IOFromL2_global_eta);
     fChain->SetBranchAddress("iterL3IOFromL2_global_phi", iterL3IOFromL2_global_phi, &b_iterL3IOFromL2_global_phi);
     fChain->SetBranchAddress("iterL3IOFromL2_global_charge", iterL3IOFromL2_global_charge, &b_iterL3IOFromL2_global_charge);
-    fChain->SetBranchAddress("nIterL3IOFromL1", &nIterL3IOFromL1, &b_nIterL3IOFromL1);
-    fChain->SetBranchAddress("iterL3IOFromL1_pt", &iterL3IOFromL1_pt, &b_iterL3IOFromL1_pt);
-    fChain->SetBranchAddress("iterL3IOFromL1_eta", &iterL3IOFromL1_eta, &b_iterL3IOFromL1_eta);
-    fChain->SetBranchAddress("iterL3IOFromL1_phi", &iterL3IOFromL1_phi, &b_iterL3IOFromL1_phi);
-    fChain->SetBranchAddress("iterL3IOFromL1_charge", &iterL3IOFromL1_charge, &b_iterL3IOFromL1_charge);
+    fChain->SetBranchAddress("iterL3IOFromL2_global_muonHits", iterL3IOFromL2_global_muonHits, &b_iterL3IOFromL2_global_muonHits);
+    fChain->SetBranchAddress("iterL3IOFromL2_global_trkChi2", iterL3IOFromL2_global_trkChi2, &b_iterL3IOFromL2_global_trkChi2);
+    fChain->SetBranchAddress("iterL3IOFromL2_global_trackerLayers", iterL3IOFromL2_global_trackerLayers, &b_iterL3IOFromL2_global_trackerLayers);
+    fChain->SetBranchAddress("iterL3IOFromL2_global_trackerHits", iterL3IOFromL2_global_trackerHits, &b_iterL3IOFromL2_global_trackerHits);
     fChain->SetBranchAddress("nIterL3FromL2", &nIterL3FromL2, &b_nIterL3FromL2);
     fChain->SetBranchAddress("iterL3FromL2_inner_pt", iterL3FromL2_inner_pt, &b_iterL3FromL2_inner_pt);
     fChain->SetBranchAddress("iterL3FromL2_inner_eta", iterL3FromL2_inner_eta, &b_iterL3FromL2_inner_eta);
     fChain->SetBranchAddress("iterL3FromL2_inner_phi", iterL3FromL2_inner_phi, &b_iterL3FromL2_inner_phi);
     fChain->SetBranchAddress("iterL3FromL2_inner_charge", iterL3FromL2_inner_charge, &b_iterL3FromL2_inner_charge);
+    fChain->SetBranchAddress("iterL3FromL2_inner_trkChi2", iterL3FromL2_inner_trkChi2, &b_iterL3FromL2_inner_trkChi2);
+    fChain->SetBranchAddress("iterL3FromL2_inner_validFraction", iterL3FromL2_inner_validFraction, &b_iterL3FromL2_inner_validFraction);
+    fChain->SetBranchAddress("iterL3FromL2_inner_trackerLayers", iterL3FromL2_inner_trackerLayers, &b_iterL3FromL2_inner_trackerLayers);
+    fChain->SetBranchAddress("iterL3FromL2_inner_trackerHits", iterL3FromL2_inner_trackerHits, &b_iterL3FromL2_inner_trackerHits);
+    fChain->SetBranchAddress("iterL3FromL2_inner_lostTrackerHits", &iterL3FromL2_inner_lostTrackerHits, &b_iterL3FromL2_inner_lostTrackerHits);
+    fChain->SetBranchAddress("iterL3FromL2_inner_lostTrackerHitsIn", &iterL3FromL2_inner_lostTrackerHitsIn, &b_iterL3FromL2_inner_lostTrackerHitsIn);
+    fChain->SetBranchAddress("iterL3FromL2_inner_lostTrackerHitsOut", &iterL3FromL2_inner_lostTrackerHitsOut, &b_iterL3FromL2_inner_lostTrackerHitsOut);
+    fChain->SetBranchAddress("iterL3FromL2_inner_pixelLayers", iterL3FromL2_inner_pixelLayers, &b_iterL3FromL2_inner_pixelLayers);
+    fChain->SetBranchAddress("iterL3FromL2_inner_pixelHits", iterL3FromL2_inner_pixelHits, &b_iterL3FromL2_inner_pixelHits);
     fChain->SetBranchAddress("iterL3FromL2_outer_pt", iterL3FromL2_outer_pt, &b_iterL3FromL2_outer_pt);
     fChain->SetBranchAddress("iterL3FromL2_outer_eta", iterL3FromL2_outer_eta, &b_iterL3FromL2_outer_eta);
     fChain->SetBranchAddress("iterL3FromL2_outer_phi", iterL3FromL2_outer_phi, &b_iterL3FromL2_outer_phi);
@@ -5360,6 +5741,25 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("iterL3FromL2_global_eta", iterL3FromL2_global_eta, &b_iterL3FromL2_global_eta);
     fChain->SetBranchAddress("iterL3FromL2_global_phi", iterL3FromL2_global_phi, &b_iterL3FromL2_global_phi);
     fChain->SetBranchAddress("iterL3FromL2_global_charge", iterL3FromL2_global_charge, &b_iterL3FromL2_global_charge);
+    fChain->SetBranchAddress("iterL3FromL2_global_muonHits", iterL3FromL2_global_muonHits, &b_iterL3FromL2_global_muonHits);
+    fChain->SetBranchAddress("iterL3FromL2_global_trkChi2", iterL3FromL2_global_trkChi2, &b_iterL3FromL2_global_trkChi2);
+    fChain->SetBranchAddress("iterL3FromL2_global_trackerLayers", iterL3FromL2_global_trackerLayers, &b_iterL3FromL2_global_trackerLayers);
+    fChain->SetBranchAddress("iterL3FromL2_global_trackerHits", iterL3FromL2_global_trackerHits, &b_iterL3FromL2_global_trackerHits);
+    fChain->SetBranchAddress("nIterL3IOFromL1", &nIterL3IOFromL1, &b_nIterL3IOFromL1);
+    fChain->SetBranchAddress("iterL3IOFromL1_pt", iterL3IOFromL1_pt, &b_iterL3IOFromL1_pt);
+    fChain->SetBranchAddress("iterL3IOFromL1_eta", iterL3IOFromL1_eta, &b_iterL3IOFromL1_eta);
+    fChain->SetBranchAddress("iterL3IOFromL1_phi", iterL3IOFromL1_phi, &b_iterL3IOFromL1_phi);
+    fChain->SetBranchAddress("iterL3IOFromL1_charge", iterL3IOFromL1_charge, &b_iterL3IOFromL1_charge);
+    fChain->SetBranchAddress("iterL3IOFromL1_muonHits", iterL3IOFromL1_muonHits, &b_iterL3IOFromL1_muonHits);
+    fChain->SetBranchAddress("iterL3IOFromL1_trkChi2", iterL3IOFromL1_trkChi2, &b_iterL3IOFromL1_trkChi2);
+    fChain->SetBranchAddress("iterL3IOFromL1_validFraction", iterL3IOFromL1_validFraction, &b_iterL3IOFromL1_validFraction);
+    fChain->SetBranchAddress("iterL3IOFromL1_trackerLayers", iterL3IOFromL1_trackerLayers, &b_iterL3IOFromL1_trackerLayers);
+    fChain->SetBranchAddress("iterL3IOFromL1_trackerHits", iterL3IOFromL1_trackerHits, &b_iterL3IOFromL1_trackerHits);
+    fChain->SetBranchAddress("iterL3IOFromL1_lostTrackerHits", &iterL3IOFromL1_lostTrackerHits, &b_iterL3IOFromL1_lostTrackerHits);
+    fChain->SetBranchAddress("iterL3IOFromL1_lostTrackerHitsIn", &iterL3IOFromL1_lostTrackerHitsIn, &b_iterL3IOFromL1_lostTrackerHitsIn);
+    fChain->SetBranchAddress("iterL3IOFromL1_lostTrackerHitsOut", &iterL3IOFromL1_lostTrackerHitsOut, &b_iterL3IOFromL1_lostTrackerHitsOut);
+    fChain->SetBranchAddress("iterL3IOFromL1_pixelLayers", iterL3IOFromL1_pixelLayers, &b_iterL3IOFromL1_pixelLayers);
+    fChain->SetBranchAddress("iterL3IOFromL1_pixelHits", iterL3IOFromL1_pixelHits, &b_iterL3IOFromL1_pixelHits);
     fChain->SetBranchAddress("nIterL3MuonNoID", &nIterL3MuonNoID, &b_nIterL3MuonNoID);
     fChain->SetBranchAddress("iterL3MuonNoID_pt", iterL3MuonNoID_pt, &b_iterL3MuonNoID_pt);
     fChain->SetBranchAddress("iterL3MuonNoID_innerPt", iterL3MuonNoID_innerPt, &b_iterL3MuonNoID_innerPt);
@@ -5369,6 +5769,30 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("iterL3MuonNoID_isGLB", iterL3MuonNoID_isGLB, &b_iterL3MuonNoID_isGLB);
     fChain->SetBranchAddress("iterL3MuonNoID_isSTA", iterL3MuonNoID_isSTA, &b_iterL3MuonNoID_isSTA);
     fChain->SetBranchAddress("iterL3MuonNoID_isTRK", iterL3MuonNoID_isTRK, &b_iterL3MuonNoID_isTRK);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_trkChi2", iterL3MuonNoID_inner_trkChi2, &b_iterL3MuonNoID_inner_trkChi2);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_validFraction", iterL3MuonNoID_inner_validFraction, &b_iterL3MuonNoID_inner_validFraction);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_trackerLayers", iterL3MuonNoID_inner_trackerLayers, &b_iterL3MuonNoID_inner_trackerLayers);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_trackerHits", iterL3MuonNoID_inner_trackerHits, &b_iterL3MuonNoID_inner_trackerHits);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_lostTrackerHits", &iterL3MuonNoID_inner_lostTrackerHits, &b_iterL3MuonNoID_inner_lostTrackerHits);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_lostTrackerHitsIn", &iterL3MuonNoID_inner_lostTrackerHitsIn, &b_iterL3MuonNoID_inner_lostTrackerHitsIn);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_lostTrackerHitsOut", &iterL3MuonNoID_inner_lostTrackerHitsOut, &b_iterL3MuonNoID_inner_lostTrackerHitsOut);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_pixelLayers", iterL3MuonNoID_inner_pixelLayers, &b_iterL3MuonNoID_inner_pixelLayers);
+    fChain->SetBranchAddress("iterL3MuonNoID_inner_pixelHits", iterL3MuonNoID_inner_pixelHits, &b_iterL3MuonNoID_inner_pixelHits);
+    fChain->SetBranchAddress("iterL3MuonNoID_global_muonHits", iterL3MuonNoID_global_muonHits, &b_iterL3MuonNoID_global_muonHits);
+    fChain->SetBranchAddress("iterL3MuonNoID_global_trkChi2", iterL3MuonNoID_global_trkChi2, &b_iterL3MuonNoID_global_trkChi2);
+    fChain->SetBranchAddress("iterL3MuonNoID_global_trackerLayers", iterL3MuonNoID_global_trackerLayers, &b_iterL3MuonNoID_global_trackerLayers);
+    fChain->SetBranchAddress("iterL3MuonNoID_global_trackerHits", iterL3MuonNoID_global_trackerHits, &b_iterL3MuonNoID_global_trackerHits);
+    fChain->SetBranchAddress("iterL3MuonNoID_momentumChi2", iterL3MuonNoID_momentumChi2, &b_iterL3MuonNoID_momentumChi2);
+    fChain->SetBranchAddress("iterL3MuonNoID_positionChi2", iterL3MuonNoID_positionChi2, &b_iterL3MuonNoID_positionChi2);
+    fChain->SetBranchAddress("iterL3MuonNoID_glbKink", iterL3MuonNoID_glbKink, &b_iterL3MuonNoID_glbKink);
+    fChain->SetBranchAddress("iterL3MuonNoID_glbTrackProbability", iterL3MuonNoID_glbTrackProbability, &b_iterL3MuonNoID_glbTrackProbability);
+    fChain->SetBranchAddress("iterL3MuonNoID_globalDeltaEtaPhi", iterL3MuonNoID_globalDeltaEtaPhi, &b_iterL3MuonNoID_globalDeltaEtaPhi);
+    fChain->SetBranchAddress("iterL3MuonNoID_localDistance", iterL3MuonNoID_localDistance, &b_iterL3MuonNoID_localDistance);
+    fChain->SetBranchAddress("iterL3MuonNoID_staRelChi2", iterL3MuonNoID_staRelChi2, &b_iterL3MuonNoID_staRelChi2);
+    fChain->SetBranchAddress("iterL3MuonNoID_tightMatch", iterL3MuonNoID_tightMatch, &b_iterL3MuonNoID_tightMatch);
+    fChain->SetBranchAddress("iterL3MuonNoID_trkKink", iterL3MuonNoID_trkKink, &b_iterL3MuonNoID_trkKink);
+    fChain->SetBranchAddress("iterL3MuonNoID_trkRelChi2", iterL3MuonNoID_trkRelChi2, &b_iterL3MuonNoID_trkRelChi2);
+    fChain->SetBranchAddress("iterL3MuonNoID_segmentCompatibility", iterL3MuonNoID_segmentCompatibility, &b_iterL3MuonNoID_segmentCompatibility);
     fChain->SetBranchAddress("nIterL3Muon", &nIterL3Muon, &b_nIterL3Muon);
     fChain->SetBranchAddress("iterL3Muon_pt", iterL3Muon_pt, &b_iterL3Muon_pt);
     fChain->SetBranchAddress("iterL3Muon_innerPt", iterL3Muon_innerPt, &b_iterL3Muon_innerPt);
@@ -5378,6 +5802,31 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("iterL3Muon_isGLB", iterL3Muon_isGLB, &b_iterL3Muon_isGLB);
     fChain->SetBranchAddress("iterL3Muon_isSTA", iterL3Muon_isSTA, &b_iterL3Muon_isSTA);
     fChain->SetBranchAddress("iterL3Muon_isTRK", iterL3Muon_isTRK, &b_iterL3Muon_isTRK);
+    fChain->SetBranchAddress("iterL3Muon_inner_trkChi2", iterL3Muon_inner_trkChi2, &b_iterL3Muon_inner_trkChi2);
+    fChain->SetBranchAddress("iterL3Muon_inner_validFraction", iterL3Muon_inner_validFraction, &b_iterL3Muon_inner_validFraction);
+    fChain->SetBranchAddress("iterL3Muon_inner_trackerLayers", iterL3Muon_inner_trackerLayers, &b_iterL3Muon_inner_trackerLayers);
+    fChain->SetBranchAddress("iterL3Muon_inner_trackerHits", iterL3Muon_inner_trackerHits, &b_iterL3Muon_inner_trackerHits);
+    fChain->SetBranchAddress("iterL3Muon_inner_trackerLayers", iterL3Muon_inner_trackerLayers, &b_iterL3Muon_inner_trackerLayers);
+    fChain->SetBranchAddress("iterL3Muon_inner_lostTrackerHits", &iterL3Muon_inner_lostTrackerHits, &b_iterL3Muon_inner_lostTrackerHits);
+    fChain->SetBranchAddress("iterL3Muon_inner_lostTrackerHitsIn", &iterL3Muon_inner_lostTrackerHitsIn, &b_iterL3Muon_inner_lostTrackerHitsIn);
+    fChain->SetBranchAddress("iterL3Muon_inner_lostTrackerHitsOut", &iterL3Muon_inner_lostTrackerHitsOut, &b_iterL3Muon_inner_lostTrackerHitsOut);
+    fChain->SetBranchAddress("iterL3Muon_inner_pixelLayers", iterL3Muon_inner_pixelLayers, &b_iterL3Muon_inner_pixelLayers);
+    fChain->SetBranchAddress("iterL3Muon_inner_pixelHits", iterL3Muon_inner_pixelHits, &b_iterL3Muon_inner_pixelHits);
+    fChain->SetBranchAddress("iterL3Muon_global_muonHits", iterL3Muon_global_muonHits, &b_iterL3Muon_global_muonHits);
+    fChain->SetBranchAddress("iterL3Muon_global_trkChi2", iterL3Muon_global_trkChi2, &b_iterL3Muon_global_trkChi2);
+    fChain->SetBranchAddress("iterL3Muon_global_trackerLayers", iterL3Muon_global_trackerLayers, &b_iterL3Muon_global_trackerLayers);
+    fChain->SetBranchAddress("iterL3Muon_global_trackerHits", iterL3Muon_global_trackerHits, &b_iterL3Muon_global_trackerHits);
+    fChain->SetBranchAddress("iterL3Muon_momentumChi2", iterL3Muon_momentumChi2, &b_iterL3Muon_momentumChi2);
+    fChain->SetBranchAddress("iterL3Muon_positionChi2", iterL3Muon_positionChi2, &b_iterL3Muon_positionChi2);
+    fChain->SetBranchAddress("iterL3Muon_glbKink", iterL3Muon_glbKink, &b_iterL3Muon_glbKink);
+    fChain->SetBranchAddress("iterL3Muon_glbTrackProbability", iterL3Muon_glbTrackProbability, &b_iterL3Muon_glbTrackProbability);
+    fChain->SetBranchAddress("iterL3Muon_globalDeltaEtaPhi", iterL3Muon_globalDeltaEtaPhi, &b_iterL3Muon_globalDeltaEtaPhi);
+    fChain->SetBranchAddress("iterL3Muon_localDistance", iterL3Muon_localDistance, &b_iterL3Muon_localDistance);
+    fChain->SetBranchAddress("iterL3Muon_staRelChi2", iterL3Muon_staRelChi2, &b_iterL3Muon_staRelChi2);
+    fChain->SetBranchAddress("iterL3Muon_tightMatch", iterL3Muon_tightMatch, &b_iterL3Muon_tightMatch);
+    fChain->SetBranchAddress("iterL3Muon_trkKink", iterL3Muon_trkKink, &b_iterL3Muon_trkKink);
+    fChain->SetBranchAddress("iterL3Muon_trkRelChi2", iterL3Muon_trkRelChi2, &b_iterL3Muon_trkRelChi2);
+    fChain->SetBranchAddress("iterL3Muon_segmentCompatibility", iterL3Muon_segmentCompatibility, &b_iterL3Muon_segmentCompatibility);
     fChain->SetBranchAddress("nTP", &nTP, &b_nTP);
     fChain->SetBranchAddress("TP_charge", &TP_charge, &b_TP_charge);
     fChain->SetBranchAddress("TP_pdgId", &TP_pdgId, &b_TP_pdgId);

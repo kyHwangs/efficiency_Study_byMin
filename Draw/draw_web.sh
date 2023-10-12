@@ -1,3 +1,4 @@
+:<<END
 plots_folder="plots_vRun3_02_Mu50s/Muon/"
 web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/230911_MuonHLT_Mu50s/"
 mkdir $web_path
@@ -17,7 +18,13 @@ root -l -b -q 'drawtnpCompEffL3wrtL1.C("hltIterL3Muon")'
 root -l -b -q 'drawtnpCompEffL3wrtL1.C("IsoMu24")'
 root -l -b -q 'drawtnpCompEffL3wrtL1.C("Mu50")'
 root -l -b -q 'drawtnpCompEffL3wrtL1.C("Mu50OrOldMu100OrTkMu100")'
+END
 
+plots_folder="plots_trackQual/"
+web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/231012_MuonHLT_trackQual/"
+rm -rf $web_path
+mkdir $web_path
+root -l -b -q 'drawTrackQuals.C'
 
 for dir in `find $plots_folder -type d` ; do cp /afs/cern.ch/user/f/fernanpe/public/for_Won/index.php $dir/ ; done
 
