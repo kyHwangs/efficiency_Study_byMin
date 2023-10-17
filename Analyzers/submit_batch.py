@@ -55,8 +55,8 @@ samples = [
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230817/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_20230817/230817_120656/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230817/Muon1/crab_Muon1_Run2023Dv2_hlt_muon_data_20230817/230817_120709/0000/",
 
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231011/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_fill_20231011/231011_185341/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231011/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_fill_20231011/231011_185353/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231014/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_fill_20231014/231014_113516/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231014/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_fill_20231014/231014_113526/0000/",
 ]
 
 dates = [
@@ -68,8 +68,8 @@ dates = [
     '20230705',
     '_20230817',
     '20230817',
-    '_20231011',
-    '20231011',
+    '_20231014',
+    '20231014',
 ]
 
 menus = [

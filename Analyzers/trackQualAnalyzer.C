@@ -197,6 +197,14 @@ void trackQualAnalyzer(
         "inner_lostTrackerHits",
         "inner_lostTrackerHitsIn",
         "inner_lostTrackerHitsOut",
+        "inner_lostPixelHits",
+        "inner_lostPixelBarrelHits",
+        "inner_lostPixelEndcapHits",
+        "inner_lostStripHits",
+        "inner_lostStripTIBHits",
+        "inner_lostStripTIDHits",
+        "inner_lostStripTOBHits",
+        "inner_lostStripTECHits",
         "inner_pixelLayers",
         "inner_pixelHits",
 
@@ -229,6 +237,14 @@ void trackQualAnalyzer(
         "inner_lostTrackerHits",
         "inner_lostTrackerHitsIn",
         "inner_lostTrackerHitsOut",
+        "inner_lostPixelHits",
+        "inner_lostPixelBarrelHits",
+        "inner_lostPixelEndcapHits",
+        "inner_lostStripHits",
+        "inner_lostStripTIBHits",
+        "inner_lostStripTIDHits",
+        "inner_lostStripTOBHits",
+        "inner_lostStripTECHits",
         "inner_pixelLayers",
         "inner_pixelHits",
 
@@ -261,7 +277,6 @@ void trackQualAnalyzer(
         "iterL3IOFromL2",
         "iterL3FromL2",
         "iterL3IOFromL1", //Track-only
-
         "muon",
         "iterL3MuonNoID",
         "iterL3Muon",
@@ -282,11 +297,17 @@ void trackQualAnalyzer(
     vector<vector<TH1D *>> vh_L3types_out_before  = {};
     vector<vector<TH1D *>> vh_L3types_out_after  = {};
 
+    vector<vector<TH2D *>> vh_L3types_before  = {};
+    vector<vector<TH2D *>> vh_L3types_after  = {};
+
     for (unsigned i=0; i<L3types.size(); ++i) {
         vh_L3types_in_before.push_back( {} );
         vh_L3types_in_after.push_back( {} );
         vh_L3types_out_before.push_back( {} );
         vh_L3types_out_after.push_back( {} );
+
+        vh_L3types_before.push_back( {} );
+        vh_L3types_after.push_back( {} );
 
         vector<TString> vars;
         if (i==3) vars = trkonly_vars;
@@ -321,6 +342,14 @@ void trackQualAnalyzer(
             name = TString::Format("h_%s_%s_out_after", L3types.at(i).Data(), var.Data());
             TH1D *h_L3type_out_after  = new TH1D(name,  "", 101, 0, xmax);
             vh_L3types_out_after.at(i).push_back( h_L3type_out_after );
+
+            name = TString::Format("h_%s_%s_2D_before", L3types.at(i).Data(), var.Data());
+            TH2D *h_L3type_before  = new TH2D(name,  "", 48, -2.4, 2.4, 30, -TMath::Pi(), TMath::Pi());
+            vh_L3types_before.at(i).push_back( h_L3type_before );
+
+            name = TString::Format("h_%s_%s_2D_after", L3types.at(i).Data(), var.Data());
+            TH2D *h_L3type_after  = new TH2D(name,  "", 48, -2.4, 2.4, 30, -TMath::Pi(), TMath::Pi());
+            vh_L3types_after.at(i).push_back( h_L3type_after );
         }
     }
 
@@ -387,6 +416,11 @@ void trackQualAnalyzer(
                   else if (irun == 0 && ieta == 1) vh_L3types_out_before.at(i).at(j)->Fill(L3.get(vars.at(j)), genWeight);
                   else if (irun == 1 && ieta == 0) vh_L3types_in_after.at(i).at(j)->Fill(L3.get(vars.at(j)), genWeight);
                   else if (irun == 1 && ieta == 1) vh_L3types_out_after.at(i).at(j)->Fill(L3.get(vars.at(j)), genWeight);
+
+                  if (vars.at(j).Contains("lost")) {
+                    if (irun == 0) vh_L3types_before.at(i).at(j)->Fill(L3.eta, L3.phi, L3.get(vars.at(j)));
+                    else vh_L3types_after.at(i).at(j)->Fill(L3.eta, L3.phi, L3.get(vars.at(j)));
+                  }
                 }
               }
             }
@@ -416,6 +450,11 @@ void trackQualAnalyzer(
             vh_L3types_out_before.at(i).at(j)->Write();
             vh_L3types_in_after.at(i).at(j)->Write();
             vh_L3types_out_after.at(i).at(j)->Write();
+
+            if (vars.at(j).Contains("lost")) {
+                vh_L3types_before.at(i).at(j)->Write();
+                vh_L3types_after.at(i).at(j)->Write();
+            }
         }
         f_output->cd();
     }
