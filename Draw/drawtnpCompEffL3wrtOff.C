@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtOff(
-  TString efftag = "IsoMu24", TString ver = "vRun3_02", TString SAMPLE = "Run2023", TString tag = "Muon",
+  TString efftag = "IsoMu24", TString ver = "vRun3_03", TString SAMPLE = "Run2022, 2023", TString tag = "Muon",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -96,20 +96,27 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<int> v_marker = {
     20,
-    25,
-    26,
+    22,
     23,
+    22,
+    //25,
+    //26,
+    //23,
     //22,
     //26,
     //23,
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
     //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D-Eff.root",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_07-20230526/Eff/hist-vRun3_07-20230526-"+tag+"_Run2022G-Eff.root",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_STEAM_230908/hist-vRun3_07_Run2023B-Eff.root",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_STEAM_230908/hist-vRun3_07_Run2023C-Eff.root",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_STEAM_230908/hist-vRun3_07_Run2023D-Eff.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -132,11 +139,11 @@ void drawtnpCompEffL3wrtOff(
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    efftag+" : Run2022G Data",
-    //efftag+" : Run3Winer23 DY",
-    efftag+" : Run2023B Data",
-    efftag+" : Run2023C Data",
-    efftag+" : Run2023D Data",
+    "Run2022G Data",
+    //"Run3Winer23 DY",
+    "Run2023B Data",
+    "Run2023C Data",
+    "Run2023D Data",
   };
 
   vector<TString> v_pts = {
@@ -148,9 +155,9 @@ void drawtnpCompEffL3wrtOff(
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{reco} > 10 GeV",
-    "p_{T}^{reco} > 26 GeV",
-    "p_{T}^{reco} > 53 GeV",
+    //"p_{T}^{offline} > 10 GeV",
+    "p_{T}^{offline} > 26 GeV",
+    "p_{T}^{offline} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -180,8 +187,7 @@ void drawtnpCompEffL3wrtOff(
         if(tag == "Zprime" && v_var[ivar].Contains("pt")) c->SetLogx();
 
         TLegend *legend;
-        //SetLegend( legend, 0.14, 0.71, 0.94, 0.84, -1);
-        SetLegend( legend, 0.14, 0.67, 0.94, 0.8, -1);
+        SetLegend( legend, 0.17, 0.72, 0.94, 0.85, -1);
 
         bool isFirst = true;
         for(int i = 0; i<(int)files.size(); ++i) {
@@ -255,11 +261,29 @@ void drawtnpCompEffL3wrtOff(
 
         legend->Draw();
 
+        TString L3str = "";
+        if(efftag == "L2Muon") L3str = "L2 Muon";
+        else if(efftag == "hltOI") L3str = "Outside-in L3 MuonTrack";
+        else if(efftag == "hltPixelTracksInRegionL2") L3str = "PixelTrack near L2";
+        else if(efftag == "hltPixelTracksInRegionL1") L3str = "PixelTrack near L1";
+        else if(efftag == "hltPixelTracks") L3str = "PixelTrack";
+        else if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
+        else if(efftag == "hltL3FromL2Merged") L3str = "L3 MuonTrack from L2";
+        else if(efftag == "hltL3Merged") L3str = "L3 MuonTrack";
+        else if(efftag == "hltIterL3MuonNoID") L3str = "L3 Muon before Trigger ID";
+        else if(efftag == "hltIterL3Muon") L3str = "L3 Muon after Trigger ID";
+        else if(efftag.Contains("L1sSingleMu22")) L3str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV";
+        else if(efftag.Contains("IsoMu24")) L3str = "Isolated muon with p_{T} > 24 GeV";
+        else if(efftag.Contains("Mu24")) L3str = "Non-isolated muon with p_{T} > 24 GeV";
+        else if(efftag.Contains("Mu50OrOldMu100OrTkMu100")) L3str = "Non-isolated muon with p_{T} > 50 GeV";
+        else if(efftag.Contains("Mu50")) L3str = "Non-isolated muon with p_{T} > 50 GeV";
+
         TLatex latex;
 	Latex_Preliminary_13p6TeV( latex );
         latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
+        latex.DrawLatexNDC(0.16, 0.90, "#font[42]{#scale[0.6]{"+L3str+"}}");
         latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
-        if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.70, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
+        if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.68, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
 
         TString logy_tag = isLogy ? "_log" : "";
         // CMS_lumi(c, 98, 11);
