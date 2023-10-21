@@ -222,6 +222,14 @@ void trackQualAnalyzer(
         "lostTrackerHits",
         "lostTrackerHitsIn",
         "lostTrackerHitsOut",
+        "lostPixelHits",
+        "lostPixelBarrelHits",
+        "lostPixelEndcapHits",
+        "lostStripHits",
+        "lostStripTIBHits",
+        "lostStripTIDHits",
+        "lostStripTOBHits",
+        "lostStripTECHits",
         "pixelLayers",
         "pixelHits",
     };
@@ -418,8 +426,8 @@ void trackQualAnalyzer(
                   else if (irun == 1 && ieta == 1) vh_L3types_out_after.at(i).at(j)->Fill(L3.get(vars.at(j)), genWeight);
 
                   if (vars.at(j).Contains("lost")) {
-                    if (irun == 0) vh_L3types_before.at(i).at(j)->Fill(L3.eta, L3.phi, L3.get(vars.at(j)));
-                    else vh_L3types_after.at(i).at(j)->Fill(L3.eta, L3.phi, L3.get(vars.at(j)));
+                    if (irun == 0) vh_L3types_before.at(i).at(j)->Fill(L3.eta, L3.phi, L3.get(vars.at(j))<0 ? 0 : L3.get(vars.at(j)));
+                    else vh_L3types_after.at(i).at(j)->Fill(L3.eta, L3.phi, L3.get(vars.at(j))<0 ? 0 : L3.get(vars.at(j)));
                   }
                 }
               }

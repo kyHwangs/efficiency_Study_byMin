@@ -269,7 +269,7 @@ void drawtnpCompEffL3wrtL1(
         else if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
         else if(efftag == "hltL3FromL2Merged") L3str = "L3 MuonTrack from L2";
         else if(efftag == "hltL3Merged") L3str = "L3 MuonTrack";
-        else if(efftag == "hltIterL3MuonNoID") L3str = "L3 Muon before Trigger ID";
+        else if(efftag.Contains("hltIterL3MuonNoID")) L3str = "L3 Muon before Trigger ID";
         else if(efftag == "hltIterL3Muon") L3str = "L3 Muon after Trigger ID";
         else if(efftag.Contains("L1sSingleMu22")) L3str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV";
         else if(efftag.Contains("IsoMu24")) L3str = "Isolated muon with p_{T} > 24 GeV";

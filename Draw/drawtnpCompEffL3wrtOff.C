@@ -74,6 +74,24 @@ void drawtnpCompEffL3wrtOff(
     300, 450, 700, 1000
   };
 
+  if (efftag.Contains("Mu50")) {
+    range = {
+      {1, 0, 500},  // pt
+      {1, 0, 500},  // pt
+      {1, -2.4, 2.4},  // eta
+      {1, -TMath::Pi(), TMath::Pi()},
+      {1, 10, 75}  // PU
+    };
+  }
+  int n_highpt_bins = 21-1;
+  double highpt_bins[21] = {
+    0, 10, 20, 30, 40,
+    45, 46, 47, 48, 49,
+    50, 53, 55, 60, 75,
+    100, 200, 300, 500, 1000,
+    3000
+  };
+
   int n_eta_bins = 23-1;
   double eta_bins[23] = {
     -2.4, -2.1, -1.9, -1.7, -1.6, -1.5, -1.3, -1.2, -0.9,
@@ -211,8 +229,13 @@ void drawtnpCompEffL3wrtOff(
           TH1F* num = Get_Hist( fileName, num_name );
 
           if(v_var[ivar].Contains("pt")) {
-            den = (TH1F*)den->Rebin(n_pt_bins, den_name+"_rb", pt_bins);
-            num = (TH1F*)num->Rebin(n_pt_bins, num_name+"_rb", pt_bins);
+            if (efftag.Contains("Mu50")) {
+              den = (TH1F*)den->Rebin(n_highpt_bins, den_name+"_rb", highpt_bins);
+              num = (TH1F*)num->Rebin(n_highpt_bins, num_name+"_rb", highpt_bins);
+            } else {
+              den = (TH1F*)den->Rebin(n_pt_bins, den_name+"_rb", pt_bins);
+              num = (TH1F*)num->Rebin(n_pt_bins, num_name+"_rb", pt_bins);
+            }
           }
           else if(v_var[ivar] == "eta") {
             den = (TH1F*)den->Rebin(n_eta_bins, den_name+"_rb", eta_bins);
@@ -270,7 +293,7 @@ void drawtnpCompEffL3wrtOff(
         else if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
         else if(efftag == "hltL3FromL2Merged") L3str = "L3 MuonTrack from L2";
         else if(efftag == "hltL3Merged") L3str = "L3 MuonTrack";
-        else if(efftag == "hltIterL3MuonNoID") L3str = "L3 Muon before Trigger ID";
+        else if(efftag.Contains("hltIterL3MuonNoID")) L3str = "L3 Muon before Trigger ID";
         else if(efftag == "hltIterL3Muon") L3str = "L3 Muon after Trigger ID";
         else if(efftag.Contains("L1sSingleMu22")) L3str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV";
         else if(efftag.Contains("IsoMu24")) L3str = "Isolated muon with p_{T} > 24 GeV";

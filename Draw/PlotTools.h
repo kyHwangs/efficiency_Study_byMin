@@ -183,7 +183,7 @@ using namespace std;
     if( varName.Contains("lumi") )             titleX = "inst. lumi [1E34 Hz/cm^{2}]";
     if( varName.Contains("pu") )               titleX = "Pileup";
     if( varName.Contains("pu_reco") )          titleX = "Pileup";
-    if( varName.Contains("vtx") )              titleX = "#scale[0.7]{Number of reconstructed primary vertices}";  // tmp
+    if( varName.Contains("vtx") )              titleX = "#scale[0.8]{Number of reconstructed vertices}";  // tmp
     //if( varName.Contains("vtx") )              titleX = "#scale[1.0]{True number of interactions}";  // tmp
     if( varName.Contains("pt_trk") )           titleX = "p_{T}(trk) [GeV]";
     if( varName.Contains("eta_trk") )          titleX = "#eta(trk)";

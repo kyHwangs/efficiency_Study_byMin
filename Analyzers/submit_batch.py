@@ -57,6 +57,8 @@ samples = [
 
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231014/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_fill_20231014/231014_113516/0000/",
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231014/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_fill_20231014/231014_113526/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231019/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_fill_20231019/231019_082945/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231019/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_fill_20231019/231019_082955/0000/",
 ]
 
 dates = [
@@ -70,6 +72,8 @@ dates = [
     '20230817',
     '_20231014',
     '20231014',
+    '_20231019',
+    '20231019',
 ]
 
 menus = [
@@ -183,7 +187,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 5
+                nfiles = 3
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:

@@ -11,6 +11,14 @@ void drawTrackQuals(TString filePath = "./Outputs_vRun3_02/hist-vRun3_02-trackQu
     "inner_lostTrackerHits",
     "inner_lostTrackerHitsIn",
     "inner_lostTrackerHitsOut",
+    "inner_lostPixelHits",
+    "inner_lostPixelBarrelHits",
+    "inner_lostPixelEndcapHits",
+    "inner_lostStripHits",
+    "inner_lostStripTIBHits",
+    "inner_lostStripTIDHits",
+    "inner_lostStripTOBHits",
+    "inner_lostStripTECHits",
     "inner_pixelLayers",
     "inner_pixelHits",
 
@@ -28,6 +36,14 @@ void drawTrackQuals(TString filePath = "./Outputs_vRun3_02/hist-vRun3_02-trackQu
     "lostTrackerHits",
     "lostTrackerHitsIn",
     "lostTrackerHitsOut",
+    "lostPixelHits",
+    "lostPixelBarrelHits",
+    "lostPixelEndcapHits",
+    "lostStripHits",
+    "lostStripTIBHits",
+    "lostStripTIDHits",
+    "lostStripTOBHits",
+    "lostStripTECHits",
     "pixelLayers",
     "pixelHits",
   };
@@ -43,6 +59,14 @@ void drawTrackQuals(TString filePath = "./Outputs_vRun3_02/hist-vRun3_02-trackQu
     "inner_lostTrackerHits",
     "inner_lostTrackerHitsIn",
     "inner_lostTrackerHitsOut",
+    "inner_lostPixelHits",
+    "inner_lostPixelBarrelHits",
+    "inner_lostPixelEndcapHits",
+    "inner_lostStripHits",
+    "inner_lostStripTIBHits",
+    "inner_lostStripTIDHits",
+    "inner_lostStripTOBHits",
+    "inner_lostStripTECHits",
     "inner_pixelLayers",
     "inner_pixelHits",
 
@@ -171,6 +195,29 @@ void drawTrackQuals(TString filePath = "./Outputs_vRun3_02/hist-vRun3_02-trackQu
 
       c_var->SaveAs(Dir+vars.at(j)+".png");
       delete c_var;
+
+      // Draw 2D lostHits vs eta, phi
+      if(vars.at(j).Contains("lost")){
+        TH2D *before = (TH2D*)hists->Get(name+"_2D_before");
+        before->SetTitle(L3types.at(i)+"_"+vars.at(j)+"_Before");
+        TH2D *after = (TH2D*)hists->Get(name+"_2D_after");
+        after->SetTitle(L3types.at(i)+"_"+vars.at(j)+"_After");
+
+        TCanvas *c_before = new TCanvas("c_before", "", 1200, 800);
+        TCanvas *c_after = new TCanvas("c_after", "", 1200, 800);
+
+        c_before->cd();
+        c_before->Draw();
+        before->Draw("colz");
+        c_before->SaveAs(Dir+vars.at(j)+"_2D_before.png");
+        delete c_before;
+
+        c_after->cd();
+        c_after->Draw();
+        after->Draw("colz");
+        c_after->SaveAs(Dir+vars.at(j)+"_2D_after.png");
+        delete c_after;
+      }
     }
   }
 }
