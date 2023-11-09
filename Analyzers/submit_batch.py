@@ -40,40 +40,17 @@ samples = [
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/Muon/crab_Muon_Run2022G_hlt_muon_data_20230526/230526_181751/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230526/230526_183156/0000/",
 
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023B_hlt_muon_data_20230606/230606_094804/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023B_hlt_muon_data_20230606/230606_094818/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv1_hlt_muon_data_20230606/230606_094831/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv1_hlt_muon_data_20230606/230606_094844/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv2_hlt_muon_data_20230606/230606_094630/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv2_hlt_muon_data_20230606/230606_094644/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon0/crab_Muon0_Run2023Cv3_hlt_muon_data_20230606/230606_094857/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230606/Muon1/crab_Muon1_Run2023Cv3_hlt_muon_data_20230606/230606_094911/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_20230705/230705_091506/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230705/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_20230705/230705_091600/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230817/Muon0/crab_Muon0_Run2023Dv1_hlt_muon_data_20230817/230817_120625/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230817/Muon1/crab_Muon1_Run2023Dv1_hlt_muon_data_20230817/230817_120641/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230817/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_20230817/230817_120656/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230817/Muon1/crab_Muon1_Run2023Dv2_hlt_muon_data_20230817/230817_120709/0000/",
-
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231014/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_fill_20231014/231014_113516/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231014/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_fill_20231014/231014_113526/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231019/Muon0/crab_Muon0_Run2023Cv4_hlt_muon_data_fill_20231019/231019_082945/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20231019/Muon1/crab_Muon1_Run2023Cv4_hlt_muon_data_fill_20231019/231019_082955/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_20231107/231107_180843/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_20231107/231107_180901/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon1/crab_Muon1_Run2023Dv1_hlt_muon_data_20231107/231107_180833/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon1/crab_Muon1_Run2023Dv1_hlt_muon_data_Doublet_20231107/231107_180852/0000/",
 ]
 
 dates = [
     '_20230526',
     '20230526',
-    '_20230606',
-    '20230606',
-    '_20230705',
-    '20230705',
-    '_20230817',
-    '20230817',
-    '_20231014',
-    '20231014',
-    '_20231019',
-    '20231019',
+    '_20231107',
+    '20231107',
 ]
 
 menus = [
@@ -119,7 +96,7 @@ analyzers = {
 
 # python submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_02'
+    VER_base = 'vRun3_03'
     tag_prefix = 'crab_'
 
     doHadd = False
@@ -196,7 +173,7 @@ if __name__ == '__main__':
                 jobid_files = jobSpritting(path, nfiles)
 
                 MACRO = 'HLT%sAnalyzer' % an # HLTEffAnalyzer
-                MACRO = 'trackQualAnalyzer'  # trackQualAnalyzer - investigate trk, muon's qualities
+                #MACRO = 'trackQualAnalyzer'  # trackQualAnalyzer - investigate trk, muon's qualities
 
                 for jobid, files in jobid_files:
                     strjobid = "Job"+str(jobid)

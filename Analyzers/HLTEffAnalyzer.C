@@ -448,6 +448,8 @@ void HLTEffAnalyzer(
         "hltIter0IterL3MuonTrackAssociated",
         "hltIterL3MuonMergedAssociated",
         "hltIter0IterL3FromL1MuonTrackAssociated",
+        "hltIter3IterL3FromL1MuonTrackAssociated",
+        "hltIter03IterL3FromL1MuonMergedAssociated",
         "hltIterL3MuonAndMuonFromL1MergedAssociated",
         "iterL3MuonNoID",
         "iterL3Muon",
@@ -479,13 +481,15 @@ void HLTEffAnalyzer(
         "L1Muon",
         "L2Muon",
 
-        "hltPixelTracks",
+        //"hltPixelTracks",
         "hltPixelTracksInRegionL2",
         "hltPixelTracksInRegionL1",
         "hltOI",
         "hltIter0",
         "hltL3FromL2Merged",
         "hltIter0FromL1",
+        "hltIter3FromL1",
+        "hltIter03FromL1Merged",
         "hltL3Merged",
         "hltIterL3MuonNoID",
         "hltIterL3Muon",
@@ -734,13 +738,15 @@ void HLTEffAnalyzer(
         vector<Object> L1Muons = nt->get_L1Muons();
         vector<Object> L2Muons = nt->get_L2Muons();
 
-        vector<Object> hltPixelTracksAssociated = nt->get_hltPixelTracksAssociated();
+        //vector<Object> hltPixelTracksAssociated = nt->get_hltPixelTracksAssociated();
         vector<Object> hltPixelTracksInRegionL2Associated = nt->get_hltPixelTracksInRegionL2Associated();
         vector<Object> hltPixelTracksInRegionL1Associated = nt->get_hltPixelTracksInRegionL1Associated();
         vector<Object> hltIterL3OIMuonTrackAssociated = nt->get_hltIterL3OIMuonTrackAssociated();
         vector<Object> hltIter0IterL3MuonTrackAssociated = nt->get_hltIter0IterL3MuonTrackAssociated();
         vector<Object> hltIterL3MuonMergedAssociated = nt->get_hltIterL3MuonMergedAssociated();
         vector<Object> hltIter0IterL3FromL1MuonTrackAssociated = nt->get_hltIter0IterL3FromL1MuonTrackAssociated();
+        vector<Object> hltIter3IterL3FromL1MuonTrackAssociated = nt->get_hltIter3IterL3FromL1MuonTrackAssociated();
+        vector<Object> hltIter03IterL3FromL1MuonMergedAssociated = nt->get_hltIter03IterL3FromL1MuonMergedAssociated();
         vector<Object> hltIterL3MuonAndMuonFromL1MergedAssociated = nt->get_hltIterL3MuonAndMuonFromL1MergedAssociated();
         vector<Object> iterL3MuonNoID = nt->get_iterL3MuonNoID();
         vector<Object> iterL3Muon = nt->get_iterL3Muon();
@@ -800,13 +806,15 @@ void HLTEffAnalyzer(
             &probes,  // for L1 muon eff
             &L2Muons,
 
-            &hltPixelTracksAssociated,
+            //&hltPixelTracksAssociated,
             &hltPixelTracksInRegionL2Associated,
             &hltPixelTracksInRegionL1Associated,
             &hltIterL3OIMuonTrackAssociated,
             &hltIter0IterL3MuonTrackAssociated,
             &hltIterL3MuonMergedAssociated,
             &hltIter0IterL3FromL1MuonTrackAssociated,
+            &hltIter3IterL3FromL1MuonTrackAssociated,
+            &hltIter03IterL3FromL1MuonMergedAssociated,
             &hltIterL3MuonAndMuonFromL1MergedAssociated,
             &iterL3MuonNoID,
             &iterL3Muon,
