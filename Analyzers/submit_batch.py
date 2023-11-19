@@ -42,8 +42,11 @@ samples = [
 
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_20231107/231107_180843/0000/",
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_20231107/231107_180901/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon1/crab_Muon1_Run2023Dv1_hlt_muon_data_20231107/231107_180833/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon1/crab_Muon1_Run2023Dv1_hlt_muon_data_Doublet_20231107/231107_180852/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231114/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L1L2_20231114/231114_201631/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231113/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L2noROI2_20231113/231113_154427/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231113/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L2noROI_20231113/231113_114124/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231113/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L2noROI_fullPix_20231113/231113_114549/0000/",
+
 ]
 
 dates = [
@@ -51,6 +54,10 @@ dates = [
     '20230526',
     '_20231107',
     '20231107',
+    '_20231113',
+    '20231113',
+    '_20231114',
+    '20231114',
 ]
 
 menus = [

@@ -446,10 +446,12 @@ void HLTEffAnalyzer(
         "hltPixelTracks",
         "hltIterL3OIMuonTrackAssociated",
         "hltIter0IterL3MuonTrackAssociated",
-        "hltIterL3MuonMergedAssociated",
+        "hltIter3IterL3MuonTrackAssociated",
+        "hltIter03IterL3MuonMergedAssociated",
         "hltIter0IterL3FromL1MuonTrackAssociated",
         "hltIter3IterL3FromL1MuonTrackAssociated",
         "hltIter03IterL3FromL1MuonMergedAssociated",
+        "hltIterL3MuonMergedAssociated",
         "hltIterL3MuonAndMuonFromL1MergedAssociated",
         "iterL3MuonNoID",
         "iterL3Muon",
@@ -486,6 +488,8 @@ void HLTEffAnalyzer(
         "hltPixelTracksInRegionL1",
         "hltOI",
         "hltIter0",
+        "hltIter3",
+        "hltIter03Merged",
         "hltL3FromL2Merged",
         "hltIter0FromL1",
         "hltIter3FromL1",
@@ -743,6 +747,8 @@ void HLTEffAnalyzer(
         vector<Object> hltPixelTracksInRegionL1Associated = nt->get_hltPixelTracksInRegionL1Associated();
         vector<Object> hltIterL3OIMuonTrackAssociated = nt->get_hltIterL3OIMuonTrackAssociated();
         vector<Object> hltIter0IterL3MuonTrackAssociated = nt->get_hltIter0IterL3MuonTrackAssociated();
+        vector<Object> hltIter3IterL3MuonTrackAssociated = nt->get_hltIter3IterL3MuonTrackAssociated();
+        vector<Object> hltIter03IterL3MuonMergedAssociated = nt->get_hltIter03IterL3MuonMergedAssociated();
         vector<Object> hltIterL3MuonMergedAssociated = nt->get_hltIterL3MuonMergedAssociated();
         vector<Object> hltIter0IterL3FromL1MuonTrackAssociated = nt->get_hltIter0IterL3FromL1MuonTrackAssociated();
         vector<Object> hltIter3IterL3FromL1MuonTrackAssociated = nt->get_hltIter3IterL3FromL1MuonTrackAssociated();
@@ -811,6 +817,8 @@ void HLTEffAnalyzer(
             &hltPixelTracksInRegionL1Associated,
             &hltIterL3OIMuonTrackAssociated,
             &hltIter0IterL3MuonTrackAssociated,
+            &hltIter3IterL3MuonTrackAssociated,
+            &hltIter03IterL3MuonMergedAssociated,
             &hltIterL3MuonMergedAssociated,
             &hltIter0IterL3FromL1MuonTrackAssociated,
             &hltIter3IterL3FromL1MuonTrackAssociated,

@@ -296,9 +296,11 @@ public :
     vector<Object> get_myHLTObjects( TString filter = "hltL3fL1TkSingleMu22L3Filtered24Q" );
     vector<Object> get_hltIterL3OIMuonTrackAssociated();
     vector<Object> get_hltIter0IterL3MuonTrackAssociated();
-    vector<Object> get_hltIter03IterL3FromL1MuonMergedAssociated();
+    vector<Object> get_hltIter3IterL3MuonTrackAssociated();
+    vector<Object> get_hltIter03IterL3MuonMergedAssociated();
     vector<Object> get_hltIter0IterL3FromL1MuonTrackAssociated();
     vector<Object> get_hltIter3IterL3FromL1MuonTrackAssociated();
+    vector<Object> get_hltIter03IterL3FromL1MuonMergedAssociated();
     vector<Object> get_hltIterL3MuonMergedAssociated();
     vector<Object> get_hltIterL3MuonAndMuonFromL1MergedAssociated();
     vector<Object> get_iterL3MuonNoIDTrackAssociated();
@@ -309,9 +311,11 @@ public :
     vector<Object> get_hltIterL3GlbMuonTrackAssociated();
     vector<Object> get_tpTo_hltIterL3OIMuonTrackAssociated();
     vector<Object> get_tpTo_hltIter0IterL3MuonTrackAssociated();
-    vector<Object> get_tpTo_hltIter03IterL3FromL1MuonMergedAssociated();
+    vector<Object> get_tpTo_hltIter3IterL3MuonTrackAssociated();
+    vector<Object> get_tpTo_hltIter03IterL3MuonMergedAssociated();
     vector<Object> get_tpTo_hltIter0IterL3FromL1MuonTrackAssociated();
     vector<Object> get_tpTo_hltIter3IterL3FromL1MuonTrackAssociated();
+    vector<Object> get_tpTo_hltIter03IterL3FromL1MuonMergedAssociated();
     vector<Object> get_tpTo_hltIterL3MuonMergedAssociated();
     vector<Object> get_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated();
     vector<Object> get_tpTo_iterL3MuonNoIDTrackAssociated();
@@ -885,65 +889,124 @@ public :
         vector<double>  *tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2;
         vector<double>  *tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_quality;
         vector<int>     *tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_NValidHits;
-        Int_t           nhltIter03IterL3FromL1MuonMergedAssociated;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_pt;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_eta;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_phi;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_charge;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_matchedL3;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId;
-        vector<float>   *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers;
-        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction;
-        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize;
-        vector<float>   *hltIter03IterL3FromL1MuonMergedAssociated_mva;
-        Int_t           ntpTo_hltIter03IterL3FromL1MuonMergedAssociated;
-        vector<float>   *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers;
-        vector<float>   *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2;
-        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality;
-        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits;
+        Int_t           nhltIter3IterL3MuonTrackAssociated;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_pt;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_eta;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_phi;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_charge;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_matchedL3;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_matchedL3NoId;
+        vector<float>   *hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_bestMatchTP_status;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers;
+        vector<double>  *hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction;
+        vector<int>     *hltIter3IterL3MuonTrackAssociated_matchedTPsize;
+        vector<float>   *hltIter3IterL3MuonTrackAssociated_mva;
+        Int_t           ntpTo_hltIter3IterL3MuonTrackAssociated;
+        vector<float>   *tpTo_hltIter3IterL3MuonTrackAssociated_charge;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_pdgId;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_energy;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_pt;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_eta;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_phi;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_parentVx;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_parentVy;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_parentVz;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_status;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_numberOfHits;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerHits;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerLayers;
+        vector<float>   *tpTo_hltIter3IterL3MuonTrackAssociated_gen_charge;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_gen_pdgId;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_gen_pt;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_gen_eta;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_gen_phi;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pt;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_eta;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_phi;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_charge;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_px;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_py;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pz;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vx;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vy;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vz;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxy_bs;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxyError_bs;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dz_bs;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dzError;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2;
+        vector<double>  *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_quality;
+        vector<int>     *tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_NValidHits;
+        Int_t           nhltIter03IterL3MuonMergedAssociated;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_pt;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_eta;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_phi;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_charge;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_matchedL3;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_matchedL3NoId;
+        vector<float>   *hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_bestMatchTP_status;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers;
+        vector<double>  *hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction;
+        vector<int>     *hltIter03IterL3MuonMergedAssociated_matchedTPsize;
+        vector<float>   *hltIter03IterL3MuonMergedAssociated_mva;
+        Int_t           ntpTo_hltIter03IterL3MuonMergedAssociated;
+        vector<float>   *tpTo_hltIter03IterL3MuonMergedAssociated_charge;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_pdgId;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_energy;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_pt;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_eta;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_phi;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_parentVx;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_parentVy;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_parentVz;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_status;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_numberOfHits;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerHits;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerLayers;
+        vector<float>   *tpTo_hltIter03IterL3MuonMergedAssociated_gen_charge;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_gen_pdgId;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_gen_pt;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_gen_eta;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_gen_phi;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pt;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_eta;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_phi;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_charge;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_px;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_py;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pz;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vx;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vy;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vz;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxy_bs;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxyError_bs;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dz_bs;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dzError;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2;
+        vector<double>  *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_quality;
+        vector<int>     *tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_NValidHits;
         Int_t           nhltIter0IterL3FromL1MuonTrackAssociated;
         vector<double>  *hltIter0IterL3FromL1MuonTrackAssociated_pt;
         vector<double>  *hltIter0IterL3FromL1MuonTrackAssociated_eta;
@@ -1062,6 +1125,65 @@ public :
         vector<double>  *tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2;
         vector<double>  *tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality;
         vector<int>     *tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits;
+        Int_t           nhltIter03IterL3FromL1MuonMergedAssociated;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_pt;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_eta;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_phi;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_charge;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_matchedL3;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId;
+        vector<float>   *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers;
+        vector<double>  *hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction;
+        vector<int>     *hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize;
+        vector<float>   *hltIter03IterL3FromL1MuonMergedAssociated_mva;
+        Int_t           ntpTo_hltIter03IterL3FromL1MuonMergedAssociated;
+        vector<float>   *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers;
+        vector<float>   *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2;
+        vector<double>  *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality;
+        vector<int>     *tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits;
         Int_t           nhltIterL3MuonMergedAssociated;
         vector<double>  *hltIterL3MuonMergedAssociated_pt;
         vector<double>  *hltIterL3MuonMergedAssociated_eta;
@@ -2070,65 +2192,124 @@ public :
         TBranch        *b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2;   //!
         TBranch        *b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_quality;   //!
         TBranch        *b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_NValidHits;   //!
-        TBranch        *b_nhltIter03IterL3FromL1MuonMergedAssociated;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_pt;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_eta;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_phi;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_charge;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize;   //!
-        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_mva;   //!
-        TBranch        *b_ntpTo_hltIter03IterL3FromL1MuonMergedAssociated;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality;   //!
-        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits;   //!
+        TBranch        *b_nhltIter3IterL3MuonTrackAssociated;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_pt;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_eta;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_phi;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_charge;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_matchedL3;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_matchedL3NoId;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_status;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_matchedTPsize;
+        TBranch        *b_hltIter3IterL3MuonTrackAssociated_mva;
+        TBranch        *b_ntpTo_hltIter3IterL3MuonTrackAssociated;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_charge;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_pdgId;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_energy;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_pt;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_eta;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_phi;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_parentVx;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_parentVy;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_parentVz;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_status;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_numberOfHits;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerHits;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerLayers;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_charge;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_pdgId;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_pt;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_eta;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_phi;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pt;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_eta;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_phi;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_charge;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_px;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_py;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pz;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vx;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vy;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vz;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxy_bs;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxyError_bs;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dz_bs;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dzError;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_quality;
+        TBranch        *b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_NValidHits;
+        TBranch        *b_nhltIter03IterL3MuonMergedAssociated;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_pt;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_eta;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_phi;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_charge;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_matchedL3;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_matchedL3NoId;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_status;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_matchedTPsize;
+        TBranch        *b_hltIter03IterL3MuonMergedAssociated_mva;
+        TBranch        *b_ntpTo_hltIter03IterL3MuonMergedAssociated;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_charge;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_pdgId;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_energy;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_pt;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_eta;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_phi;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_parentVx;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_parentVy;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_parentVz;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_status;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_numberOfHits;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerHits;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerLayers;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_charge;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_pdgId;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_pt;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_eta;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_phi;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pt;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_eta;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_phi;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_charge;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_px;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_py;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pz;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vx;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vy;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vz;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxy_bs;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxyError_bs;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dz_bs;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dzError;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_quality;
+        TBranch        *b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_NValidHits;
         TBranch        *b_nhltIter0IterL3FromL1MuonTrackAssociated;   //!
         TBranch        *b_hltIter0IterL3FromL1MuonTrackAssociated_pt;   //!
         TBranch        *b_hltIter0IterL3FromL1MuonTrackAssociated_eta;   //!
@@ -2247,6 +2428,65 @@ public :
         TBranch        *b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2;   //!
         TBranch        *b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality;   //!
         TBranch        *b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits;   //!
+        TBranch        *b_nhltIter03IterL3FromL1MuonMergedAssociated;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_pt;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_eta;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_phi;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_charge;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize;
+        TBranch        *b_hltIter03IterL3FromL1MuonMergedAssociated_mva;
+        TBranch        *b_ntpTo_hltIter03IterL3FromL1MuonMergedAssociated;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality;
+        TBranch        *b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits;
         TBranch        *b_nhltIterL3MuonMergedAssociated;   //!
         TBranch        *b_hltIterL3MuonMergedAssociated_pt;   //!
         TBranch        *b_hltIterL3MuonMergedAssociated_eta;   //!
@@ -2568,7 +2808,6 @@ public :
         TBranch        *b_tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_quality;   //!
         TBranch        *b_tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_NValidHits;   //!
 
-
         TBranch        *b_nhltPixelTracksInRegionL1Associated;   //!
         TBranch        *b_hltPixelTracksInRegionL1Associated_pt;   //!
         TBranch        *b_hltPixelTracksInRegionL1Associated_eta;   //!
@@ -2628,8 +2867,6 @@ public :
         TBranch        *b_tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_normalizedChi2;   //!
         TBranch        *b_tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_quality;   //!
         TBranch        *b_tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_NValidHits;   //!
-
-
 
         TBranch        *b_nhltIterL3GlbMuonTrackAssociated;   //!
         TBranch        *b_hltIterL3GlbMuonTrackAssociated_pt;   //!
@@ -3485,37 +3722,75 @@ vector<Object> MuonHLTNtupleRun3::get_hltIter0IterL3MuonTrackAssociated()
     return out;
 }
 
-vector<Object> MuonHLTNtupleRun3::get_hltIter03IterL3FromL1MuonMergedAssociated()
+vector<Object> MuonHLTNtupleRun3::get_hltIter3IterL3MuonTrackAssociated()
+{
+  vector<Object> out = {};
+  if(hltIter3IterL3MuonTrackAssociated_pt == 0 || hltIter3IterL3MuonTrackAssociated_pt == nullptr)
+    return out;
+
+  for(unsigned i=0; i<hltIter3IterL3MuonTrackAssociated_pt->size(); ++i) {
+    Object obj = Object( hltIter3IterL3MuonTrackAssociated_pt->at(i), hltIter3IterL3MuonTrackAssociated_eta->at(i), hltIter3IterL3MuonTrackAssociated_phi->at(i) );
+
+    obj.addVar( "pt", hltIter3IterL3MuonTrackAssociated_pt->at(i) );
+    obj.addVar( "eta", hltIter3IterL3MuonTrackAssociated_eta->at(i) );
+    obj.addVar( "phi", hltIter3IterL3MuonTrackAssociated_phi->at(i) );
+    obj.addVar( "charge", hltIter3IterL3MuonTrackAssociated_charge->at(i) );
+    obj.addVar( "matchedL3", hltIter3IterL3MuonTrackAssociated_matchedL3->at(i) );
+    obj.addVar( "matchedL3NoId", hltIter3IterL3MuonTrackAssociated_matchedL3NoId->at(i) );
+    obj.addVar( "bestMatchTP_charge", hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge->at(i) );
+    obj.addVar( "bestMatchTP_pdgId", hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId->at(i) );
+    obj.addVar( "bestMatchTP_energy", hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy->at(i) );
+    obj.addVar( "bestMatchTP_pt", hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt->at(i) );
+    obj.addVar( "bestMatchTP_eta", hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta->at(i) );
+    obj.addVar( "bestMatchTP_phi", hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi->at(i) );
+    obj.addVar( "bestMatchTP_parentVx", hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx->at(i) );
+    obj.addVar( "bestMatchTP_parentVy", hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy->at(i) );
+    obj.addVar( "bestMatchTP_parentVz", hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz->at(i) );
+    obj.addVar( "bestMatchTP_status", hltIter3IterL3MuonTrackAssociated_bestMatchTP_status->at(i) );
+    obj.addVar( "bestMatchTP_numberOfHits", hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits->at(i) );
+    obj.addVar( "bestMatchTP_numberOfTrackerHits", hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits->at(i) );
+    obj.addVar( "bestMatchTP_numberOfTrackerLayers", hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers->at(i) );
+    obj.addVar( "bestMatchTP_sharedFraction", hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction->at(i) );
+    obj.addVar( "matchedTPsize", hltIter3IterL3MuonTrackAssociated_matchedTPsize->at(i) );
+    obj.addVar( "mva", hltIter3IterL3MuonTrackAssociated_mva->at(i) );
+
+    out.push_back(obj);
+  }
+
+  return out;
+}
+
+vector<Object> MuonHLTNtupleRun3::get_hltIter03IterL3MuonMergedAssociated()
 {
     vector<Object> out = {};
-    if(hltIter03IterL3FromL1MuonMergedAssociated_pt == 0 || hltIter03IterL3FromL1MuonMergedAssociated_pt == nullptr)
+    if(hltIter03IterL3MuonMergedAssociated_pt == 0 || hltIter03IterL3MuonMergedAssociated_pt == nullptr)
         return out;
 
-    for(unsigned i=0; i<hltIter03IterL3FromL1MuonMergedAssociated_pt->size(); ++i) {
-        Object obj = Object( hltIter03IterL3FromL1MuonMergedAssociated_pt->at(i), hltIter03IterL3FromL1MuonMergedAssociated_eta->at(i), hltIter03IterL3FromL1MuonMergedAssociated_phi->at(i) );
+    for(unsigned i=0; i<hltIter03IterL3MuonMergedAssociated_pt->size(); ++i) {
+        Object obj = Object( hltIter03IterL3MuonMergedAssociated_pt->at(i), hltIter03IterL3MuonMergedAssociated_eta->at(i), hltIter03IterL3MuonMergedAssociated_phi->at(i) );
 
-        obj.addVar( "pt", hltIter03IterL3FromL1MuonMergedAssociated_pt->at(i) );
-        obj.addVar( "eta", hltIter03IterL3FromL1MuonMergedAssociated_eta->at(i) );
-        obj.addVar( "phi", hltIter03IterL3FromL1MuonMergedAssociated_phi->at(i) );
-        obj.addVar( "charge", hltIter03IterL3FromL1MuonMergedAssociated_charge->at(i) );
-        obj.addVar( "matchedL3", hltIter03IterL3FromL1MuonMergedAssociated_matchedL3->at(i) );
-        obj.addVar( "matchedL3NoId", hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId->at(i) );
-        obj.addVar( "bestMatchTP_charge", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge->at(i) );
-        obj.addVar( "bestMatchTP_pdgId", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId->at(i) );
-        obj.addVar( "bestMatchTP_energy", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy->at(i) );
-        obj.addVar( "bestMatchTP_pt", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt->at(i) );
-        obj.addVar( "bestMatchTP_eta", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta->at(i) );
-        obj.addVar( "bestMatchTP_phi", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi->at(i) );
-        obj.addVar( "bestMatchTP_parentVx", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx->at(i) );
-        obj.addVar( "bestMatchTP_parentVy", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy->at(i) );
-        obj.addVar( "bestMatchTP_parentVz", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz->at(i) );
-        obj.addVar( "bestMatchTP_status", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status->at(i) );
-        obj.addVar( "bestMatchTP_numberOfHits", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits->at(i) );
-        obj.addVar( "bestMatchTP_numberOfTrackerHits", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits->at(i) );
-        obj.addVar( "bestMatchTP_numberOfTrackerLayers", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers->at(i) );
-        obj.addVar( "bestMatchTP_sharedFraction", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction->at(i) );
-        obj.addVar( "matchedTPsize", hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize->at(i) );
-        obj.addVar( "mva", hltIter03IterL3FromL1MuonMergedAssociated_mva->at(i) );
+        obj.addVar( "pt", hltIter03IterL3MuonMergedAssociated_pt->at(i) );
+        obj.addVar( "eta", hltIter03IterL3MuonMergedAssociated_eta->at(i) );
+        obj.addVar( "phi", hltIter03IterL3MuonMergedAssociated_phi->at(i) );
+        obj.addVar( "charge", hltIter03IterL3MuonMergedAssociated_charge->at(i) );
+        obj.addVar( "matchedL3", hltIter03IterL3MuonMergedAssociated_matchedL3->at(i) );
+        obj.addVar( "matchedL3NoId", hltIter03IterL3MuonMergedAssociated_matchedL3NoId->at(i) );
+        obj.addVar( "bestMatchTP_charge", hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge->at(i) );
+        obj.addVar( "bestMatchTP_pdgId", hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId->at(i) );
+        obj.addVar( "bestMatchTP_energy", hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy->at(i) );
+        obj.addVar( "bestMatchTP_pt", hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt->at(i) );
+        obj.addVar( "bestMatchTP_eta", hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta->at(i) );
+        obj.addVar( "bestMatchTP_phi", hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi->at(i) );
+        obj.addVar( "bestMatchTP_parentVx", hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx->at(i) );
+        obj.addVar( "bestMatchTP_parentVy", hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy->at(i) );
+        obj.addVar( "bestMatchTP_parentVz", hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz->at(i) );
+        obj.addVar( "bestMatchTP_status", hltIter03IterL3MuonMergedAssociated_bestMatchTP_status->at(i) );
+        obj.addVar( "bestMatchTP_numberOfHits", hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits->at(i) );
+        obj.addVar( "bestMatchTP_numberOfTrackerHits", hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits->at(i) );
+        obj.addVar( "bestMatchTP_numberOfTrackerLayers", hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers->at(i) );
+        obj.addVar( "bestMatchTP_sharedFraction", hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction->at(i) );
+        obj.addVar( "matchedTPsize", hltIter03IterL3MuonMergedAssociated_matchedTPsize->at(i) );
+        obj.addVar( "mva", hltIter03IterL3MuonMergedAssociated_mva->at(i) );
 
         out.push_back(obj);
     }
@@ -3597,6 +3872,44 @@ vector<Object> MuonHLTNtupleRun3::get_hltIter3IterL3FromL1MuonTrackAssociated()
     }
 
     return out;
+}
+
+vector<Object> MuonHLTNtupleRun3::get_hltIter03IterL3FromL1MuonMergedAssociated()
+{
+  vector<Object> out = {};
+  if(hltIter03IterL3FromL1MuonMergedAssociated_pt == 0 || hltIter03IterL3FromL1MuonMergedAssociated_pt == nullptr)
+    return out;
+
+  for(unsigned i=0; i<hltIter03IterL3FromL1MuonMergedAssociated_pt->size(); ++i) {
+    Object obj = Object( hltIter03IterL3FromL1MuonMergedAssociated_pt->at(i), hltIter03IterL3FromL1MuonMergedAssociated_eta->at(i), hltIter03IterL3FromL1MuonMergedAssociated_phi->at(i) );
+
+    obj.addVar( "pt", hltIter03IterL3FromL1MuonMergedAssociated_pt->at(i) );
+    obj.addVar( "eta", hltIter03IterL3FromL1MuonMergedAssociated_eta->at(i) );
+    obj.addVar( "phi", hltIter03IterL3FromL1MuonMergedAssociated_phi->at(i) );
+    obj.addVar( "charge", hltIter03IterL3FromL1MuonMergedAssociated_charge->at(i) );
+    obj.addVar( "matchedL3", hltIter03IterL3FromL1MuonMergedAssociated_matchedL3->at(i) );
+    obj.addVar( "matchedL3NoId", hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId->at(i) );
+    obj.addVar( "bestMatchTP_charge", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge->at(i) );
+    obj.addVar( "bestMatchTP_pdgId", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId->at(i) );
+    obj.addVar( "bestMatchTP_energy", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy->at(i) );
+    obj.addVar( "bestMatchTP_pt", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt->at(i) );
+    obj.addVar( "bestMatchTP_eta", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta->at(i) );
+    obj.addVar( "bestMatchTP_phi", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi->at(i) );
+    obj.addVar( "bestMatchTP_parentVx", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx->at(i) );
+    obj.addVar( "bestMatchTP_parentVy", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy->at(i) );
+    obj.addVar( "bestMatchTP_parentVz", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz->at(i) );
+    obj.addVar( "bestMatchTP_status", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status->at(i) );
+    obj.addVar( "bestMatchTP_numberOfHits", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits->at(i) );
+    obj.addVar( "bestMatchTP_numberOfTrackerHits", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits->at(i) );
+    obj.addVar( "bestMatchTP_numberOfTrackerLayers", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers->at(i) );
+    obj.addVar( "bestMatchTP_sharedFraction", hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction->at(i) );
+    obj.addVar( "matchedTPsize", hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize->at(i) );
+    obj.addVar( "mva", hltIter03IterL3FromL1MuonMergedAssociated_mva->at(i) );
+
+    out.push_back(obj);
+  }
+
+  return out;
 }
 
 vector<Object> MuonHLTNtupleRun3::get_hltIterL3MuonMergedAssociated()
@@ -4773,63 +5086,120 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2 = 0;
     tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_quality = 0;
     tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_NValidHits = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_pt = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_eta = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_phi = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_charge = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_matchedL3 = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize = 0;
-    hltIter03IterL3FromL1MuonMergedAssociated_mva = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2 = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality = 0;
-    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits = 0;
+    hltIter3IterL3MuonTrackAssociated_pt = 0;
+    hltIter3IterL3MuonTrackAssociated_eta = 0;
+    hltIter3IterL3MuonTrackAssociated_phi = 0;
+    hltIter3IterL3MuonTrackAssociated_charge = 0;
+    hltIter3IterL3MuonTrackAssociated_matchedL3 = 0;
+    hltIter3IterL3MuonTrackAssociated_matchedL3NoId = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_status = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers = 0;
+    hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction = 0;
+    hltIter3IterL3MuonTrackAssociated_matchedTPsize = 0;
+    hltIter3IterL3MuonTrackAssociated_mva = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_charge = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_pdgId = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_energy = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_pt = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_eta = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_phi = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_parentVx = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_parentVy = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_parentVz = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_status = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_numberOfHits = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerHits = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerLayers = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_gen_charge = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_gen_pdgId = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_gen_pt = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_gen_eta = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_gen_phi = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pt = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_eta = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_phi = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_charge = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_px = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_py = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pz = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vx = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vy = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vz = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxy_bs = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxyError_bs = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dz_bs = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dzError = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2 = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_quality = 0;
+    tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_NValidHits = 0;
+    hltIter03IterL3MuonMergedAssociated_pt = 0;
+    hltIter03IterL3MuonMergedAssociated_eta = 0;
+    hltIter03IterL3MuonMergedAssociated_phi = 0;
+    hltIter03IterL3MuonMergedAssociated_charge = 0;
+    hltIter03IterL3MuonMergedAssociated_matchedL3 = 0;
+    hltIter03IterL3MuonMergedAssociated_matchedL3NoId = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_status = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers = 0;
+    hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction = 0;
+    hltIter03IterL3MuonMergedAssociated_matchedTPsize = 0;
+    hltIter03IterL3MuonMergedAssociated_mva = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_charge = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_pdgId = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_energy = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_pt = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_eta = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_phi = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_parentVx = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_parentVy = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_parentVz = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_status = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_numberOfHits = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerHits = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerLayers = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_gen_charge = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_gen_pdgId = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_gen_pt = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_gen_eta = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_gen_phi = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pt = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_eta = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_phi = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_charge = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_px = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_py = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pz = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vx = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vy = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vz = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxy_bs = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxyError_bs = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dz_bs = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dzError = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2 = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_quality = 0;
+    tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_NValidHits = 0;
     hltIter0IterL3FromL1MuonTrackAssociated_pt = 0;
     hltIter0IterL3FromL1MuonTrackAssociated_eta = 0;
     hltIter0IterL3FromL1MuonTrackAssociated_phi = 0;
@@ -4944,6 +5314,63 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2 = 0;
     tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality = 0;
     tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_pt = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_eta = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_phi = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_charge = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_matchedL3 = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize = 0;
+    hltIter03IterL3FromL1MuonMergedAssociated_mva = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2 = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality = 0;
+    tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits = 0;
     hltIterL3MuonMergedAssociated_pt = 0;
     hltIterL3MuonMergedAssociated_eta = 0;
     hltIterL3MuonMergedAssociated_phi = 0;
@@ -5254,7 +5681,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_quality = 0;
     tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_NValidHits = 0;
 
-
     hltPixelTracksInRegionL1Associated_pt = 0;
     hltPixelTracksInRegionL1Associated_eta = 0;
     hltPixelTracksInRegionL1Associated_phi = 0;
@@ -5312,8 +5738,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_normalizedChi2 = 0;
     tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_quality = 0;
     tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_NValidHits = 0;
-
-
 
     hltIterL3GlbMuonTrackAssociated_pt = 0;
     hltIterL3GlbMuonTrackAssociated_eta = 0;
@@ -5823,6 +6247,7 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("hltIterL3FromL1MuonTrimmedPixelVertices_yerr", &hltIterL3FromL1MuonTrimmedPixelVertices_yerr, &b_hltIterL3FromL1MuonTrimmedPixelVertices_yerr);
     fChain->SetBranchAddress("hltIterL3FromL1MuonTrimmedPixelVertices_z", &hltIterL3FromL1MuonTrimmedPixelVertices_z, &b_hltIterL3FromL1MuonTrimmedPixelVertices_z);
     fChain->SetBranchAddress("hltIterL3FromL1MuonTrimmedPixelVertices_zerr", &hltIterL3FromL1MuonTrimmedPixelVertices_zerr, &b_hltIterL3FromL1MuonTrimmedPixelVertices_zerr);
+
     fChain->SetBranchAddress("nhltIterL3OIMuonTrackAssociated", &nhltIterL3OIMuonTrackAssociated, &b_nhltIterL3OIMuonTrackAssociated);
     fChain->SetBranchAddress("hltIterL3OIMuonTrackAssociated_pt", &hltIterL3OIMuonTrackAssociated_pt, &b_hltIterL3OIMuonTrackAssociated_pt);
     fChain->SetBranchAddress("hltIterL3OIMuonTrackAssociated_eta", &hltIterL3OIMuonTrackAssociated_eta, &b_hltIterL3OIMuonTrackAssociated_eta);
@@ -5882,6 +6307,7 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_normalizedChi2);
     fChain->SetBranchAddress("tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_quality", &tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIterL3OIMuonTrackAssociated_bestMatchTrk_NValidHits);
+
     fChain->SetBranchAddress("nhltIter0IterL3MuonTrackAssociated", &nhltIter0IterL3MuonTrackAssociated, &b_nhltIter0IterL3MuonTrackAssociated);
     fChain->SetBranchAddress("hltIter0IterL3MuonTrackAssociated_pt", &hltIter0IterL3MuonTrackAssociated_pt, &b_hltIter0IterL3MuonTrackAssociated_pt);
     fChain->SetBranchAddress("hltIter0IterL3MuonTrackAssociated_eta", &hltIter0IterL3MuonTrackAssociated_eta, &b_hltIter0IterL3MuonTrackAssociated_eta);
@@ -5939,69 +6365,127 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_dz_bs);
     fChain->SetBranchAddress("tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_dzError", &tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_dzError);
     fChain->SetBranchAddress("tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2);
-
     fChain->SetBranchAddress("tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_quality", &tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter0IterL3MuonTrackAssociated_bestMatchTrk_NValidHits);
-    fChain->SetBranchAddress("nhltIter03IterL3FromL1MuonMergedAssociated", &nhltIter03IterL3FromL1MuonMergedAssociated, &b_nhltIter03IterL3FromL1MuonMergedAssociated);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_pt", &hltIter03IterL3FromL1MuonMergedAssociated_pt, &b_hltIter03IterL3FromL1MuonMergedAssociated_pt);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_eta", &hltIter03IterL3FromL1MuonMergedAssociated_eta, &b_hltIter03IterL3FromL1MuonMergedAssociated_eta);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_phi", &hltIter03IterL3FromL1MuonMergedAssociated_phi, &b_hltIter03IterL3FromL1MuonMergedAssociated_phi);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_charge", &hltIter03IterL3FromL1MuonMergedAssociated_charge, &b_hltIter03IterL3FromL1MuonMergedAssociated_charge);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_matchedL3", &hltIter03IterL3FromL1MuonMergedAssociated_matchedL3, &b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId", &hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId, &b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize", &hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize, &b_hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize);
-    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_mva", &hltIter03IterL3FromL1MuonMergedAssociated_mva, &b_hltIter03IterL3FromL1MuonMergedAssociated_mva);
-    fChain->SetBranchAddress("ntpTo_hltIter03IterL3FromL1MuonMergedAssociated", &ntpTo_hltIter03IterL3FromL1MuonMergedAssociated, &b_ntpTo_hltIter03IterL3FromL1MuonMergedAssociated);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2);
+    fChain->SetBranchAddress("nhltIter3IterL3MuonTrackAssociated", &nhltIter3IterL3MuonTrackAssociated, &b_nhltIter3IterL3MuonTrackAssociated);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_pt", &hltIter3IterL3MuonTrackAssociated_pt, &b_hltIter3IterL3MuonTrackAssociated_pt);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_eta", &hltIter3IterL3MuonTrackAssociated_eta, &b_hltIter3IterL3MuonTrackAssociated_eta);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_phi", &hltIter3IterL3MuonTrackAssociated_phi, &b_hltIter3IterL3MuonTrackAssociated_phi);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_charge", &hltIter3IterL3MuonTrackAssociated_charge, &b_hltIter3IterL3MuonTrackAssociated_charge);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_matchedL3", &hltIter3IterL3MuonTrackAssociated_matchedL3, &b_hltIter3IterL3MuonTrackAssociated_matchedL3);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_matchedL3NoId", &hltIter3IterL3MuonTrackAssociated_matchedL3NoId, &b_hltIter3IterL3MuonTrackAssociated_matchedL3NoId);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_charge);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_pdgId);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_energy);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_pt);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_eta);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_phi);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVx);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVy);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_parentVz);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_status", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_status, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_status);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfHits);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerHits);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_numberOfTrackerLayers);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction", &hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction, &b_hltIter3IterL3MuonTrackAssociated_bestMatchTP_sharedFraction);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_matchedTPsize", &hltIter3IterL3MuonTrackAssociated_matchedTPsize, &b_hltIter3IterL3MuonTrackAssociated_matchedTPsize);
+    fChain->SetBranchAddress("hltIter3IterL3MuonTrackAssociated_mva", &hltIter3IterL3MuonTrackAssociated_mva, &b_hltIter3IterL3MuonTrackAssociated_mva);
+    fChain->SetBranchAddress("ntpTo_hltIter3IterL3MuonTrackAssociated", &ntpTo_hltIter3IterL3MuonTrackAssociated, &b_ntpTo_hltIter3IterL3MuonTrackAssociated);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_charge", &tpTo_hltIter3IterL3MuonTrackAssociated_charge, &b_tpTo_hltIter3IterL3MuonTrackAssociated_charge);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_pdgId", &tpTo_hltIter3IterL3MuonTrackAssociated_pdgId, &b_tpTo_hltIter3IterL3MuonTrackAssociated_pdgId);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_energy", &tpTo_hltIter3IterL3MuonTrackAssociated_energy, &b_tpTo_hltIter3IterL3MuonTrackAssociated_energy);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_pt", &tpTo_hltIter3IterL3MuonTrackAssociated_pt, &b_tpTo_hltIter3IterL3MuonTrackAssociated_pt);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_eta", &tpTo_hltIter3IterL3MuonTrackAssociated_eta, &b_tpTo_hltIter3IterL3MuonTrackAssociated_eta);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_phi", &tpTo_hltIter3IterL3MuonTrackAssociated_phi, &b_tpTo_hltIter3IterL3MuonTrackAssociated_phi);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_parentVx", &tpTo_hltIter3IterL3MuonTrackAssociated_parentVx, &b_tpTo_hltIter3IterL3MuonTrackAssociated_parentVx);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_parentVy", &tpTo_hltIter3IterL3MuonTrackAssociated_parentVy, &b_tpTo_hltIter3IterL3MuonTrackAssociated_parentVy);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_parentVz", &tpTo_hltIter3IterL3MuonTrackAssociated_parentVz, &b_tpTo_hltIter3IterL3MuonTrackAssociated_parentVz);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_status", &tpTo_hltIter3IterL3MuonTrackAssociated_status, &b_tpTo_hltIter3IterL3MuonTrackAssociated_status);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_numberOfHits", &tpTo_hltIter3IterL3MuonTrackAssociated_numberOfHits, &b_tpTo_hltIter3IterL3MuonTrackAssociated_numberOfHits);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerHits", &tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerHits, &b_tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerHits);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerLayers", &tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerLayers, &b_tpTo_hltIter3IterL3MuonTrackAssociated_numberOfTrackerLayers);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_gen_charge", &tpTo_hltIter3IterL3MuonTrackAssociated_gen_charge, &b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_charge);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_gen_pdgId", &tpTo_hltIter3IterL3MuonTrackAssociated_gen_pdgId, &b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_pdgId);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_gen_pt", &tpTo_hltIter3IterL3MuonTrackAssociated_gen_pt, &b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_pt);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_gen_eta", &tpTo_hltIter3IterL3MuonTrackAssociated_gen_eta, &b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_eta);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_gen_phi", &tpTo_hltIter3IterL3MuonTrackAssociated_gen_phi, &b_tpTo_hltIter3IterL3MuonTrackAssociated_gen_phi);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pt", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pt, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pt);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_eta", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_eta, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_eta);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_phi", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_phi, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_phi);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_charge", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_charge, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_charge);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_px", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_px, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_px);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_py", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_py, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_py);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pz", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pz, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_pz);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vx", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vx, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vx);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vy", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vy, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vy);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vz", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vz, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_vz);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxy_bs", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxy_bs, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxy_bs);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxyError_bs", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxyError_bs, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dxyError_bs);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dz_bs);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dzError", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_dzError);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_normalizedChi2);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_quality", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_quality);
+    fChain->SetBranchAddress("tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter3IterL3MuonTrackAssociated_bestMatchTrk_NValidHits);
+    fChain->SetBranchAddress("nhltIter03IterL3MuonMergedAssociated", &nhltIter03IterL3MuonMergedAssociated, &b_nhltIter03IterL3MuonMergedAssociated);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_pt", &hltIter03IterL3MuonMergedAssociated_pt, &b_hltIter03IterL3MuonMergedAssociated_pt);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_eta", &hltIter03IterL3MuonMergedAssociated_eta, &b_hltIter03IterL3MuonMergedAssociated_eta);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_phi", &hltIter03IterL3MuonMergedAssociated_phi, &b_hltIter03IterL3MuonMergedAssociated_phi);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_charge", &hltIter03IterL3MuonMergedAssociated_charge, &b_hltIter03IterL3MuonMergedAssociated_charge);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_matchedL3", &hltIter03IterL3MuonMergedAssociated_matchedL3, &b_hltIter03IterL3MuonMergedAssociated_matchedL3);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_matchedL3NoId", &hltIter03IterL3MuonMergedAssociated_matchedL3NoId, &b_hltIter03IterL3MuonMergedAssociated_matchedL3NoId);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_charge);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_pdgId);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_energy);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_pt);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_eta);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_phi);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVx);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVy);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_parentVz);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_status", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_status, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_status);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfHits);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerHits);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction", &hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction, &b_hltIter03IterL3MuonMergedAssociated_bestMatchTP_sharedFraction);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_matchedTPsize", &hltIter03IterL3MuonMergedAssociated_matchedTPsize, &b_hltIter03IterL3MuonMergedAssociated_matchedTPsize);
+    fChain->SetBranchAddress("hltIter03IterL3MuonMergedAssociated_mva", &hltIter03IterL3MuonMergedAssociated_mva, &b_hltIter03IterL3MuonMergedAssociated_mva);
+    fChain->SetBranchAddress("ntpTo_hltIter03IterL3MuonMergedAssociated", &ntpTo_hltIter03IterL3MuonMergedAssociated, &b_ntpTo_hltIter03IterL3MuonMergedAssociated);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_charge", &tpTo_hltIter03IterL3MuonMergedAssociated_charge, &b_tpTo_hltIter03IterL3MuonMergedAssociated_charge);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_pdgId", &tpTo_hltIter03IterL3MuonMergedAssociated_pdgId, &b_tpTo_hltIter03IterL3MuonMergedAssociated_pdgId);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_energy", &tpTo_hltIter03IterL3MuonMergedAssociated_energy, &b_tpTo_hltIter03IterL3MuonMergedAssociated_energy);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_pt", &tpTo_hltIter03IterL3MuonMergedAssociated_pt, &b_tpTo_hltIter03IterL3MuonMergedAssociated_pt);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_eta", &tpTo_hltIter03IterL3MuonMergedAssociated_eta, &b_tpTo_hltIter03IterL3MuonMergedAssociated_eta);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_phi", &tpTo_hltIter03IterL3MuonMergedAssociated_phi, &b_tpTo_hltIter03IterL3MuonMergedAssociated_phi);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_parentVx", &tpTo_hltIter03IterL3MuonMergedAssociated_parentVx, &b_tpTo_hltIter03IterL3MuonMergedAssociated_parentVx);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_parentVy", &tpTo_hltIter03IterL3MuonMergedAssociated_parentVy, &b_tpTo_hltIter03IterL3MuonMergedAssociated_parentVy);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_parentVz", &tpTo_hltIter03IterL3MuonMergedAssociated_parentVz, &b_tpTo_hltIter03IterL3MuonMergedAssociated_parentVz);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_status", &tpTo_hltIter03IterL3MuonMergedAssociated_status, &b_tpTo_hltIter03IterL3MuonMergedAssociated_status);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_numberOfHits", &tpTo_hltIter03IterL3MuonMergedAssociated_numberOfHits, &b_tpTo_hltIter03IterL3MuonMergedAssociated_numberOfHits);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerHits", &tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerHits, &b_tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerHits);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerLayers", &tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerLayers, &b_tpTo_hltIter03IterL3MuonMergedAssociated_numberOfTrackerLayers);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_gen_charge", &tpTo_hltIter03IterL3MuonMergedAssociated_gen_charge, &b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_charge);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_gen_pdgId", &tpTo_hltIter03IterL3MuonMergedAssociated_gen_pdgId, &b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_pdgId);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_gen_pt", &tpTo_hltIter03IterL3MuonMergedAssociated_gen_pt, &b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_pt);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_gen_eta", &tpTo_hltIter03IterL3MuonMergedAssociated_gen_eta, &b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_eta);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_gen_phi", &tpTo_hltIter03IterL3MuonMergedAssociated_gen_phi, &b_tpTo_hltIter03IterL3MuonMergedAssociated_gen_phi);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pt", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pt, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pt);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_eta", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_eta, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_eta);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_phi", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_phi, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_phi);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_charge", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_charge, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_charge);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_px", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_px, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_px);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_py", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_py, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_py);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pz", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pz, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_pz);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vx", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vx, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vx);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vy", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vy, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vy);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vz", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vz, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_vz);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxy_bs", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxy_bs, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxy_bs);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxyError_bs", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxyError_bs, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dxyError_bs);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dz_bs);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dzError", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_dzError);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_quality", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_quality, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_quality);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter03IterL3MuonMergedAssociated_bestMatchTrk_NValidHits);
 
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality);
-    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits);
     fChain->SetBranchAddress("nhltIter0IterL3FromL1MuonTrackAssociated", &nhltIter0IterL3FromL1MuonTrackAssociated, &b_nhltIter0IterL3FromL1MuonTrackAssociated);
     fChain->SetBranchAddress("hltIter0IterL3FromL1MuonTrackAssociated_pt", &hltIter0IterL3FromL1MuonTrackAssociated_pt, &b_hltIter0IterL3FromL1MuonTrackAssociated_pt);
     fChain->SetBranchAddress("hltIter0IterL3FromL1MuonTrackAssociated_eta", &hltIter0IterL3FromL1MuonTrackAssociated_eta, &b_hltIter0IterL3FromL1MuonTrackAssociated_eta);
@@ -6059,7 +6543,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_dz_bs);
     fChain->SetBranchAddress("tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_dzError", &tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_dzError);
     fChain->SetBranchAddress("tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2);
-
     fChain->SetBranchAddress("tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality", &tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter0IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits);
     fChain->SetBranchAddress("nhltIter3IterL3FromL1MuonTrackAssociated", &nhltIter3IterL3FromL1MuonTrackAssociated, &b_nhltIter3IterL3FromL1MuonTrackAssociated);
@@ -6119,9 +6602,68 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_dz_bs);
     fChain->SetBranchAddress("tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_dzError", &tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_dzError);
     fChain->SetBranchAddress("tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_normalizedChi2);
-
     fChain->SetBranchAddress("tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality", &tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter3IterL3FromL1MuonTrackAssociated_bestMatchTrk_NValidHits);
+    fChain->SetBranchAddress("nhltIter03IterL3FromL1MuonMergedAssociated", &nhltIter03IterL3FromL1MuonMergedAssociated, &b_nhltIter03IterL3FromL1MuonMergedAssociated);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_pt", &hltIter03IterL3FromL1MuonMergedAssociated_pt, &b_hltIter03IterL3FromL1MuonMergedAssociated_pt);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_eta", &hltIter03IterL3FromL1MuonMergedAssociated_eta, &b_hltIter03IterL3FromL1MuonMergedAssociated_eta);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_phi", &hltIter03IterL3FromL1MuonMergedAssociated_phi, &b_hltIter03IterL3FromL1MuonMergedAssociated_phi);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_charge", &hltIter03IterL3FromL1MuonMergedAssociated_charge, &b_hltIter03IterL3FromL1MuonMergedAssociated_charge);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_matchedL3", &hltIter03IterL3FromL1MuonMergedAssociated_matchedL3, &b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId", &hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId, &b_hltIter03IterL3FromL1MuonMergedAssociated_matchedL3NoId);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_charge);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pdgId);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_energy);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_pt);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_eta);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_phi);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVx);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVy);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_parentVz);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_status);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfHits);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerHits);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_numberOfTrackerLayers);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction", &hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction, &b_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTP_sharedFraction);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize", &hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize, &b_hltIter03IterL3FromL1MuonMergedAssociated_matchedTPsize);
+    fChain->SetBranchAddress("hltIter03IterL3FromL1MuonMergedAssociated_mva", &hltIter03IterL3FromL1MuonMergedAssociated_mva, &b_hltIter03IterL3FromL1MuonMergedAssociated_mva);
+    fChain->SetBranchAddress("ntpTo_hltIter03IterL3FromL1MuonMergedAssociated", &ntpTo_hltIter03IterL3FromL1MuonMergedAssociated, &b_ntpTo_hltIter03IterL3FromL1MuonMergedAssociated);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_charge);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pdgId);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_energy);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_pt);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_eta);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_phi);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVx);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVy);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_parentVz);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_status);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfHits);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerHits);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_numberOfTrackerLayers);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_charge);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pdgId);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_pt);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_eta);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_gen_phi);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pt);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_eta);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_phi);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_charge);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_px);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_py);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_pz);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vx);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vy);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_vz);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxy_bs);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dxyError_bs);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dz_bs);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_dzError);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_normalizedChi2);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_quality);
+    fChain->SetBranchAddress("tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits", &tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIter03IterL3FromL1MuonMergedAssociated_bestMatchTrk_NValidHits);
+
     fChain->SetBranchAddress("nhltIterL3MuonMergedAssociated", &nhltIterL3MuonMergedAssociated, &b_nhltIterL3MuonMergedAssociated);
     fChain->SetBranchAddress("hltIterL3MuonMergedAssociated_pt", &hltIterL3MuonMergedAssociated_pt, &b_hltIterL3MuonMergedAssociated_pt);
     fChain->SetBranchAddress("hltIterL3MuonMergedAssociated_eta", &hltIterL3MuonMergedAssociated_eta, &b_hltIterL3MuonMergedAssociated_eta);
@@ -6179,7 +6721,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_dz_bs", &tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_dz_bs);
     fChain->SetBranchAddress("tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_dzError", &tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_dzError, &b_tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_dzError);
     fChain->SetBranchAddress("tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_normalizedChi2);
-
     fChain->SetBranchAddress("tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_quality", &tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_quality, &b_tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_NValidHits", &tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIterL3MuonMergedAssociated_bestMatchTrk_NValidHits);
     fChain->SetBranchAddress("nhltIterL3MuonAndMuonFromL1MergedAssociated", &nhltIterL3MuonAndMuonFromL1MergedAssociated, &b_nhltIterL3MuonAndMuonFromL1MergedAssociated);
@@ -6239,9 +6780,9 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_dz_bs", &tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_dz_bs, &b_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_dz_bs);
     fChain->SetBranchAddress("tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_dzError", &tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_dzError, &b_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_dzError);
     fChain->SetBranchAddress("tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_normalizedChi2", &tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_normalizedChi2, &b_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_normalizedChi2);
-
     fChain->SetBranchAddress("tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_quality", &tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_quality, &b_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_NValidHits", &tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_NValidHits, &b_tpTo_hltIterL3MuonAndMuonFromL1MergedAssociated_bestMatchTrk_NValidHits);
+
     fChain->SetBranchAddress("niterL3MuonNoIDTrackAssociated", &niterL3MuonNoIDTrackAssociated, &b_niterL3MuonNoIDTrackAssociated);
     fChain->SetBranchAddress("iterL3MuonNoIDTrackAssociated_pt", &iterL3MuonNoIDTrackAssociated_pt, &b_iterL3MuonNoIDTrackAssociated_pt);
     fChain->SetBranchAddress("iterL3MuonNoIDTrackAssociated_eta", &iterL3MuonNoIDTrackAssociated_eta, &b_iterL3MuonNoIDTrackAssociated_eta);
@@ -6361,7 +6902,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality", &tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality, &b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits", &tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits, &b_tpTo_iterL3MuonTrackAssociated_bestMatchTrk_NValidHits);
 
-
     fChain->SetBranchAddress("nhltPixelTracksAssociated", &nhltPixelTracksAssociated, &b_nhltPixelTracksAssociated);
     fChain->SetBranchAddress("hltPixelTracksAssociated_pt", &hltPixelTracksAssociated_pt, &b_hltPixelTracksAssociated_pt);
     fChain->SetBranchAddress("hltPixelTracksAssociated_eta", &hltPixelTracksAssociated_eta, &b_hltPixelTracksAssociated_eta);
@@ -6385,8 +6925,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("hltPixelTracksAssociated_bestMatchTP_sharedFraction", &hltPixelTracksAssociated_bestMatchTP_sharedFraction, &b_hltPixelTracksAssociated_bestMatchTP_sharedFraction);
     fChain->SetBranchAddress("hltPixelTracksAssociated_matchedTPsize", &hltPixelTracksAssociated_matchedTPsize, &b_hltPixelTracksAssociated_matchedTPsize);
     fChain->SetBranchAddress("hltPixelTracksAssociated_mva", &hltPixelTracksAssociated_mva, &b_hltPixelTracksAssociated_mva);
-
-
     fChain->SetBranchAddress("nhltPixelTracksInRegionL2Associated", &nhltPixelTracksInRegionL2Associated, &b_nhltPixelTracksInRegionL2Associated);
     fChain->SetBranchAddress("hltPixelTracksInRegionL2Associated_pt", &hltPixelTracksInRegionL2Associated_pt, &b_hltPixelTracksInRegionL2Associated_pt);
     fChain->SetBranchAddress("hltPixelTracksInRegionL2Associated_eta", &hltPixelTracksInRegionL2Associated_eta, &b_hltPixelTracksInRegionL2Associated_eta);
@@ -6446,8 +6984,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_normalizedChi2", &tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_normalizedChi2, &b_tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_normalizedChi2);
     fChain->SetBranchAddress("tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_quality", &tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_quality, &b_tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_NValidHits", &tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_NValidHits, &b_tpTo_hltPixelTracksInRegionL2Associated_bestMatchTrk_NValidHits);
-
-
     fChain->SetBranchAddress("nhltPixelTracksInRegionL1Associated", &nhltPixelTracksInRegionL1Associated, &b_nhltPixelTracksInRegionL1Associated);
     fChain->SetBranchAddress("hltPixelTracksInRegionL1Associated_pt", &hltPixelTracksInRegionL1Associated_pt, &b_hltPixelTracksInRegionL1Associated_pt);
     fChain->SetBranchAddress("hltPixelTracksInRegionL1Associated_eta", &hltPixelTracksInRegionL1Associated_eta, &b_hltPixelTracksInRegionL1Associated_eta);
@@ -6507,8 +7043,6 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_normalizedChi2", &tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_normalizedChi2, &b_tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_normalizedChi2);
     fChain->SetBranchAddress("tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_quality", &tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_quality, &b_tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_quality);
     fChain->SetBranchAddress("tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_NValidHits", &tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_NValidHits, &b_tpTo_hltPixelTracksInRegionL1Associated_bestMatchTrk_NValidHits);
-
-
 
     fChain->SetBranchAddress("nhltIterL3GlbMuonTrackAssociated", &nhltIterL3GlbMuonTrackAssociated, &b_nhltIterL3GlbMuonTrackAssociated);
     fChain->SetBranchAddress("hltIterL3GlbMuonTrackAssociated_pt", &hltIterL3GlbMuonTrackAssociated_pt, &b_hltIterL3GlbMuonTrackAssociated_pt);
