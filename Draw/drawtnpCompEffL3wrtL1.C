@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", TString ver = "vRun3_03", TString SAMPLE = "Run2022, 2023", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022, 2023", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -87,10 +87,12 @@ void drawtnpCompEffL3wrtL1(
 
   vector<Color_t> v_color = {
     kBlack,
-    kBlue,
+    //kBlue,
     kRed,
     //kOrange,
     kGreen+2,
+    kOrange,
+    kBlue,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
@@ -98,10 +100,10 @@ void drawtnpCompEffL3wrtL1(
   };
   vector<int> v_marker = {
     20,
+    20,//22,
+    22,//23,
     22,
-    23,
-    22,
-    //25,
+    25,
     //26,
     //23,
     //22,
@@ -110,18 +112,15 @@ void drawtnpCompEffL3wrtL1(
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022G-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023B-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023C-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D-Eff.root",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_07-20230526/Eff/hist-vRun3_07-20230526-"+tag+"_Run2022G-Eff.root",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_STEAM_230908/hist-vRun3_07_Run2023B-Eff.root",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_STEAM_230908/hist-vRun3_07_Run2023C-Eff.root",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/Outputs_vRun3_STEAM_230908/hist-vRun3_07_Run2023D-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022preEE-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022postEE-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023preBPix-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023postBPix-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1306.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
     "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
     "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
     "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
@@ -133,13 +132,14 @@ void drawtnpCompEffL3wrtL1(
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    "Run2022G Data",
-    //"Run3Winer23 DY",
-    "Run2023B Data",
-    "Run2023C Data",
-    "Run2023D Data",
+    "Run2022 Data PreEE",
+    "Run2022 Data PostEE",
+    "Run2023 Data PreBPix",
+    "Run2023 Data PostBPix",
+    "Run3 Winter23 DY",
   };
 
   vector<TString> v_pts = {
