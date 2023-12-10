@@ -24,6 +24,18 @@
 
 using namespace std;
 
+void canvas_margin(TCanvas *c, TPad *c_up, TPad *c_down);
+TGraphAsymmErrors* MakeRatioGraph(TGraphAsymmErrors *_g_Type1, TGraphAsymmErrors *_g_Type2, TString errorPropagation = "AoverB");
+void SetAxis_Pad_Top( TAxis *X_axis, TAxis *Y_axis, TString YTitle );
+void SetAxis_Pad_Bottom( TAxis *X_axis, TAxis *Y_axis, TString XTitle, TString YTitle );
+Double_t ReturnLargerValue(Double_t a, Double_t b)
+{
+  if( a > b )
+    return a;
+  else
+    return b;
+}
+
 void printRunTime(TStopwatch timer_)
 {
   Double_t cpuTime = timer_.CpuTime();
@@ -37,7 +49,7 @@ void printRunTime(TStopwatch timer_)
   cout << "************************************************" << endl;
 }
 
-void drawtnpCompEffL3wrtL1(
+void drawtnpCompEffL3wrtL1_ratio(
   TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022, 2023", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
@@ -104,8 +116,8 @@ void drawtnpCompEffL3wrtL1(
   vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
-    kBlack,
     kBlue,
+    kBlack,
     kRed,
     //kOrange,
     //kGreen+2,
@@ -115,8 +127,8 @@ void drawtnpCompEffL3wrtL1(
     //kMagenta,
   };
   vector<int> v_marker = {
-    20,
     21,
+    20,
     23,
     //22,
     //25,
@@ -128,8 +140,8 @@ void drawtnpCompEffL3wrtL1(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
     "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_1326.root",
   };
   vector<TString> types = {
@@ -149,8 +161,8 @@ void drawtnpCompEffL3wrtL1(
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    "Run2023 Data",
     "Drell-Yan Simulation",
+    "Run2023 Data",
     "Run2022 Data",
   };
 
@@ -189,16 +201,20 @@ void drawtnpCompEffL3wrtL1(
                                              v_pts[ipt].Data(),
                                              v_var[ivar].Data());
         canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "");
-        TCanvas *c;
-        SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
-        c->cd();
-        if(isLogy) c->SetLogy();
-        if(tag == "Zprime" && v_var[ivar].Contains("pt")) c->SetLogx();
+        TCanvas *c = new TCanvas("c_eff", "", 900, 900);
+        TPad *c_up = new TPad("c_up", "", 0.01,0.25, 0.99,0.99);
+        TPad *c_down = new TPad("c_down", "", 0.01,0.01, 0.99,0.25);
+        canvas_margin(c, c_up, c_down);
+
+        c_up->cd();
+        if(isLogy) c_up->SetLogy();
+        if(tag == "Zprime" && v_var[ivar].Contains("pt")) c_up->SetLogx();
 
         TLegend *legend;
-        SetLegend( legend, 0.17, 0.69, 0.94, 0.82, -1);
+        SetLegend( legend, 0.17, 0.65, 0.94, 0.78, -1);
 
         bool isFirst = true;
+        TGraphAsymmErrors* g_ref;
         for(int i = 0; i<(int)files.size(); ++i) {
           TString fileName = files.at(i);
 
@@ -259,16 +275,25 @@ void drawtnpCompEffL3wrtL1(
           g->GetXaxis()->SetRangeUser( xmin, xmax );
           g->GetYaxis()->SetRangeUser( ymin, ymax );
 
-          SetAxis_SinglePad( g->GetXaxis(), g->GetYaxis(), titleX, titleY );
-
+          SetAxis_Pad_Top( g->GetXaxis(), g->GetYaxis(), titleY );
           if(isFirst) {
             g->Draw("APE");
             isFirst = false;
+            g_ref = g;
           }
           else {
             g->Draw("PE same");
+            c_down->cd();
+            TGraphAsymmErrors* g_ratio = MakeRatioGraph(g, g_ref);
+            g_ratio->GetXaxis()->SetLimits( xmin, xmax );
+            g_ratio->GetXaxis()->SetRangeUser( xmin, xmax );
+            g_ratio->GetYaxis()->SetRangeUser( 0.89, 1.11 );
+            if(i == 1) g_ratio->Draw("APE");
+            else g_ratio->Draw("PE same");
+            SetAxis_Pad_Bottom( g_ratio->GetXaxis(), g_ratio->GetYaxis(), titleX, titleY );
           }
 
+          c_up->cd();
           legend->AddEntry( g, TString::Format("%s", the_type_str.Data()), "lep" );
         }
 
@@ -278,6 +303,7 @@ void drawtnpCompEffL3wrtL1(
         eff1p0.Draw("same");
         legend->Draw();
 
+	c->cd();
         TString L3str = "";
         if(efftag == "L2Muon") L3str = "L2 Muon";
         else if(efftag == "hltOI") L3str = "Outside-in L3 MuonTrack";
@@ -316,4 +342,102 @@ void drawtnpCompEffL3wrtL1(
     }
   }
   printRunTime(timer_total);
+}
+
+void canvas_margin(TCanvas *c, TPad *c_up, TPad *c_down){
+  c_up->SetTopMargin( 0.06 );
+  c_up->SetBottomMargin( 0.02 );
+  c_up->SetLeftMargin( 0.11 );
+  c_up->SetRightMargin( 0.02 );
+  c_up->Draw();
+
+  c_down->SetTopMargin( 0.01 );
+  c_down->SetBottomMargin( 0.26 );
+  c_down->SetLeftMargin( 0.11 );
+  c_down->SetRightMargin( 0.02 );
+  c_down->SetGridx();
+  c_down->SetGridy();
+  c_down->Draw();
+
+  c->SetTopMargin( 0.05 );   //0.05
+  c->SetBottomMargin( 0.13 );//0.13
+  c->SetRightMargin( 0.05 ); //0.05
+  c->SetLeftMargin( 0.16 );  //0.16
+  
+  gStyle->SetOptStat(0);
+}
+
+void SetAxis_Pad_Top( TAxis *X_axis, TAxis *Y_axis, TString YTitle ){
+  X_axis->SetLabelSize(0.000);
+  X_axis->SetTitleSize(0.000);
+
+  Y_axis->SetTitle( YTitle );
+  Y_axis->SetTitleSize(0.05);
+  Y_axis->SetTitleOffset(1.0);
+  Y_axis->SetLabelSize(0.05);
+}
+void SetAxis_Pad_Bottom( TAxis *X_axis, TAxis *Y_axis, TString XTitle, TString YTitle ){
+  X_axis->SetTitle( XTitle );
+  X_axis->SetLabelSize(0.1);
+  X_axis->SetTitleOffset(1.0);
+  X_axis->SetTitleSize(0.12);
+  X_axis->SetNoExponent();
+  X_axis->SetMoreLogLabels();
+
+  Y_axis->SetTitle( "Data/MC" );
+  Y_axis->SetTitleSize(0.1);
+  Y_axis->SetTitleOffset(0.5);
+  Y_axis->SetLabelSize(0.1);
+}
+
+TGraphAsymmErrors* MakeRatioGraph(TGraphAsymmErrors *_g_Type1, TGraphAsymmErrors *_g_Type2, TString errorPropagation = "AoverB"){
+  TGraphAsymmErrors* g_Type1 = (TGraphAsymmErrors*)_g_Type1->Clone();
+  TGraphAsymmErrors* g_Type2 = (TGraphAsymmErrors*)_g_Type2->Clone();
+
+  TGraphAsymmErrors*  g_ratio = (TGraphAsymmErrors*)g_Type1->Clone();
+  g_ratio->Set(0); // --Remove all points (reset) -- //
+
+  Int_t nPoint = g_Type1->GetN();
+  Int_t nPoint_2 = g_Type2->GetN();
+  if( nPoint != nPoint_2 ) {
+    printf("# points is different bewteen two graph... return NULL\n");
+    cout << "\tnPoint Num = " << nPoint << endl;
+    cout << "\tnPoint Den = " << nPoint_2 << endl;
+    return NULL;
+  }
+
+  for(Int_t i_p=0; i_p<nPoint; i_p++)
+    {
+      Double_t x_Type1, y_Type1;
+      g_Type1->GetPoint(i_p, x_Type1, y_Type1);
+      Double_t error_Type1 = ReturnLargerValue( g_Type1->GetErrorYhigh(i_p), g_Type1->GetErrorYlow(i_p) );
+
+      //Get Type2 point                                                                                                                                                                                                             
+      Double_t x_Type2, y_Type2;
+      g_Type2->GetPoint(i_p, x_Type2, y_Type2);
+      Double_t error_Type2 = ReturnLargerValue( g_Type2->GetErrorYhigh(i_p), g_Type2->GetErrorYlow(i_p) );
+
+      Double_t ratio;
+      Double_t ratio_error = 999.;
+      if(y_Type2 != 0)
+        {
+          ratio = y_Type1 / y_Type2;
+          if(errorPropagation == "AoverB")
+            ratio_error = GetUncorrelatedError(y_Type1, error_Type1, y_Type2, error_Type2);
+        }
+        else
+          {
+            ratio = 0;
+            ratio_error = 0;
+        }
+
+      //Set Central value
+      g_ratio->SetPoint(i_p, x_Type1, ratio);
+
+      //Set the error
+      Double_t error_XLow = g_Type1->GetErrorXlow(i_p);
+      Double_t error_Xhigh = g_Type1->GetErrorXhigh(i_p);
+      g_ratio->SetPointError(i_p, error_XLow, error_Xhigh, ratio_error, ratio_error);
+    }
+  return g_ratio;
 }

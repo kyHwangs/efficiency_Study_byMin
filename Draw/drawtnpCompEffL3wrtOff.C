@@ -103,12 +103,10 @@ void drawtnpCompEffL3wrtOff(
 
   vector<Color_t> v_color = {
     kBlack,
-    //kBlue,
+    kBlue,
     kRed,
     //kOrange,
-    kGreen+2,
-    kOrange,
-    kBlue,
+    //kGreen+2,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
@@ -116,10 +114,10 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<int> v_marker = {
     20,
-    20,//22,
-    22,//23,
-    22,
-    25,
+    21,
+    23,
+    //22,
+    //25,
     //26,
     //23,
     //22,
@@ -128,11 +126,9 @@ void drawtnpCompEffL3wrtOff(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022preEE-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022postEE-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023preBPix-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023postBPix-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1306.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_1326.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -157,11 +153,9 @@ void drawtnpCompEffL3wrtOff(
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    "Run2022 Data PreEE",
-    "Run2022 Data PostEE",
-    "Run2023 Data PreBPix",
-    "Run2023 Data PostBPix",
-    "Run3 Winter23 DY",
+    "Run2023 Data",
+    "Drell-Yan Simulation",
+    "Run2022 Data",
   };
 
   vector<TString> v_pts = {
@@ -187,10 +181,10 @@ void drawtnpCompEffL3wrtOff(
         double ymin = 0.0;
         double ymax = 1.6;
 
-	if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-	  ymin = 0.6;//0.7;//0.5;//0.6;//0.85;
-	  ymax = 1.2;//1.15;//1.25;//1.2;//1.1;
-	}
+        if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
+          ymin = 0.6;//0.7;//0.5;//0.6;//0.85;
+          ymax = 1.2;//1.15;//1.25;//1.2;//1.1;
+        }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s",
                                              efftag.Data(),
@@ -247,9 +241,6 @@ void drawtnpCompEffL3wrtOff(
           }
 
           int nbins = den->GetNbinsX();
-
-          c->cd();
-
           TGraphAsymmErrors* g = new TGraphAsymmErrors(nbins);
           g->Divide(num, den, "n e0");
           //g->Divide(num, den, "pois");
@@ -282,6 +273,10 @@ void drawtnpCompEffL3wrtOff(
           legend->AddEntry( g, TString::Format("%s", the_type_str.Data()), "lep" );
         }
 
+        TLine eff1p0(xmin,1.0, xmax,1.0);
+        eff1p0.SetLineColor(kGray);
+        eff1p0.SetLineWidth(1);
+        eff1p0.Draw("same");
         legend->Draw();
 
         TString L3str = "";
@@ -293,7 +288,7 @@ void drawtnpCompEffL3wrtOff(
         else if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
         else if(efftag == "hltL3FromL2Merged") L3str = "L3 MuonTrack from L2";
         else if(efftag == "hltL3Merged") L3str = "L3 MuonTrack";
-        else if(efftag.Contains("hltIterL3MuonNoID")) L3str = "L3 Muon before Trigger ID";
+        else if(efftag.Contains("hltIterL3MuonNoID")) L3str = "L3 Muon";
         else if(efftag == "hltIterL3Muon") L3str = "L3 Muon after Trigger ID";
         else if(efftag.Contains("L1sSingleMu22")) L3str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV";
         else if(efftag.Contains("IsoMu24")) L3str = "Isolated muon with p_{T} > 24 GeV";
@@ -302,7 +297,7 @@ void drawtnpCompEffL3wrtOff(
         else if(efftag.Contains("Mu50")) L3str = "Non-isolated muon with p_{T} > 50 GeV";
 
         TLatex latex;
-	Latex_Preliminary_13p6TeV( latex );
+        Latex_Preliminary_13p6TeV( latex );
         latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
         latex.DrawLatexNDC(0.16, 0.90, "#font[42]{#scale[0.6]{"+L3str+"}}");
         latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
