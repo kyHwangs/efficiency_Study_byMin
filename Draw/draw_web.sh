@@ -1,6 +1,6 @@
 
 plots_folder="plots_vRun3_04/Muon/"
-web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/231208_MuonHLT_forDPv2/"
+web_path="/eos/user/w/wjun/www/Run2023_MuonHLT/240108_MuonHLT_forDPv3/"
 rm -rf $web_path
 mkdir $web_path
 
@@ -19,7 +19,7 @@ root -l -b -q 'drawtnpCompEffL3wrtL1_ratio.C("hltIterL3MuonNoIDTrack")'
 root -l -b -q 'drawtnpCompEffL3wrtL1_ratio.C("hltIterL3Muon")'
 root -l -b -q 'drawtnpCompEffL3wrtL1_ratio.C("IsoMu24")'
 root -l -b -q 'drawtnpCompEffL3wrtL1_ratio.C("Mu50")'
-root -l -b -q 'drawtnpCompEffL3wrtL1_ratio.C("Mu50OrOldMu100OrTkMu100")'
+#root -l -b -q 'drawtnpCompEffL3wrtL1_ratio.C("Mu50OrOldMu100OrTkMu100")'
 
 
 :<<END

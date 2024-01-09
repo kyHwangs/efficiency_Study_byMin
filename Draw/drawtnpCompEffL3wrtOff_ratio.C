@@ -114,9 +114,9 @@ void drawtnpCompEffL3wrtOff_ratio(
   vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
-    kBlue,
-    kBlack,
+    //kBlue,
     kRed,
+    kBlack,
     //kOrange,
     //kGreen+2,
     //kCyan+2,
@@ -125,9 +125,9 @@ void drawtnpCompEffL3wrtOff_ratio(
     //kMagenta,
   };
   vector<int> v_marker = {
-    21,
-    20,
+    //21,
     23,
+    20,
     //22,
     //25,
     //26,
@@ -138,9 +138,9 @@ void drawtnpCompEffL3wrtOff_ratio(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1326.root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -165,9 +165,9 @@ void drawtnpCompEffL3wrtOff_ratio(
     //"Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll",
   };
   vector<TString> types_str = {
-    "Drell-Yan Simulation",
-    "Run2023 Data",
-    "Run2022 Data",
+    //"Drell-Yan Simulation",
+    "Run2022 Data (34.31 fb^{-1} )",
+    "Run2023 Data (27.21 fb^{-1} )",
   };
 
   vector<TString> v_pts = {
@@ -214,7 +214,7 @@ void drawtnpCompEffL3wrtOff_ratio(
         if(tag == "Zprime" && v_var[ivar].Contains("pt")) c_up->SetLogx();
 
         TLegend *legend;
-        SetLegend( legend, 0.17, 0.72, 0.94, 0.85, -1);
+        SetLegend( legend, 0.15, 0.685, 0.65, 0.775, -1);
 
         bool isFirst = true;
         TGraphAsymmErrors* g_ref;
@@ -324,7 +324,7 @@ void drawtnpCompEffL3wrtOff_ratio(
 
         TLatex latex;
         Latex_Preliminary_13p6TeV( latex );
-        latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
+        //latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
         latex.DrawLatexNDC(0.16, 0.90, "#font[42]{#scale[0.6]{"+L3str+"}}");
         latex.DrawLatexNDC((i_eta==2?0.66:0.70), 0.89, "#font[42]{#scale[0.8]{"+etas_str_long.at(i_eta)+"}}");
         if(v_var[ivar] != "pt" ) latex.DrawLatexNDC(0.68, 0.84, "#font[42]{#scale[0.8]{"+v_pts_str.at(ipt)+"}}");
@@ -384,7 +384,7 @@ void SetAxis_Pad_Bottom( TAxis *X_axis, TAxis *Y_axis, TString XTitle, TString Y
   X_axis->SetNoExponent();
   X_axis->SetMoreLogLabels();
 
-  Y_axis->SetTitle( "Data/MC" );
+  Y_axis->SetTitle( "2023/2022" );
   Y_axis->SetTitleSize(0.1);
   Y_axis->SetTitleOffset(0.5);
   Y_axis->SetLabelSize(0.1);
