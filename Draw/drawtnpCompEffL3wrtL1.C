@@ -211,7 +211,7 @@ void drawtnpCompEffL3wrtL1(
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
-          TString titleY = "HLT efficiency"; //"L3/L1 efficiency";
+          TString titleY = "HLT Efficiency"; //"L3/L1 Efficiency";
           if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
           if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
 

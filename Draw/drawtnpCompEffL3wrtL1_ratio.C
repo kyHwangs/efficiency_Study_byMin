@@ -162,8 +162,8 @@ void drawtnpCompEffL3wrtL1_ratio(
   };
   vector<TString> types_str = {
     //"Drell-Yan Simulation",
-    "Run2022 Data (34.31 fb^{-1} )",
-    "Run2023 Data (27.21 fb^{-1} )",
+    "Run2022 Data (35 fb^{-1} )",
+    "Run2023 Data (27 fb^{-1} )",
   };
 
   vector<TString> v_pts = {
@@ -227,7 +227,7 @@ void drawtnpCompEffL3wrtL1_ratio(
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
-          TString titleY = "HLT efficiency"; //"L3/L1 efficiency";
+          TString titleY = "HLT Efficiency"; //"L3/L1 Efficiency";
           if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
           if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
 
