@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 import os
 import time
@@ -40,24 +40,14 @@ samples = [
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/Muon/crab_Muon_Run2022G_hlt_muon_data_20230526/230526_181751/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230526/230526_183156/0000/",
 
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_20231107/231107_180843/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231107/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_20231107/231107_180901/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231114/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L1L2_20231114/231114_201631/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231113/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L2noROI2_20231113/231113_154427/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231113/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L2noROI_20231113/231113_114124/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1326/20231113/Muon0/crab_Muon0_Run2023Dv2_hlt_muon_data_Doublet_L2noROI_fullPix_20231113/231113_114549/0000/",
-
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1440/20240220/DYto2L_M-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_130X_hlt_muon_mc_forVal_20240220/240220_132007/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1440/20240220/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_forVal_20240220/240220_131950/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/AlpakaUpdate_validation/MuonHLTRun3_cmssw1306/20240220/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_Run3_20240220/240221_091758/0002/"
 ]
 
 dates = [
-    '_20230526',
-    '20230526',
-    '_20231107',
-    '20231107',
-    '_20231113',
-    '20231113',
-    '_20231114',
-    '20231114',
+    '_20240220',
+    '20240220',
 ]
 
 menus = [
@@ -97,13 +87,16 @@ analyzers = {
     'DYToLL_M50_126X': ('Eff'),
     'Zprime_126X': ('Eff'),
 
+    'DYToLL_M50_130X': ('Eff'),
+    'DYToLL_M50_133X': ('Eff'),
+
     # 'Wprime': ('EffSim', 'Eff'),
     # 'MuGun': ('EffSim'),
 }
 
-# python submit_batch.py
+# python3 submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_03'
+    VER_base = 'vRun3_04'
     tag_prefix = 'crab_'
 
     doHadd = False
@@ -171,7 +164,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 3
+                nfiles = 2
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:

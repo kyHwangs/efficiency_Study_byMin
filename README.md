@@ -12,13 +12,13 @@ rootl -l -b -q HLTEffAnalyzer.C
 ## Submitting Condor Jobs
 ```
 # Edit submit_batch.py (CRAB Outputs diretories, the name of used menu file, Eras, ...)
-python submit_batch.py
+python3 submit_batch.py
 condor_submit condor_submit.sub
 ```
 
 ## Hadd Histograms via Condor
 ```
-python submit_batch.py hadd
+python3 submit_batch.py hadd
 condor_submit condor_hadd.sub
 ```
 
