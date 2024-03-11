@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 import os
 import time
@@ -8,7 +8,7 @@ from shutil import copyfile
 import gc
 
 def jobSpritting( path, nfiles, prefix = "" ):
-    str_dcap  = "dcap://cluster142.knu.ac.kr/"
+    str_dcap  = ""
     out = []
 
     lines = glob.glob(path+"/"+prefix+"*.root")
@@ -37,48 +37,25 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230416/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_20230416/230416_202019/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230410/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_20230410/230410_213927/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230410/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230410/230410_213653/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230410/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_20230410/230410_213807/0000/",
-
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_wp02_20230413/230413_163853/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230414/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_wp02_20230414/230414_091718/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_wp02_20230415/230415_125456/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_wp02_20230415/230415_130128/0000/",
-
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230413/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_wp04_20230413/230413_164024/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230414/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_wp04_20230414/230414_174842/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_wp04_20230415/230415_125533/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_wp04_20230415/230415_141434/0000/",
-
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230414/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_Run3_wp10_20230414/230414_083333/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/JPsiTo2Mu_Pt-0To100_pythia8-gun/crab_JPsi_126X_hlt_muon_mc_Run3_wp10_20230415/230415_124301/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_wp10_20230415/230415_125610/0000/",
-    "/pnfs/knu.ac.kr/data/cms/store/user/wjun/MuonHLTRun3_cmssw1303/20230415/ZprimeToMuMu_M-6000_TuneCP5_13p6TeV_pythia8/crab_Zprime_126X_hlt_muon_mc_Run3_wp10_20230415/230415_141601/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_20240308/240308_101938/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_chaining_20240308/240308_102234/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_20240308/240308_213445/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_chaining_20240308/240308_213516/0000/",
 ]
 
 dates = [
-    '_20230410',
-    '20230410',
-    '_20230412',
-    '20230412',
-    '_20230413',
-    '20230413',
-    '_20230414',
-    '20230414',
-    '_20230415',
-    '20230415',
-    '_20230416',
-    '20230416',
+    '_20240308',
+    '20240308',
 ]
 
 menus = [
-    '_hlt_muon_mc_Run3_',
-    '_hlt_muon_data_',
+    '_hlt_muon_mc_',
 ]
 
 analyzers = {
+    'DYToLL_M50_133X': ('Eff'),
+    'JPsi_133X': ('Eff'),
+
     'JPsi_126X': ('Eff'),
     'Bs_126X': ('Eff'),
     'DYToLL_M50_126X': ('Eff'),
@@ -87,10 +64,9 @@ analyzers = {
     #'WJets': ('Eff'),
 }
 
-
-# python submit_batch.py
+# python3 submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_07'
+    VER_base = 'vRun3_05'
     tag_prefix = 'crab_'
 
     doHadd = False
@@ -158,7 +134,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 1
+                nfiles = 2
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:
@@ -166,7 +142,7 @@ if __name__ == '__main__':
 
                 jobid_files = jobSpritting(path, nfiles)
 
-                MACRO = 'HLT%sAnalyzer' % an
+                MACRO = 'HLT%sAnalyzer' % an # HLTEffAnalyzer
 
                 for jobid, files in jobid_files:
                     strjobid = "Job"+str(jobid)
@@ -191,6 +167,3 @@ if __name__ == '__main__':
 
                     if doTest:
                         break
-
-
-
