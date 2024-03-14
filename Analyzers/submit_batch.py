@@ -37,22 +37,24 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/Muon/crab_Muon_Run2022G_hlt_muon_data_20230526/230526_181751/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1306/20230526/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_126X_hlt_muon_mc_Run3_20230526/230526_183156/0000/",
-
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1440/20240220/DYto2L_M-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_130X_hlt_muon_mc_forVal_20240220/240220_132007/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1440/20240220/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_forVal_20240220/240220_131950/0000/",
-    "/eos/cms/store/group/phys_muon/ec/HLT/AlpakaUpdate_validation/MuonHLTRun3_cmssw1306/20240220/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_Run3_20240220/240221_091758/0002/"
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/Muon0/crab_Muon0_Run2023Dv1_hlt_muon_data_20240308/240308_110624/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/Muon0/crab_Muon0_Run2023Dv1_hlt_muon_data_chaining_20240308/240308_110644/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_20240311/240311_210512/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_chaining_20240311/240311_210542/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_20240311/240311_210526/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_chaining_20240311/240311_210555/0000/",
 ]
 
 dates = [
-    '_20240220',
-    '20240220',
+    '_20240308',
+    '20240308',
+    '_20240311',
+    '20240311',
 ]
 
 menus = [
     #'_hlt_muon_data_Run2018_',
-    '_hlt_muon_mc_Run3_',
+    '_hlt_muon_mc_',
     '_hlt_muon_data_',
 ]
 
@@ -82,21 +84,20 @@ analyzers = {
     'Muon_Run2022F': ('Eff'),
     'Muon_Run2022G': ('Eff'),
 
+    'DYToLL_M50_133X': ('Eff', 'Effgen'),
+    'JPsi_133X': ('Eff', 'Effgen'),
+
+    'DYToLL_M50_130X': ('Eff'),
+
     'Bs_126X': ('Eff'),
     'JPsi_126X': ('Eff'),
     'DYToLL_M50_126X': ('Eff'),
     'Zprime_126X': ('Eff'),
-
-    'DYToLL_M50_130X': ('Eff'),
-    'DYToLL_M50_133X': ('Eff'),
-
-    # 'Wprime': ('EffSim', 'Eff'),
-    # 'MuGun': ('EffSim'),
 }
 
 # python3 submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_04'
+    VER_base = 'vRun3_05'
     tag_prefix = 'crab_'
 
     doHadd = False
@@ -164,7 +165,7 @@ if __name__ == '__main__':
                 haddlist.write(cmd)
                 sys.stdout.flush()
             else:
-                nfiles = 2
+                nfiles = 4
 
                 doDimuon = "false"
                 if "DYToLL_M" in TAG or "Zprime" in TAG:
@@ -173,6 +174,7 @@ if __name__ == '__main__':
                 jobid_files = jobSpritting(path, nfiles)
 
                 MACRO = 'HLT%sAnalyzer' % an # HLTEffAnalyzer
+                #MACRO = 'HLTHLTgenAnalyzer' % - efficiency w.r.t gen muons
                 #MACRO = 'trackQualAnalyzer'  # trackQualAnalyzer - investigate trk, muon's qualities
 
                 for jobid, files in jobid_files:

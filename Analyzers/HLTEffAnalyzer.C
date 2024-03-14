@@ -119,8 +119,8 @@ public:
         { 6000, 0, 3000 },
         { 48, -2.4, 2.4 },
         { 30, -TMath::Pi(), TMath::Pi() },
-        { 75, 0, 75 }//,
-        //{ 75, 0, 75 },
+        { 100, 0, 100 }//,
+        //{ 100, 0, 100 },
         //{ 25, 0, 2.5 }
       }
     ) {
@@ -138,7 +138,7 @@ public:
       this->Init();
     }
 
-  void fill_den( Object obj, double Nvtx, double PU, double Lumi, double weight = 1.0 ) {
+    void fill_den( Object obj, double Nvtx, double PU, double Lumi, double weight = 1.0 ) {
       for(int k=0; k < nVar; ++k) {
         if( variables[k] == "nvtx" ) {
           v_den[k]->Fill( Nvtx, weight );
@@ -158,7 +158,7 @@ public:
       }
     }
 
-  void fill_num( Object obj, double Nvtx, double PU, double Lumi, double weight = 1.0 ) {
+    void fill_num( Object obj, double Nvtx, double PU, double Lumi, double weight = 1.0 ) {
       for(int k=0; k < nVar; ++k) {
         if( variables[k] == "nvtx" ) {
           v_num[k]->Fill( Nvtx, weight );
@@ -279,7 +279,7 @@ public:
   void fill_den( Object obj, double weight = 1.0 ) {
     for(int k=0; k < nVar; ++k) {
       if(obj.has(variables.at(k).at(0)) && obj.has(variables.at(k).at(1))) {
-	v_den.at(k)->Fill( obj.get(variables.at(k).at(0)), obj.get(variables.at(k).at(1)), weight );
+        v_den.at(k)->Fill( obj.get(variables.at(k).at(0)), obj.get(variables.at(k).at(1)), weight );
       }
     }
   }
@@ -287,7 +287,7 @@ public:
   void fill_num( Object obj, double weight = 1.0 ) {
     for(int k=0; k < nVar; ++k) {
       if(obj.has(variables.at(k).at(0)) && obj.has(variables.at(k).at(1))) {
-	v_num.at(k)->Fill( obj.get(variables.at(k).at(0)), obj.get(variables.at(k).at(1)), weight );
+        v_num.at(k)->Fill( obj.get(variables.at(k).at(0)), obj.get(variables.at(k).at(1)), weight );
       }
     }
   }
@@ -576,7 +576,6 @@ void HLTEffAnalyzer(
 
     int iL3type = 0;
     for (auto& L3type: L3types) {
-
         hc_Eff.push_back( {} );
         hc_Eff_L1SQ22.push_back( {} );
         hc_Eff_L1DQ8.push_back( {} );
@@ -668,75 +667,6 @@ void HLTEffAnalyzer(
             genWeight = 1.;
         h_nEvents->Fill( genWeight );
         h_nRuns->Fill( nt->runNum, genWeight );
-
-        /*
-        vector<Object> GenParticles = nt->get_GenParticles();
-
-        bool isDimuon = false;
-        vector<Object> GenMuonsFromHardProcess = {};
-        vector<Object> GenMuonsFromHPInAcc = {};
-        // -- Dimuon skim for DY
-            bool found0 = false;
-            bool found1 = false;
-            for(auto& genP: GenParticles) {
-
-                if( fabs(genP.get("ID")) == 13 && genP.get("fromHardProcessFinalState") == 1 ) {
-                    GenMuonsFromHardProcess.push_back( genP );
-
-                    h_gen_hard_pt->Fill( genP.pt, genWeight );
-                    h_gen_hard_eta->Fill( genP.eta, genWeight );
-                    h_gen_hard_phi->Fill( genP.phi, genWeight );
-
-                    if( acceptance( genP ) ) {
-                        GenMuonsFromHPInAcc.push_back(genP);
-
-                        h_gen_hard_acc_pt->Fill( genP.pt, genWeight );
-                        h_gen_hard_acc_eta->Fill( genP.eta, genWeight );
-                        h_gen_hard_acc_phi->Fill( genP.phi, genWeight );
-                    }
-                }
-
-                if( fabs(genP.get("ID")) == 13 && genP.get("status") == 1 ) {
-                    h_gen_pt->Fill( genP.pt, genWeight );
-                    h_gen_eta->Fill( genP.eta, genWeight );
-                    h_gen_phi->Fill( genP.phi, genWeight );
-
-                    if( acceptance( genP ) ) {
-                        h_gen_acc_pt->Fill( genP.pt, genWeight );
-                        h_gen_acc_eta->Fill( genP.eta, genWeight );
-                        h_gen_acc_phi->Fill( genP.phi, genWeight );
-                    }
-                }
-
-                if( genP.get("ID") == 13 && genP.get("isHardProcess") == 1 )
-                    found0 = true;
-                if( genP.get("ID") == -13 && genP.get("isHardProcess") == 1 )
-                    found1 = true;
-            }
-            isDimuon = (found0 && found1);
-            if (doDimuon && !isDimuon) {
-                continue;
-            }
-
-            std::sort(GenMuonsFromHardProcess.begin(), GenMuonsFromHardProcess.end(), sort_by_pt());
-            std::sort(GenMuonsFromHPInAcc.begin(), GenMuonsFromHPInAcc.end(), sort_by_pt());
-
-            if(doDimuon && isDimuon && ZmassWindow > 0.) {
-                TLorentzVector mu0, mu1;
-                mu0.SetPtEtaPhiM(GenMuonsFromHardProcess.at(0).pt,
-                                 GenMuonsFromHardProcess.at(0).eta,
-                                 GenMuonsFromHardProcess.at(0).phi,
-                                 MU_MASS);
-                mu1.SetPtEtaPhiM(GenMuonsFromHardProcess.at(1).pt,
-                                 GenMuonsFromHardProcess.at(1).eta,
-                                 GenMuonsFromHardProcess.at(1).phi,
-                                 MU_MASS);
-                double Zmass = (mu0+mu1).M();
-                if (abs(Zmass-91) > ZmassWindow) {
-                    continue;
-                }
-            }
-        */
 
         // -- Get object collections
         vector<Object> L1Muons = nt->get_L1Muons();
@@ -1116,11 +1046,11 @@ void HLTEffAnalyzer(
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
-    }
+                    }//### probemu loop ends here ###
+                }//### Etas_bin loop ends here ###
+            }//### Runs_bin loop ends here ###
+        }//### L3types loop ends here ###
+    }// event loop
 
     // -- Save output and Clear memory
     // delete _chain_Ev;
@@ -1187,5 +1117,3 @@ void HLTEffAnalyzer(
 
     printRunTime(timer_total);
 }
-
-

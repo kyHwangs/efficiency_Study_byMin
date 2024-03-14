@@ -382,6 +382,15 @@ public :
         Double_t        genParticle_l1chargeByQ[ArrSize];   //[nGenParticle]
         Int_t           genParticle_l1qByQ[ArrSize];   //[nGenParticle]
         Double_t        genParticle_l1drByQ[ArrSize];   //[nGenParticle]
+
+        Int_t           genParticle_nl1t[ArrSize];   //[nGenParticle]
+        vector<vector<double>>  *genParticle_l1tpt;
+        vector<vector<double>>  *genParticle_l1teta;
+        vector<vector<double>>  *genParticle_l1tphi;
+        vector<vector<double>>  *genParticle_l1tcharge;
+        vector<vector<double>>  *genParticle_l1tq;
+        vector<vector<double>>  *genParticle_l1tdr;
+
         vector<string>  *vec_firedTrigger;
         vector<string>  *vec_filterName;
         vector<double>  *vec_HLTObj_pt;
@@ -1687,6 +1696,13 @@ public :
         TBranch        *b_genParticle_l1chargeByQ;   //!
         TBranch        *b_genParticle_l1qByQ;   //!
         TBranch        *b_genParticle_l1drByQ;   //!
+        TBranch        *b_genParticle_nl1t;   //!
+        TBranch        *b_genParticle_l1tpt;   //!
+        TBranch        *b_genParticle_l1teta;   //!
+        TBranch        *b_genParticle_l1tphi;   //!
+        TBranch        *b_genParticle_l1tcharge;   //!
+        TBranch        *b_genParticle_l1tq;   //!
+        TBranch        *b_genParticle_l1tdr;   //!
         TBranch        *b_vec_firedTrigger;   //!
         TBranch        *b_vec_filterName;   //!
         TBranch        *b_vec_HLTObj_pt;   //!
@@ -3125,6 +3141,14 @@ vector<Object> MuonHLTNtupleRun3::get_GenParticles()
         obj.addVar( "l1chargeByQ", genParticle_l1chargeByQ[i] );
         obj.addVar( "l1qByQ", genParticle_l1qByQ[i] );
         obj.addVar( "l1drByQ", genParticle_l1drByQ[i] );
+
+        obj.addVar( "nl1t", genParticle_nl1t[i] );
+        obj.addVec( "l1tpt", genParticle_l1tpt->at(i) );
+        obj.addVec( "l1teta", genParticle_l1teta->at(i) );
+        obj.addVec( "l1tphi", genParticle_l1tphi->at(i) );
+        obj.addVec( "l1tcharge", genParticle_l1tcharge->at(i) );
+        obj.addVec( "l1tq", genParticle_l1tq->at(i) );
+        obj.addVec( "l1tdr", genParticle_l1tdr->at(i) );
 
         out.push_back(obj);
     }
@@ -4911,6 +4935,13 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     // (once per file to be processed).
 
     // Set object pointer
+    genParticle_l1tpt = 0;
+    genParticle_l1teta = 0;
+    genParticle_l1tphi = 0;
+    genParticle_l1tcharge = 0;
+    genParticle_l1tq = 0;
+    genParticle_l1tdr = 0;
+
     muon_l1tpt = 0;
     muon_l1teta = 0;
     muon_l1tphi = 0;
@@ -5859,6 +5890,13 @@ void MuonHLTNtupleRun3::Init(TChain *tree)
     fChain->SetBranchAddress("genParticle_l1chargeByQ", genParticle_l1chargeByQ, &b_genParticle_l1chargeByQ);
     fChain->SetBranchAddress("genParticle_l1qByQ", genParticle_l1qByQ, &b_genParticle_l1qByQ);
     fChain->SetBranchAddress("genParticle_l1drByQ", genParticle_l1drByQ, &b_genParticle_l1drByQ);
+    fChain->SetBranchAddress("genParticle_nl1t", genParticle_nl1t, &b_genParticle_nl1t);
+    fChain->SetBranchAddress("genParticle_l1tpt", &genParticle_l1tpt, &b_genParticle_l1tpt);
+    fChain->SetBranchAddress("genParticle_l1teta", &genParticle_l1teta, &b_genParticle_l1teta);
+    fChain->SetBranchAddress("genParticle_l1tphi", &genParticle_l1tphi, &b_genParticle_l1tphi);
+    fChain->SetBranchAddress("genParticle_l1tcharge", &genParticle_l1tcharge, &b_genParticle_l1tcharge);
+    fChain->SetBranchAddress("genParticle_l1tq", &genParticle_l1tq, &b_genParticle_l1tq);
+    fChain->SetBranchAddress("genParticle_l1tdr", &genParticle_l1tdr, &b_genParticle_l1tdr);
     fChain->SetBranchAddress("vec_firedTrigger", &vec_firedTrigger, &b_vec_firedTrigger);
     fChain->SetBranchAddress("vec_filterName", &vec_filterName, &b_vec_filterName);
     fChain->SetBranchAddress("vec_HLTObj_pt", &vec_HLTObj_pt, &b_vec_HLTObj_pt);

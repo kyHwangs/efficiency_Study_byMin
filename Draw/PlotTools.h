@@ -183,8 +183,7 @@ using namespace std;
     if( varName.Contains("lumi") )             titleX = "inst. lumi [1E34 Hz/cm^{2}]";
     if( varName.Contains("pu") )               titleX = "Pileup";
     if( varName.Contains("pu_reco") )          titleX = "Pileup";
-    if( varName.Contains("vtx") )              titleX = "#scale[0.8]{Number of reconstructed vertices}";  // tmp
-    //if( varName.Contains("vtx") )              titleX = "#scale[1.0]{True number of interactions}";  // tmp
+    if( varName.Contains("vtx") )              titleX = "#scale[0.8]{Number of reconstructed vertices}";
     if( varName.Contains("pt_trk") )           titleX = "p_{T}(trk) [GeV]";
     if( varName.Contains("eta_trk") )          titleX = "#eta(trk)";
     if( varName.Contains("pt_sim") )           titleX = "p_{T}^{sim} [GeV]";
@@ -193,10 +192,10 @@ using namespace std;
     if( varName.Contains("pt_reco") )           titleX = "Offline muon p_{T} [GeV]";
     if( varName.Contains("eta_reco") )          titleX = "Offline muon #eta";
     if( varName.Contains("phi_reco") )          titleX = "Offline muon #phi";
-    if( varName.Contains("mass_gen") )         titleX = "m_{#mu^{+}#mu^{-}, GEN} [GeV]";
-    if( varName.Contains("pt_gen") )           titleX = "p_{T}^{gen} [GeV]";
-    if( varName.Contains("eta_gen") )          titleX = "#eta^{gen}";
-    if( varName.Contains("phi_gen") )          titleX = "#phi^{gen}";
+    if( varName.Contains("mass_gen") )          titleX = "Gen muon pair m_{#mu^{+}#mu^{-}} [GeV]";
+    if( varName.Contains("pt_gen") )            titleX = "Gen muon p_{T} [GeV]";
+    if( varName.Contains("eta_gen") )           titleX = "Gen muon #eta";
+    if( varName.Contains("phi_gen") )           titleX = "Gen muon #phi";
     if( varName.Contains("Pt") )               titleX = "p_{T} [GeV]";
     if( varName.Contains("AbsP") )             titleX = "p [GeV]";
     if( varName == "P" )                       titleX = "p [GeV]";

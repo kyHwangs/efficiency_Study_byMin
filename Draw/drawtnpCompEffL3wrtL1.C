@@ -38,7 +38,9 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022, 2023", TString tag = "Muon",
+  //TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_05", TString SAMPLE = "Run2023Dv1", TString tag = "Muon0",
+  //TString efftag = "hltIterL3Muon", bool gen = true, TString ver = "vRun3_05", TString SAMPLE = "Drell-Yan Simulation", TString tag = "DYToLL_M50_133X",
+  TString efftag = "hltIterL3Muon", bool gen = true, TString ver = "vRun3_05", TString SAMPLE = "JPsi Simulation", TString tag = "JPsi_133X",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -49,7 +51,10 @@ void drawtnpCompEffL3wrtL1(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
+  TString Eff = gen? "Effgen" : "Eff";
+  TString muon = gen? "gen" : "offline";
+  TString run = gen? "" : "_RunAll";
+  TString Dir = "./plots_"+ver+"/"+tag+"/"+Eff+"/"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
@@ -59,9 +64,9 @@ void drawtnpCompEffL3wrtL1(
     {1, 0, 200},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
-    {1, 10, 75}  // PU
+    {1, 10, 85}  // PU
   };
-  if (tag == "JPsi" || tag == "Bs") {
+  if (tag.Contains( "JPsi") || tag.Contains("Bs")) {
     range.at(0) = {1, 0, 40};
     range.at(1) = {1, 0, 40};
   }
@@ -78,11 +83,11 @@ void drawtnpCompEffL3wrtL1(
 
   if (efftag.Contains("Mu50")) {
     range = {
-      {1, 0, 500},  // pt
-      {1, 0, 500},  // pt
+      {1, 0, 1000},  // pt
+      {1, 0, 1000},  // pt
       {1, -2.4, 2.4},  // eta
       {1, -TMath::Pi(), TMath::Pi()},
-      {1, 10, 75}  // PU
+      {1, 10, 85}  // PU
     };
   }
   int n_highpt_bins = 21-1;
@@ -101,57 +106,51 @@ void drawtnpCompEffL3wrtL1(
      0.9,  1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1,  2.4
   };
   vector<TString> etas_str = {"I"};//, "BB", "BE", "EB", "EE"};
-  vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
+  vector<TString> etas_str_long = {"|#eta^{("+muon+")}| < 2.4"};//, "|#eta^{("+muon+")}| < 0.9", "0.9 < |#eta^{("+muon+")}| < 1.2", "1.2 < |#eta^{("+muon+")}| < 2.1", "2.1 < |#eta^{("+muon+")}| < 2.4"};
 
   vector<Color_t> v_color = {
     kBlack,
     kBlue,
     kRed,
     //kOrange,
-    //kGreen+2,
+    kGreen+2,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
     //kMagenta,
   };
   vector<int> v_marker = {
-    20,
-    21,
+    22,
+    25,
+    26,
     23,
-    //22,
-    //25,
-    //26,
-    //23,
     //22,
     //26,
     //23,
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-chaining-"+tag+"-"+Eff+".root",
   };
   vector<TString> types = {
-    //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run).ReplaceAll("my", ""),
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_den = {
-    //TString("Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    //TString("Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run).ReplaceAll("my", ""),
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_str = {
-    "Run2023 Data",
-    "Drell-Yan Simulation",
-    "Run2022 Data",
+    "Default Menu",
+    "With IO chaining",
   };
 
   vector<TString> v_pts = {
@@ -163,9 +162,9 @@ void drawtnpCompEffL3wrtL1(
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{offline} > 10 GeV",
-    "p_{T}^{offline} > 26 GeV",
-    "p_{T}^{offline} > 53 GeV",
+    //"p_{T}^{("+muon+")} > 10 GeV",
+    "p_{T}^{("+muon+")} > 26 GeV",
+    "p_{T}^{("+muon+")} > 53 GeV",
   };
 
   for(unsigned i_eta=0; i_eta<etas_str.size(); i_eta++){
@@ -182,7 +181,8 @@ void drawtnpCompEffL3wrtL1(
           ymax = 1.1;//1.25;//1.2;//1.1;
         }
 
-        TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s",
+        TString canvasName = TString::Format("%s_%s_%s_%s_%s_%s",
+                                             Eff.Data(),
                                              efftag.Data(),
                                              L1tag.Data(),
                                              etas_str.at(i_eta).Data(),
@@ -211,6 +211,7 @@ void drawtnpCompEffL3wrtL1(
           hist_var.ReplaceAll("_zoom", "");
 
           TString titleX = GetTitleX(hist_var+"_reco");
+          if(gen) titleX = GetTitleX(hist_var+"_gen");
           TString titleY = "HLT Efficiency"; //"L3/L1 Efficiency";
           if(efftag.Contains("L2Muon")) titleY.ReplaceAll("L3", "L2");
           if(efftag.Contains("PixelTracks")) titleY.ReplaceAll("L3", "PixelTrack");
