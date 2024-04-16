@@ -40,7 +40,8 @@ void printRunTime(TStopwatch timer_)
 void drawtnpCompEffL3wrtOff(
   //TString efftag = "IsoMu24", bool gen = false, TString ver = "vRun3_05", TString SAMPLE = "Run2023Dv1", TString tag = "Muon0",
   //TString efftag = "IsoMu24", bool gen = false, TString ver = "vRun3_05", TString SAMPLE = "Drell-Yan Simulation", TString tag = "DYToLL_M50_133X",
-  TString efftag = "IsoMu24", bool gen = true, TString ver = "vRun3_05", TString SAMPLE = "JPsi Simulation", TString tag = "JPsi_133X",
+  //TString efftag = "IsoMu24", bool gen = true, TString ver = "vRun3_0Jpsi", TString SAMPLE = "JPsi Simulation", TString tag = "JPsi_133X",
+  TString efftag = "IsoMu24", bool gen = true, TString ver = "vRun3_0Bs", TString SAMPLE = "Bs Simulation", TString tag = "Bs_126X",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -129,7 +130,8 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<TString> files = {
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
-    "./Outputs_"+ver+"/hist-"+ver+"-chaining-"+tag+"-"+Eff+".root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-chaining-"+tag+"-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-noPixOI-"+tag+"-"+Eff+".root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+run).ReplaceAll("my", ""),
@@ -155,19 +157,20 @@ void drawtnpCompEffL3wrtOff(
   };
   vector<TString> types_str = {
     "Default Menu",
-    "With IO chaining",
+    //"With IO chaining",
+    "With OI change - no Pixetl hits Cut",
   };
 
   vector<TString> v_pts = {
     "genpt0",
-    //"genpt10",
+    "genpt10",
     "genpt26",
     "genpt53",
   };
 
   vector<TString> v_pts_str = {
     "",
-    //"p_{T}^{("+muon+")} > 10 GeV",
+    "p_{T}^{("+muon+")} > 10 GeV",
     "p_{T}^{("+muon+")} > 26 GeV",
     "p_{T}^{("+muon+")} > 53 GeV",
   };
