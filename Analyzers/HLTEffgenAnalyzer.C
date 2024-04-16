@@ -93,6 +93,12 @@ static inline void loadBar(int x, int n, int r, int w)
     cout << "]\r" << flush;
 }
 
+static inline double max( double a, double b )
+{
+    if(a >= b) return a;
+    else return b;
+}
+
 
 const static int n_eta_bins = 15;
 double eta_bins[n_eta_bins] = {
@@ -485,6 +491,25 @@ void HLTEffgenAnalyzer(
         "myECALIsoMu24",
         "myHCALIsoMu24",
         "myIsoMu24",
+
+        "muons",
+        "muons_global",
+        "muons_standalone",
+        "muons_tracker",
+        "muons_LooseID",
+        "muons_MediumID",
+        "muons_TightID",
+        "muons_HighPtID",
+
+        "muons_LoosePFIso",
+        "muons_MediumPFIso",
+        "muons_TightPFIso",
+        "muons_LooseTrkIso",
+        "muons_TightTrkIso",
+
+        "muons_MediumID_MediumPFIso",
+        "muons_TightID_TightPFIso",
+        "muons_HighPtID_LooseTrkIso",
     };
 
     vector<TString> HLTpaths = {
@@ -774,6 +799,46 @@ void HLTEffgenAnalyzer(
         vector<Object> HCALIsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3pfhcalIsoRhoFiltered");
         vector<Object> IsoMu24_MYHLT = nt->get_myHLTObjects("hltL3crIsoL1sSingleMu22L1f0L2f10QL3f24QL3trkIsoFiltered");
 
+        // -- Get offline object collectionss
+        vector<Object> muons = nt->get_offlineMuons();
+        vector<Object> muons_global = {};
+        vector<Object> muons_standalone = {};
+        vector<Object> muons_tracker = {};
+        vector<Object> muons_LooseID = {};
+        vector<Object> muons_MediumID = {};
+        vector<Object> muons_TightID = {};
+        vector<Object> muons_HighPtID = {};
+
+        vector<Object> muons_LoosePFIso = {};
+        vector<Object> muons_MediumPFIso = {};
+        vector<Object> muons_TightPFIso = {};
+        vector<Object> muons_LooseTrkIso = {};
+        vector<Object> muons_TightTrkIso = {};
+
+        vector<Object> muons_MediumID_MediumPFIso = {};
+        vector<Object> muons_TightID_TightPFIso = {};
+        vector<Object> muons_HighPtID_LooseTrkIso = {};
+
+        for (auto& mu: muons) {
+            if (mu.get("isGLB") == 1) muons_global.push_back(mu);
+            if (mu.get("isSTA") == 1) muons_standalone.push_back(mu);
+            if (mu.get("isTRK") == 1) muons_tracker.push_back(mu);
+            if (mu.get("isLoose") == 1) muons_LooseID.push_back(mu);
+            if (mu.get("isMedium") == 1) muons_MediumID.push_back(mu);
+            if (mu.get("isTight") == 1) muons_TightID.push_back(mu);
+            if (mu.get("isHighPtNew") == 1) muons_HighPtID.push_back(mu);
+
+            if ((mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.25) muons_LoosePFIso.push_back(mu);
+            if ((mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.2) muons_MediumPFIso.push_back(mu);
+            if ((mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.15) muons_TightPFIso.push_back(mu);
+            if (mu.get("PFIso03_charged")/mu.pt < 0.1) muons_LooseTrkIso.push_back(mu);
+            if (mu.get("PFIso03_charged")/mu.pt < 0.05) muons_TightTrkIso.push_back(mu);
+
+            if (mu.get("isMedium") == 1 && (mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.2) muons_MediumID_MediumPFIso.push_back(mu);
+            if (mu.get("isTight") == 1 && (mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.15) muons_TightID_TightPFIso.push_back(mu);
+            if (mu.get("isHighPtNew") == 1 && mu.get("PFIso03_charged")/mu.pt < 0.1) muons_HighPtID_LooseTrkIso.push_back(mu);
+        }
+
         vector<vector<Object>*> L3MuonColls {
             &GenMuonsFromHardProcess,  // for L1 muon eff
             &L2Muons,
@@ -813,6 +878,25 @@ void HLTEffgenAnalyzer(
             &ECALIsoMu24_MYHLT,
             &HCALIsoMu24_MYHLT,
             &IsoMu24_MYHLT,
+
+            &muons,
+            &muons_global,
+            &muons_standalone,
+            &muons_tracker,
+            &muons_LooseID,
+            &muons_MediumID,
+            &muons_TightID,
+            &muons_HighPtID,
+
+            &muons_LoosePFIso,
+            &muons_MediumPFIso,
+            &muons_TightPFIso,
+            &muons_LooseTrkIso,
+            &muons_TightTrkIso,
+
+            &muons_MediumID_MediumPFIso,
+            &muons_TightID_TightPFIso,
+            &muons_HighPtID_LooseTrkIso,
         };
 
         if (L3types.size() != L3MuonColls.size()) {
@@ -1002,6 +1086,7 @@ void HLTEffgenAnalyzer(
                                 L3types.at(i).Contains("OI") ||
                                 L3types.at(i).Contains("L3Muon") ||
                                 L3types.at(i).Contains("GlbTrkMuon") ||
+                                L3types.at(i).Contains("muons") ||
                                 (std::find(HLTpaths.begin(), HLTpaths.end(), L3types.at(i)) != HLTpaths.end())
                             ) {
                                 matched_idx = genmu.matched( *L3Coll, L3map, 0.1 );
