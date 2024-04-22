@@ -38,10 +38,10 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtOff_IDs(
-  //TString efftag = "IsoMu24", bool gen = false, TString ver = "vRun3_05", TString SAMPLE = "Run2023Dv1", TString tag = "Muon0",
-  //TString efftag = "IsoMu24", bool gen = false, TString ver = "vRun3_05", TString SAMPLE = "Drell-Yan Simulation", TString tag = "DYToLL_M50_133X",
-  TString efftag = "IsoMu24", bool gen = true, TString ver = "vRun3_0BsJpsi", TString SAMPLE = "JPsi Simulation", TString tag = "JPsi_133X",
-  //TString efftag = "IsoMu24", bool gen = true, TString ver = "vRun3_0BsJpsi", TString SAMPLE = "Bs Simulation", TString tag = "Bs_126X",
+  //TString efftag = "Offline", bool gen = false, TString ver = "vRun3_05", TString SAMPLE = "Run2023Dv1", TString tag = "Muon0",
+  //TString efftag = "Offline", bool gen = true, TString ver = "vRun3_0BsJpsi", TString SAMPLE = "Drell-Yan Simulation", TString tag = "DYToLL_M50_133X",
+  //TString efftag = "Offline", bool gen = true, TString ver = "vRun3_0BsJpsi", TString SAMPLE = "JPsi Simulation", TString tag = "JPsi_133X",
+  TString efftag = "Offline", bool gen = true, TString ver = "vRun3_0BsJpsi", TString SAMPLE = "Bs Simulation", TString tag = "Bs_126X",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -117,7 +117,7 @@ void drawtnpCompEffL3wrtOff_IDs(
     kCyan+2,
     kPink+4,
     kGray+2,
-    //kMagenta,
+    kMagenta,
   };
   vector<int> v_marker = {
     22,
@@ -128,8 +128,10 @@ void drawtnpCompEffL3wrtOff_IDs(
     26,
     23,
     32,
+    23,
   };
   vector<TString> files = {
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
     "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
@@ -144,6 +146,7 @@ void drawtnpCompEffL3wrtOff_IDs(
     "Eff/muons_global/num_Eff_muons_global",
     "Eff/muons_standalone/num_Eff_muons_standalone",
     "Eff/muons_tracker/num_Eff_muons_tracker",
+    "Eff/muons_SoftID/num_Eff_muons_SoftID",
     "Eff/muons_LooseID/num_Eff_muons_LooseID",
     "Eff/muons_MediumID/num_Eff_muons_MediumID",
     "Eff/muons_TightID/num_Eff_muons_TightID",
@@ -164,6 +167,7 @@ void drawtnpCompEffL3wrtOff_IDs(
     "Eff/muons_global/den_Eff_muons_global",
     "Eff/muons_standalone/den_Eff_muons_standalone",
     "Eff/muons_tracker/den_Eff_muons_tracker",
+    "Eff/muons_SoftID/den_Eff_muons_SoftID",
     "Eff/muons_LooseID/den_Eff_muons_LooseID",
     "Eff/muons_MediumID/den_Eff_muons_MediumID",
     "Eff/muons_TightID/den_Eff_muons_TightID",
@@ -184,6 +188,7 @@ void drawtnpCompEffL3wrtOff_IDs(
     "muons - GLB",
     "muons - STA",
     "muons - TRK",
+    "muons - SoftID",
     "muons - LooseID",
     "muons - MediumID",
     "muons - TightID",
@@ -194,6 +199,7 @@ void drawtnpCompEffL3wrtOff_IDs(
     //"muons - Tight PFIso",
     //"muons - Loose TrkIso",
     //"muons - Tight TrkIso",
+
     //"muons - MediumID && Medium PFIso",
     //"muons - TightID && Tight PFIso",
     //"muons - HighPtID && Loose TrkIso",

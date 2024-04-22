@@ -496,6 +496,7 @@ void HLTEffgenAnalyzer(
         "muons_global",
         "muons_standalone",
         "muons_tracker",
+        "muons_SoftID",
         "muons_LooseID",
         "muons_MediumID",
         "muons_TightID",
@@ -804,6 +805,7 @@ void HLTEffgenAnalyzer(
         vector<Object> muons_global = {};
         vector<Object> muons_standalone = {};
         vector<Object> muons_tracker = {};
+        vector<Object> muons_SoftID = {};
         vector<Object> muons_LooseID = {};
         vector<Object> muons_MediumID = {};
         vector<Object> muons_TightID = {};
@@ -823,20 +825,21 @@ void HLTEffgenAnalyzer(
             if (mu.get("isGLB") == 1) muons_global.push_back(mu);
             if (mu.get("isSTA") == 1) muons_standalone.push_back(mu);
             if (mu.get("isTRK") == 1) muons_tracker.push_back(mu);
+            if (mu.get("isSoft") == 1) muons_SoftID.push_back(mu);
             if (mu.get("isLoose") == 1) muons_LooseID.push_back(mu);
             if (mu.get("isMedium") == 1) muons_MediumID.push_back(mu);
             if (mu.get("isTight") == 1) muons_TightID.push_back(mu);
             if (mu.get("isHighPtNew") == 1) muons_HighPtID.push_back(mu);
 
-            if ((mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.25) muons_LoosePFIso.push_back(mu);
-            if ((mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.2) muons_MediumPFIso.push_back(mu);
-            if ((mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.15) muons_TightPFIso.push_back(mu);
-            if (mu.get("PFIso03_charged")/mu.pt < 0.1) muons_LooseTrkIso.push_back(mu);
-            if (mu.get("PFIso03_charged")/mu.pt < 0.05) muons_TightTrkIso.push_back(mu);
+            if (mu.get("relPFIso") < 0.25) muons_LoosePFIso.push_back(mu);
+            if (mu.get("relPFIso") < 0.2) muons_MediumPFIso.push_back(mu);
+            if (mu.get("relPFIso") < 0.15) muons_TightPFIso.push_back(mu);
+            if (mu.get("relTrkIso") < 0.1) muons_LooseTrkIso.push_back(mu);
+            if (mu.get("relTrkIso") < 0.05) muons_TightTrkIso.push_back(mu);
 
-            if (mu.get("isMedium") == 1 && (mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.2) muons_MediumID_MediumPFIso.push_back(mu);
-            if (mu.get("isTight") == 1 && (mu.get("PFIso04_charged")+max(0, mu.get("PFIso04_neutral")+mu.get("PFIso04_photon")-0.5*mu.get("PFIso04_sumPU")))/mu.pt < 0.15) muons_TightID_TightPFIso.push_back(mu);
-            if (mu.get("isHighPtNew") == 1 && mu.get("PFIso03_charged")/mu.pt < 0.1) muons_HighPtID_LooseTrkIso.push_back(mu);
+            if (mu.get("isMedium") == 1 && mu.get("relPFIso") < 0.2) muons_MediumID_MediumPFIso.push_back(mu);
+            if (mu.get("isTight") == 1 && mu.get("relPFIso") < 0.15) muons_TightID_TightPFIso.push_back(mu);
+            if (mu.get("isHighPtNew") == 1 && mu.get("relTrkIso") < 0.1) muons_HighPtID_LooseTrkIso.push_back(mu);
         }
 
         vector<vector<Object>*> L3MuonColls {
@@ -883,6 +886,7 @@ void HLTEffgenAnalyzer(
             &muons_global,
             &muons_standalone,
             &muons_tracker,
+            &muons_SoftID,
             &muons_LooseID,
             &muons_MediumID,
             &muons_TightID,
