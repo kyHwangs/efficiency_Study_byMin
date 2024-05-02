@@ -50,7 +50,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1_ratio(
-  TString efftag = "hltIterL3Muon", TString ver = "vRun3_04", TString SAMPLE = "Run2022, 2023", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_06", TString SAMPLE = "Run2023, 2024", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -61,7 +61,11 @@ void drawtnpCompEffL3wrtL1_ratio(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
+
+  TString Eff = gen? "Effgen" : "Eff";
+  TString muon = gen? "gen" : "offline";
+  TString run = gen? "" : "_RunAll";
+  TString Dir = "./plots_"+ver+"/"+tag+"/"+Eff+"/"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
@@ -71,7 +75,7 @@ void drawtnpCompEffL3wrtL1_ratio(
     {1, 0, 200},  // pt
     {1, -2.4, 2.4},  // eta
     {1, -TMath::Pi(), TMath::Pi()},
-    {1, 10, 75}  // PU
+    {1, 10, 85}  // PU
   };
   if (tag == "JPsi" || tag == "Bs") {
     range.at(0) = {1, 0, 40};
@@ -116,22 +120,22 @@ void drawtnpCompEffL3wrtL1_ratio(
   vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
-    //kBlue,
+    kBlue,
     kRed,
     kBlack,
     //kOrange,
-    //kGreen+2,
+    kGreen+2,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
     //kMagenta,
   };
   vector<int> v_marker = {
-    //21,
+    21,
     23,
     20,
     //22,
-    //25,
+    25,
     //26,
     //23,
     //22,
@@ -140,30 +144,36 @@ void drawtnpCompEffL3wrtL1_ratio(
     //32,
   };
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-DYToLL_M50_126X-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2022-Eff_1326.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023-Eff_1326.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023D.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023C.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/hltIter03FromL1Merged/num_Eff_"+L1tag+"_hltIter03FromL1Merged"+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
+    "Eff/hltIter03FromL1Merged/den_Eff_"+L1tag+"_hltIter03FromL1Merged"+run,
+    "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_str = {
     //"Drell-Yan Simulation",
-    "Run2022 Data (35 fb^{-1} )",
-    "Run2023 Data (27 fb^{-1} )",
+    //"Run2022 Data (35 fb^{-1} )",
+    //"Run2023 Data (27 fb^{-1} )",
+    "2023 D",
+    "2023 C",
+    "2024 B+C (DCSOnly)",
+    "2024 B+C with Iter3FromL1 (DCSOnly)",
   };
 
   vector<TString> v_pts = {
@@ -190,8 +200,8 @@ void drawtnpCompEffL3wrtL1_ratio(
         double ymax = 1.6;
 
         if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-          ymin = 0.78;//0.82;//0.5;//0.6;//0.85;
-          ymax = 1.1;//1.25;//1.2;//1.1;
+          ymin = 0.78;//0.6;//0.82;//0.5;
+          ymax = 1.1; //1.2;//1.25;//1.2;
         }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s_%s",
@@ -312,11 +322,14 @@ void drawtnpCompEffL3wrtL1_ratio(
         else if(efftag == "hltPixelTracksInRegionL1") L3str = "PixelTrack near L1";
         else if(efftag == "hltPixelTracks") L3str = "PixelTrack";
         else if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
+        else if(efftag == "hltIter03FromL1Merged") L3str = "Inside-out L3 MuonTrack from L1";
         else if(efftag == "hltL3FromL2Merged") L3str = "L3 MuonTrack from L2";
         else if(efftag == "hltL3Merged") L3str = "L3 MuonTrack";
         else if(efftag.Contains("hltIterL3MuonNoID")) L3str = "L3 Muon";
         else if(efftag == "hltIterL3Muon") L3str = "L3 Muon after Trigger ID";
         else if(efftag.Contains("L1sSingleMu22")) L3str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV";
+        else if(efftag.Contains("ECALIsoMu24")) L3str = "ECAL isolated muon with p_{T} > 24 GeV";
+        else if(efftag.Contains("HCALIsoMu24")) L3str = "HCAL+ECAL isolated muon with p_{T} > 24 GeV";
         else if(efftag.Contains("IsoMu24")) L3str = "Isolated muon with p_{T} > 24 GeV";
         else if(efftag.Contains("Mu24")) L3str = "Non-isolated muon with p_{T} > 24 GeV";
         else if(efftag.Contains("Mu50OrOldMu100OrTkMu100")) L3str = "Non-isolated muon with p_{T} > 50 GeV";
@@ -385,7 +398,7 @@ void SetAxis_Pad_Bottom( TAxis *X_axis, TAxis *Y_axis, TString XTitle, TString Y
   X_axis->SetNoExponent();
   X_axis->SetMoreLogLabels();
 
-  Y_axis->SetTitle( "2023/2022" );
+  Y_axis->SetTitle( "2024/2023D" );
   Y_axis->SetTitleSize(0.1);
   Y_axis->SetTitleOffset(0.5);
   Y_axis->SetLabelSize(0.1);

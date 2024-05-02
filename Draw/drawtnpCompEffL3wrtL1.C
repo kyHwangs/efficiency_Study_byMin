@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_06", TString SAMPLE = "Run2023Dv1", TString tag = "Muon0",
+  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_06", TString SAMPLE = "Run2023, 2024", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -128,10 +128,10 @@ void drawtnpCompEffL3wrtL1(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+".root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_MediumIDIso.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_LooseIDIso.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_LooseID.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC_wp04.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC_wp10.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC_wp20.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run).ReplaceAll("my", ""),
@@ -149,10 +149,10 @@ void drawtnpCompEffL3wrtL1(
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_str = {
-    "HLT w.r.t Tight ID & Tight PF Iso (default)",
-    "HLT w.r.t Medium ID & PF Iso",
-    "HLT w.r.t Loose ID & PF Iso",
-    "HLT w.r.t Loose ID & Tight PF Iso",
+    "2024 B+C, default",
+    "2024 B+C, with BDT WP 0.04",
+    "2024 B+C, with BDT WP 0.10",
+    "2024 B+C, with BDT WP 0.20",
   };
 
   vector<TString> v_pts = {
@@ -179,8 +179,8 @@ void drawtnpCompEffL3wrtL1(
         double ymax = 1.6;
 
         if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-          ymin = 0.82;//0.5;//0.6;//0.85;
-          ymax = 1.1;//1.25;//1.2;//1.1;
+          ymin = 0.6; //0.82;//0.97; //0.5; //0.85;
+          ymax = 1.2; //1.1; //1.015;//1.25;//1.1;
         }
 
         TString canvasName = TString::Format("%s_%s_%s_%s_%s_%s",
@@ -288,11 +288,14 @@ void drawtnpCompEffL3wrtL1(
         else if(efftag == "hltPixelTracksInRegionL1") L3str = "PixelTrack near L1";
         else if(efftag == "hltPixelTracks") L3str = "PixelTrack";
         else if(efftag == "hltIter0FromL1") L3str = "Inside-out L3 MuonTrack from L1";
+        else if(efftag == "hltIter03FromL1Merged") L3str = "Inside-out L3 MuonTrack from L1";
         else if(efftag == "hltL3FromL2Merged") L3str = "L3 MuonTrack from L2";
         else if(efftag == "hltL3Merged") L3str = "L3 MuonTrack";
         else if(efftag.Contains("hltIterL3MuonNoID")) L3str = "L3 Muon";
         else if(efftag == "hltIterL3Muon") L3str = "L3 Muon after Trigger ID";
         else if(efftag.Contains("L1sSingleMu22")) L3str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV";
+        else if(efftag.Contains("ECALIsoMu24")) L3str = "ECAL isolated muon with p_{T} > 24 GeV";
+        else if(efftag.Contains("HCALIsoMu24")) L3str = "HCAL+ECAL isolated muon with p_{T} > 24 GeV";
         else if(efftag.Contains("IsoMu24")) L3str = "Isolated muon with p_{T} > 24 GeV";
         else if(efftag.Contains("Mu24")) L3str = "Non-isolated muon with p_{T} > 24 GeV";
         else if(efftag.Contains("Mu50OrOldMu100OrTkMu100")) L3str = "Non-isolated muon with p_{T} > 50 GeV";

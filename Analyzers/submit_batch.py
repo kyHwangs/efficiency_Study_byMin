@@ -37,17 +37,34 @@ def jobSpritting( path, nfiles, prefix = "" ):
     return out
 
 samples = [
-    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/Muon0/crab_Muon0_Run2023Dv1_hlt_muon_data_20240308/240308_110624/0000/",
+    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/Muon0/crab_Muon0_Run2023Dv1_hlt_muon_data_20240308/240308_110624/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240308/Muon0/crab_Muon0_Run2023Dv1_hlt_muon_data_chaining_20240308/240308_110644/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_20240311/240311_210512/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/DYTo2L_MLL-50_TuneCP5_13p6TeV_pythia8/crab_DYToLL_M50_133X_hlt_muon_mc_chaining_20240311/240311_210542/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_20240311/240311_210526/0000/",
     #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1401/20240311/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_chaining_20240311/240311_210555/0000/",
 
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1410pre1/20240329/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_20240329/240329_174620/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1410pre1/20240329/BsToMuMuG_MuGFilter_SoftQCDnonD_TuneCP5_13p6TeV_pythia8-evtgen/crab_Bs_126X_hlt_muon_mc_noPixOI_20240329/240329_174131/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1410pre1/20240329/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_noPixOI_20240329/240329_174115/0000/",
-    #"/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1410pre1/20240331/JPsiToMuMu_PT-0to100_pythia8-gun/crab_JPsi_133X_hlt_muon_mc_20240331/240331_185624/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1405/20240501/Muon0/crab_Muon0_Run2024B_hlt_muon_data_20240501/240501_214423/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1405/20240501/Muon0/crab_Muon0_Run2024C_hlt_muon_data_20240501/240501_214450/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1405/20240501/Muon1/crab_Muon1_Run2024B_hlt_muon_data_20240501/240501_214437/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1405/20240501/Muon1/crab_Muon1_Run2024C_hlt_muon_data_20240501/240501_214502/0000/",
+
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024B_hlt_muon_data_20240430/240429_222438/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024B_hlt_muon_data_BDT_wp04_20240430/240429_222633/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024B_hlt_muon_data_BDT_wp10_20240430/240429_222830/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024B_hlt_muon_data_BDT_wp20_20240430/240429_223026/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024C_hlt_muon_data_20240430/240429_222534/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024C_hlt_muon_data_BDT_wp04_20240430/240429_222730/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024C_hlt_muon_data_BDT_wp10_20240430/240429_222927/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon0/crab_Muon0_Run2024C_hlt_muon_data_BDT_wp20_20240430/240429_223124/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024B_hlt_muon_data_20240430/240429_222506/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024B_hlt_muon_data_BDT_wp04_20240430/240429_222702/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024B_hlt_muon_data_BDT_wp10_20240430/240429_222858/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024B_hlt_muon_data_BDT_wp20_20240430/240429_223055/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024C_hlt_muon_data_20240430/240429_222603/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024C_hlt_muon_data_BDT_wp04_20240430/240429_222759/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024C_hlt_muon_data_BDT_wp10_20240430/240429_222955/0000/",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240430/Muon1/crab_Muon1_Run2024C_hlt_muon_data_BDT_wp20_20240430/240429_223153/0000/",
 ]
 
 dates = [
@@ -61,6 +78,10 @@ dates = [
     '20240329',
     '_20240331',
     '20240331',
+    '_20240430',
+    '20240430',
+    '_20240501',
+    '20240501',
 ]
 
 menus = [
@@ -70,6 +91,11 @@ menus = [
 ]
 
 analyzers = {
+    'Muon0_Run2024B': ('Eff'),
+    'Muon1_Run2024B': ('Eff'),
+    'Muon0_Run2024C': ('Eff'),
+    'Muon1_Run2024C': ('Eff'),
+
     'Muon0_Run2023B': ('Eff'),
     'Muon1_Run2023B': ('Eff'),
     'Muon0_Run2023Cv1': ('Eff'),
@@ -96,12 +122,11 @@ analyzers = {
     'Muon_Run2022G': ('Eff'),
 
     'DYToLL_M50_133X': ('Eff', 'Effgen'),
-    #'JPsi_133X': ('Eff', 'Effgen'),
-    'JPsi_133X': ('Effgen'),
+    'JPsi_133X': ('Eff', 'Effgen'),
 
     'DYToLL_M50_130X': ('Eff'),
 
-    'Bs_126X': ('Effgen'),
+    'Bs_126X': ('Eff', 'Effgen'),
     'JPsi_126X': ('Eff'),
     'DYToLL_M50_126X': ('Eff'),
     'Zprime_126X': ('Eff'),
