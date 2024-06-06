@@ -292,12 +292,12 @@ void trackQualAnalyzer(
 
     // -- To compare
     vector<TString> etas = {
-      "in",  // 1.5 < eta < 1.7
+      "in",  // 0 < eta < 1, -2.5 < phi < -2
       "out",
     };
     vector<TString> runs = {
-      "before", // before Run 368220 (<= 367910)
-      "after", // after Run 368220 (>= 368223)
+      "before", // before Run2024 (<378981)
+      "after", // after Run2024  (>=378981)
     };
 
     vector<vector<TH1D *>> vh_L3types_in_before  = {};
@@ -400,8 +400,8 @@ void trackQualAnalyzer(
 
         // -- run                                                                                                                                                                                                       
         for (unsigned irun = 0; irun < runs.size(); ++irun) {
-          if (irun == 0 && nt->runNum > 368220) continue;
-          if (irun == 1 && nt->runNum < 368220) continue;
+          if (irun == 0 && nt->runNum > 378980) continue;
+          if (irun == 1 && nt->runNum < 378980) continue;
 
           //### L3types loop ###
           for (unsigned i=0; i<L3types.size(); ++i) {
@@ -416,8 +416,8 @@ void trackQualAnalyzer(
             // -- L3 objects loop
             for (auto& L3: *L3Coll) {
               for (unsigned ieta = 0; ieta < etas.size(); ++ieta) {
-                if (ieta == 0 && (L3.eta < 1.5 || L3.eta > 1.7)) continue; 
-                if (ieta == 1 && (L3.eta > 1.5 && L3.eta < 1.7)) continue;
+                if (ieta == 0 && !((0.0 < L3.eta && L3.eta < 1.0) && (-2.5 < L3.phi && L3.phi < -2.0))) continue;
+                if (ieta == 1 && ((0.0 < L3.eta && L3.eta < 1.0) && (-2.5 < L3.phi && L3.phi < -2.0))) continue;
 
                 for (unsigned j=0; j<vars.size(); ++j) {
                   if (irun == 0 && ieta == 0) vh_L3types_in_before.at(i).at(j)->Fill(L3.get(vars.at(j)), genWeight);
