@@ -38,7 +38,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_06", TString SAMPLE = "Run2023, 2024", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_08", TString SAMPLE = "Run2024F", TString tag = "Muon0",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -128,10 +128,9 @@ void drawtnpCompEffL3wrtL1(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC_wp04.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC_wp10.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC_wp20.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024F-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-CSC-"+tag+"_Run2024F-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-CSC_RPC-"+tag+"_Run2024F-"+Eff+".root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+run).ReplaceAll("my", ""),
@@ -149,10 +148,9 @@ void drawtnpCompEffL3wrtL1(
     "Eff/"+efftag+"/den_Eff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_str = {
-    "2024 B+C, default",
-    "2024 B+C, with BDT WP 0.04",
-    "2024 B+C, with BDT WP 0.10",
-    "2024 B+C, with BDT WP 0.20",
+    "2024 F, default GRun V148",
+    "2024 F, with CSC updates",
+    "2024 F, V149 with RPC updates",
   };
 
   vector<TString> v_pts = {

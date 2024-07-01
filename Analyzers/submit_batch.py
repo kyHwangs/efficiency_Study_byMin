@@ -43,6 +43,10 @@ samples = [
 
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240528/Muon0/crab_Muon0_Run2024C_hlt_muon_data_20240528/240528_210936/0000/",
     "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1406/20240528/Muon0/crab_Muon0_Run2024C_hlt_muon_data_CCC_20240528/240528_210106/0000/",
+
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1409/20240627/Muon0/crab_Muon0_Run2024F_hlt_muon_data_20240627/240627_160740/0000",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1409/20240627/Muon0/crab_Muon0_Run2024F_hlt_muon_data_CSC_20240627/240627_160753/0000",
+    "/eos/cms/store/group/phys_muon/ec/HLT/MuonHLTRun3_cmssw1409/20240628/Muon0/crab_Muon0_Run2024F_hlt_muon_data_CSC_RPC_20240628/240628_100651/0000/",
 ]
 
 dates = [
@@ -50,6 +54,10 @@ dates = [
     '20240521',
     '_20240528',
     '20240528',
+    '_20240627',
+    '20240627',
+    '_20240628',
+    '20240628',
 ]
 
 menus = [
@@ -63,6 +71,14 @@ analyzers = {
     'Muon1_Run2024B': ('Eff'),
     'Muon0_Run2024C': ('Eff'),
     'Muon1_Run2024C': ('Eff'),
+    'Muon0_Run2024D': ('Eff'),
+    'Muon1_Run2024D': ('Eff'),
+    'Muon0_Run2024Ev1': ('Eff'),
+    'Muon1_Run2024Ev1': ('Eff'),
+    'Muon0_Run2024Ev2': ('Eff'),
+    'Muon1_Run2024Ev2': ('Eff'),
+    'Muon0_Run2024F': ('Eff'),
+    'Muon1_Run2024F': ('Eff'),
 
     'Muon0_Run2023B': ('Eff'),
     'Muon1_Run2023B': ('Eff'),
@@ -102,7 +118,7 @@ analyzers = {
 
 # python3 submit_batch.py
 if __name__ == '__main__':
-    VER_base = 'vRun3_07'
+    VER_base = 'vRun3_08'
     tag_prefix = 'crab_'
 
     doHadd = False

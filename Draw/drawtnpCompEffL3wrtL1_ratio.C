@@ -50,7 +50,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtL1_ratio(
-  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_06", TString SAMPLE = "Run2023, 2024", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_08", TString SAMPLE = "Run2024F", TString tag = "Muon0",
   TString L1tag = "L1SQ22", TString L1str = "Good quality L1 muon with p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -120,9 +120,10 @@ void drawtnpCompEffL3wrtL1_ratio(
   vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
-    kBlue,
-    kRed,
     kBlack,
+    kBlue,
+    //kRed,
+    //kBlack,
     //kOrange,
     kGreen+2,
     //kCyan+2,
@@ -131,9 +132,9 @@ void drawtnpCompEffL3wrtL1_ratio(
     //kMagenta,
   };
   vector<int> v_marker = {
-    21,
-    23,
     20,
+    23,
+    29,
     //22,
     25,
     //26,
@@ -144,10 +145,11 @@ void drawtnpCompEffL3wrtL1_ratio(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023D.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023C.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024F-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-CSC-"+tag+"_Run2024F-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-CSC_RPC-"+tag+"_Run2024F-"+Eff+".root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023D.root",
+    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023C.root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -170,10 +172,11 @@ void drawtnpCompEffL3wrtL1_ratio(
     //"Drell-Yan Simulation",
     //"Run2022 Data (35 fb^{-1} )",
     //"Run2023 Data (27 fb^{-1} )",
-    "2023 D",
-    "2023 C",
-    "2024 B+C (DCSOnly)",
-    "2024 B+C with Iter3FromL1 (DCSOnly)",
+    "2024 F, default GRun V148",
+    "2024 F, with CSC updates",
+    "2024 F, V149 with RPC updates",
+    //"2023 D",
+    //"2023 C",
   };
 
   vector<TString> v_pts = {
@@ -297,7 +300,7 @@ void drawtnpCompEffL3wrtL1_ratio(
             TGraphAsymmErrors* g_ratio = MakeRatioGraph(g, g_ref);
             g_ratio->GetXaxis()->SetLimits( xmin, xmax );
             g_ratio->GetXaxis()->SetRangeUser( xmin, xmax );
-            g_ratio->GetYaxis()->SetRangeUser( 0.94, 1.06 );
+            g_ratio->GetYaxis()->SetRangeUser( 0.99, 1.01 );
             //g_ratio->GetYaxis()->SetRangeUser( 0.84, 1.16 );
             if(i == 1) g_ratio->Draw("APE");
             else g_ratio->Draw("PE same");
@@ -398,7 +401,8 @@ void SetAxis_Pad_Bottom( TAxis *X_axis, TAxis *Y_axis, TString XTitle, TString Y
   X_axis->SetNoExponent();
   X_axis->SetMoreLogLabels();
 
-  Y_axis->SetTitle( "2024/2023D" );
+  Y_axis->SetTitle( "ratio to default" );
+  //Y_axis->SetTitle( "2024/2023D" );
   Y_axis->SetTitleSize(0.1);
   Y_axis->SetTitleOffset(0.5);
   Y_axis->SetLabelSize(0.1);
