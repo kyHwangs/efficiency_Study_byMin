@@ -39,7 +39,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnp2DEffL3wrtL1(
-  TString efftag = "hltIterL3Muon", TString ver = "vRun3_01", TString SAMPLE = "Run2023", TString tag = "Muon",
+  TString efftag = "hltIterL3Muon", bool gen = false, TString ver = "vRun3_09", TString SAMPLE = "Run2024", TString tag = "Muon",
   TString L1tag = "L1SQ22", TString L1str = "L1 qual > 11, p_{T}^{L1} > 22 GeV",
   //TString L1tag = "L1DQ8", TString L1str = "L1 qual > 7, p_{T}^{L1} > 8 GeV",
   bool isLogy = false  // HERE
@@ -51,16 +51,17 @@ void drawtnp2DEffL3wrtL1(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
-  TString Dir = "./plots_"+ver+"_PPD/"+tag+"/Eff_"+efftag+"/"+L1tag+"/";
+  TString Eff = gen? "Effgen" : "Eff";
+  TString muon = gen? "gen" : "offline";
+  TString run = gen? "" : "_RunAll";
+  TString Dir = "./plots_"+ver+"/"+tag+"/"+Eff+"/"+efftag+"/"+L1tag+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
 
   vector<TString> files = {
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    //"./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023BC-Eff.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2023D_DCS-Eff.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024BCD-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024E-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024F-"+Eff+".root",
   };
   vector<TString> types = {
     //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run-1_367660",
@@ -69,8 +70,9 @@ void drawtnp2DEffL3wrtL1(
     //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run368766_999999",
     //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run367905_367989",
     //"Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_Run368223_368320",
-    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+"_RunAll",
+    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/num_2DEff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_den = {
     //TString("Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -81,21 +83,16 @@ void drawtnp2DEffL3wrtL1(
     //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run368766_999999",
     //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run367905_367989",
     //"Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_Run368223_368320",
-    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll",
-    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+"_RunAll",
-
+    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+run,
+    "Eff/"+efftag+"/den_2DEff_"+L1tag+"_"+efftag+run,
   };
   vector<TString> types_str = {
     //efftag+" : Run2022G Data",
     //efftag+" : Run3Winer23 DY",
-    efftag+" : Run2023BC Data",
-    //efftag+" : Run2023 Data, HLTv1.0",
-    //efftag+" : Run2023 Data, HLTv1.1 & before new align",
-    //efftag+" : Run2023 Data, HLTv1.1 & after new align",
-    //efftag+" : Run2023 Data, and so on",
-    //efftag+" : 5 RUNs before new align",
-    //efftag+" : 5 RUNs after new align",
-    efftag+" : Run2023D Data (DCSOnly json)",
+    efftag+" : 2024BCD",
+    efftag+" : 2024E",
+    efftag+" : 2024F",
   };
 
   TH2F* prev_eff;
@@ -104,7 +101,8 @@ void drawtnp2DEffL3wrtL1(
                                          types_str.at(i).Data(),
                                          L1tag.Data());
     canvasName.ReplaceAll(".","p").ReplaceAll("-","_").ReplaceAll("my", "").ReplaceAll(" : ","_").ReplaceAll(" ","_");
-    TCanvas *c = new TCanvas("eff", "eff", 1500, 900);
+    cout<<canvasName<<endl;
+    TCanvas *c = new TCanvas("eff", "eff", 1200, 900);
     c->cd();
 
     TString fileName = files.at(i);
@@ -125,7 +123,7 @@ void drawtnp2DEffL3wrtL1(
     eff->SetTitle(types_str.at(i).Data());
     eff->GetXaxis()->SetTitle(GetTitleX("eta_reco"));
     eff->GetYaxis()->SetTitle(GetTitleX("phi_reco"));
-    eff->SetMaximum(1.0); eff->SetMinimum(0.0);
+    eff->SetMaximum(1.0); eff->SetMinimum(0.85);
 
     c->Modified();  c->Update();  c->RedrawAxis();
     gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");

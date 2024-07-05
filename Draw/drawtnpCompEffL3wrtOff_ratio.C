@@ -50,7 +50,7 @@ void printRunTime(TStopwatch timer_)
 }
 
 void drawtnpCompEffL3wrtOff_ratio(
-  TString efftag = "IsoMu24", bool gen = false, TString ver = "vRun3_06", TString SAMPLE = "Run2023, 2024", TString tag = "Muon",
+  TString efftag = "IsoMu24", bool gen = false, TString ver = "vRun3_09", TString SAMPLE = "Run2024", TString tag = "Muon",
   bool isLogy = false  // HERE
 ) {
   TStopwatch timer_total;
@@ -117,20 +117,20 @@ void drawtnpCompEffL3wrtOff_ratio(
   vector<TString> etas_str_long = {"|#eta^{offline}| < 2.4"};//, "|#eta^{offline}| < 0.9", "0.9 < |#eta^{offline}| < 1.2", "1.2 < |#eta^{offline}| < 2.1", "2.1 < |#eta^{offline}| < 2.4"};
 
   vector<Color_t> v_color = {
-    kBlue,
-    kRed,
     kBlack,
+    kRed,
+    //kBlue,
     //kOrange,
-    //kGreen+2,
+    kGreen+2,
     //kCyan+2,
     //kPink+4,
     //kGray+2,
     //kMagenta,
   };
   vector<int> v_marker = {
-    21,
-    23,
     20,
+    23,
+    29,
     //22,
     //25,
     //26,
@@ -141,9 +141,9 @@ void drawtnpCompEffL3wrtOff_ratio(
     //32,
   };
   vector<TString> files = {
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023D.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2023C.root",
-    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"-"+Eff+"_2024BC.root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024BCD-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024E-"+Eff+".root",
+    "./Outputs_"+ver+"/hist-"+ver+"-"+tag+"_Run2024F-"+Eff+".root",
   };
   vector<TString> types = {
     //TString("Eff/"+efftag+"/num_Eff_"+efftag+"_RunAll").ReplaceAll("my", ""),
@@ -171,9 +171,9 @@ void drawtnpCompEffL3wrtOff_ratio(
     //"Drell-Yan Simulation",
     //"Run2022 Data (35 fb^{-1} )",
     //"Run2023 Data (27 fb^{-1} )",
-    "2023 D",
-    "2023 C",
-    "2024 B+C (DCSOnly)",
+    "2024 BCD, HLT menu v1.0, v1.1",
+    "2024 E, HLT menu v1.2",
+    "2024 F, HLT menu v1.3 (DCSonly)",
   };
 
   vector<TString> v_pts = {
@@ -200,8 +200,8 @@ void drawtnpCompEffL3wrtOff_ratio(
         double ymax = 1.6;
 
         if(!v_var[ivar].Contains("pt") || v_var[ivar] == "pt_zoom") {
-          ymin = 0.6;//0.7;//0.5;//0.6;//0.85;
-          ymax = 1.2;//1.15;//1.25;//1.2;//1.1;
+          ymin = 0.7;//0.5;//0.6;//0.85;
+          ymax = 1.15;//1.25;//1.2;//1.1;
         }
 
         TString canvasName = TString::Format("Eff_%s_%s_%s_%s",
@@ -294,7 +294,7 @@ void drawtnpCompEffL3wrtOff_ratio(
             TGraphAsymmErrors* g_ratio = MakeRatioGraph(g, g_ref);
             g_ratio->GetXaxis()->SetLimits( xmin, xmax );
             g_ratio->GetXaxis()->SetRangeUser( xmin, xmax );
-            g_ratio->GetYaxis()->SetRangeUser( 0.89, 1.11 );
+            g_ratio->GetYaxis()->SetRangeUser( 0.98, 1.02 );
             if(i == 1) g_ratio->Draw("APE");
             else g_ratio->Draw("PE same");
             SetAxis_Pad_Bottom( g_ratio->GetXaxis(), g_ratio->GetYaxis(), titleX, titleY );
@@ -393,7 +393,8 @@ void SetAxis_Pad_Bottom( TAxis *X_axis, TAxis *Y_axis, TString XTitle, TString Y
   X_axis->SetNoExponent();
   X_axis->SetMoreLogLabels();
 
-  Y_axis->SetTitle( "2024/2023D" );
+  Y_axis->SetTitle( "ratio to 2024BCD" );
+  //Y_axis->SetTitle( "2024/2023D" );
   Y_axis->SetTitleSize(0.1);
   Y_axis->SetTitleOffset(0.5);
   Y_axis->SetLabelSize(0.1);
