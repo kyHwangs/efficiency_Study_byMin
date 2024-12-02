@@ -20,7 +20,9 @@
 #include <TSystem.h>
 
 #define DEBUG (0)
-#include "PlotTools.h"
+#include <PlotTools.h>
+#include "tdrstyle.C"
+#include "CMS_lumi.C"
 
 using namespace std;
 
@@ -68,19 +70,11 @@ double DSCB(double *x, double *par) {
 // echo 'gROOT->LoadMacro("drawRes.C+"); gSystem->Exit(0);' | root -b -l
 
 void drawRes(
-  TString ver = "v51",
-  // TString SAMPLE = "DY",
-  // TString tag = "DYToLL_M50",
-  TString SAMPLE = "Zprime 6 TeV",
-  TString tag = "Zprime_M6000",
-  // TString SAMPLE = "Muon gun",
-  // TString tag = "MuGunPU",
-
-  TString L3type = "hltIterL3Muon",
-  TString L3typestr = "L3 muon after ID",
-
-  TString res_tag = "qbpt",  // "pt"  "qbpt"
-  bool isLogy = false  // true,
+  TString ver = "v30",
+  TString res_tag = "pt",  // "pt"  "qbpt"
+  bool isLogy = true,
+  TString SAMPLE = "DY PU 200",
+  TString tag = "PU200-DYToLL_M50" // HERE
 ) {
   TStopwatch timer_total;
   timer_total.Start();
@@ -88,70 +82,65 @@ void drawRes(
   gStyle->SetPalette(kRainBow);
   TH1::SetDefaultSumw2(kTRUE);
 
+  TString L3typestr = "";
+  // TString L3typestr = "L3 Muon passing ID";
   double scaleL2 = 0.2;
   unsigned fitIter = 20;
   TString fitOpt = "R S Q";
   bool doGaus = true;
 
   vector<TString> types = {
-    "Run3Base",
-    "wp00",
-    "wp01",
+    "L1TkMuon",
+    "L2Muon",
+    // "L3OI",
+    // "L3IO",
+    // "L3MuonNoId",
+    "L3MuonNoIdInner",
+    // "L3Muon"
+    "L3MuonInner"
+    // "L3Filter"
   };
 
   vector<TString> types_str = {
-    "Run 3 baseline",
-    "IO patatrack",
-    "IO patatrack + IO upg.",
-    // "IO patatrack (ROI#times1.5^{2})",
-    // "IO patatrack (ROI#times1.5^{2}) + IO upg.",
-    // "IO patatrack (ROI#times2^{2})",
-    // "IO patatrack (ROI#times2^{2}) + IO upg.",
+    "L1TkMuon",
+    "L2 muon #times 0.2",
+    // "Outside-in",
+    // "Inside-out",
+    // "L3 muon",
+    // "L3 muon inner",
+    // "L3 muon + ID"
+    "L3 muon",
+    "L3 muon + ID"
+    // "L3 Filter"
   };
 
   vector<Color_t> v_color = {
-    kBlack,
+    kMagenta,
     kBlue,
     kRed,
+    kBlack,
+
     kGreen+2,
-    kMagenta,
-    kCyan+2,
-    kPink+4
+    kYellow
   };
 
   vector<int> v_marker = {
     20,
     22,
-    26,
+    21,
+    33,
     23,
-    32,
-    29,
-    30
+    24,
+    25
   };
 
   vector<TString> v_var = {"mean_pt", "sigma_pt", "mean_eta", "sigma_eta"};
   vector< vector<double> > range = {
-    {1, 10, 500, -0.05, 0.05},  // pt
-    {1, 10, 500, 0, 0.06},  // pt
+    {1, 10, 200, -0.05, 0.05},  // pt
+    {1, 10, 200, 0, 0.06},  // pt
     {1, -2.4, 2.4, -0.05, 0.05},  // eta
     {1, -2.4, 2.4, 0, 0.08}  // eta
   };
-  if (tag == "Zprime_M6000") {
-    range = {
-      {1, 10, 1000, -0.05, 0.05},  // pt
-      {1, 10, 1000, 0, 0.13},  // pt
-      {1, -2.4, 2.4, -0.05, 0.05},  // eta
-      {1, -2.4, 2.4, 0, 0.08}  // eta
-    };
-  }
-  else if (tag == "MuGunPU") {
-    range = {
-      {1, 3, 1000, -0.05, 0.05},  // pt
-      {1, 3, 1000, 0, 0.15},  // pt
-      {1, -2.4, 2.4, -0.05, 0.05},  // eta
-      {1, -2.4, 2.4, 0, 0.08}  // eta
-    };
-  }
 
   const static int n_eta_bins = 15;
   double eta_bins[n_eta_bins] = {
@@ -178,15 +167,15 @@ void drawRes(
       1000
   };
 
-  TString Dir = "./plots_Res_"+ver+"/"+tag+"/"+L3type+"/";
+  TString Dir = "./plots_Res_"+ver+"/";
   if (gSystem->mkdir(Dir,kTRUE) != -1)
     gSystem->mkdir(Dir,kTRUE);
-  TString canvasDir_pt = Dir+"Canvas/"+res_tag+"/pt/";
-  if (gSystem->mkdir(canvasDir_pt,kTRUE) != -1)
-    gSystem->mkdir(canvasDir_pt,kTRUE);
-  TString canvasDir_eta = Dir+"Canvas/"+res_tag+"/eta/";
-  if (gSystem->mkdir(canvasDir_eta,kTRUE) != -1)
-    gSystem->mkdir(canvasDir_eta,kTRUE);
+  // TString canvasDir_pt = Dir+"Canvas/"+res_tag+"/pt/";
+  // if (gSystem->mkdir(canvasDir_pt,kTRUE) != -1)
+  //   gSystem->mkdir(canvasDir_pt,kTRUE);
+  // TString canvasDir_eta = Dir+"Canvas/"+res_tag+"/eta/";
+  // if (gSystem->mkdir(canvasDir_eta,kTRUE) != -1)
+  //   gSystem->mkdir(canvasDir_eta,kTRUE);
 
   vector<vector<double>> means_pt    = { {}, {}, {}, {} };
   vector<vector<double>> means_pt_e  = { {}, {}, {}, {} };
@@ -200,7 +189,7 @@ void drawRes(
   vector<double> pt_bins_e  = {};
   vector<double> eta_bins_e = {};
 
-  int reb = 1;
+  int reb = 5;
   double xmin = -1.0;
   double xmax = 1.0;
   double ymin = 0.0;
@@ -215,7 +204,7 @@ void drawRes(
   if(res_tag == "qbpt")  titleX = "(q^{gen}/p_{T}^{gen} - q^{HLT}/p_{T}^{HLT}) / q^{gen}/p_{T}^{gen}";
 
   for(int ipt=0; ipt<n_pt_bins-1; ++ipt) {
-    if(pt_bins[ipt] < 0 || pt_bins[ipt] > 1000)  continue;
+    if(pt_bins[ipt] < 10 || pt_bins[ipt] > 190)  continue;
 
     pt_bins_e.push_back(pt_bins[ipt]);
 
@@ -233,8 +222,9 @@ void drawRes(
     SetLegend( legend, 0.15, 0.70, 0.90, 0.87, -1);
 
     for(int itype=0; itype<(int)types.size(); ++itype) {
-      TString fileName = TString::Format("./Outputs_%s/hist-%s-%s-%s-Eff.root", ver.Data(), ver.Data(), types.at(itype).Data(), tag.Data() );
-      TString name = TString::Format("Res/h_%s_%s_pt_%d", L3type.Data(), res_tag.Data(), ipt);
+      TString L1_pt_cut = "L1pt22";
+      TString fileName = TString::Format("../Outputs_%s/hist-%s-%s-Res.root", ver.Data(), ver.Data(), tag.Data() );
+      TString name = TString::Format("h_%s_%s_pt_%d_%s", types[itype].Data(), res_tag.Data(), ipt, L1_pt_cut.Data());
 
       TH1D* h = Get_Hist_1D( fileName, name );
       h->SetTitle("");
@@ -373,16 +363,16 @@ void drawRes(
     TLatex latex;
     Latex_Simulation_14TeV( latex );
     latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
-    latex.DrawLatexNDC(0.60, 0.87, "#font[42]{#scale[0.8]{"+binstr+"}}");
+    latex.DrawLatexNDC(0.65, 0.87, "#font[42]{#scale[0.8]{"+binstr+"}}");
 
     c->Modified();  c->Update();  c->RedrawAxis();
-    gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
-    c->SaveAs(canvasDir_pt+canvasName+logy_tag+".pdf","pdf");
-    gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
+    // gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
+    // c->SaveAs(canvasDir_pt+canvasName+logy_tag+".pdf","pdf");
+    // gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
 
     c->Close();
   }
-  pt_bins_e.push_back(1000.0);
+  pt_bins_e.push_back(200.0);
 
   for(int ieta=0; ieta<n_eta_bins-1; ++ieta) {
 
@@ -402,8 +392,9 @@ void drawRes(
     SetLegend( legend, 0.15, 0.70, 0.90, 0.87, -1);
 
     for(int itype=0; itype<(int)types.size(); ++itype) {
-      TString fileName = TString::Format("./Outputs_%s/hist-%s-%s-%s-Eff.root", ver.Data(), ver.Data(), types.at(itype).Data(), tag.Data() );
-      TString name = TString::Format("Res/h_%s_%s_eta_%d", L3type.Data(), res_tag.Data(), ieta);
+      TString L1_pt_cut = "L1pt22";
+      TString fileName = TString::Format("../Outputs_%s/hist-%s-%s-Res.root", ver.Data(), ver.Data(), tag.Data() );
+      TString name = TString::Format("h_%s_%s_eta_%d_%s", types[itype].Data(), res_tag.Data(), ieta, L1_pt_cut.Data());
 
       TH1D* h = Get_Hist_1D( fileName, name );
       h->SetTitle("");
@@ -528,12 +519,12 @@ void drawRes(
     TLatex latex;
     Latex_Simulation_14TeV( latex );
     latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
-    latex.DrawLatexNDC(0.60, 0.87, "#font[42]{#scale[0.8]{"+binstr+"}}");
+    latex.DrawLatexNDC(0.65, 0.87, "#font[42]{#scale[0.8]{"+binstr+"}}");
 
     c->Modified();  c->Update();  c->RedrawAxis();
-    gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
-    c->SaveAs(canvasDir_eta+canvasName+logy_tag+".pdf","pdf");
-    gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
+    // gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
+    // c->SaveAs(canvasDir_eta+canvasName+logy_tag+".pdf","pdf");
+    // gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
 
     c->Close();
   }
@@ -568,7 +559,7 @@ void drawRes(
 
     vector<double> bin_e = v_var[ivar].Contains("pt") ? pt_bins_e : eta_bins_e;
 
-    TString canvasName = TString::Format("Res_%s_%s_%s_%s", tag.Data(), L3type.Data(), res_tag.Data(), v_var[ivar].Data() );
+    TString canvasName = TString::Format("Res_%s_%s", res_tag.Data(), v_var[ivar].Data() );
     canvasName.ReplaceAll(".","p").ReplaceAll("-","_");
     TCanvas *c;
     SetCanvas_Square( c, canvasName, kFALSE, kFALSE, 900, 900 );
@@ -628,9 +619,9 @@ void drawRes(
     legend->Draw();
 
     TLatex latex;
-    Latex_Simulation_14TeV( latex );
-    latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
-    latex.DrawLatexNDC(0.18, 0.87, "#font[42]{#scale[0.8]{"+L3typestr+"}}");
+    // Latex_Simulation_14TeV( latex );
+    // latex.DrawLatexNDC( 0.45,0.96, "#scale[0.8]{#font[42]{"+SAMPLE+"}}");
+    // latex.DrawLatexNDC(0.65, 0.87, "#font[42]{#scale[0.8]{"+L3typestr+"}}");
     if(v_var[ivar].Contains("eta"))
       latex.DrawLatexNDC(0.65, 0.87, "#font[42]{#scale[0.8]{p_{T}^{gen} > 26 GeV}}");
 
@@ -638,12 +629,12 @@ void drawRes(
       continue;
 
     // TString logy_tag = isLogy ? "_log" : "";
-    // CMS_lumi(c, 98, 11);
+    CMS_lumi(c, 98, 11);
     c->Modified();  c->Update();  c->RedrawAxis();
     gROOT->ProcessLine( "gErrorIgnoreLevel = 2001;");
     c->SaveAs(Dir+canvasName+".pdf","pdf");
-    // c->SaveAs(Dir+canvasName+".C","C");
-    // c->SaveAs(Dir+canvasName+".root","root");
+    c->SaveAs(Dir+canvasName+".C","C");
+    c->SaveAs(Dir+canvasName+".root","root");
     gROOT->ProcessLine( "gErrorIgnoreLevel = kPrint;");
 
     c->Close();

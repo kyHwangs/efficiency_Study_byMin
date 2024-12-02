@@ -5,6 +5,7 @@
 #include <TH2F.h>
 #include <TH1D.h>
 #include <TH2D.h>
+#include <TH3D.h>
 #include <TProfile.h>
 #include <TColor.h>
 #include <TLegend.h>
@@ -15,6 +16,7 @@
 #include <TPad.h>
 #include <TF1.h>
 #include <TGraphAsymmErrors.h>
+#include <TStyle.h>
 #include "Math/SpecFunc.h"
 #include "Math/DistFunc.h"
 
@@ -69,6 +71,21 @@ using namespace std;
 
     TFile *f_input = TFile::Open( FileName );
     TH2F* h_temp = (TH2F*)f_input->Get(HistName)->Clone();
+    if( HistName_New != "" )
+      h_temp->SetName( HistName_New );
+
+    f_input->Close();
+    // delete f_input;
+
+    return h_temp;
+  }
+
+  TH3D* Get_Hist_3D(TString FileName, TString HistName, TString HistName_New = "" )
+  {
+    TH3::AddDirectory(kFALSE);
+
+    TFile *f_input = TFile::Open( FileName );
+    TH3D* h_temp = (TH3D*)f_input->Get(HistName)->Clone();
     if( HistName_New != "" )
       h_temp->SetName( HistName_New );
 
@@ -180,22 +197,16 @@ using namespace std;
   {
     TString titleX = "";
     if( varName.Contains("IPSig") )            titleX = "dxy/#sigma(dxy)";
-    if( varName.Contains("lumi") )             titleX = "inst. lumi [1E34 Hz/cm^{2}]";
-    if( varName.Contains("pu") )               titleX = "Pileup";
-    if( varName.Contains("pu_reco") )          titleX = "Pileup";
-    if( varName.Contains("vtx") )              titleX = "#scale[0.8]{Number of reconstructed vertices}";
+    if( varName.Contains("pu") )               titleX = "#scale[1.0]{True number of interactions}";  // tmp
+    if( varName.Contains("vtx") )              titleX = "PU";  // tmp
     if( varName.Contains("pt_trk") )           titleX = "p_{T}(trk) [GeV]";
     if( varName.Contains("eta_trk") )          titleX = "#eta(trk)";
-    if( varName.Contains("pt_sim") )           titleX = "p_{T}^{sim} [GeV]";
-    if( varName.Contains("eta_sim") )          titleX = "#eta^{sim}";
-    if( varName.Contains("mass_reco") )         titleX = "Offline muon pair m_{#mu^{+}#mu^{-}} [GeV]";
-    if( varName.Contains("pt_reco") )           titleX = "Offline muon p_{T} [GeV]";
-    if( varName.Contains("eta_reco") )          titleX = "Offline muon #eta";
-    if( varName.Contains("phi_reco") )          titleX = "Offline muon #phi";
-    if( varName.Contains("mass_gen") )          titleX = "Gen muon pair m_{#mu^{+}#mu^{-}} [GeV]";
-    if( varName.Contains("pt_gen") )            titleX = "Gen muon p_{T} [GeV]";
-    if( varName.Contains("eta_gen") )           titleX = "Gen muon #eta";
-    if( varName.Contains("phi_gen") )           titleX = "Gen muon #phi";
+    if( varName.Contains("pt_sim") )           titleX = "p_{T}(sim) [GeV]";
+    if( varName.Contains("eta_sim") )          titleX = "#eta(sim)";
+    if( varName.Contains("mass_gen") )         titleX = "m_{#mu^{+}#mu^{-}, GEN} [GeV]";
+    if( varName.Contains("pt_gen") )           titleX = "p_{T}^{gen} [GeV]";
+    if( varName.Contains("eta_gen") )          titleX = "#eta^{gen}";
+    if( varName.Contains("phi_gen") )          titleX = "#phi^{gen}";
     if( varName.Contains("Pt") )               titleX = "p_{T} [GeV]";
     if( varName.Contains("AbsP") )             titleX = "p [GeV]";
     if( varName == "P" )                       titleX = "p [GeV]";
@@ -239,11 +250,6 @@ using namespace std;
 
     if( varName.Contains("tsos_eta") )         titleX = "#eta(seed)";
     if( varName.Contains("pt_l1") )            titleX = "p_{T}(L1 muon) [GeV]";
-    if( varName.Contains("l1pt") )             titleX = "p_{T}(L1 muon) [GeV]";
-    if( varName.Contains("pt_l2") )            titleX = "p_{T}(L2 muon) [GeV]";
-    if( varName.Contains("l2pt") )             titleX = "p_{T}(L2 muon) [GeV]";
-    if( varName.Contains("pt_l3") )            titleX = "p_{T}(L3 muon) [GeV]";
-    if( varName.Contains("l3pt") )             titleX = "p_{T}(L3 muon) [GeV]";
     if( varName.Contains("eta_cut_l1") )       titleX = "#eta(L1 muon)";
     if( varName.Contains("pt_l1tk") )          titleX = "p_{T}(L1 Tk muon) [GeV]";
     if( varName.Contains("eta_cut_l1tk") )     titleX = "#eta(L1 Tk muon)";
@@ -1256,12 +1262,6 @@ using namespace std;
     latex.DrawLatexNDC(0.82, 0.96, "#font[42]{#scale[0.8]{13 TeV}}");
   }
 
-  void Latex_Preliminary_13p6TeV( TLatex &latex )
-  {
-    Latex_Preliminary_NoDataInfo( latex );
-    latex.DrawLatexNDC(0.80, 0.96, "#font[42]{#scale[0.8]{13.6 TeV}}");
-  }
-
   void Latex_Preliminary( TLatex &latex, Double_t lumi  )
   {
     Latex_Preliminary_NoDataInfo( latex );
@@ -1271,13 +1271,7 @@ using namespace std;
   void Latex_Preliminary( TLatex &latex, Double_t lumi, Int_t E_CM  )
   {
     Latex_Preliminary_NoDataInfo( latex );
-    latex.DrawLatexNDC(0.69, 0.96, "#font[42]{#scale[0.8]{"+TString::Format("%.1lf fb^{-1} (%.d TeV)", lumi, E_CM)+"}}");
-  }
-
-  void Latex_Preliminary( TLatex &latex, Double_t lumi, Double_t E_CM  )
-  {
-    Latex_Preliminary_NoDataInfo( latex );
-    latex.DrawLatexNDC(0.67, 0.96, "#font[42]{#scale[0.8]{"+TString::Format("%.1lf fb^{-1} (%.1f TeV)", lumi, E_CM)+"}}");
+    latex.DrawLatexNDC(0.69, 0.96, "#font[42]{#scale[0.8]{"+TString::Format("%.1lf fb^{-1} (%d TeV)", lumi, E_CM)+"}}");
   }
 
   void Latex_Simulation( TLatex &latex, TString offset = "" )
